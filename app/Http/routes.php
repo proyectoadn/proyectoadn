@@ -27,3 +27,9 @@ Route::post('validar', [
     'uses' => 'Controlador@comprobarlogin',
     'middleware' => 'login'
 ]);
+
+Route::get('loginerror', [
+
+    'as' => 'loginerror',
+    'uses' => 'Controlador@loginerror',
+]);
