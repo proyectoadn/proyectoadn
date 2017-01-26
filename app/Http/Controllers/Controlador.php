@@ -58,11 +58,12 @@ class Controlador extends Controller
         $rol = \DB::table('rol')->where('id_rol','=', $cargo[0]->id_rol)->get();
         
         
-        if($rol[0]->id_rol == "EQ_Directivo"){
+        
+        if($rol[0]->descripcion == "EQ_Directivo"){
             
             return view('elegirRol');
         }
-        else if($rol[0]->id_rol == "Coordinador calidad"){
+        else if($rol[0]->descripcion == "Coordinador calidad"){
             
             return view('elegirRol');
         }
