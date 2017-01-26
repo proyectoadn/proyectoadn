@@ -21,6 +21,12 @@ Route::get('login', [
     'uses' => 'Controlador@index'
 ]);
 
+Route::get('loginerror', [
+
+    'as' => 'loginerror',
+    'uses' => 'Controlador@loginerror'
+]);
+
 Route::post('validar', [
 
     'as' => 'validar',
