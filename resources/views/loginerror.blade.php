@@ -8,7 +8,7 @@ Login
 @section('contenido')
 
 <div class="alert alert-danger loginerror" >Usuario o contraseña incorrectos</div>
-<div class="panel panel-primary login">
+<div class="panel panel-primary loginerror">
     <div class="panel-body">
         <h2 class="form-signin-heading">Iniciar sesión</h2>
     </div>
