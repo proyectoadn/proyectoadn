@@ -1,0 +1,19 @@
+body{
+
+    background-color: lightblue;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.divformulario{
+
+    width: 20%;
+    margin: auto;
+    text-align: center;
+}
+
+textarea{
+
+    width: 100%;
+    resize: none;
+}
