@@ -1,5 +1,5 @@
 body{
- background-color:lightblue;
+    background-color:lightblue;
 }
 
 .divformulario{
@@ -32,6 +32,31 @@ textarea{
     width:40%;
 }
 
+.botonImagen{
+    height: 180px;
+    width: 180px;
+    
+    background-color: transparent;
+    border: 0px;
+}
+
+.botonRol{
+    margin-top:5%;
+    text-align: center;
+}
+
+.tituloElegirRol{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+
+
+.imagenBoton{
+    width: 100%;
+}
+
 .panel-primary {
-     border-color: white;
+    border-color: white;
 }

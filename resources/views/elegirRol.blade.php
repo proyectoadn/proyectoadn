@@ -2,27 +2,32 @@
 @extends('maestra')
 
 @section('titulo')
-    Login
+Elección de rol
 @endsection
 
 @section('contenido')
 
-    <div class="panel panel-primary login">
-        <div class="panel-body">
-            <h2 class="form-signin-heading">Iniciar sesión</h2>
+        <div class="tituloElegirRol">
+            <h2>Elegir rol de acceso</h2>
         </div>
-        <div class="panel-footer">
-            <form action="validar" method="POST">
-                {!! csrf_field() !!}
+<div class="row">
+    <form action="" method="POST">
+        {!! csrf_field() !!}
+        <div class="col-md-6 botonRol">
 
-                <input type="text" name="usuario" id="inputEmail" class="form-control" placeholder="Usuario" required autofocus>
-                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-
-                <br>
-                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
-                <br>
-            </form>
-
+            <button type="submit" name="admin" id="admin" class="botonImagen" value="">
+                <img src="Imagenes/elegirRol/admin.png" class="imagenBoton"/></button>
+                <h4>Administrador</h4>
         </div>
-    </div>
+    </form>    
+    <form action="" method="POST">
+        <div class="col-md-6 botonRol">
+            <button type="submit" name="usuario" id="usuario" class="botonImagen" value="">
+                <img src="Imagenes/elegirRol/usuario.png" class="imagenBoton"/></button>
+                <br>
+                <h4>Usuario</h4>
+        </div>
+    </form>
+</div>
+</div>
 @endsection

@@ -33,6 +33,7 @@ class Controlador extends Controller
         return view('login');
     }
     
+    
 
     /**
      * Store a newly created resource in storage.
