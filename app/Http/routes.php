@@ -15,4 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', 'Controlador@index');
+Route::get('login', [
+
+    'as' => 'login',
+    'uses' => 'Controlador@index'
+]);
+
+Route::post('validar', [
+
+    'as' => 'validar',
+    'uses' => 'Controlador@comprobarlogin',
+    'middleware' => 'login'
+]);
