@@ -1,5 +1,5 @@
 body{
-
+ background-color:lightblue;
 }
 
 .divformulario{
@@ -13,4 +13,18 @@ textarea{
 
     width: 100%;
     resize: none;
+}
+
+.panel-footer{
+    background-color:white;
+}
+
+.login{
+    margin:auto;
+    margin-top: 10%;
+    width:40%;
+}
+
+.panel-primary {
+     border-color: white;
 }
