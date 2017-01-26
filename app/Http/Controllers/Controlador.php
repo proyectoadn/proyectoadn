@@ -33,11 +33,6 @@ class Controlador extends Controller
         return view('login');
     }
     
-        public function loginerror()
-    {
-
-        return view('loginerror');
-    }
 
     /**
      * Store a newly created resource in storage.
