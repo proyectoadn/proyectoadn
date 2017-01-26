@@ -17,7 +17,8 @@ class Controlador extends Controller
     public function index()
     {
 
-        /*
+       
+        /*    
         \DB::table('usuario')->insert([
 
             'nombre' => "Daniel",
@@ -27,7 +28,9 @@ class Controlador extends Controller
             'created_at' => getdate(),
             'updated_at' => getdate(),
         ]);
-        */
+        */ 
+         
+        
 
 
         return view('login');
