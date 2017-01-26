@@ -25,8 +25,8 @@ class login
 
         if($usu){
 
-            if(\Hash::check($usu[0]->password, $password)){
-
+            if(\Hash::check($password, $usu[0]->password)){
+                
                 \Session::put('u', $usu);
 
                 return $next($request);

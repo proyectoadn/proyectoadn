@@ -46,4 +46,25 @@ class Controlador extends Controller
         
         return view('loginerror');
     }
+    
+    public function comprobarlogin(Request $request){
+        
+        
+        $usu = \Session::get('u');
+        
+        
+        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu[0]->id_usuario)->get();
+        
+        $rol = \DB::table('rol')->where('id_rol','=', $cargo[0]->id_rol)->get();
+        
+        
+        if($rol[0]->id_rol == "EQ_Directivo"){
+            
+            return view('elegirRol');
+        }
+        else if($rol[0]->id_rol == "Coordinador calidad"){
+            
+            return view('elegirRol');
+        }
+    }
 }
