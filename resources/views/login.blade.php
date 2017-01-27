@@ -2,11 +2,11 @@
 @extends('maestra')
 
 @section('titulo')
-    Login
+Login
 @endsection
 
 @section('contenido')
-
+<div class="container">
     <div class="panel panel-primary login">
         <div class="panel-body">
             <h2 class="form-signin-heading">Iniciar sesión</h2>
@@ -25,4 +25,5 @@
 
         </div>
     </div>
+</div>
 @endsection

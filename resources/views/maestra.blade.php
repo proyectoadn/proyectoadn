@@ -9,10 +9,10 @@
     <link rel="stylesheet" type="text/css" href="{!! asset("css/estilos.css") !!}"/>
 </head>
 <body>
-<div class="container">
+
     <div>
         @yield('contenido')
     </div>
-</div>
+
 </body>
 </html>
