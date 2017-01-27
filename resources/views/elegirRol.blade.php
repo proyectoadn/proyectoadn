@@ -11,7 +11,7 @@ Elección de rol
         <h2>Elegir rol de acceso</h2>
     </div>
     <div class="row">
-        <form action="" method="POST">
+        <form action="admistrador" method="POST">
             {!! csrf_field() !!}
             <div class="col-md-6 botonRol">
 
@@ -20,7 +20,8 @@ Elección de rol
                 <h4>Administrador</h4>
             </div>
         </form>    
-        <form action="" method="POST">
+        <form action="usuario" method="POST">
+            {!! csrf_field() !!}
             <div class="col-md-6 botonRol">
                 <button type="submit" name="usuario" id="usuario" class="botonImagen" value="">
                     <img src="Imagenes/elegirRol/usuario.png" class="imagenBoton"/></button>

@@ -16,21 +16,6 @@ class Controlador extends Controller
      */
     public function index()
     {
-
-    /*    
-        \DB::table('usuario')->insert([
-
-            'id_usuario' => 'NULL',
-            'nombre' => 'Alberto',
-            'apellidos' => 'de la Plaza',
-            'email' => 'delaplazaalberto@gmail.com',
-            'password' => \Hash::make("asd"),
-            'created_at' => getdate(),
-            'updated_at' => getdate(),
-        ]);
-            */
-
-
         return view('login');
     }
     
@@ -47,7 +32,7 @@ class Controlador extends Controller
         return view('loginerror');
     }
     
-    
+
     public function comprobarlogin(Request $request){
         
         
@@ -68,5 +53,34 @@ class Controlador extends Controller
             
             return view('elegirRol');
         }
+        else{
+
+            return view('gestionTareas');
+        }
+    }
+    public function gestionarTareas(Request $request){
+
+    }
+
+    public function registro(Request $request){
+        
+        return view('registro');
+    }
+
+    public function usuario(Request $request){
+
+
+        $usuario=\Session::get('u');
+
+        $datos=[
+            'user'=>$usuario
+        ];
+        return view('gestionTareas',$datos);
+    }
+
+    public function administrador(Request $request){
+
+
+        return view('administrar');
     }
 }

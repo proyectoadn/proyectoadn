@@ -5,6 +5,41 @@
 Gestión de tareas
 @endsection
 
+@section('js')
+    <script>
+        $(document ).ready(function() {
+            alert('HOLAAA');
+            var usuario = JSON.parse("{{ json_encode($user) }}");
+            alert(usuario);
+
+         //   $("#aceptar").on("click",function(){
+
+                /*
+                var nom = JSON.stringify($("#usuario").val());
+
+                $.post("servidor.php",{n:nom},
+                        function(respuesta){
+
+
+
+                            if(respuesta === 'Existe'){
+
+                                window.location = "Bienvenido.php";
+                            }
+                            else{
+
+                                window.location = "index.php";
+                            }
+
+                        }).error( function(){
+                    alert("Error");
+                });
+            });
+            */
+        });
+    </script>
+@endsection
+
 @section('contenido')
 
 <div class="row">
