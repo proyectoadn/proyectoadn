@@ -7,8 +7,7 @@ Gestión de tareas
 
 @section('js')
     <script>
-        $(document ).ready(function() {
-            alert('HOLAAA');
+        $(document).ready(function() {
             var usuario = JSON.parse("{{ json_encode($user) }}");
             alert(usuario);
 
