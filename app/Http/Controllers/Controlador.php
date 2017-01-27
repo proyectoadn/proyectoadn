@@ -17,7 +17,7 @@ class Controlador extends Controller
     public function index()
     {
 
-        /*
+    /*    
         \DB::table('usuario')->insert([
 
             'id_usuario' => 'NULL',
@@ -28,8 +28,9 @@ class Controlador extends Controller
             'created_at' => getdate(),
             'updated_at' => getdate(),
         ]);
-        */
-        
+            */
+
+
         return view('login');
     }
     
@@ -46,6 +47,7 @@ class Controlador extends Controller
         
         return view('loginerror');
     }
+    
     
     
     public function comprobarlogin(Request $request){
