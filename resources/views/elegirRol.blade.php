@@ -21,6 +21,7 @@ Elección de rol
             </div>
         </form>    
         <form action="" method="POST">
+            {!! csrf_field() !!}
             <div class="col-md-6 botonRol">
                 <button type="submit" name="usuario" id="usuario" class="botonImagen" value="">
                     <img src="Imagenes/elegirRol/usuario.png" class="imagenBoton"/></button>

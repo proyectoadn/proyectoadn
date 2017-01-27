@@ -68,4 +68,10 @@ class Controlador extends Controller
         return view('gestionarTareas',$datos);
     }
 
+    public function registro(Request $request){
+
+        return view('registro');
+    }
+
+
 }
