@@ -22,6 +22,12 @@
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
                 <br>
             </form>
+            
+            <form action="registro" method="POST">
+                {!! csrf_field() !!}
+                
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Registro">
+            </form>
 
         </div>
     </div>

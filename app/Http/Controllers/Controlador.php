@@ -70,5 +70,14 @@ class Controlador extends Controller
             
             return view('elegirRol');
         }
+        else{
+            
+            return view('gestionTareas');
+        }
+    }
+    
+    public function registro(Request $request){
+        
+        return view('registro');
     }
 }

@@ -33,3 +33,9 @@ Route::post('validar', [
     'uses' => 'Controlador@comprobarlogin',
     'middleware' => 'login'
 ]);
+
+Route::post('registro', [
+    
+    'as' => 'registro',
+    'uses' => 'Controlador@registro',
+]);
