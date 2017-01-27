@@ -33,3 +33,5 @@ Route::post('validar', [
     'uses' => 'Controlador@comprobarlogin',
     'middleware' => 'login'
 ]);
+
+Route::post('usuario','Controlador@gestionarTareas');
