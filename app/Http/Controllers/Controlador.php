@@ -78,6 +78,7 @@ class Controlador extends Controller
     
     public function registro(Request $request){
         
+        
         return view('registro');
     }
 }
