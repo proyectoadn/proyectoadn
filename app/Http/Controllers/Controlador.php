@@ -17,22 +17,19 @@ class Controlador extends Controller
     public function index()
     {
 
-       
-        /*    
+        /*
         \DB::table('usuario')->insert([
 
-            'nombre' => "Daniel",
-            'apellidos' => 'ramirez ros',
-            'email' => 'dramirez677@gmail.com',
-            'password' => \Hash::make("dani"),
+            'id_usuario' => 'NULL',
+            'nombre' => 'Alberto',
+            'apellidos' => 'de la Plaza',
+            'email' => 'delaplazaalberto@gmail.com',
+            'password' => \Hash::make("asd"),
             'created_at' => getdate(),
             'updated_at' => getdate(),
         ]);
-        */ 
-         
+        */
         
-
-
         return view('login');
     }
     
@@ -49,6 +46,7 @@ class Controlador extends Controller
         
         return view('loginerror');
     }
+    
     
     public function comprobarlogin(Request $request){
         
