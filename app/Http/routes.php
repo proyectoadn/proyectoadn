@@ -34,4 +34,10 @@ Route::post('validar', [
     'middleware' => 'login'
 ]);
 
+Route::post('registro', [
+
+    'as' => 'registro',
+    'uses' => 'Controlador@registro',
+]);
+
 Route::post('usuario','Controlador@gestionarTareas');

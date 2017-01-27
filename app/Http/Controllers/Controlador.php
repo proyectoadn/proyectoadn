@@ -33,6 +33,7 @@ class Controlador extends Controller
         return view('loginerror');
     }
     
+    
     public function comprobarlogin(Request $request){
         
         
@@ -52,6 +53,10 @@ class Controlador extends Controller
         else if($rol[0]->descripcion == "Coordinador calidad"){
             
             return view('elegirRol');
+        }
+        else{
+
+            return view('gestionTareas');
         }
     }
     public function gestionarTareas(Request $request){
