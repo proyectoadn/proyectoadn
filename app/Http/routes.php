@@ -40,4 +40,14 @@ Route::post('registro', [
     'uses' => 'Controlador@registro',
 ]);
 
-Route::post('usuario','Controlador@gestionarTareas');
+Route::post('usuario', [
+
+    'as' => 'usuario',
+    'uses' => 'Controlador@usuario',
+]);
+
+Route::post('administrador', [
+
+    'as' => 'administrador',
+    'uses' => 'Controlador@administrador',
+]);

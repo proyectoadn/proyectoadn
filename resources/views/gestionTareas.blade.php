@@ -7,12 +7,13 @@ Gestión de tareas
 
 @section('js')
     <script>
-        $(function(){
-
+        $(document ).ready(function() {
+            alert('HOLAAA');
+            var usuario = JSON.parse("{{ json_encode($user) }}");
+            alert(usuario);
 
          //   $("#aceptar").on("click",function(){
-                var usuario = JSON.parse("{{ json_encode($user) }}");
-                alert(usuario);
+
                 /*
                 var nom = JSON.stringify($("#usuario").val());
 

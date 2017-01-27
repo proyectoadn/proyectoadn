@@ -33,7 +33,7 @@ class Controlador extends Controller
         return view('loginerror');
     }
     
-    
+
     public function comprobarlogin(Request $request){
         
         
@@ -60,18 +60,28 @@ class Controlador extends Controller
         }
     }
     public function gestionarTareas(Request $request){
+
+    }
+
+    public function registro(Request $request){
+        
+        return view('registro');
+    }
+
+    public function usuario(Request $request){
+
+
         $usuario=\Session::get('u');
 
         $datos=[
             'user'=>$usuario
         ];
-        return view('gestionarTareas',$datos);
+        return view('gestionTareas',$datos);
     }
 
-    public function registro(Request $request){
+    public function administrador(Request $request){
 
-        return view('registro');
+
+        return view('administrar');
     }
-
-
 }
