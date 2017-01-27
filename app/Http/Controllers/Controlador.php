@@ -55,7 +55,12 @@ class Controlador extends Controller
         }
     }
     public function gestionarTareas(Request $request){
+        $usuario=\Session::get('u');
 
+        $datos=[
+            'user'=>$usuario
+        ];
+        return view('gestionarTareas',$datos);
     }
 
 }

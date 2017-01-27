@@ -7,12 +7,13 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{!! asset("css/estilos.css") !!}"/>
+    @yield('js')
 </head>
 <body>
-<div class="container">
+
     <div>
         @yield('contenido')
     </div>
-</div>
+
 </body>
 </html>
