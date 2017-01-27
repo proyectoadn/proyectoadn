@@ -27,6 +27,13 @@ Route::get('loginerror', [
     'uses' => 'Controlador@loginerror'
 ]);
 
+
+Route::get('gestionTareas', [
+
+    'as' => 'loginerror',
+    'uses' => 'Controlador@gestiontareas'
+]);
+
 Route::post('validar', [
 
     'as' => 'validar',
