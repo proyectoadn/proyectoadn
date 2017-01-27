@@ -39,3 +39,15 @@ Route::post('registro', [
     'as' => 'registro',
     'uses' => 'Controlador@registro',
 ]);
+
+Route::post('usuario', [
+    
+    'as' => 'usuario',
+    'uses' => 'Controlador@registro',
+]);
+
+Route::post('administrador', [
+    
+    'as' => 'administrador',
+    'uses' => 'Controlador@registro',
+]);

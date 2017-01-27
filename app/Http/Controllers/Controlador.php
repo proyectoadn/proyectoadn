@@ -81,4 +81,16 @@ class Controlador extends Controller
         
         return view('registro');
     }
+    
+    public function usuario(Request $request){
+        
+        
+        return view('gestionTareas');
+    }
+    
+    public function administrador(Request $request){
+        
+        
+        return view('administrar');
+    }
 }
