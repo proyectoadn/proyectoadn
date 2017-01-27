@@ -2,11 +2,11 @@
 @extends('maestra')
 
 @section('titulo')
-    Login
+Login
 @endsection
 
 @section('contenido')
-
+<div class="container">
     <div class="panel panel-primary login">
         <div class="panel-body">
             <h2 class="form-signin-heading">Iniciar sesión</h2>
@@ -22,7 +22,14 @@
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
                 <br>
             </form>
+            
+            <form action="registro" method="POST">
+                {!! csrf_field() !!}
+                
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Registro">
+            </form>
 
         </div>
     </div>
+</div>
 @endsection

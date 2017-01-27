@@ -16,6 +16,20 @@ class Controlador extends Controller
      */
     public function index()
     {
+
+        /*
+        \DB::table('usuario')->insert([
+
+            'nombre' => "Daniel",
+            'apellidos' => 'ramirez ros',
+            'email' => 'dramirez677@gmail.com',
+            'password' => \Hash::make("dani"),
+            'created_at' => getdate(),
+            'updated_at' => getdate(),
+        ]);
+        */
+
+
         return view('login');
     }
     
@@ -53,9 +67,15 @@ class Controlador extends Controller
             
             return view('elegirRol');
         }
-    }
-    public function gestionarTareas(Request $request){
+        else{
 
+            return view('gestionTareas');
+        }
+    }
+
+    public function registro(Request $request){
+
+        return view('registro');
     }
 
 }
