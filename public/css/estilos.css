@@ -73,8 +73,8 @@ textarea{
 }
 
 .botonCargoCat{
-margin-left: 30px;
-margin-top: 10px;
+    margin-left: 30px;
+    margin-top: 10px;
 }
 
 .divBotonCargoCat{
@@ -84,9 +84,9 @@ margin-top: 10px;
 }
 
 .contenedorColumnas{
-min-width: 100%;
-position: relative;
-overflow-y: auto;
+    min-width: 100%;
+    position: relative;
+    overflow-y: auto;
 
 }
 
@@ -97,8 +97,8 @@ overflow-y: auto;
     background-color: #548aa8;
     min-height: 400px;
     margin: 5px;
-    
-    
+
+
     /*Estilo del borde del divisor de la columna*/
     border-radius: 20px 20px 0px 0px;
     -moz-border-radius: 20px 20px 0px 0px;
@@ -108,5 +108,13 @@ overflow-y: auto;
 
 .limpiar{
     clear: both;
+}
+
+.divregistro{
+
+    width: 25%;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
 }
 

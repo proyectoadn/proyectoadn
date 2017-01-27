@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//Rutas get
+
 Route::get('login', [
 
     'as' => 'login',
@@ -33,6 +36,11 @@ Route::get('gestionTareas', [
     'as' => 'loginerror',
     'uses' => 'Controlador@gestiontareas'
 ]);
+
+
+
+
+//Rutas post
 
 Route::post('validar', [
 
@@ -57,4 +65,10 @@ Route::post('administrador', [
 
     'as' => 'administrador',
     'uses' => 'Controlador@administrador',
+]);
+
+Route::post('registrar', [
+
+    'as' => 'registrar',
+    'uses' => 'Controlador@registrar',
 ]);

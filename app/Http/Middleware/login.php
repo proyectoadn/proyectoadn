@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Clases\Usuario;
 
 class login
 {
@@ -27,7 +28,9 @@ class login
 
             if(\Hash::check($password, $usu[0]->password)){
                 
-                \Session::put('u', $usu);
+                $usuariosesion = new \Usuario($usu[0]->id_usuario, $usu[0]->nombre, $usu[0]->apellidos, $usu[0]->email, $usu[0]->password);
+                
+                \Session::put('u', $usuariosesion);
 
                 return $next($request);
             }

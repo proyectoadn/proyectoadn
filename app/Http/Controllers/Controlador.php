@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Clases\Usuario;
 
 class Controlador extends Controller
 {
@@ -36,10 +37,11 @@ class Controlador extends Controller
     public function comprobarlogin(Request $request){
         
         
+        $usu = new Usuario('','','','','');
         $usu = \Session::get('u');
         
         
-        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu[0]->id_usuario)->get();
+        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu->getId_usuario())->get();
         
         $rol = \DB::table('rol')->where('id_rol','=', $cargo[0]->id_rol)->get();
         
@@ -58,6 +60,8 @@ class Controlador extends Controller
             return view('gestionTareas');
         }
     }
+    
+    
     public function gestionarTareas(Request $request){
 
     }
@@ -70,10 +74,11 @@ class Controlador extends Controller
     public function usuario(Request $request){
 
 
-        $usuario=\Session::get('u');
+        $usu = new Usuario('','','','','');
+        $usu=\Session::get('u');
 
         $datos=[
-            'user'=>$usuario
+            'user'=>$usu
         ];
         return view('gestionTareas',$datos);
     }
@@ -82,5 +87,10 @@ class Controlador extends Controller
 
 
         return view('administrar');
+    }
+    
+    public function registrar(Request $request){
+        
+        //Hacer el insert del registro
     }
 }
