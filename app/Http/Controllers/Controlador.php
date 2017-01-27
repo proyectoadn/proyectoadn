@@ -29,7 +29,6 @@ class Controlador extends Controller
      */
     public function loginerror(Request $request)
     {
-        
         return view('loginerror');
     }
     
