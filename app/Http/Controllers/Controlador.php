@@ -44,15 +44,9 @@ class Controlador extends Controller
      */
     public function loginerror(Request $request)
     {
-        
         return view('loginerror');
     }
     
-        public function gestiontareas(Request $request)
-    {
-        
-        return view('gestionTareas');
-    }
     
     public function comprobarlogin(Request $request){
         
