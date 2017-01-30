@@ -78,13 +78,7 @@ Gestión de tareas
         </div>
         <div  class="item" id="item5">
             5
-        </div>   
-        <div  class="item" id="item4">
-            4
-        </div>
-        <div  class="item" id="item5">
-            5
-        </div>   
+        </div>    
     </div>
 </div>
 
