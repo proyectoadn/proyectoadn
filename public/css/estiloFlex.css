@@ -8,18 +8,18 @@ body{
     user-select: none;
     white-space: nowrap;
     overflow-x: auto;
-    overflow-y: auto;
+    overflow-y: hidden;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     margin: 0px;
+
+
 }
 
 .item{
-
     width: 270px;
-    min-height: 500px;
     height: 100%;
     margin: 15px;;
     background-color: #F3F3F3;
@@ -27,8 +27,12 @@ body{
     box-sizing: border-box;
     display: inline-block; /*Esto deja las columnas en horizontal, hace que no se bajen*/
     vertical-align: top;
-    white-space: nowrap;
+
     padding: 0px 0px 0px 0px;
+
+    max-height: 500px;
+    white-space: nowrap;
+    overflow-y: scroll;
 
     /* BORDE */
     border-radius: 5px 5px 5px 5px;
@@ -63,6 +67,7 @@ body{
     min-height: 50px;
     background-color: #4375AE;
     margin-bottom: 2%;
+    border-bottom: 1px solid #F3F3F3;
 }
 
 .botonCargoCat{

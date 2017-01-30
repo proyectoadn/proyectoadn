@@ -64,11 +64,26 @@ Gestión de tareas
 
     <div class="flex-container">
         <div class="item" id="item1">
+            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px; background-color: #f3f3f3;">asdasdsad</div>
+            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
+            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
+            <div class="panel panel-primary">asdasdasd</div>
             <div class="dentro"></div>
             <div class="dentro"></div>
+            <div class="dentro"></div>
+            <div class="dentro"></div>
+            <div class="dentro"></div>
+            <div class="dentro"></div>
+            <div class="dentro"></div>
+            <div class="dentro"></div>
+            <div class="dentro"></div>
+
+
         </div>
         <div  class="item" id="item2">
-            2
+            <div class="dentro panel-body"></div>
+            <div class="dentro"></div>
+            <div class="dentro"></div>
         </div>
         <div  class="item" id="item3">
             3
