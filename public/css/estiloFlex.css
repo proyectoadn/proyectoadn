@@ -1,0 +1,81 @@
+body{
+    margin-left: 0px;
+    padding: 0px;
+
+}
+
+.flex-container{
+    user-select: none;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0px;
+}
+
+.item{
+
+    width: 270px;
+    min-height: 500px;
+    height: 100%;
+    margin: 15px;;
+    background-color: #F3F3F3;
+    margin-right: 1%;
+    box-sizing: border-box;
+    display: inline-block; /*Esto deja las columnas en horizontal, hace que no se bajen*/
+    vertical-align: top;
+    white-space: nowrap;
+    padding: 0px 0px 0px 0px;
+
+    /* BORDE */
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border: 0px solid #000000;
+}
+
+.dentro{
+    width: 90%;
+    min-height: 60px;
+    margin: 11px 11px 11px 11px;
+    padding: 0px 2px 0px 0px;
+    background-color: gray;
+
+    /* BORDE DE LOS DIVISORES DE DENTRO DE LAS COLUMNAS*/
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border: 0px solid #000000;
+}
+
+.contenedorPrincipal{
+    /*    margin-left: 8px;
+        margin-right: 8px;*/
+    background-color: #4375AE;
+    min-height: 600px;
+
+}
+
+.cargoCat{
+    min-height: 50px;
+    background-color: #4375AE;
+    margin-bottom: 2%;
+}
+
+.botonCargoCat{
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.divBotonCargoCat{
+    width: 15%; 
+    float: left;
+    margin-right: 15px;
+}
+
+.limpiar{
+    clear: both;
+}
