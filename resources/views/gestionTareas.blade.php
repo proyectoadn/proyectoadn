@@ -64,26 +64,22 @@ Gestión de tareas
 
     <div class="flex-container">
         <div class="item" id="item1">
-            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px; background-color: #f3f3f3;">asdasdsad</div>
-            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
-            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
-            <div class="panel panel-primary">asdasdasd</div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
 
 
         </div>
         <div  class="item" id="item2">
-            <div class="dentro panel-body"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary dentro" >asdasdsad</div>
         </div>
         <div  class="item" id="item3">
             3
@@ -92,7 +88,23 @@ Gestión de tareas
             4
         </div>
         <div  class="item" id="item5">
-            5
+            <div class="panel panel-primary dentro" >
+                <form action="#" method="POST">
+                    {!! csrf_field() !!}
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="">DOCUMENTO TAL</label>
+                    </div>
+                </form>
+            </div>
+            
+                        <div class="panel panel-primary dentro" >
+                <form action="#" method="POST">
+                    {!! csrf_field() !!}
+                    <div>
+                        <label><input type="checkbox" value="" class="form-control" size="10">DOCUMENTO PASCUAL</label>
+                    </div>
+                </form>
+            </div>
         </div>    
     </div>
 </div>
