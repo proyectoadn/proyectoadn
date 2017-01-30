@@ -6,40 +6,45 @@ Gestión de tareas
 @endsection
 
 @section('js')
-<script>
-    $(document).ready(function () {
-        var usuario = JSON.parse("{{ json_encode($user) }}");
-        alert(usuario);
 
-        //   $("#aceptar").on("click",function(){
-
-        /*
-         var nom = JSON.stringify($("#usuario").val());
-         
-         $.post("servidor.php",{n:nom},
-         function(respuesta){
-         
-         
-         
-         if(respuesta === 'Existe'){
-         
-         window.location = "Bienvenido.php";
-         }
-         else{
-         
-         window.location = "index.php";
-         }
-         
-         }).error( function(){
-         alert("Error");
-         });
-         });
-         */
-    });
-</script>
 @endsection
 
 @section('contenido')
+
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery-ui.min.js"></script>
+
+<script>
+
+    $(function () {
+
+        $("#item1,#item2").droppable();
+
+        $(".tarea").draggable({stack: "div", cursor: "move"});
+
+
+        $(".tarea").draggable({
+            drag: function (evento, ui) {
+
+                $(this).css("-webkit-transform", "rotate(7deg)");
+            }
+        });
+
+
+
+        $(".tarea").droppable({
+            drop: function (evento, ui) {
+
+                $(".tarea").each(function (index, elem) {
+
+                    $(".tarea").css("-webkit-transform", "rotate(0deg)");
+                });
+            }
+        });
+
+
+    });
+</script>
 
 <div class="contenedorPrincipal">
     <!--div que contiene los cargos y las categorias-->
@@ -63,37 +68,37 @@ Gestión de tareas
 
 
     <div class="flex-container">
+        
         <div class="item" id="item1">
-            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px; background-color: #f3f3f3;">asdasdsad</div>
-            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
-            <div class="panel panel-primary" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
-            <div class="panel panel-primary">asdasdasd</div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
-
-
+            <div class="panel panel-primary tarea" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
+            <div class="panel panel-primary tarea" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
+            <div class="panel panel-primary tarea" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
+            <div class="panel panel-primary tarea" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
         </div>
+        
+        
         <div  class="item" id="item2">
-            <div class="dentro panel-body"></div>
-            <div class="dentro"></div>
-            <div class="dentro"></div>
+            <div class="panel panel-primary tarea" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
+            <div class="panel panel-primary tarea" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
+            <div class="panel panel-primary tarea" style="padding: 3px; margin:7px; min-height: 60px;">asdasdsad</div>
         </div>
+        
+        
         <div  class="item" id="item3">
             3
         </div>
+        
+        
         <div  class="item" id="item4">
             4
         </div>
+        
+        
         <div  class="item" id="item5">
             5
-        </div>    
+        </div>   
+        
+        
     </div>
 </div>
 
