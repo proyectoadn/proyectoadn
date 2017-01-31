@@ -1,6 +1,7 @@
 body{
     margin-left: 0px;
     padding: 0px;
+    background-color: #4375AE;
 
 }
 
@@ -29,9 +30,6 @@ body{
 
     padding: 0px 0px 0px 0px;
     max-height: 500px;
-    white-space: nowrap;
-    overflow-y: scroll;
-    overflow-x:
 
     /* BORDE */
     border-radius: 5px 5px 5px 5px;
@@ -69,8 +67,10 @@ body{
 }
 
 .cargoCat{
+    
+    width: 100%;
+    margin: auto;
     min-height: 50px;
-    background-color: #4375AE;
     margin-bottom: 2%;
     border-bottom: 1px solid #F3F3F3;
 }
