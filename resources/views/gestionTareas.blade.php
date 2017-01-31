@@ -21,7 +21,21 @@ Gestión de tareas
 
         $("#item1,#item2").droppable();
 
-        $("#item1,#item2").droppable({
+        $(".tarea").draggable({stack: "div", cursor: "move"});
+
+
+        $(".tarea").draggable({
+            drag: function (evento, ui) {
+
+                $(this).css("-webkit-transform", "rotate(7deg)");
+                //$(".item").css("overflow-y", "hidden");
+                $(".flex-container").append(this);
+            }
+        });
+
+
+
+        $(".tarea").droppable({
             drop: function (evento, ui) {
 
                 $(".tarea").each(function (index, elem) {
@@ -85,6 +99,8 @@ Gestión de tareas
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
+
+
         </div>
 
 
