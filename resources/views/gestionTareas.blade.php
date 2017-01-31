@@ -27,6 +27,8 @@ Gestión de tareas
             drag: function (evento, ui) {
 
                 $(this).css("-webkit-transform", "rotate(7deg)");
+                //$(".item").css("overflow-y", "hidden");
+                $(".flex-container").append(this);
             }
         });
 
@@ -70,24 +72,24 @@ Gestión de tareas
     <div class="flex-container">
         
         <div class="item" id="item1">
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
 
 
         </div>
         
         
         <div  class="item" id="item2">
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
-            <div class="panel panel-primary dentro" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="panel panel-primary tarea" >asdasdsad</div>
         </div>
         
         
