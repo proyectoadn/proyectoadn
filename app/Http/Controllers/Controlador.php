@@ -44,8 +44,7 @@ class Controlador extends Controller
         $cargo = \DB::table('cargo')->where('id_usuario','=', $usu->getId_usuario())->get();
         
         $rol = \DB::table('rol')->where('id_rol','=', $cargo[0]->id_rol)->get();
-        
-        
+
         
         if($rol[0]->descripcion == "EQ_Directivo"){
             
@@ -76,10 +75,17 @@ class Controlador extends Controller
 
         $usu = new Usuario('','','','','');
         $usu=\Session::get('u');
-
+        $user[] = $usu->getId_usuario();
+        $user[] = $usu->getNombre();
+        $user[] = $usu->getEmail();
+        $user[] = $usu->getPassword();
+        $usuario=json_encode($user);
+        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu->getId_usuario())->get();
+        $rol = \DB::table('rol')->where('id_rol','=', $cargo[0]->id_rol)->get();
         $datos=[
-            'user'=>$usu
+            'roles'=>$rol
         ];
+
         return view('gestionTareas',$datos);
     }
 

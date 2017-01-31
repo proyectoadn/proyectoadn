@@ -7,35 +7,34 @@ Gestión de tareas
 
 @section('js')
     <script>
-        $(document).ready(function() {
-            var usuario = JSON.parse("{{ json_encode($user) }}");
-            alert(usuario);
-
-         //   $("#aceptar").on("click",function(){
-
-                /*
-                var nom = JSON.stringify($("#usuario").val());
-
-                $.post("servidor.php",{n:nom},
-                        function(respuesta){
 
 
+$(function(){
+    $("#carg").change(function(){
 
-                            if(respuesta === 'Existe'){
+        var id=$(this).val();
+        var idjson=JSON.stringify(id);
 
-                                window.location = "Bienvenido.php";
-                            }
-                            else{
+        $.post("../resources/views/categorias.php", {rol: idjson},
+                function (respuesta) {
 
-                                window.location = "index.php";
-                            }
 
-                        }).error( function(){
-                    alert("Error");
-                });
-            });
-            */
+                    var categorias=JSON.parse(respuesta);
+
+                    $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
+                    for(var i=0;i<categorias.length;i++){
+                        $("#cat").append('<option value='+categorias[i]['id']+'>'+categorias[i]['descripcion']+'</option>');
+                    }
+
+                }).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
         });
+    });
+});
+
+
+
+
     </script>
 @endsection
 
@@ -46,17 +45,17 @@ Gestión de tareas
         <!--div que contiene los cargos y las categorias-->
         <div class="cargoCat">
             <div class='divBotonCargoCat'>
-                <select name="1" size="" class='botonCargoCat form-control'>
-                    <option value="1">Cargo1</option>
-                    <option value="2">Cargo2</option>
-                    <option value="3">Cargo3</option>
+                <select id="carg" class='botonCargoCat form-control'>
+                    <option value="-1">-Elige cargo-</option>
+                    @for($i=0;$i<count($roles);$i++)
+                        <option  value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
+                    @endfor
                 </select>
             </div>
             <div class='divBotonCargoCat'>
-                <select name="cargos" size="" class='botonCargoCat form-control'>
-                    <option value="1">Cargo1</option>
-                    <option value="2">Cargo2</option>
-                    <option value="3">Cargo3</option>
+                <select id="cat" name="cargos" size="" class='botonCargoCat form-control'>
+                    <option id="categorias" value="-1">-Elige categoria-</option>
+
                 </select>
             </div>
         </div>
