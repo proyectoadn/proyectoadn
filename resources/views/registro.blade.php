@@ -51,7 +51,6 @@ Elección de rol
             //Cojo el span y lo dejo con texto vacío porque es correcto
             var capa = document.getElementById("textoApellido");
             capa.innerHTML = "<div class='alert alert-success' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/v.png' alt='Correcto' style='width: 16px; height: 16px;' />  Apellido correcto</div>";
-            document.getElementById('registrar').disabled = false;
         }
     }
 
@@ -72,7 +71,6 @@ Elección de rol
             //Cojo el span y lo dejo con texto vacío porque es correcto
             var capa = document.getElementById("textoEmail");
             capa.innerHTML = "<div class='alert alert-success' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/v.png' alt='Correcto' style='width: 16px; height: 16px;' />  Email Correcto</div>"; 
-            document.getElementById('registrar').disabled = false;
         }
     }
 
