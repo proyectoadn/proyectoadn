@@ -8,8 +8,7 @@ Elección de rol
 
     //Nada más entrar, deja el foco en el primer campo del formulario, el nombre
     window.onload = function () {
-        document.getElementById("nombre").focus();
-        document.getElementById('registrar').disabled = true;
+        document.getElementById("email").focus();
     };
 
 
@@ -25,6 +24,7 @@ Elección de rol
             document.getElementById('registrar').disabled = true;
 
         } else {
+
             document.getElementById('nombre').style.color = 'green';
 
             //Cojo el span y lo dejo con texto vacío porque es correcto
@@ -32,7 +32,7 @@ Elección de rol
             capa.innerHTML = "<div class='alert alert-success' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/v.png' alt='Correcto' style='width: 16px; height: 16px;' />  Nombre correcto</div>";
 
         }
-    }
+    }   
 
     function validarApellido(control) {
         if (control.value == "") {
@@ -42,8 +42,7 @@ Elección de rol
             //Si está vacío, cojo el span, lo cambio de color y meto como texto incorrecto
             var capa = document.getElementById("textoApellido");
             document.getElementById('textoApellido').style.color = 'red';
-            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Introduzca el apellido</div>";            document.getElementById('registrar').disabled = true;
-
+            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Introduzca el apellido</div>";
             document.getElementById('registrar').disabled = true;
         } else {
             document.getElementById('apellidos').style.color = 'green';
@@ -63,8 +62,7 @@ Elección de rol
             //Si está vacío, cojo el span, lo cambio de color y meto como texto incorrecto
             var capa = document.getElementById("textoEmail");
             document.getElementById('textoEmail').style.color = 'red';
-            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Introduzca un email</div>";
-
+            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  El email ya está en uso</div>";
             document.getElementById('registrar').disabled = true;
         } else {
             document.getElementById('email').style.color = 'green';
@@ -104,6 +102,7 @@ Elección de rol
 
 @section('contenido')
 <div class="container divregistro">
+
     <div class="col-md-8 col-md-push-4">
         <div class="panel-body">
             <h2 class="form-signin-heading">Formulario registro</h2>
@@ -112,7 +111,7 @@ Elección de rol
         <form action="registrar" method="POST">
             <!-- Columna inputs-->
             <div class="col-md-6">
-                <!--<div class="alert alert-danger" >Usuario o contraseña incorrectos</div>-->
+                <div class="alert alert-danger" >El email ya está en uso</div>
                 <!-- Input Nombre -->
                 <input type="text" name="nombre" title="nombre" 
                        id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
@@ -149,29 +148,37 @@ Elección de rol
                        value="Reiniciar" class="btn btn-primary">
             </div>
 
+            <!-- Validación  -->
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px;">
+                <span class=""  id="v"></span>
+            </div>
+            <!-- Validación  -->
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px;">
+                <span class=""  id=""></span>
+            </div>
 
             <!-- Validación Nombre -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class=""  id="textoNombre"></span>
             </div>
 
             <!-- Validación Apellido -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class="" id="textoApellido"></span>
             </div>
 
             <!--  -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px;margin-bottom: 5px;">
                 <span class="" id="textoEmail"></span>
             </div>
 
             <!--  -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class="" id="textoPassword"></span>
             </div>
 
             <!-- Validación Contraseña -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class="" id="textoPasswordRepetida"></span>
             </div>
         </form>
