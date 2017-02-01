@@ -143,9 +143,11 @@ Gestión de tareas
         $.post("../resources/views/PhpAuxiliares/gestion.php", {id: id, nombretabla: nombretabla},
                 function (respuesta) {
 
+                    var descripcion = JSON.parse(respuesta);
 
-                    alert(respuesta);
 
+                    $("#descripcion").val(descripcion);
+                    
                 }).fail(function (jqXHR) {
             alert("Error de tipo " + jqXHR.status);
         });
@@ -180,8 +182,6 @@ Gestión de tareas
                 </div>
 
                 <div class="checkbox divgestionopciones">
-
-
 
                     @for($i=0;$i<count($roles);$i++)
 
@@ -263,12 +263,13 @@ Gestión de tareas
 
                         <label class="displayBock" id="nombreentregar{!! $i !!}">
                             <input type="checkbox" name="entrega" id="entrega{!! $i !!}" value="entrega{!! $i !!}" class="seleccionarEntrega">
-                            {!! $entregar[$i]->descripcion !!}
-                        </label>
+                            <p>{!! $entregar[$i]->descripcion !!}
+                                <button onclick="popup(this, 'entregas')" value="{!! $entregar[$i]->id_entregar !!}" id="editarentrega" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
+                                    <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
+                                </button>
+                            </p>
 
-                        <button onclick="popup(this, 'rol')" value="{!! $roles[$i]->id_rol !!}" id="editarrol" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
-                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
-                        </button>
+                        </label>
                         @endfor
 
                         <label class="displayBock" style="margin-top: 10px;">
@@ -301,7 +302,7 @@ Gestión de tareas
                 <div class="modal-body">
 
                     <label>Nombre del rol</label>
-                    <input type="text" name="nombrerol" placeholder="Nombre del rol" class="form-control" required>
+                    <input type="text" name="nombrerol" id="nombrerol" placeholder="Nombre del rol" class="form-control nombrerol" required>
 
                 </div>
 
@@ -386,7 +387,7 @@ Gestión de tareas
             <div class="modal-body">
 
                 <label>Editar la descripcion</label>
-                <input type="text" name="editarrol" class="form-control">
+                <input type="text" name="descripcion" id="descripcion" class="form-control">
 
             </div>
 
