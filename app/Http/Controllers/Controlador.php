@@ -73,11 +73,11 @@ class Controlador extends Controller {
         for ($i = 0; $i < count($rol); $i++) {
 
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
-                
+
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
             } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
-                
+
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
             }
@@ -92,7 +92,7 @@ class Controlador extends Controller {
 
 
         $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
-        
+
         return view('GestionarTareas/gestionTareas', $datos);
     }
 
@@ -230,10 +230,20 @@ class Controlador extends Controller {
 
     public function cerrarsesion(Request $request) {
 
+        
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
 
+        $nombre = $usu->getNombre();
+        $apellidos = $usu->getApellidos();
+        
         \Session::forget('u');
         \Session::forget('rol');
         \Session::forget('pagina');
+
+        $log = new Fichero();
+        $log->EscribirLog($nombre . ' ' . $apellidos . ' ha cerrado sesión.');
+
 
 
         return view('Login/cerrarsesion');
