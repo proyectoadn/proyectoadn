@@ -74,11 +74,14 @@ class Controlador extends Controller {
         $user[] = $usu->getNombre();
         $user[] = $usu->getEmail();
         $user[] = $usu->getPassword();
-        $usuario = json_encode($user);
-        $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
-        $rol = \DB::table('rol')->where('id_rol', '=', $cargo[0]->id_rol)->get();
-        $datos = [
-            'roles' => $rol
+        $usuario=json_encode($user);
+        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu->getId_usuario())->get();
+        for($i=0;$i<count($cargo);$i++){
+            $rol[] = \DB::table('rol')->where('id_rol','=', $cargo[$i]->id_rol)->get();
+        }
+
+        $datos=[
+            'roles'=>$rol
         ];
 
         return view('gestionTareas', $datos);
