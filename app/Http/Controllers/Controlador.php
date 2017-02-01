@@ -33,6 +33,8 @@ class Controlador extends Controller
         return view('loginerror');
     }
     
+   
+
 
     public function comprobarlogin(Request $request){
         
@@ -90,7 +92,7 @@ class Controlador extends Controller
     }
     
     public function registrar(Request $request){
-        
-        //Hacer el insert del registro
+
+        return view('registro');
     }
 }
