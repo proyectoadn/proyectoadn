@@ -6,36 +6,36 @@ Gestión de tareas
 @endsection
 
 @section('js')
-    <script>
+<script>
 
 
-$(function(){
-    $("#carg").change(function(){
+    $(function () {
+        $("#carg").change(function () {
 
-        var id=$(this).val();
-        var idjson=JSON.stringify(id);
+            var id = $(this).val();
+            var idjson = JSON.stringify(id);
 
-        $.post("../resources/views/categorias.php", {rol: idjson},
-                function (respuesta) {
+            $.post("../resources/views/categorias.php", {rol: idjson},
+                    function (respuesta) {
 
 
-                    var categorias=JSON.parse(respuesta);
+                        var categorias = JSON.parse(respuesta);
 
-                    $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
-                    for(var i=0;i<categorias.length;i++){
-                        $("#cat").append('<option value='+categorias[i]['id']+'>'+categorias[i]['descripcion']+'</option>');
-                    }
+                        $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
+                        for (var i = 0; i < categorias.length; i++) {
+                            $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
+                        }
 
-                }).fail(function (jqXHR) {
-            alert("Error de tipo " + jqXHR.status);
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
         });
     });
-});
 
 
 
 
-    </script>
+</script>
 @endsection
 
 @section('contenido')
@@ -45,48 +45,49 @@ $(function(){
 
 <script>
 
-    $(function () {
+        $(function () {
 
 
-        $("#item1,#item2").droppable();
+            $("#item1,#item2").droppable();
 
-        $(".tarea").draggable({stack: "div", cursor: "move"});
+            $(".tarea").draggable({stack: "div", cursor: "move"});
 
 
-        $(".tarea").draggable({
-            drag: function (evento, ui) {
+            $(".tarea").draggable({
+                drag: function (evento, ui) {
 
-                $(this).css("-webkit-transform", "rotate(7deg)");
-                //$(".item").css("overflow-y", "hidden");
-                $(".flex-container").append(this);
-            }
+                    $(this).css("-webkit-transform", "rotate(7deg)");
+                    //$(".item").css("overflow-y", "hidden");
+                    $(".flex-container").append(this);
+                }
+            });
+
+
+
+            $(".tarea").droppable({
+                drop: function (evento, ui) {
+
+                    $(".tarea").each(function (index, elem) {
+
+                        $(".tarea").css("-webkit-transform", "rotate(0deg)");
+                    });
+                }
+            });
+
+
+
+            $(".tarea").draggable({stack: "div", cursor: "move", revert: true});
+
+            $(".tarea").draggable({
+                drag: function (evento, ui) {
+
+                    $(this).css("-webkit-transform", "rotate(7deg)");
+                }
+            });
+
+
         });
 
-
-
-        $(".tarea").droppable({
-            drop: function (evento, ui) {
-
-                $(".tarea").each(function (index, elem) {
-
-                    $(".tarea").css("-webkit-transform", "rotate(0deg)");
-                });
-            }
-        });
-
-
-
-        $(".tarea").draggable({stack: "div", cursor: "move", revert: true});
-
-        $(".tarea").draggable({
-            drag: function (evento, ui) {
-
-                $(this).css("-webkit-transform", "rotate(7deg)");
-            }
-        });
-
-
-    });
 </script>
 
 <div class="row">
@@ -99,7 +100,7 @@ $(function(){
 
                     @for($i=0;$i<count($roles);$i++)
                         <option  value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
-                    @endfor
+                        @endfor
                 </select>
             </div>
             <div class='divBotonCargoCat'>
@@ -112,33 +113,33 @@ $(function(){
         <div class='limpiar'></div>
 
 
-    <div class="flex-container">
+        <div class="flex-container">
 
-        <div class="item" id="item1">
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-
-
-        </div>
+            <div class="item" id="item1">
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
 
 
-        <div  class="item" id="item2">
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-        </div>
+            </div>
 
 
-        <div  class="item" id="item3">
-            3
-        </div>
+            <div  class="item" id="item2">
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+            </div>
+
+
+            <div  class="item" id="item3">
+                3
+            </div>
 
             <!--4ta columna-->
             <div class="columna">

@@ -57,7 +57,6 @@ class Controlador extends Controller {
     }
 
     public function registro(Request $request) {
-
         return view('registro');
     }
 
@@ -74,14 +73,14 @@ class Controlador extends Controller {
         $user[] = $usu->getNombre();
         $user[] = $usu->getEmail();
         $user[] = $usu->getPassword();
-        $usuario=json_encode($user);
-        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu->getId_usuario())->get();
-        for($i=0;$i<count($cargo);$i++){
-            $rol[] = \DB::table('rol')->where('id_rol','=', $cargo[$i]->id_rol)->get();
+        $usuario = json_encode($user);
+        $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
+        for ($i = 0; $i < count($cargo); $i++) {
+            $rol[] = \DB::table('rol')->where('id_rol', '=', $cargo[$i]->id_rol)->get();
         }
 
-        $datos=[
-            'roles'=>$rol
+        $datos = [
+            'roles' => $rol
         ];
 
         return view('gestionTareas', $datos);
@@ -94,7 +93,32 @@ class Controlador extends Controller {
     }
 
     public function registrar(Request $request) {
-        return view('gestionTareas');
+
+        //Creo el usuario en blanco y lo recojo de la sesión
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+        
+        //Con estas variables creamos la fecha dia, mes y año para meterlo en la BBDD
+            $hoy = getdate();
+            $dia = $hoy['mday'];
+            $mes = $hoy['mon'];
+            $año = $hoy['year'];
+                 
+            //Hacemos el insert
+        \DB::table('usuario')
+                ->insert([
+                    'id_usuario' => 'NULL',
+                    'nombre' => $usu->getNombre(),
+                    'apellidos' => $usu->getApellidos(),
+                    'email' => $usu->getEmail(),
+                    'password' => $usu->getPassword(),
+                    'created_at' => $año.'-'.$mes.'-'.$dia,
+                    'updated_at' => $año.'-'.$mes.'-'.$dia
+                    
+        ]);
+
+        //Volvemos a la página de login
+        return view('login');
     }
 
 }
