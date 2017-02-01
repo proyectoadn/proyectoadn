@@ -6,6 +6,11 @@ Login
 @endsection
 
 @section('contenido')
+
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery-ui.min.js"></script>
+
+
 <div class="container">
     <div class="panel panel-primary login">
         <div class="panel-body">
@@ -22,10 +27,10 @@ Login
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
                 <br>
             </form>
-            
+
             <form action="registro" method="POST">
                 {!! csrf_field() !!}
-                
+
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Registro">
             </form>
 

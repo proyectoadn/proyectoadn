@@ -1,5 +1,5 @@
 body{
-    background-color:lightblue;
+    background-color: #4375AE;
     margin-left: 15px;
 }
 
@@ -60,61 +60,7 @@ textarea{
     border-color: white;
 }
 
-.contenedorPrincipal{
-    /*    margin-left: 8px;
-        margin-right: 8px;*/
-    background-color: #F5F3F3;
-    min-height: 600px;
-}
-
-.cargoCat{
-    min-height: 50px;
-    background-color: #F5F3F3;
-}
-
-.botonCargoCat{
-    margin-left: 30px;
-    margin-top: 10px;
-}
-
-.divBotonCargoCat{
-    width: 15%; 
-    float: left;
-    margin-right: 15px;
-}
-
-.contenedorColumnas{
-    min-width: 100%;
-    position: relative;
-    overflow-y: auto;
-
-}
-
-.columna{
-    display: flex;
-    float: left;
-    width: 270px;
-    background-color: #548aa8;
-    min-height: 400px;
-    margin: 5px;
-
-
-    /*Estilo del borde del divisor de la columna*/
-    border-radius: 20px 20px 0px 0px;
-    -moz-border-radius: 20px 20px 0px 0px;
-    -webkit-border-radius: 20px 20px 0px 0px;
-    border: 0px solid #000000;
-}
-
-.limpiar{
-    clear: both;
-}
-
 .divregistro{
-
-    width: 25%;
-    text-align: center;
     margin: auto;
     margin-top: 20px;
 }
-

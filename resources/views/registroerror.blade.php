@@ -2,20 +2,20 @@
 @extends('maestra')
 
 @section('titulo')
-Elección de rol
+Registro
 @endsection
 <script>
 
     //Nada más entrar, deja el foco en el primer campo del formulario, el nombre
     window.onload = function () {
-        document.getElementById("nombre").focus();
-        document.getElementById('registrar').disabled = true;
+        document.getElementById("email").focus();
     };
 
 </script>
 
 @section('contenido')
 <div class="container divregistro">
+
     <div class="col-md-8 col-md-push-4">
         <div class="panel-body">
             <h2 class="form-signin-heading">Formulario registro</h2>
@@ -24,7 +24,7 @@ Elección de rol
         <form action="registrar" method="POST">
             <!-- Columna inputs-->
             <div class="col-md-6">
-                <!--<div class="alert alert-danger" >Usuario o contraseña incorrectos</div>-->
+                <div class="alert alert-danger" >El email ya está en uso</div>
                 <!-- Input Nombre -->
                 <input type="text" name="nombre" title="nombre" 
                        id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
@@ -61,29 +61,37 @@ Elección de rol
                        value="Reiniciar" class="btn btn-primary">
             </div>
 
+            <!-- Validación  -->
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px;">
+                <span class=""  id="v"></span>
+            </div>
+            <!-- Validación  -->
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px;">
+                <span class=""  id=""></span>
+            </div>
 
             <!-- Validación Nombre -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class=""  id="textoNombre"></span>
             </div>
 
             <!-- Validación Apellido -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class="" id="textoApellido"></span>
             </div>
 
             <!--  -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px;margin-bottom: 5px;">
                 <span class="" id="textoEmail"></span>
             </div>
 
             <!--  -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class="" id="textoPassword"></span>
             </div>
 
             <!-- Validación Contraseña -->
-            <div class="col-md-6" style="height: 34px; margin-bottom: 5px;">
+            <div class="col-md-6" style="height: 34px; padding: 6px 12px; margin-bottom: 5px;">
                 <span class="" id="textoPasswordRepetida"></span>
             </div>
         </form>
