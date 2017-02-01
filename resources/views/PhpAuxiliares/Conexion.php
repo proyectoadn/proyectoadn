@@ -71,6 +71,45 @@ class Conexion {
         }
         return $devolver;
     }
+    
+    function rellenar_gestionrol($id_rol) {
+        $consult = 'select * from rol where id_rol='.$id_rol;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function rellenar_gestioncategorias($id_categoria) {
+        $consult = 'select * from categoria where id_categoria='.$id_categoria;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function rellenar_gestionentregas($id_entregas) {
+        $consult = 'select * from entregar where id_entregar='.$id_entregas;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
 
     function editarUsuario($id_usuario) {
         $consult = 'SELECT rol.descripcion, usuario.id_usuario, usuario.nombre, usuario.apellidos, usuario.email FROM usuario, cargo, rol WHERE usuario.id_usuario=' . $id_usuario . ' AND usuario.id_usuario=cargo.id_usuario AND cargo.id_rol=rol.id_rol';

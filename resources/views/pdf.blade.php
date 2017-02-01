@@ -1,37 +1,88 @@
-@extends('../maestra')
-
-@section('titulo')
-Gestión de tareas
-@endsection
 
 
-@section('contenido')
+
+<link rel="stylesheet" type="text/css" href="{!! asset('css/estilos.css') !!}"/>
+<link rel="stylesheet" type="text/css" href="{!! asset('css/estiloFlex.css') !!}"/>
+
+<style>
+
+    body{
+
+        background-color: white;
+    }
+
+
+</style>
 
 
 <div>
-    
-    <h3>Listado de las tareas</h3>
-    
-    Por hacer:<br>
-    
-    {!! $tareas[0]->descripcion !!}
+
+    <div class="titulogeneralpdf">
+
+        <h3>Listado de las tareas</h3>
+    </div>
+
+    <br>
+
+
+        <div>
+            <h4>Por hacer:</h4>
+        </div>
+
+            @for($i=0;$i<count($porhacer);$i++)
+                
+                <div class="divtarea" id="porhacer">
+                
+                
+                {!! $porhacer[$i]->descripcion !!}
+                <br><br>
+                {!! $porhacer[$i]->modelo !!}
+                
+                </div>
+                <br>
+            @endfor
+
+        
+    <br>
+
+        <div>
+            <h4>Pendiente</h4>
+        </div>
+
+            
+            @for($i=0;$i<count($pendiente);$i++)
+                
+                <div class="divtarea" id="pendiente">
+                
+                
+                {!! $pendiente[$i]->descripcion !!}
+                <br><br>
+                {!! $pendiente[$i]->modelo !!}
+                
+                </div>
+                <br>
+            @endfor
+    <br>
+
+        <div>
+            <h4>Hecho</h4>
+        </div>
+
+        
+            
+            @for($i=0;$i<count($hecho);$i++)
+                
+                <div class="divtarea" id="hecho">
+                
+                
+                {!! $hecho[$i]->descripcion !!}
+                <br><br>
+                {!! $hecho[$i]->modelo !!}
+                
+                </div>
+                <br>
+            @endfor
+        
+    <br>
+
 </div>
-
-@endsection
-
-
-
-@section('footer')
-
-<div class="divfooter">
-
-    Desarrollado por:
-
-    Daniel Ramirez Ros -
-    Alberto de la Plaza Ramos -
-    Nazario Castillero Redondo<br>
-
-    Copyright 2017 - Proyectoadn
-</div>
-
-@endsection

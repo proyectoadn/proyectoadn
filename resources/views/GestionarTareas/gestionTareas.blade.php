@@ -220,7 +220,7 @@ Gestión de tareas
         </div>
 
 
-        <input type="submit" name="exportarapdf" value="Exportar a pdf" class="btn btn-primary">
+        <input  type="submit" name="exportarapdf" value="Exportar a pdf" class="btn btn-default exportarPDF">
         </form>
     </div>
     <div class='limpiar'></div>
