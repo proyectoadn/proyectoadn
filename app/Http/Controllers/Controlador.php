@@ -75,12 +75,10 @@ class Controlador extends Controller {
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
                 
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
-                
                 return view('Administrar/elegirRol');
             } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
                 
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
-                
                 return view('Administrar/elegirRol');
             }
         }

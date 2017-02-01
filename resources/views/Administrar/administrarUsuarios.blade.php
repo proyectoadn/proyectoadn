@@ -132,22 +132,22 @@ Administracion
                                     }
                                 }
                                 
-                                //Cojo el usuario de la sesion y la meto en una variable de javascript
-<?php
-$usuSesion = new Usuario('', '', '', '', '');
-$usuSesion = \Session::get('u');
+                                //Cojo el usuario de la sesion
+                                <?php
+                                $usuSesion = new Usuario('', '', '', '', '');
+                                $usuSesion = \Session::get('u');
 
-$id_sesion = $usuSesion->getId_usuario();
-?>
-                        
+                                $id_sesion = $usuSesion->getId_usuario();
+                                ?>
+                        // y lo meto en una variable de javascript
                         var id_usu_sesion = {!! $id_sesion !!};
+                        
                         var usus= new Array();
 
-                                usus.push(id_usu_sesion);
-                                usus.push(arrayUsuarios);
-                                            var usuuarios = JSON.stringify(usus);
-                        console.log(usuuarios);
-
+                        usus.push(id_usu_sesion);
+                        usus.push(arrayUsuarios);
+                        var usuuarios = JSON.stringify(usus);
+                                
                                 //Update del usuario con los nuevos datos, cambien o no
                                 $.post("../resources/views/PhpAuxiliares/eliminarUsuariosMultiples.php", {datos: usuuarios},
                                         function (respuesta) {
@@ -163,7 +163,6 @@ $id_sesion = $usuSesion->getId_usuario();
 
                         //acciones que se ejecutan al pulsar en el lapiz de editar usuario                                  
                         $('.editUsu').on('click', function () {
-
 
                             id_usu = $(this).val();
 
@@ -257,11 +256,6 @@ $id_sesion = $usuSesion->getId_usuario();
                                     }).fail(function (jqXHR) {
                                 alert("Error de tipo " + jqXHR.status);
                             });//FIN POST
-
-
-
-
-
 
                         });
 

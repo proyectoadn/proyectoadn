@@ -13,13 +13,10 @@ $conexion = new Conexion();
 //usuarios es un array con los id de usuarios que se han de eliminar
 $datos = json_decode($_POST['datos']);
 
-$usuarios=$datos[1];
-$idSesion=$datos[0];
-
+$usuarios = $datos[1];
+$idSesion = $datos[0];
 
 if ($conexion->conectar()) {
-    
-    //LA IDEA ES COGER EL ID DE LA SESION Y NO ELIMINARLO
 
     for ($i = 0; $i < count($usuarios); $i++) {
         if ($usuarios[$i] != $idSesion) {
