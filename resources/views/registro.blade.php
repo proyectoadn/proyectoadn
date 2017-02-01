@@ -22,6 +22,7 @@ Elección de rol
         </div>
 
         <form action="registrar" method="POST">
+            {!! csrf_field() !!}
             <!-- Columna inputs-->
             <div class="col-md-6">
                 <!--<div class="alert alert-danger" >Usuario o contraseña incorrectos</div>-->
@@ -54,9 +55,11 @@ Elección de rol
 
                 <br>
 
+                <!--Boton registrar-->
                 <input type="submit" name="registrar" id="registrar"  
                        value="Registrar" class="btn btn-primary">
 
+                <!--Boton reiniciar formulario-->
                 <input type="reset" name="reiniciar" id="reiniciar"
                        value="Reiniciar" class="btn btn-primary">
             </div>

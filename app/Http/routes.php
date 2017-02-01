@@ -1,15 +1,15 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+  |--------------------------------------------------------------------------
+  | Application Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register all of the routes for an application.
+  | It's a breeze. Simply tell Laravel the URIs it should respond to
+  | and give it the controller to call when that URI is requested.
+  |
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +42,12 @@ Route::get('gestionTareas', [
     'uses' => 'Controlador@gestiontareas'
 ]);
 
+Route::get('registroerror', [
+
+    'as' => 'registroerror',
+    'uses' => 'Controlador@registroerror'
+]);
+
 
 
 
@@ -52,6 +58,14 @@ Route::post('validar', [
     'as' => 'validar',
     'uses' => 'Controlador@comprobarlogin',
     'middleware' => 'login'
+]);
+
+
+Route::post('registrar', [
+
+    'as' => 'registrar',
+    'uses' => 'Controlador@registrar',
+    'middleware' => 'registro'
 ]);
 
 Route::post('registro', [
@@ -67,13 +81,7 @@ Route::post('usuario', [
 ]);
 
 Route::post('administrador', [
-
     'as' => 'administrador',
     'uses' => 'Controlador@administrador',
 ]);
 
-Route::post('registrar', [
-
-    'as' => 'registrar',
-    'uses' => 'Controlador@registrar',
-]);
