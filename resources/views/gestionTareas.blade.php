@@ -112,7 +112,7 @@ Gestión de tareas
 
             <div  class="item conectardivisores" id="item2">
 
-                Haciendo
+                <b>Haciendo</b>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
@@ -121,13 +121,13 @@ Gestión de tareas
 
             <div  class="item conectardivisores" id="item3">
 
-                Hecho
+                <b>Hecho</b>
             </div>
 
 
             <div  class="item conectardivisores" id="item4">
 
-                Aplazado
+                <b>Aplazado</b>
             </div>
 
 

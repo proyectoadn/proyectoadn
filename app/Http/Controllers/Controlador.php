@@ -120,6 +120,19 @@ class Controlador extends Controller {
                     'updated_at' => $año.'-'.$mes.'-'.$dia
 
         ]);
+        
+        $usuario = \DB::table('usuario')->where('email','=', $usu->getEmail())->get();
+        
+        \DB::table('cargo')
+                ->insert([
+                    'id_cargo' => 'NULL',
+                    'id_usuario' => $usuario[0]->id_usuario,
+                    'id_rol' => 7
+        ]);
+        
+        $usu->setId_usuario($usuario[0]->id_usuario);
+        \Session::put('u', $usu);
+        
 
         //Volvemos a la página de login
         return view('login');

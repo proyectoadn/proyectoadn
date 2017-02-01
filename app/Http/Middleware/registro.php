@@ -22,8 +22,10 @@ class registro {
         $usu = \DB::table('usuario')->where('email', '=', $email)->get();
 
         if ($usu) {
+            
             return redirect('registroerror');
-        } else {
+        } 
+        else {
 
             $nombre = $request->get('nombre');
             $apellidos = $request->get('apellidos');
