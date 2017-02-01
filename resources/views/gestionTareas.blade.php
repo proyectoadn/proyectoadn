@@ -48,7 +48,7 @@ Gestión de tareas
     $(function () {
         
 
-        $("#item1,#item2,#item3").sortable({
+        $("#item1,#item2,#item3,#item4").sortable({
             
             connectWith: ".conectardivisores",
             cursor: "move",
@@ -109,6 +109,8 @@ Gestión de tareas
         <div class="flex-container">
 
         <div class="item conectardivisores" id="item1">
+            
+            <b>Por Hacer</b>
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
@@ -124,6 +126,8 @@ Gestión de tareas
 
 
         <div  class="item conectardivisores" id="item2">
+            
+            Haciendo
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
@@ -131,16 +135,18 @@ Gestión de tareas
 
 
         <div  class="item conectardivisores" id="item3">
-            3
+            
+            Hecho
         </div>
 
 
-        <div  class="item" id="item4">
-            4
+        <div  class="item conectardivisores" id="item4">
+            
+            Aplazado
         </div>
 
 
-        <div  class="item" id="item5">
+        <div  class="item conectardivisores" id="item5">
             <div class="panel panel-primary tarea" >
                 <form action="#" method="POST">
                     {!! csrf_field() !!}
