@@ -12,94 +12,6 @@ Elección de rol
         document.getElementById('registrar').disabled = true;
     };
 
-
-    function validarNombre(control) {
-        if (control.value == "") {
-
-            document.getElementById('nombre').style.color = 'red';
-
-            //Si está vacío, cojo el span, lo cambio de color y meto como texto incorrecto
-            var capa = document.getElementById("textoNombre");
-            document.getElementById('textoNombre').style.color = 'red';
-            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Introduzca el nombre</div>";
-            document.getElementById('registrar').disabled = true;
-
-        } else {
-            document.getElementById('nombre').style.color = 'green';
-
-            //Cojo el span y lo dejo con texto vacío porque es correcto
-            var capa = document.getElementById("textoNombre");
-            capa.innerHTML = "<div class='alert alert-success' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/v.png' alt='Correcto' style='width: 16px; height: 16px;' />  Nombre correcto</div>";
-
-        }
-    }
-
-    function validarApellido(control) {
-        if (control.value == "") {
-
-            document.getElementById('apellidos').style.color = 'red';
-
-            //Si está vacío, cojo el span, lo cambio de color y meto como texto incorrecto
-            var capa = document.getElementById("textoApellido");
-            document.getElementById('textoApellido').style.color = 'red';
-            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Introduzca el apellido</div>";            document.getElementById('registrar').disabled = true;
-
-            document.getElementById('registrar').disabled = true;
-        } else {
-            document.getElementById('apellidos').style.color = 'green';
-
-            //Cojo el span y lo dejo con texto vacío porque es correcto
-            var capa = document.getElementById("textoApellido");
-            capa.innerHTML = "<div class='alert alert-success' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/v.png' alt='Correcto' style='width: 16px; height: 16px;' />  Apellido correcto</div>";
-            document.getElementById('registrar').disabled = false;
-        }
-    }
-
-    function validarEmail(control) {
-        if (control.value == "") {
-
-            document.getElementById('email').style.color = 'red';
-
-            //Si está vacío, cojo el span, lo cambio de color y meto como texto incorrecto
-            var capa = document.getElementById("textoEmail");
-            document.getElementById('textoEmail').style.color = 'red';
-            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Introduzca un email</div>";
-
-            document.getElementById('registrar').disabled = true;
-        } else {
-            document.getElementById('email').style.color = 'green';
-
-            //Cojo el span y lo dejo con texto vacío porque es correcto
-            var capa = document.getElementById("textoEmail");
-            capa.innerHTML = "<div class='alert alert-success' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/v.png' alt='Correcto' style='width: 16px; height: 16px;' />  Email Correcto</div>"; 
-            document.getElementById('registrar').disabled = false;
-        }
-    }
-
-    function comprobarLongitudPass(control) {
-        var pass = document.getElementById('password').value;
-        var passRepetida = document.getElementById('repetirpassword').value;
-
-
-        if (control.value.length < 8 || pass !== passRepetida) {
-            var capa = document.getElementById("textoPassword");
-            capa.innerHTML = "<div class='alert alert-danger' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Al menos 8 caracteres y deben ser iguales</div>";
-            document.getElementById('textoPassword').style.color = 'red';
-            document.getElementById('password').style.color = 'red';
-            document.getElementById('repetirpassword').style.color = 'red';
-            document.getElementById('registrar').disabled = true;
-
-        } else {
-
-            document.getElementById('password').style.color = 'green';
-            document.getElementById('repetirpassword').style.color = 'green';
-            var capa = document.getElementById("textoPassword");
-
-            capa.innerHTML = "<div class='alert alert-success' style='height: 34px; padding: 6px 12px;'><img src='Imagenes/registro/v.png' alt='Correcto' style='width: 16px; height: 16px;' />  Contraseña correcta</div>";
-            document.getElementById('registrar').disabled = false;
-        }
-    }
-
 </script>
 
 @section('contenido')
@@ -110,6 +22,7 @@ Elección de rol
         </div>
 
         <form action="registrar" method="POST">
+            {!! csrf_field() !!}
             <!-- Columna inputs-->
             <div class="col-md-6">
                 <!--<div class="alert alert-danger" >Usuario o contraseña incorrectos</div>-->
@@ -142,9 +55,11 @@ Elección de rol
 
                 <br>
 
+                <!--Boton registrar-->
                 <input type="submit" name="registrar" id="registrar"  
                        value="Registrar" class="btn btn-primary">
 
+                <!--Boton reiniciar formulario-->
                 <input type="reset" name="reiniciar" id="reiniciar"
                        value="Reiniciar" class="btn btn-primary">
             </div>
