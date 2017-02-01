@@ -2,7 +2,7 @@
 @extends('maestra')
 
 @section('titulo')
-Elección de rol
+Registro
 @endsection
 <script>
 
