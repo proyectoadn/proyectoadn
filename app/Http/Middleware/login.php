@@ -25,8 +25,10 @@ class login
 
 
         if($usu){
-
-            if(\Hash::check($password, $usu[0]->password)){
+            if(!$usu[0]->confirmado){
+                return redirect('loginconfirm');
+            }
+            else if(\Hash::check($password, $usu[0]->password)){
                 
                 $usuariosesion = new \Usuario($usu[0]->id_usuario, $usu[0]->nombre, $usu[0]->apellidos, $usu[0]->email, $usu[0]->password);
                 

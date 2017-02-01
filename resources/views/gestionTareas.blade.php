@@ -88,7 +88,6 @@ $(function(){
 
     });
 </script>
-
 <div class="row">
     <div class="contenedorPrincipal">
         <!--div que contiene los cargos y las categorias-->

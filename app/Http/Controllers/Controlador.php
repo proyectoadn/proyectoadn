@@ -32,7 +32,10 @@ class Controlador extends Controller
     {
         return view('loginerror');
     }
-    
+    public function loginconfirm(Request $request)
+    {
+        return view('loginconfirm');
+    }
 
     public function comprobarlogin(Request $request){
         

@@ -30,6 +30,11 @@ Route::get('loginerror', [
     'uses' => 'Controlador@loginerror'
 ]);
 
+Route::get('loginconfirm', [
+
+    'as' => 'loginconfirm',
+    'uses' => 'Controlador@loginconfirm'
+]);
 
 Route::get('gestionTareas', [
 

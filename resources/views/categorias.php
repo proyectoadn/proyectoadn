@@ -24,6 +24,7 @@ if($conexion->conectar()){
         ];
    }
 }
+$conexion->cerrar_Conexion();
 
 $vector=  json_encode($vector);
 echo $vector;
