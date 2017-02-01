@@ -65,7 +65,6 @@ Gestión de tareas
     <div class="cargoCat">
         
         <div class='divBotonCargoCat'>
-            
             <select class="form-control">
                 <option>Prueba</option>
                 <option>Prueba</option>
