@@ -46,38 +46,23 @@ Gestión de tareas
 <script>
 
     $(function () {
-        
+
 
         $("#item1,#item2,#item3,#item4").sortable({
-            
             connectWith: ".conectardivisores",
             cursor: "move",
-            start: function( event, ui ){
-                
-                
+            start: function (event, ui) {
+
+
                 $(ui.item).css("-webkit-transform", "rotate(7deg)");
             },
-            stop: function( event, ui ){
-                
-                
+            stop: function (event, ui) {
+
+
                 $(ui.item).css("-webkit-transform", "rotate(0deg)");
             }
         })
 
-        //$(".tarea").draggable({stack: "div", cursor: "move"});
-        
-
-        /*
-        $(".tarea").droppable({
-            drop: function (evento, ui) {
-
-                $(".tarea").each(function (index, elem) {
-
-                    $(".tarea").css("-webkit-transform", "rotate(0deg)");
-                });
-            }
-        });
-        */
 
 
 
@@ -108,73 +93,53 @@ Gestión de tareas
 
         <div class="flex-container">
 
-        <div class="item conectardivisores" id="item1">
-            
-            <b>Por Hacer</b>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
+            <div class="item conectardivisores" id="item1">
+
+                <b>Por Hacer</b>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" >asdasdsad</div>
 
 
-        </div>
-
-
-        <div  class="item conectardivisores" id="item2">
-            
-            Haciendo
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-            <div class="panel panel-primary tarea" >asdasdsad</div>
-        </div>
-
-
-        <div  class="item conectardivisores" id="item3">
-            
-            Hecho
-        </div>
-
-
-        <div  class="item conectardivisores" id="item4">
-            
-            Aplazado
-        </div>
-
-
-        <div  class="item conectardivisores" id="item5">
-            <div class="panel panel-primary tarea" >
-                <form action="#" method="POST">
-                    {!! csrf_field() !!}
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">DOCUMENTO TAL</label>
-                    </div>
-                </form>
             </div>
 
 
-            <div  class="item" id="item2">
+            <div  class="item conectardivisores" id="item2">
+
+                Haciendo
                 <div class="panel panel-primary tarea" >asdasdsad</div>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
             </div>
 
 
-            <div  class="item" id="item3">
-                3
+            <div  class="item conectardivisores" id="item3">
+
+                Hecho
             </div>
 
-            <!--4ta columna-->
-            <div class="columna">
 
+            <div  class="item conectardivisores" id="item4">
+
+                Aplazado
             </div>
 
-            <!--5ta columna-->
-            <div class="columna">
+
+            <div  class="item conectardivisores" id="item5">
+                <div class="panel panel-primary tarea" >
+                    <form action="#" method="POST">
+                        {!! csrf_field() !!}
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">DOCUMENTO TAL</label>
+                        </div>
+                    </form>
+                </div>
 
             </div>
         </div>
