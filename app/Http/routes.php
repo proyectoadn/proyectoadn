@@ -37,6 +37,12 @@ Route::get('gestionTareas', [
     'uses' => 'Controlador@gestiontareas'
 ]);
 
+Route::get('registroerror', [
+
+    'as' => 'registroerror',
+    'uses' => 'Controlador@registroerror'
+]);
+
 
 
 
@@ -49,11 +55,12 @@ Route::post('validar', [
     'middleware' => 'login'
 ]);
 
-//POST del formulario de registro
+
 Route::post('registrar', [
+
     'as' => 'registrar',
     'uses' => 'Controlador@registrar',
-    'middleware' => 'registrar'
+    'middleware' => 'registro'
 ]);
 
 Route::post('registro', [
@@ -69,13 +76,7 @@ Route::post('usuario', [
 ]);
 
 Route::post('administrador', [
-
     'as' => 'administrador',
     'uses' => 'Controlador@administrador',
 ]);
 
-Route::post('registrar', [
-
-    'as' => 'registrar',
-    'uses' => 'Controlador@registrar',
-]);

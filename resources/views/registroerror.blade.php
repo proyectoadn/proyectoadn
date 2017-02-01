@@ -22,6 +22,7 @@ Registro
         </div>
 
         <form action="registrar" method="POST">
+            {!! csrf_field() !!}
             <!-- Columna inputs-->
             <div class="col-md-6">
                 <div class="alert alert-danger" >El email ya está en uso</div>

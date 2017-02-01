@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Clases\Usuario;
 
-class Controlador extends Controller
-{
+class Controlador extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('login');
     }
-    
-    
 
     /**
      * Store a newly created resource in storage.
@@ -28,77 +24,74 @@ class Controlador extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function loginerror(Request $request)
-    {
+    public function loginerror(Request $request) {
         return view('loginerror');
     }
-    
-   
+
+    public function comprobarlogin(Request $request) {
 
 
-    public function comprobarlogin(Request $request){
-        
-        
-        $usu = new Usuario('','','','','');
+        $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
-        
-        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu->getId_usuario())->get();
-        
-        $rol = \DB::table('rol')->where('id_rol','=', $cargo[0]->id_rol)->get();
 
-        
-        if($rol[0]->descripcion == "EQ_Directivo"){
-            
+
+        $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
+
+        $rol = \DB::table('rol')->where('id_rol', '=', $cargo[0]->id_rol)->get();
+
+
+        if ($rol[0]->descripcion == "EQ_Directivo") {
+
             return view('elegirRol');
-        }
-        else if($rol[0]->descripcion == "Coordinador calidad"){
-            
+        } else if ($rol[0]->descripcion == "Coordinador calidad") {
+
             return view('elegirRol');
-        }
-        else{
+        } else {
 
             return view('gestionTareas');
         }
     }
-    
-    
-    public function gestionarTareas(Request $request){
 
+    public function gestionarTareas(Request $request) {
+        
     }
 
-    public function registro(Request $request){
-        
+    public function registro(Request $request) {
+
         return view('registro');
     }
 
-    public function usuario(Request $request){
+    public function registroerror(Request $request) {
+        return view('registroerror');
+    }
+
+    public function usuario(Request $request) {
 
 
-        $usu = new Usuario('','','','','');
-        $usu=\Session::get('u');
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
         $user[] = $usu->getId_usuario();
         $user[] = $usu->getNombre();
         $user[] = $usu->getEmail();
         $user[] = $usu->getPassword();
-        $usuario=json_encode($user);
-        $cargo = \DB::table('cargo')->where('id_usuario','=', $usu->getId_usuario())->get();
-        $rol = \DB::table('rol')->where('id_rol','=', $cargo[0]->id_rol)->get();
-        $datos=[
-            'roles'=>$rol
+        $usuario = json_encode($user);
+        $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
+        $rol = \DB::table('rol')->where('id_rol', '=', $cargo[0]->id_rol)->get();
+        $datos = [
+            'roles' => $rol
         ];
 
-        return view('gestionTareas',$datos);
+        return view('gestionTareas', $datos);
     }
 
-    public function administrador(Request $request){
+    public function administrador(Request $request) {
 
 
         return view('administrar');
     }
-    
-    public function registrar(Request $request){
 
-        return view('registro');
+    public function registrar(Request $request) {
+        return view('gestionTareas');
     }
+
 }

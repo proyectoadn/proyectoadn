@@ -19,6 +19,7 @@ class registro {
 
         $usu = \DB::table('usuario')->where('email', '=', $email)->get();
         
+
         if($usu){
             return redirect('registroerror');
         }

@@ -96,9 +96,7 @@ $(function(){
             <div class='divBotonCargoCat'>
                 <select id="carg" class='botonCargoCat form-control'>
                     <option value="-1">-Elige cargo-</option>
-                    @for($i=0;$i<count($roles);$i++)
-                        <option  value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
-                    @endfor
+
                 </select>
             </div>
             <div class='divBotonCargoCat'>
