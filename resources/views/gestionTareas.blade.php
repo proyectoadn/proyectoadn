@@ -68,6 +68,9 @@ Gestión de tareas
 
     });
 </script>
+
+
+
 <div class="row">
     <div class="contenedorPrincipal">
         <!--div que contiene los cargos y las categorias-->
@@ -78,7 +81,7 @@ Gestión de tareas
 
                     @for($i=0;$i<count($roles);$i++)
                         <option  value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
-                        @endfor
+                    @endfor
                 </select>
             </div>
             <div class='divBotonCargoCat'>
