@@ -1,0 +1,297 @@
+[33mcommit 9430cceeb2c61195490646e01137ac635b46a6f3[m
+Author: Daniel <prueba@gmail.com>
+Date:   Wed Feb 1 12:16:28 2017 +0100
+
+    Commit actualizar todo
+
+[33mcommit 2450b3dd4f04d44bd03e7650f26a3eaadaab4f2e[m
+Author: Daniel <prueba@gmail.com>
+Date:   Wed Feb 1 11:04:17 2017 +0100
+
+    Funcionando arrastrar de una columna a otra
+
+[33mcommit dd55638f7960b5c3e0cf3db83215fcc9e6de2f6a[m
+Merge: 3568382 3e66dc6
+Author: Daniel <prueba@gmail.com>
+Date:   Wed Feb 1 10:00:09 2017 +0100
+
+    Merge origin/desarrollo into HEAD
+
+[33mcommit 356838260b1eb95b4776fc8eec13cac602497efa[m
+Author: Daniel <prueba@gmail.com>
+Date:   Wed Feb 1 09:59:58 2017 +0100
+
+    Commit para actualizar
+
+[33mcommit 3e66dc6de258d073fb600d1447bb79b0ba088db2[m
+Merge: cb484f1 b8106b0
+Author: Alber <Alber@Alber-PC>
+Date:   Wed Feb 1 09:59:09 2017 +0100
+
+    ACTUALIZADO 01-02-2017
+
+[33mcommit cb484f14a21a95337086f09f923484052ad00820[m
+Author: Alber <Alber@Alber-PC>
+Date:   Wed Feb 1 09:53:25 2017 +0100
+
+    Commit logica registro si el usuario ya existe
+
+[33mcommit b8106b0e6db701b74e735dcf97e2c065ba8208ab[m
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Wed Feb 1 09:52:14 2017 +0100
+
+    Actualizacion final de filtro de categorias
+
+[33mcommit 20161752cf0da340aa5b24ae218e412e1098b6c2[m
+Merge: 61e2701 d017c0f
+Author: Alber <Alber@Alber-PC>
+Date:   Wed Feb 1 09:27:11 2017 +0100
+
+    Merge origin/desarrollo into desarrollo
+
+[33mcommit 61e2701203c01277565d117a1fcae7a23dfbb164[m
+Author: Alber <Alber@Alber-PC>
+Date:   Wed Feb 1 09:26:37 2017 +0100
+
+    Commit logica registro pruebas
+
+[33mcommit d017c0f4c1dff7b13e98ee4f44d292aee7da4e46[m
+Merge: 6d40fdb 97d7767
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Wed Feb 1 09:21:01 2017 +0100
+
+    Actualizacion con funcionalidad de filtro categoria
+
+[33mcommit 97d7767b884a74e0f262d105c752b2b4bfa39d8f[m
+Author: Alber <Alber@Alber-PC>
+Date:   Wed Feb 1 08:59:45 2017 +0100
+
+    CSS
+
+[33mcommit 6d40fdb31570294ab5684f74aaa39d8448a7e0bf[m
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Tue Jan 31 14:23:56 2017 +0100
+
+    Funcionalidad del filtro de categorias
+
+[33mcommit dcd136dd846264aba90c7dbf9043d596dc3959ca[m
+Author: Alber <Alber@Alber-PC>
+Date:   Tue Jan 31 14:20:00 2017 +0100
+
+    Funciones javascript en archivo externo
+
+[33mcommit 29349288b17aa06edea3f6c8318bbd7d5a155645[m
+Author: Alber <Alber@Alber-PC>
+Date:   Tue Jan 31 14:10:11 2017 +0100
+
+    Commit del registro con las validaciones en el cliente. registro y registroError2
+
+[33mcommit ed5505f6ee25c5f67f345da94642704a90fba776[m
+Author: Alber <Alber@Alber-PC>
+Date:   Tue Jan 31 14:00:53 2017 +0100
+
+    Commit del registro con las validaciones en el cliente. registro y registroError
+
+[33mcommit fedf96576173f97f7f86c9be4714cf6a3d13e513[m
+Merge: bd0d01b 07abbfb
+Author: Daniel <prueba@gmail.com>
+Date:   Tue Jan 31 09:42:41 2017 +0100
+
+    Actualizado login, estilos y gestionTareas
+
+[33mcommit 07abbfbef7afdab60071ba8fb8635ebfe3e1e9c7[m
+Author: Alber <Alber@Alber-PC>
+Date:   Tue Jan 31 09:36:28 2017 +0100
+
+    Tablas Flex con los divisores y la barra y dragable/dropeable
+
+[33mcommit bd0d01b5a4ef70d23e8d48c55bb865c8617e7744[m
+Author: Daniel <prueba@gmail.com>
+Date:   Tue Jan 31 09:31:21 2017 +0100
+
+    Arreglado desplegable y modificado gestionTarea
+
+[33mcommit b6dbf0df2149d4a68d33188b721f6cd9e73221b7[m
+Merge: 47e5883 da44792
+Author: Daniel <prueba@gmail.com>
+Date:   Mon Jan 30 13:18:44 2017 +0100
+
+    Modidicado gestion tareas y estilos de la vista gestionTareas
+
+[33mcommit 47e58834bb35bd7365c62ec3eca3c5b5f362cc8f[m
+Author: Daniel <prueba@gmail.com>
+Date:   Mon Jan 30 13:16:06 2017 +0100
+
+    Probando arrastrar en la interfaz
+
+[33mcommit da4479272c1fcb240d95ea3814d048bb41255451[m
+Author: Alber <Alber@Alber-PC>
+Date:   Mon Jan 30 13:13:35 2017 +0100
+
+    Tablas Flex con los divisores y la barra Y2
+
+[33mcommit 728c0072ab63e48625bf693f0077fc3db35e49d9[m
+Merge: a039728 3be8b3e
+Author: Daniel <prueba@gmail.com>
+Date:   Mon Jan 30 12:52:09 2017 +0100
+
+    Merge origin/desarrollo into desarrollo
+
+[33mcommit 3be8b3e7b1e17ff63a42fdbad267b50861fd5df6[m
+Author: Alber <Alber@Alber-PC>
+Date:   Mon Jan 30 12:50:39 2017 +0100
+
+    Tablas Flex con los divisores y la barra Y
+
+[33mcommit a039728bc213948d3c771889f4b51f05eb619ab4[m
+Author: Daniel <prueba@gmail.com>
+Date:   Mon Jan 30 12:44:43 2017 +0100
+
+    Investigacion arrastrar jquery
+
+[33mcommit 05da9aa106ef0ddf6275bd3685b16fd05e4bcf11[m
+Author: Alber <Alber@Alber-PC>
+Date:   Mon Jan 30 10:21:12 2017 +0100
+
+    Tablas Flex hechas2
+
+[33mcommit 5bb1078a95361606bd1579f05f5084953c72041e[m
+Author: Alber <Alber@Alber-PC>
+Date:   Mon Jan 30 10:19:00 2017 +0100
+
+    Tablas Flex hechas
+
+[33mcommit 08aafd0e8fe297596cb44583f910872941681d0f[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 13:39:07 2017 +0100
+
+    Diseño registro hecho y clase usuario
+
+[33mcommit b134c4c04bdd73392d3e2a0143f6d982c3617c70[m
+Merge: 132bac0 eee17b8
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 10:58:46 2017 +0100
+
+    todo funciona
+
+[33mcommit 132bac0b066a2e3386e4baa7e06fcd9f38e7d581[m
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 10:53:54 2017 +0100
+
+    Actualizacion
+
+[33mcommit eee17b8770a613d4f9095c42ea3d291a3c9b2d54[m
+Merge: 4390154 620cd5c
+Author: Alber <Alber@Alber-PC>
+Date:   Fri Jan 27 10:52:51 2017 +0100
+
+    A
+
+[33mcommit 4390154b899da47a7d75885304146924204a3f32[m
+Author: Alber <Alber@Alber-PC>
+Date:   Fri Jan 27 10:50:34 2017 +0100
+
+    Commit intento gestion tareas1
+
+[33mcommit 1b167083033b447cd39d05bea069465ec10e9694[m
+Author: Alber <Alber@Alber-PC>
+Date:   Fri Jan 27 10:49:33 2017 +0100
+
+    Commit intento gestion tareas
+
+[33mcommit 620cd5c4c15a6e64bc9ac4603ff9b1df836e3bf2[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 10:47:56 2017 +0100
+
+    Añadido el boton registro en la vista loginerror
+
+[33mcommit 5e03933a6d049fcf980d51176e4717005f68a531[m
+Merge: cf984a1 9bab0fa
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 10:40:29 2017 +0100
+
+    Para Dani
+
+[33mcommit cf984a1694eaf6bec4a4a63a45e8c8bae3c052f8[m
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 10:31:19 2017 +0100
+
+    Para actualizar
+
+[33mcommit 9bab0fa3563bd85fee923a6f8b5b237dba8ef3d1[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 10:30:07 2017 +0100
+
+    Commit
+
+[33mcommit 831a16dd70247853910fd21f9576a24bc5679106[m
+Merge: 0df0f78 fed8fb9
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 10:22:31 2017 +0100
+
+    Merge branch 'desarrollo' into GestionarTareas
+    
+    # Conflicts:
+    #       .idea/workspace.xml
+    #       app/Http/Controllers/Controlador.php
+
+[33mcommit fed8fb938759f9a14ea9deedf4f2f1197af12ee1[m
+Merge: ea5b972 86fe89a
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 10:18:23 2017 +0100
+
+    Actualizado
+
+[33mcommit 93d687f69df96829eee0364cc1b52406ef2af98b[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 10:16:21 2017 +0100
+
+    Commit
+
+[33mcommit 0df0f78043276319dcc6f01221572626612b0a02[m
+Merge: ea5b972 ea278b1
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 10:12:20 2017 +0100
+
+    Inicio GestionTareas
+
+[33mcommit 86fe89a1958c27b1da8112948b8bce2f806e6d58[m
+Merge: 5106b54 ea278b1
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 10:06:01 2017 +0100
+
+    Actualizado
+
+[33mcommit 5106b54f40204a363c2e31c5bb4b4fce7f465600[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 10:04:06 2017 +0100
+
+    Commit
+
+[33mcommit e1bd3357a69eac85d96763f06be58eedb65b46d9[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 10:03:07 2017 +0100
+
+    Commit
+
+[33mcommit 8041f7140f2237a5c3ca0b77ec8329d3d26ea3e0[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 10:00:08 2017 +0100
+
+    Commit
+
+[33mcommit 7e367f0da0c103813405fd2c4ac49002cb65dbf3[m
+Author: Daniel <prueba@gmail.com>
+Date:   Fri Jan 27 09:49:45 2017 +0100
+
+    Vista registro, ruta, controlador, login , estilos
+
+[33mcommit ea5b97249933bdb45673b4b296d1bd18b89db9a5[m
+Author: Nazario <Lehonartcruz@mail.com>
+Date:   Fri Jan 27 09:24:50 2017 +0100
+
+    Commit rutinario
+
+[33mcommit ea278b1ac8c99caff817817dd1ea282619001c60[m
+Author: Alber <Alber@Alber-PC>
+Date:   F

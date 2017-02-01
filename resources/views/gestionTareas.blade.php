@@ -19,22 +19,26 @@ Gestión de tareas
     $(function () {
         
 
-        $("#item1,#item2").droppable();
-
-        $(".tarea").draggable({stack: "div", cursor: "move"});
-
-
-        $(".tarea").draggable({
-            drag: function (evento, ui) {
-
-                $(this).css("-webkit-transform", "rotate(7deg)");
-                //$(".item").css("overflow-y", "hidden");
-                $(".flex-container").append(this);
+        $("#item1,#item2,#item3").sortable({
+            
+            connectWith: ".conectardivisores",
+            cursor: "move",
+            start: function( event, ui ){
+                
+                
+                $(ui.item).css("-webkit-transform", "rotate(7deg)");
+            },
+            stop: function( event, ui ){
+                
+                
+                $(ui.item).css("-webkit-transform", "rotate(0deg)");
             }
-        });
+        })
 
+        //$(".tarea").draggable({stack: "div", cursor: "move"});
+        
 
-
+        /*
         $(".tarea").droppable({
             drop: function (evento, ui) {
 
@@ -44,17 +48,8 @@ Gestión de tareas
                 });
             }
         });
+        */
 
-
-
-        $(".tarea").draggable({stack: "div", cursor: "move", revert: true});
-
-        $(".tarea").draggable({
-            drag: function (evento, ui) {
-
-                $(this).css("-webkit-transform", "rotate(7deg)");
-            }
-        });
 
 
     });
@@ -89,7 +84,7 @@ Gestión de tareas
 
     <div class="flex-container">
 
-        <div class="item" id="item1">
+        <div class="item conectardivisores" id="item1">
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
@@ -104,14 +99,14 @@ Gestión de tareas
         </div>
 
 
-        <div  class="item" id="item2">
+        <div  class="item conectardivisores" id="item2">
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
             <div class="panel panel-primary tarea" >asdasdsad</div>
         </div>
 
 
-        <div  class="item" id="item3">
+        <div  class="item conectardivisores" id="item3">
             3
         </div>
 
