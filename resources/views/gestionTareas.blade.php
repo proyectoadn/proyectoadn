@@ -96,8 +96,9 @@ $(function(){
             <div class='divBotonCargoCat'>
                 <select id="carg" class='botonCargoCat form-control'>
                     <option value="-1">-Elige cargo-</option>
+
                     @for($i=0;$i<count($roles);$i++)
-                        <option  value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
+                        <option  value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
                     @endfor
                 </select>
             </div>
@@ -139,29 +140,14 @@ $(function(){
             3
         </div>
 
+            <!--4ta columna-->
+            <div class="columna">
 
-        <div  class="item" id="item4">
-            4
-        </div>
-
-
-        <div  class="item" id="item5">
-            <div class="panel panel-primary tarea" >
-                <form action="#" method="POST">
-                    {!! csrf_field() !!}
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">DOCUMENTO TAL</label>
-                    </div>
-                </form>
             </div>
 
-            <div class="panel panel-primary tarea" >
-                <form action="#" method="POST">
-                    {!! csrf_field() !!}
-                    <div>
-                        <label><input type="checkbox" value="" class="form-control" size="10">DOCUMENTO PASCUAL</label>
-                    </div>
-                </form>
+            <!--5ta columna-->
+            <div class="columna">
+
             </div>
         </div>
     </div>
