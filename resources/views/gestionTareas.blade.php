@@ -75,6 +75,9 @@ Gestión de tareas
 
     });
 </script>
+
+
+
 <div class="row">
     <div style="margin-top: 55px;">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
