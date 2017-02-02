@@ -36,7 +36,33 @@ class Conexion {
     }
 
     function rellenar_Datos($consult) {
+        
         $this->cursor = mysqli_query($this->conex, $consult);
+        
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function rellenar_estado($consult) {
+        
+        $this->cursor = mysqli_query($this->conex, $consult);
+        
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function actualizar_estado($consult) {
+        
+        $this->cursor = mysqli_query($this->conex, $consult);
+        
         if ($this->cursor) {
             $devolver = true;
         } else{

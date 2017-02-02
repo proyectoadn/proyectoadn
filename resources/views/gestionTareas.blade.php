@@ -60,9 +60,33 @@ Gestión de tareas
 
 
                 $(ui.item).css("-webkit-transform", "rotate(0deg)");
-            }
-        })
+                
+                var id_tarea = $(ui.item).attr('value');
+                var idtarea = JSON.stringify(id_tarea);
 
+
+                var descripcionestado = $(this).attr('value');
+                var estado = JSON.stringify(descripcionestado);
+
+
+                $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
+                        function (respuesta) {
+                            
+                            
+                            if(respuesta == true){
+                                
+                                alert("actualziado con exito");
+                            }
+                            else{
+                                
+                                alert("no actualizado con exito");
+                            }
+                            
+                        }).fail(function (jqXHR) {
+                    alert("Error de tipo " + jqXHR.status);
+                });
+            }
+        });
 
 
 
@@ -81,7 +105,7 @@ Gestión de tareas
 
                     @for($i=0;$i<count($roles);$i++)
                         <option  value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
-                    @endfor
+                        @endfor
                 </select>
             </div>
             <div class='divBotonCargoCat'>
@@ -96,10 +120,10 @@ Gestión de tareas
 
         <div class="flex-container">
 
-            <div class="item conectardivisores" id="item1">
+            <div class="item conectardivisores" id="item1" value="Por Hacer">
 
                 <b>Por Hacer</b>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
+                <div class="panel panel-primary tarea" value="prueba">asdasdsad</div>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
@@ -113,7 +137,7 @@ Gestión de tareas
             </div>
 
 
-            <div  class="item conectardivisores" id="item2">
+            <div  class="item conectardivisores" id="item2" value="Haciendo">
 
                 <b>Haciendo</b>
                 <div class="panel panel-primary tarea" >asdasdsad</div>
@@ -122,13 +146,13 @@ Gestión de tareas
             </div>
 
 
-            <div  class="item conectardivisores" id="item3">
+            <div  class="item conectardivisores" id="item3" value="Hecho">
 
                 <b>Hecho</b>
             </div>
 
 
-            <div  class="item conectardivisores" id="item4">
+            <div  class="item conectardivisores" id="item4" value="Aplazado">
 
                 <b>Aplazado</b>
             </div>
