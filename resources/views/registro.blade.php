@@ -15,6 +15,9 @@ Elección de rol
 </script>
 
 @section('contenido')
+
+
+
 <div class="container divregistro">
     <div class="col-md-8 col-md-push-4">
         <div class="panel-body">
@@ -41,16 +44,27 @@ Elección de rol
                        id="email" placeholder="Email" onblur="validarEmail(this)" 
                        class="form-control" required style="margin-bottom: 5px;">
 
-                <!-- Input Contraseña -->    
-                <input type="password" name="password" title="contraseña" 
-                       id="password" placeholder="Contraseña" onblur="" 
-                       class="form-control" required style="margin-bottom: 5px;">
+                <!-- Input Contraseña -->   
+                <div class="input-group">
+
+                    <input type="password" name="password" title="contraseña" 
+                           id="password" placeholder="Contraseña" onblur="" 
+                           class="form-control" required style="margin-bottom: 5px;">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default reveal" type="button">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </button>
+                    </span>  
+                </div>
 
                 <!-- Input repetir Contraseña -->    
                 <input type="password" name="repetirpassword" title="Repetir contraseña" 
                        id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)" 
-                       class="form-control" required style="margin-bottom: 5px;">
-
+                       class="form-control" required style="margin-bottom: 5px;">                
+                    <!--MOSTRAR CONTRASEÑA CON JQUERY
+                    http://codepen.io/AngelKrak/pen/xwXepM
+                    -->
+                    
                 captcha
 
                 <br>

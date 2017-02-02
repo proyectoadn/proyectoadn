@@ -10,7 +10,9 @@ Gestión de tareas
     var id_rol;
 
     $(function () {
-        $("#carg").change(function () {
+
+
+        $("#carg").on("change",function () {
 
             var id = $(this).val();
             id_rol=id;
@@ -33,7 +35,7 @@ Gestión de tareas
         });
 
 
-        $("#cat").change(function () {
+        $("#cat").on("change",function () {
 
             var id = $(this).val();
             var vector=new Array();
@@ -46,32 +48,38 @@ Gestión de tareas
                     function (respuesta) {
                         var tarea = JSON.parse(respuesta);
                         $("#item1").html('<b>Por Hacer</b>');
-                        $("#item2").html('<b>Haciendor</b>');
+                        $("#item2").html('<b>Haciendo</b>');
                         $("#item3").html('<b>Hecho</b>');
                         $("#item4").html('<b>Aplazado</b>');
                         $("#item5").html('<b>Recibido</b>');
 
                         for (var i = 0; i < tarea.length; i++) {
                             if(tarea[i]['estado']==1){
-                             $("#item1").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" ><p>'+ tarea[i]['descripcion']+'</p><p><a href="">'+tarea[i]['modelo'] +'</a></p></div>');
+                             $("#item1").append('<div value="'+tarea[i]['id']+'" id="hola" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>'+ tarea[i]['descripcion']+'</p><p><a href="">'+tarea[i]['modelo'] +'</a></p></div>');
                             }
                             else if(tarea[i]['estado']==2){
-                                $("#item2").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" >'+ tarea[i]['descripcion'] +'</div>');
+                                $("#item2").append('<div value="'+tarea[i]['id']+'" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>'+ tarea[i]['descripcion']+'</p><p><a href="">'+tarea[i]['modelo'] +'</a></p></div>');
                             }
                             else if(tarea[i]['estado']==3){
-                                $("#item3").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" >'+ tarea[i]['descripcion'] +'</div>');
+                                $("#item3").append('<div value="'+tarea[i]['id']+'" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>'+ tarea[i]['descripcion']+'</p><p><a href="">'+tarea[i]['modelo'] +'</a></p></div>');
                             }
                             else if(tarea[i]['estado']==4){
-                                $("#item4").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" >'+ tarea[i]['descripcion'] +'</div>');
+                                $("#item4").append('<div value="'+tarea[i]['id']+'" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>'+ tarea[i]['descripcion']+'</p><p><a href="">'+tarea[i]['modelo'] +'</a></p></div>');
                             }
                             else if(tarea[i]['estado']==5){
-                                $("#item5").append('<label><input type="checkbox" checked value='+tarea[i]['id']+'>'+ tarea[i]['descripcion'] +'</label>');
+                                $("#item5").append('<label><input type="checkbox" checked value="'+tarea[i]['id']+'">'+ tarea[i]['descripcion'] +'</label>');
                             }
                             else if(tarea[i]['estado']==6){
-                                $("#item5").append('<label><input type="checkbox" value='+tarea[i]['id']+'>'+ tarea[i]['descripcion'] +'</label>');
+                                $("#item5").append('<label><input type="checkbox" value="'+tarea[i]['id']+'">'+ tarea[i]['descripcion'] +'</label>');
                             }
                         }
-
+/*
+                        $.fn.extend({
+                            refresh:function(){
+                                return $(this.selector);
+                            }
+                        });
+*/
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -91,6 +99,13 @@ Gestión de tareas
 <script src="jquery-ui.min.js"></script>
 
 <script>
+
+
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+
+
 
     $(function () {
 
@@ -118,13 +133,67 @@ Gestión de tareas
 
 
 
-<div class="row">
-    <div class="contenedorPrincipal">
-        <!--div que contiene los cargos y las categorias-->
-        <div class="cargoCat">
-            <div class='divBotonCargoCat'>
-                <select id="carg" class='botonCargoCat form-control'>
-                    <option value="-1">-Elige cargo-</option>
+<div  class="row">
+    <div style="margin-top: 55px;">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Desplegar navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Logotipo</a>
+            </div>
+
+            <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+                 otro elemento que se pueda ocultar al minimizar la barra -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-right: 2%;">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Enlace #1</a></li>
+                    <li><a href="#">Enlace #2</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Menú #2 <b class="caret"></b>
+                        </a>
+                        <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
+                            <div class="container" style="width: 100%; height: 200px;">
+                                <div style="height: 70%; background-color: blue;">
+
+                                </div>
+                                <div style="height: 30%; background-color: red;">
+                                    <div class="col-md-6">
+                                        <input type="submit" name="registrar" id="registrar"
+                                               value="Registrar" class="btn btn-primary">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="submit" name="registrar" id="registrar"
+                                               value="Registrar" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <div class="contenedorPrincipal">
+            <!--div que contiene los cargos y las categorias-->
+            <div class="cargoCat">
+                <div class='divBotonCargoCat'>
+                    <select id="carg" class='botonCargoCat form-control'>
+                        <option value="-1">-Elige cargo-</option>
 
                     @for($i=0;$i<count($roles);$i++)
                         <option  value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
@@ -135,66 +204,92 @@ Gestión de tareas
                 <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
                     <option id="categorias" value="-1">-Elige categoria-</option>
 
-                </select>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class='limpiar'></div>
+            <div class='limpiar'></div>
 
 
-        <div class="flex-container">
+            <div class="flex-container">
 
-            <div class="item conectardivisores" id="item1">
+                <div class="item conectardivisores" id="item1">
+                    <b>Por Hacer</b>
+                    <div class="divisorvacio">
 
-                <b>Por Hacer</b>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
+                    </div>
 
 
-            </div>
+                    <div class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal">
+                        PRUEBA 1
+                    </div>
+                    <div class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal">
+                        PRUEBA 2
+                    </div>
+                    <div class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal">
+                        PRUEBA 3
+                    </div>
 
-
-            <div  class="item conectardivisores" id="item2">
-
-                <b>Haciendo</b>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-                <div class="panel panel-primary tarea" >asdasdsad</div>
-            </div>
-
-
-            <div  class="item conectardivisores" id="item3">
-
-                <b>Hecho</b>
-            </div>
-
-
-            <div  class="item conectardivisores" id="item4">
-
-                <b>Aplazado</b>
-            </div>
-
-
-            <div  class="item conectardivisores" id="item5">
-                <div class="panel panel-primary tarea" >
-                    <form action="#" method="POST">
-                        {!! csrf_field() !!}
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">DOCUMENTO TAL</label>
+                    <!--INICIO POP UP-->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" style="width: 40%;" role="document" >
+                            <div class="modal-content" style="background-color: #f3f3f3">
+                                <div class="modal-header" >
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">NOMBRE DE LA TAREA</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group" style="width: 90%; margin: auto;">
+                                        <label for="comment">Comentario para la tarea</label>
+                                        <textarea maxlength="250" class="form-control" rows="5" id="comment"></textarea>
+                                        <p class="text-right text-danger" style="font-size: 0.8em;">Máximo de 250 caracteres.</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                    <!--FIN POP UP-->
                 </div>
 
+
+                <div  class="item conectardivisores" id="item2">
+
+                    <b>Haciendo</b>
+                    <div class="panel panel-primary tarea" >asdasdsad</div>
+                    <div class="panel panel-primary tarea" >asdasdsad</div>
+                    <div class="panel panel-primary tarea" >asdasdsad</div>
+                </div>
+
+
+                <div  class="item conectardivisores" id="item3">
+
+                    <b>Hecho</b>
+                </div>
+
+
+                <div  class="item conectardivisores" id="item4">
+
+                    <b>Aplazado</b>
+                </div>
+
+
+                <div  class="item conectardivisores" id="item5">
+                    <div class="panel panel-primary tarea" >
+                        <form action="#" method="POST">
+                            {!! csrf_field() !!}
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="">DOCUMENTO TAL</label>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-@endsection
+    @endsection
