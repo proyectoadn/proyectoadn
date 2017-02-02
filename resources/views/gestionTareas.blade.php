@@ -7,12 +7,13 @@ Gestión de tareas
 
 @section('js')
 <script>
-
+    var id_rol;
 
     $(function () {
         $("#carg").change(function () {
 
             var id = $(this).val();
+            id_rol=id;
             var idjson = JSON.stringify(id);
 
             $.post("../resources/views/categorias.php", {rol: idjson},
@@ -25,6 +26,52 @@ Gestión de tareas
                         for (var i = 0; i < categorias.length; i++) {
                             $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
                         }
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        });
+
+
+        $("#cat").change(function () {
+
+            var id = $(this).val();
+            var vector=new Array();
+            vector.push(id);
+            vector.push("<?php echo $id_user ?>");
+            vector.push(id_rol);
+            var idjson = JSON.stringify(vector);
+
+            $.post("../resources/views/tareas.php", {id: idjson},
+                    function (respuesta) {
+                        var tarea = JSON.parse(respuesta);
+                        $("#item1").html('<b>Por Hacer</b>');
+                        $("#item2").html('<b>Haciendor</b>');
+                        $("#item3").html('<b>Hecho</b>');
+                        $("#item4").html('<b>Aplazado</b>');
+                        $("#item5").html('<b>Recibido</b>');
+
+                        for (var i = 0; i < tarea.length; i++) {
+                            if(tarea[i]['estado']==1){
+                             $("#item1").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" ><p>'+ tarea[i]['descripcion']+'</p><p><a href="">'+tarea[i]['modelo'] +'</a></p></div>');
+                            }
+                            else if(tarea[i]['estado']==2){
+                                $("#item2").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" >'+ tarea[i]['descripcion'] +'</div>');
+                            }
+                            else if(tarea[i]['estado']==3){
+                                $("#item3").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" >'+ tarea[i]['descripcion'] +'</div>');
+                            }
+                            else if(tarea[i]['estado']==4){
+                                $("#item4").append('<div value='+tarea[i]['id']+' class="panel panel-primary tarea" >'+ tarea[i]['descripcion'] +'</div>');
+                            }
+                            else if(tarea[i]['estado']==5){
+                                $("#item5").append('<label><input type="checkbox" checked value='+tarea[i]['id']+'>'+ tarea[i]['descripcion'] +'</label>');
+                            }
+                            else if(tarea[i]['estado']==6){
+                                $("#item5").append('<label><input type="checkbox" value='+tarea[i]['id']+'>'+ tarea[i]['descripcion'] +'</label>');
+                            }
+                        }
+
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -85,7 +132,7 @@ Gestión de tareas
                 </select>
             </div>
             <div class='divBotonCargoCat'>
-                <select id="cat" name="cargos" size="" class='botonCargoCat form-control'>
+                <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
                     <option id="categorias" value="-1">-Elige categoria-</option>
 
                 </select>
