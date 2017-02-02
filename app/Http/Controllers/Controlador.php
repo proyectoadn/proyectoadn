@@ -84,7 +84,8 @@ class Controlador extends Controller {
         }
 
         $datos = [
-            'roles' => $rol
+            'roles' => $rol,
+            'id_user'=> $usu->getId_usuario()
         ];
 
         return view('gestionTareas', $datos);
