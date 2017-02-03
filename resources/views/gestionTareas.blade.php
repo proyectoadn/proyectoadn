@@ -5,12 +5,59 @@
 @endsection
 
 @section('js')
+
+    <script src="jquery-2.1.4.js"></script>
+    <script src="jquery-ui.min.js"></script>
+
     <script>
+
         var id_rol;
 
         $(function () {
 
 
+            //Codigo Dani
+            $("#item1,#item2,#item3,#item4").sortable({
+                connectWith: ".conectardivisores",
+                cursor: "move",
+                start: function (event, ui) {
+
+
+                    $(ui.item).css("-webkit-transform", "rotate(7deg)");
+                },
+                stop: function (event, ui) {
+
+
+                    $(ui.item).css("-webkit-transform", "rotate(0deg)");
+
+                    var id_tarea = $(ui.item).attr('value');
+                    var idtarea = JSON.stringify(id_tarea);
+
+
+                    var descripcionestado = $(this).attr('value');
+                    var estado = JSON.stringify(descripcionestado);
+
+
+                    $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
+                            function (respuesta) {
+
+
+                                if (respuesta == true) {
+
+                                    alert("actualziado con exito");
+                                } else {
+
+                                    // alert("no actualizado con exito");
+                                }
+
+                            }).fail(function (jqXHR) {
+                        alert("Error de tipo " + jqXHR.status);
+                    });
+                }
+            });
+
+
+            //Codigo Nazario
             $("#carg").on("change", function () {
 
                 var id = $(this).val();
@@ -55,30 +102,18 @@
                             for (var i = 0; i < tarea.length; i++) {
                                 if (tarea[i]['estado'] == 1) {
                                     $("#item1").append('<div value="' + tarea[i]['id'] + '" id="hola" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
-                                }
-                                else if (tarea[i]['estado'] == 2) {
+                                } else if (tarea[i]['estado'] == 2) {
                                     $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
-                                }
-                                else if (tarea[i]['estado'] == 3) {
+                                } else if (tarea[i]['estado'] == 3) {
                                     $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
-                                }
-                                else if (tarea[i]['estado'] == 4) {
+                                } else if (tarea[i]['estado'] == 4) {
                                     $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
-                                }
-                                else if (tarea[i]['estado'] == 5) {
+                                } else if (tarea[i]['estado'] == 5) {
                                     $("#item5").append('<label><input type="checkbox" checked value="' + tarea[i]['id'] + '">' + tarea[i]['descripcion'] + '</label>');
-                                }
-                                else if (tarea[i]['estado'] == 6) {
+                                } else if (tarea[i]['estado'] == 6) {
                                     $("#item5").append('<label><input type="checkbox" value="' + tarea[i]['id'] + '">' + tarea[i]['descripcion'] + '</label>');
                                 }
                             }
-                            /*
-                             $.fn.extend({
-                             refresh:function(){
-                             return $(this.selector);
-                             }
-                             });
-                             */
 
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
@@ -92,33 +127,7 @@
 
 @section('contenido')
 
-    <script src="jquery-2.1.4.js"></script>
-    <script src="jquery-ui.min.js"></script>
 
-    <script>
-
-
-        $(function () {
-
-
-            $("#item1,#item2,#item3,#item4").sortable({
-                connectWith: ".conectardivisores",
-                cursor: "move",
-                start: function (event, ui) {
-
-
-                    $(ui.item).css("-webkit-transform", "rotate(7deg)");
-                },
-                stop: function (event, ui) {
-
-
-                    $(ui.item).css("-webkit-transform", "rotate(0deg)");
-                }
-            })
-
-
-        });
-    </script>
 
 
 
@@ -220,52 +229,52 @@
                             </div>
                         </div>
                     </div>
-                <div class="item">
-                    <b>Haciendo</b>
+                    <div class="item">
+                        <b>Haciendo</b>
 
-                    <div id="item2" class="contenedortareas conectardivisores "
-                         style="min-height: 60px; width: 100%;">
+                        <div id="item2" class="contenedortareas conectardivisores "
+                             style="min-height: 60px; width: 100%;">
 
-                        <div class="panel panel-primary tarea">asdasdsad</div>
-                        <div class="panel panel-primary tarea">asdasdsad</div>
-                        <div class="panel panel-primary tarea">asdasdsad</div>
+                            <div class="panel panel-primary tarea">asdasdsad</div>
+                            <div class="panel panel-primary tarea">asdasdsad</div>
+                            <div class="panel panel-primary tarea">asdasdsad</div>
+                        </div>
+
                     </div>
 
-                </div>
 
+                    <div class="item">
+                        <b>Hecho</b>
 
-                <div class="item">
-                    <b>Hecho</b>
-
-                    <div id="item3" class="contenedortareas conectardivisores"
-                         style="min-height: 60px; width: 100%;">
-                    </div>
-                </div>
-
-
-                <div class="item">
-                    <b>Aplazado</b>
-
-                    <div id="item4" class="contenedortareas conectardivisores "
-                         style="min-height: 60px; width: 100%;">
-                    </div>
-                </div>
-
-
-                <div class="item conectardivisores" id="item5">
-                    <div class="panel panel-primary tarea">
-                        <form action="#" method="POST">
-                            {!! csrf_field() !!}
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="">DOCUMENTO TAL</label>
-                            </div>
-                        </form>
+                        <div id="item3" class="contenedortareas conectardivisores"
+                             style="min-height: 60px; width: 100%;">
+                        </div>
                     </div>
 
+
+                    <div class="item">
+                        <b>Aplazado</b>
+
+                        <div id="item4" class="contenedortareas conectardivisores "
+                             style="min-height: 60px; width: 100%;">
+                        </div>
+                    </div>
+
+
+                    <div class="item conectardivisores" id="item5">
+                        <div class="panel panel-primary tarea">
+                            <form action="#" method="POST">
+                                {!! csrf_field() !!}
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="">DOCUMENTO TAL</label>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 @endsection
