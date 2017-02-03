@@ -101,7 +101,11 @@ Gestión de tareas
 
                         for (var i = 0; i < tarea.length; i++) {
                             if (tarea[i]['estado'] == 1) {
-                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="hola" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="hola" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+        <button class="" onclick="popup()" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+<img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                        </div> </div>');
                             } else if (tarea[i]['estado'] == 2) {
                                 $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 3) {
@@ -121,11 +125,19 @@ Gestión de tareas
         });
     });
 
+    function popup() {
+        w2popup.open({
+            title: 'Popup Title',
+            body: '<div class="w2ui-centered">This is text inside the popup</div>'
+        });
+    }
 
 </script>
 @endsection
 
 @section('contenido')
+
+
 
 <div class="row">
     <div style="margin-top: 55px;">
@@ -209,9 +221,13 @@ Gestión de tareas
 
                 <div class="item">
                     <b>Por Hacer</b>
-
-                    <div id="item1" class="contenedortareas conectardivisores ">
+                    <div id="item1" class="contenedortareas conectardivisores">
+                        <div value="" id="hola" class="panel panel-primary tarea"><p></a></p>
+                            <button class="" style="float: right; width: 30px; height: 30px; vertical-align: top;"onclick="popup()">Open Popup</button>
+                        </div>
                     </div>
+
+
                 </div>
                 <div class="item">
                     <b>Haciendo</b>
@@ -245,15 +261,15 @@ Gestión de tareas
                         <div class="checkbox">
                             <label><input type="checkbox" id="" value="">Documento para recibir 1</label>
                         </div>
-                        
+
                         <div class="checkbox">
                             <label><input type="checkbox" id="" value="">Documento para recibir 2</label>
                         </div>
-                        
+
                         <div class="checkbox">
                             <label><input type="checkbox" id="" value="">Documento para recibir 3</label>
                         </div>
-                        
+
                     </div>
                 </div>
 
