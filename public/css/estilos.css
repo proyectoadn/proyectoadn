@@ -69,3 +69,14 @@ b{
     
     padding: 7px;
 }
+
+.contenedortareas{
+    
+    min-height: 60px;
+    width: 100%;
+}
+
+.checkbox, .radio {
+    
+    margin-top: 16px;
+}
