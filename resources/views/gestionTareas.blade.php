@@ -89,25 +89,25 @@
                 vector.push("<?php echo $id_user ?>");
                 vector.push(id_rol);
                 var idjson = JSON.stringify(vector);
-
+                $("#item1").html('');
+                $("#item2").html('');
+                $("#item3").html('');
+                $("#item4").html('');
+                $("#item5").html('');
                 $.post("../resources/views/tareas.php", {id: idjson},
                         function (respuesta) {
                             var tarea = JSON.parse(respuesta);
-                            $("#item1").html('');
-                            $("#item2").html('');
-                            $("#item3").html('');
-                            $("#item4").html('');
-                            $("#item5").html('');
+
 
                             for (var i = 0; i < tarea.length; i++) {
                                 if (tarea[i]['estado'] == 1) {
-                                    $("#item1").append('<div value="' + tarea[i]['id'] + '" id="hola" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                    $("#item1").append('<div value="' + tarea[i]['id'] + '"  class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                                 } else if (tarea[i]['estado'] == 2) {
-                                    $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                    $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                                 } else if (tarea[i]['estado'] == 3) {
-                                    $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                    $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                                 } else if (tarea[i]['estado'] == 4) {
-                                    $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                    $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                                 } else if (tarea[i]['estado'] == 5) {
                                     $("#item5").append('<label><input type="checkbox" checked value="' + tarea[i]['id'] + '">' + tarea[i]['descripcion'] + '</label>');
                                 } else if (tarea[i]['estado'] == 6) {

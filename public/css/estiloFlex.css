@@ -92,4 +92,7 @@ body{
 .limpiar{
     clear: both;
 }
+.textotarea{
+    white-space: normal;
+}
 
