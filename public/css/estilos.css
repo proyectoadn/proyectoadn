@@ -79,4 +79,6 @@ b{
 .checkbox, .radio {
     
     margin-top: 16px;
+    margin-bottom: 20px;
+    margin-left: 7px;
 }

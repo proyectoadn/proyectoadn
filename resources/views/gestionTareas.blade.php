@@ -242,32 +242,19 @@ Gestión de tareas
                     <b>Recibidos</b>
                     <div class="panel panel-primary tarea" id="item5">
 
-                        <form action="#" method="POST">
-                            {!! csrf_field() !!}
-
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="">Documento para recibir 1</label>
-                            </div>
-                        </form>
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="" value="">Documento para recibir 1</label>
+                        </div>
                         
-                        <form action="#" method="POST">
-                            {!! csrf_field() !!}
-
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="">Documento para recibir 2</label>
-                            </div>
-                        </form>
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="" value="">Documento para recibir 2</label>
+                        </div>
                         
-                        <form action="#" method="POST">
-                            {!! csrf_field() !!}
-
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="">Documento para recibir 3</label>
-                            </div>
-                        </form>
-
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="" value="">Documento para recibir 3</label>
+                        </div>
+                        
                     </div>
-
                 </div>
 
             </div>
