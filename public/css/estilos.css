@@ -69,3 +69,8 @@ b{
     
     padding: 7px;
 }
+
+.contenedortareas{
+    min-height: 60px;
+    width: 100%;
+}
