@@ -51,7 +51,7 @@ Gestión de tareas
                                 alert("actualziado con exito");
                             } else {
 
-                                alert("no actualizado con exito");
+                                //alert("no actualizado con exito");
                             }
 
                         }).fail(function (jqXHR) {
@@ -118,25 +118,6 @@ Gestión de tareas
                                 $("#item5").append('<label><input type="checkbox" value="' + tarea[i]['id'] + '">' + tarea[i]['descripcion'] + '</label>');
                             }
                         }
-
-
-
-
-                        $("#item1,#item2,#item3,#item4").sortable({
-                            connectWith: ".conectardivisores",
-                            cursor: "move",
-                            start: function (event, ui) {
-
-
-                                $(ui.item).css("-webkit-transform", "rotate(7deg)");
-                            },
-                            stop: function (event, ui) {
-
-
-                                $(ui.item).css("-webkit-transform", "rotate(0deg)");
-                            }
-                        });
-
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -229,21 +210,19 @@ Gestión de tareas
 
             <div class="flex-container">
 
+
                 <div class="item conectardivisores" id="item1">
-                    <b>Por Hacer</b>
+                    Por Hacer
 
 
                     <div class="panel panel-primary tarea">
                         PRUEBA 1
-
-                        <div style="width: 25px;height: 25px;">
-
-                            <button type="button" data-toggle="modal" data-target="#myModal">Boton</button>
-                        </div>
                     </div>
+
                     <div class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal">
                         PRUEBA 2
                     </div>
+
                     <div class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal">
                         PRUEBA 3
                     </div>
