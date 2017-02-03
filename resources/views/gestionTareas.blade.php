@@ -9,6 +9,8 @@ Gestión de tareas
 <script src="jquery-2.1.4.js"></script>
 <script src="jquery-ui.min.js"></script>
 
+
+
 <script>
 
     var id_rol;
@@ -101,13 +103,13 @@ Gestión de tareas
 
                         for (var i = 0; i < tarea.length; i++) {
                             if (tarea[i]['estado'] == 1) {
-                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="hola" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="hola" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 2) {
-                                $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 3) {
-                                $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 4) {
-                                $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 5) {
                                 $("#item5").append('<label><input type="checkbox" checked value="' + tarea[i]['id'] + '">' + tarea[i]['descripcion'] + '</label>');
                             } else if (tarea[i]['estado'] == 6) {
@@ -208,7 +210,7 @@ Gestión de tareas
             <div class="flex-container">
 
                 <div class="item">
-                    <b>Por Hacer</b>
+                    <b>Por Hacer</b>                    
 
                     <div id="item1" class="contenedortareas conectardivisores ">
                     </div>
@@ -245,15 +247,15 @@ Gestión de tareas
                         <div class="checkbox">
                             <label><input type="checkbox" id="" value="">Documento para recibir 1</label>
                         </div>
-                        
+
                         <div class="checkbox">
                             <label><input type="checkbox" id="" value="">Documento para recibir 2</label>
                         </div>
-                        
+
                         <div class="checkbox">
                             <label><input type="checkbox" id="" value="">Documento para recibir 3</label>
                         </div>
-                        
+
                     </div>
                 </div>
 
