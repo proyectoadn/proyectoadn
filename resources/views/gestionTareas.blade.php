@@ -9,6 +9,8 @@ Gestión de tareas
 <script src="jquery-2.1.4.js"></script>
 <script src="jquery-ui.min.js"></script>
 
+
+
 <script>
 
     var id_rol;
@@ -107,11 +109,11 @@ Gestión de tareas
 <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                         </div> </div>');
                             } else if (tarea[i]['estado'] == 2) {
-                                $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 3) {
-                                $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 4) {
-                                $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p>' + tarea[i]['descripcion'] + '</p><p><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
                             } else if (tarea[i]['estado'] == 5) {
                                 $("#item5").append('<label><input type="checkbox" checked value="' + tarea[i]['id'] + '">' + tarea[i]['descripcion'] + '</label>');
                             } else if (tarea[i]['estado'] == 6) {
@@ -220,11 +222,9 @@ Gestión de tareas
             <div class="flex-container">
 
                 <div class="item">
-                    <b>Por Hacer</b>
-                    <div id="item1" class="contenedortareas conectardivisores">
-                        <div value="" id="hola" class="panel panel-primary tarea"><p></a></p>
-                            <button class="" style="float: right; width: 30px; height: 30px; vertical-align: top;"onclick="popup()">Open Popup</button>
-                        </div>
+                    <b>Por Hacer</b>                    
+
+                    <div id="item1" class="contenedortareas conectardivisores ">
                     </div>
 
 
