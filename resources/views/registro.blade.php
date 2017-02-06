@@ -34,37 +34,39 @@ Elección de rol
                        id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
                        class="form-control" required style="margin-bottom: 5px;"> 
 
-                <!-- Input Apellidos -->    
+                <!-- Input Apellidos -->  
                 <input type="text" name="apellidos" title="apellidos" 
                        id="apellidos" placeholder="Apellidos" onblur="validarApellido(this)" 
                        class="form-control" required style="margin-bottom: 5px;">
 
+
                 <!-- Input Email -->    
-                <input type="email" name="email" title="email" 
-                       id="email" placeholder="Email" onblur="validarEmail(this)" 
-                       class="form-control" required style="margin-bottom: 5px;">
-
-                <!-- Input Contraseña -->   
-                <div class="input-group">
-
-                    <input type="password" name="password" title="contraseña" 
-                           id="password" placeholder="Contraseña" onblur="" 
-                           class="form-control" required style="margin-bottom: 5px;">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default reveal" type="button">
-                            <i class="glyphicon glyphicon-eye-open"></i>
-                        </button>
-                    </span>  
+                <div class="input-group" style="margin-bottom: 5px;">
+                    <input type="email" name="email" title="email" 
+                           id="email" placeholder="Email" onblur="validarEmail(this)" 
+                           class="form-control" required>
+                    <span class="input-group-addon">@</span>
                 </div>
 
-                <!-- Input repetir Contraseña -->    
-                <input type="password" name="repetirpassword" title="Repetir contraseña" 
-                       id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)" 
-                       class="form-control" required style="margin-bottom: 5px;">                
-                    <!--MOSTRAR CONTRASEÑA CON JQUERY
-                    http://codepen.io/AngelKrak/pen/xwXepM
-                    -->
-                    
+                <!-- Input Contraseña -->   
+                <div class="input-group"style="margin-bottom: 5px;">
+                    <input type="password" name="password" title="contraseña" 
+                           id="password" placeholder="Contraseña" onblur="" 
+                           class="form-control" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                </div>
+
+                <!-- Input repetir Contraseña -->  
+                <div class="input-group"style="margin-bottom: 5px;">
+                    <input type="password" name="repetirpassword" title="Repetir contraseña" 
+                           id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)" 
+                           class="form-control" required> 
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                </div>
+                <!--MOSTRAR CONTRASEÑA CON JQUERY
+                http://codepen.io/AngelKrak/pen/xwXepM
+                -->
+
                 captcha
 
                 <br>

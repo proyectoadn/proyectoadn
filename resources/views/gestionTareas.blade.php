@@ -151,7 +151,7 @@ Gestión de tareas
                         <textarea name="comentario" id="comentario" class="form-control" maxlength="250" rows="15" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
                         <p class="text-right text-danger" style="font-size:0.8em;";>Máximo 250 caracteres.</p>\n\
                       </div>',
-            buttons: '<!--<button class="w2ui-btn" onclick="w2confirm(\'¿Está seguro que quiere insertar el comentario?\')">Aceptar</button>-->' +
+            buttons:
                     '<button class="w2ui-btn" name="reset">Borrar todo</button>' +
                     '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>',
             showMax: true, //Muestra el botón de maximizar
