@@ -62,6 +62,12 @@ Gestión de tareas
         //Codigo Nazario
         $("#carg").on("change", function () {
 
+            $("#item1").html('');
+            $("#item2").html('');
+            $("#item3").html('');
+            $("#item4").html('');
+            $("#item5").html('');
+
             var id = $(this).val();
             id_rol = id;
             var idjson = JSON.stringify(id);
