@@ -150,7 +150,7 @@ class Controlador extends Controller
 
 
         //Volvemos a la página de login
-        return view('login');
+        return view('registrocorrecto');
     }
 
 }
