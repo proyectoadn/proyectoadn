@@ -141,8 +141,23 @@ Gestión de tareas
 
     function popup() {
         w2popup.open({
-            title: 'Popup Title',
-            body: '<div class="w2ui-centered">This is text inside the popup</div>'
+            width: 800, // Anchura en px
+            height: 600, // Altura en px
+            title: 'Insertar comentario',
+            body: '<div class="w2ui-centered">\n\
+                      <div class="form-group" style="width: 90%; margin: auto;">  \n\
+                        <h4 class="modal-title text-left" >NOMBRE DE LA TAREA</h4>\n\
+                        <label for="comentario"></label>\n\
+                        <textarea name="comentario" id="comentario" class="form-control" maxlength="250" rows="15" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
+                        <p class="text-right text-danger" style="font-size:0.8em;";>Máximo 250 caracteres.</p>\n\
+                      </div>',
+            buttons: '<!--<button class="w2ui-btn" onclick="w2confirm(\'¿Está seguro que quiere insertar el comentario?\')">Aceptar</button>-->' +
+                    '<button class="w2ui-btn" name="reset">Borrar todo</button>' +
+                    '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>',
+            showMax: true, //Muestra el botón de maximizar
+            showClose: true, //Muestra el botón de cerrar el PoPUp
+            keyboard: true, // Se cierra dándole al ESC
+            speed: 0.6 // popup speed (in seconds)
         });
     }
 
