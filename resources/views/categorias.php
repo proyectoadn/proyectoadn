@@ -12,10 +12,9 @@ require_once 'Conexion.php';
 $conexion = new Conexion();
 $vector=[];
 $rol = json_decode($_POST['rol']);
-$consult='Select DISTINCT categoria.id_categoria, categoria.descripcion from documentacion,categoria where documentacion.id_rol='.$rol.' and documentacion.id_categoria=categoria.id_categoria';
 
 if($conexion->conectar()){
-    $conexion->rellenar_Datos($consult);
+    $conexion->rellenar_categorias($rol);
 
    while ($conexion->ir_Siguiente()) {
         $vector[]=[
