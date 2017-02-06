@@ -1,8 +1,6 @@
 body{
-    margin-left: 15px;
-    padding: 0px;
+    
     background-color: #4375AE;
-
 }
 
 .flex-container{
@@ -18,11 +16,9 @@ body{
 }
 
 .item{
-    width: 270px;
-    height: auto;
-    margin: 15px;;
+    width: 100%;
+    height: auto;   
     background-color: #F3F3F3;
-    margin-right: 1%;
     box-sizing: border-box;
     display: inline-block; /*Esto deja las columnas en horizontal, hace que no se bajen*/
     vertical-align: top;
@@ -99,5 +95,10 @@ body{
 .textotarea{
     
     white-space: normal;
+}
+
+.divitem{
+    
+    padding: 5px;
 }
 

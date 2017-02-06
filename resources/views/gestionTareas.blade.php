@@ -19,7 +19,7 @@ Gestión de tareas
 
 
         //Codigo Dani
-        $("#item1,#item2,#item3,#item4").sortable({
+        $("#item1,#item2,#item3").sortable({
             connectWith: ".conectardivisores",
             cursor: "move",
             start: function (event, ui) {
@@ -65,8 +65,6 @@ Gestión de tareas
             $("#item1").html('');
             $("#item2").html('');
             $("#item3").html('');
-            $("#item4").html('');
-            $("#item5").html('');
 
             var id = $(this).val();
             id_rol = id;
@@ -104,8 +102,6 @@ Gestión de tareas
                         $("#item1").html('');
                         $("#item2").html('');
                         $("#item3").html('');
-                        $("#item4").html('');
-                        $("#item5").html('');
 
                         for (var i = 0; i < tarea.length; i++) {
                             if (tarea[i]['estado'] == 1) {
@@ -146,140 +142,115 @@ Gestión de tareas
 @section('contenido')
 
 
+<div style="margin-top: 55px;">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logotipo</a>
+        </div>
 
-<div class="row">
-    <div style="margin-top: 55px;">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Logotipo</a>
-            </div>
+        <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+             otro elemento que se pueda ocultar al minimizar la barra -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-right: 2%;">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Enlace #1</a></li>
+                <li><a href="#">Enlace #2</a></li>
+            </ul>
 
-            <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-                 otro elemento que se pueda ocultar al minimizar la barra -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-right: 2%;">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Enlace #1</a></li>
-                    <li><a href="#">Enlace #2</a></li>
-                </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Menú #2 <b class="caret"></b>
+                    </a>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Menú #2 <b class="caret"></b>
-                        </a>
+                    <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
+                        <div class="container" style="width: 100%; height: 200px;">
+                            <div style="height: 70%; background-color: blue;">
 
-                        <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
-                            <div class="container" style="width: 100%; height: 200px;">
-                                <div style="height: 70%; background-color: blue;">
-
+                            </div>
+                            <div style="height: 30%; background-color: red;">
+                                <div class="col-md-6">
+                                    <input type="submit" name="registrar" id="registrar"
+                                           value="Registrar" class="btn btn-primary">
                                 </div>
-                                <div style="height: 30%; background-color: red;">
-                                    <div class="col-md-6">
-                                        <input type="submit" name="registrar" id="registrar"
-                                               value="Registrar" class="btn btn-primary">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="submit" name="registrar" id="registrar"
-                                               value="Registrar" class="btn btn-primary">
-                                    </div>
+                                <div class="col-md-6">
+                                    <input type="submit" name="registrar" id="registrar"
+                                           value="Registrar" class="btn btn-primary">
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </div>
+                </li>
 
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
-                </ul>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="contenedorPrincipal">
+        <!--div que contiene los cargos y las categorias-->
+        <div class="cargoCat">
+            <div class='divBotonCargoCat'>
+                <select id="carg" class='botonCargoCat form-control'>
+                    <option value="-1">-Elige cargo-</option>
+
+                    @for($i=0;$i<count($roles);$i++)
+                        <option value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
+                        @endfor
+                </select>
             </div>
-        </nav>
+            <div class='divBotonCargoCat'>
+                <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
+                    <option id="categorias" value="-1">-Elige categoria-</option>
 
-        <div class="contenedorPrincipal">
-            <!--div que contiene los cargos y las categorias-->
-            <div class="cargoCat">
-                <div class='divBotonCargoCat'>
-                    <select id="carg" class='botonCargoCat form-control'>
-                        <option value="-1">-Elige cargo-</option>
-
-                        @for($i=0;$i<count($roles);$i++)
-                            <option value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
-                            @endfor
-                    </select>
-                </div>
-                <div class='divBotonCargoCat'>
-                    <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
-                        <option id="categorias" value="-1">-Elige categoria-</option>
-
-                    </select>
-                </div>
+                </select>
             </div>
-            <div class='limpiar'></div>
+        </div>
+        <div class='limpiar'></div>
 
 
-            <div class="flex-container">
+        <!--<div class="flex-container">-->
+        <div class="row">
 
+            <div class="col-md-4 divitem">
                 <div class="item">
                     <b>Por Hacer</b>                    
 
-                    <div id="item1" class="contenedortareas conectardivisores ">
+                    <div id="item1" class=" conectardivisores divmover">
                     </div>
-
-
                 </div>
+            </div>
+
+
+            <div class="col-md-4 divitem">
                 <div class="item">
-                    <b>Haciendo</b>
+                    <b>Pendiente</b>
 
-                    <div id="item2" class="contenedortareas conectardivisores ">
+                    <div id="item2" class=" conectardivisores divmover">
                     </div>
                 </div>
+            </div>
 
 
+            <div class="col-md-4 divitem">
                 <div class="item">
                     <b>Hecho</b>
 
-                    <div id="item3" class="contenedortareas conectardivisores">
+                    <div id="item3" class=" conectardivisores divmover">
                     </div>
                 </div>
-
-
-                <div class="item">
-                    <b>Aplazado</b>
-
-                    <div id="item4" class="contenedortareas conectardivisores ">
-                    </div>
-                </div>
-
-
-                <div class="item">
-
-                    <b>Recibidos</b>
-                    <div class="panel panel-primary tarea" id="item5">
-
-                        <div class="checkbox">
-                            <label><input type="checkbox" id="" value="">Documento para recibir 1</label>
-                        </div>
-
-                        <div class="checkbox">
-                            <label><input type="checkbox" id="" value="">Documento para recibir 2</label>
-                        </div>
-
-                        <div class="checkbox">
-                            <label><input type="checkbox" id="" value="">Documento para recibir 3</label>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
+
         </div>
     </div>
 </div>
