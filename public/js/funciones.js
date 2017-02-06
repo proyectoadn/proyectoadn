@@ -87,3 +87,4 @@ function validarNombre(control) {
             document.getElementById('registrar').disabled = false;
         }
     }
+    

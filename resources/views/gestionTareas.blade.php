@@ -105,17 +105,29 @@ Gestión de tareas
 
                         for (var i = 0; i < tarea.length; i++) {
                             if (tarea[i]['estado'] == 1) {
-                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="hola" class="panel panel-primary tarea"> <p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                $("#item1").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                                 <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-        <button class="" onclick="popup()" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
-<img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
-                        </div> </div>');
+                                <button class="" onclick="popup()" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                                </div></div>');
                             } else if (tarea[i]['estado'] == 2) {
-                                $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item2").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                                <button class="" onclick="popup()" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                                </div></div>');
                             } else if (tarea[i]['estado'] == 3) {
-                                $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item3").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                                <button class="" onclick="popup()" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                                </div></div>');
                             } else if (tarea[i]['estado'] == 4) {
-                                $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea" data-toggle="modal" data-target="#myModal"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p></div>');
+                                $("#item4").append('<div value="' + tarea[i]['id'] + '" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                                <button class="" onclick="popup()" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                                </div></div>');
                             } else if (tarea[i]['estado'] == 5) {
                                 $("#item5").append('<label><input type="checkbox" checked value="' + tarea[i]['id'] + '">' + tarea[i]['descripcion'] + '</label>');
                             } else if (tarea[i]['estado'] == 6) {
@@ -131,8 +143,23 @@ Gestión de tareas
 
     function popup() {
         w2popup.open({
-            title: 'Popup Title',
-            body: '<div class="w2ui-centered">This is text inside the popup</div>'
+            width: 800, // Anchura en px
+            height: 600, // Altura en px
+            title: 'Insertar comentario',
+            body: '<div class="w2ui-centered">\n\
+                      <div class="form-group" style="width: 90%; margin: auto;">  \n\
+                        <h4 class="modal-title text-left" >NOMBRE DE LA TAREA</h4>\n\
+                        <label for="comentario"></label>\n\
+                        <textarea name="comentario" id="comentario" class="form-control" maxlength="250" rows="15" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
+                        <p class="text-right text-danger" style="font-size:0.8em;";>Máximo 250 caracteres.</p>\n\
+                      </div>',
+            buttons:
+                    '<button class="w2ui-btn" name="reset">Borrar todo</button>' +
+                    '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>',
+            showMax: true, //Muestra el botón de maximizar
+            showClose: true, //Muestra el botón de cerrar el PoPUp
+            keyboard: true, // Se cierra dándole al ESC
+            speed: 0.6 // popup speed (in seconds)
         });
     }
 
