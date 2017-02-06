@@ -127,7 +127,6 @@ class Controlador extends Controller
         //Hacemos el insert
         \DB::table('usuario')
             ->insert([
-                'id_usuario' => 'NULL',
                 'nombre' => $usu->getNombre(),
                 'apellidos' => $usu->getApellidos(),
                 'email' => $usu->getEmail(),
