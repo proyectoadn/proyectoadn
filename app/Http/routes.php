@@ -48,6 +48,19 @@ Route::get('registroerror', [
     'uses' => 'Controlador@registroerror'
 ]);
 
+Route::get('enviarpassword', [
+
+    'as' => 'enviarpassword',
+    'uses' => 'Controlador@enviarpassword'
+]);
+
+Route::get('enviarcorreo', [
+
+    'as' => 'enviarcorreo',
+    'uses' => 'Controlador@enviarcorreo'
+]);
+
+
 
 
 
