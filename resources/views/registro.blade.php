@@ -5,12 +5,43 @@
 Elección de rol
 @endsection
 <script>
-    
+
     //Nada más entrar, deja el foco en el primer campo del formulario, el nombre
     window.onload = function () {
         document.getElementById("nombre").focus();
         document.getElementById('registrar').disabled = true;
+        var codificar = 0;
+        $("#codificarDecodificar, #codificarDecodificar2").on("click", function () {
+
+
+            if (codificar == 0) {
+                $("#password").attr({type: "text"});
+                $("#codificarDecodificar").removeClass('glyphicon-eye-close');
+                $("#codificarDecodificar").addClass('glyphicon-eye-open');
+
+                $("#repetirpassword").attr({type: "text"});
+            $("#codificarDecodificar2").removeClass('glyphicon-eye-close');
+                $("#codificarDecodificar2").addClass('glyphicon-eye-open');
+
+                codificar = 1;
+            } else {
+                if (codificar == 1) {
+                    $("#password").attr({type: "password"});
+                    $("#codificarDecodificar").removeClass('glyphicon-eye-open');
+                    $("#codificarDecodificar").addClass('glyphicon-eye-close');
+
+                    $("#repetirpassword").attr({type: "password"});
+                    $("#codificarDecodificar2").removeClass('glyphicon-eye-open');
+                    $("#codificarDecodificar2").addClass('glyphicon-eye-close');
+                    codificar = 0;
+                }
+            }
+        });
+
+
     };
+
+
 </script>
 
 @section('contenido')
@@ -29,15 +60,20 @@ Elección de rol
             <div class="col-md-6">
                 <!--<div class="alert alert-danger" >Usuario o contraseña incorrectos</div>-->
                 <!-- Input Nombre -->
-                <input type="text" name="nombre" title="nombre" 
-                       id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
-                       class="form-control" required style="margin-bottom: 5px;"> 
+                <div class="input-group" style="margin-bottom: 5px;">
+                    <input type="text" name="nombre" title="nombre" 
+                           id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
+                           class="form-control" required> 
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+                </div>
 
                 <!-- Input Apellidos -->  
-                <input type="text" name="apellidos" title="apellidos" 
-                       id="apellidos" placeholder="Apellidos" onblur="validarApellido(this)" 
-                       class="form-control" required style="margin-bottom: 5px;">
-
+                <div class="input-group" style="margin-bottom: 5px;">
+                    <input type="text" name="apellidos" title="apellidos" 
+                           id="apellidos" placeholder="Apellidos" onblur="validarApellido(this)" 
+                           class="form-control" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+                </div>
 
                 <!-- Input Email -->    
                 <div class="input-group" style="margin-bottom: 5px;">
@@ -52,7 +88,7 @@ Elección de rol
                     <input type="password" name="password" title="contraseña" 
                            id="password" placeholder="Contraseña" onblur="" 
                            class="form-control" required>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                    <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar"></i></span>
                 </div>
 
                 <!-- Input repetir Contraseña -->  
@@ -60,14 +96,12 @@ Elección de rol
                     <input type="password" name="repetirpassword" title="Repetir contraseña" 
                            id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)" 
                            class="form-control" required> 
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar2"></i></span>
                 </div>
-                <!--MOSTRAR CONTRASEÑA CON JQUERY
-                http://codepen.io/AngelKrak/pen/xwXepM
-                -->
 
-                captcha
-
+                <div class="input-group" style="margin-bottom: 5px;">
+                    <div class="g-recaptcha" data-sitekey="6LdSohQUAAAAAIxirMO1Qi0YL8Hbgcmy0Vm9JSaU"></div>
+                </div>
                 <br>
 
                 <!--Boton registrar-->

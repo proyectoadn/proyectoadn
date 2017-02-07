@@ -142,15 +142,14 @@
 
             $.post("../resources/views/rellenarcomentario.php", {id: idjson},
                     function (respuesta) {
-
-
                         var comentariotexto = JSON.parse(respuesta);
                         if (comentariotexto.length > 0) {
-
                             mens.push(comentariotexto[0]['mensaje']);
+                            mens.push(comentariotexto[0]['descripcion']);
                         }
                         else {
                             mens.push('');
+                            mens.push(comentariotexto[0]['descripcion']);
                         }
                         w2popup.open({
                             width: 600, // Anchura en px
@@ -158,7 +157,7 @@
                             title: 'Insertar comentario',
                             body: '<div class="w2ui-centered">\n\
                       <div class="form-group" style="width: 90%; margin: auto;">  \n\
-                        <h4 class="modal-title text-left" >NOMBRE DE LA TAREA</h4>\n\
+                        <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
                         <label for="comentario"></label>\n\
                         <textarea id="textocomentario"  name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;">' + mens[0] + '</textarea>\n\
                         <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
