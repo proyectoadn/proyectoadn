@@ -1,21 +1,21 @@
 @extends('maestra')
 
 @section('titulo')
-    Gestión de tareas
+Gestión de tareas
 @endsection
 
 @section('js')
 
-    <script src="jquery-2.1.4.js"></script>
-    <script src="jquery-ui.min.js"></script>
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery-ui.min.js"></script>
 
 
 
-    <script>
+<script>
 
-        var id_rol;
+    var id_rol;
 
-        $(function () {
+    $(function () {
 
 
         //Codigo Dani
@@ -25,42 +25,44 @@
             start: function (event, ui) {
 
 
-                    $(ui.item).css("-webkit-transform", "rotate(7deg)");
-                },
-                stop: function (event, ui) {
+                $(ui.item).css("-webkit-transform", "rotate(7deg)");
+            },
+            stop: function (event, ui) {
 
 
-                    $(ui.item).css("-webkit-transform", "rotate(0deg)");
+                $(ui.item).css("-webkit-transform", "rotate(0deg)");
+            },
+            receive: function(event, ui){
 
-                    var id_tarea = $(ui.item).attr('value');
-                    var idtarea = JSON.stringify(id_tarea);
-
-
-                    var descripcionestado = $(this).attr('value');
-                    var estado = JSON.stringify(descripcionestado);
+                var id_tarea = $(ui.item).attr('value');
+                var idtarea = JSON.stringify(id_tarea);
 
 
-                    $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
-                            function (respuesta) {
+                var descripcionestado = $(this).attr('value');
+                var estado = JSON.stringify(descripcionestado);
 
 
-                                if (respuesta == true) {
-
-                                    alert("actualziado con exito");
-                                } else {
-
-                                    // alert("no actualizado con exito");
-                                }
-
-                            }).fail(function (jqXHR) {
-                        alert("Error de tipo " + jqXHR.status);
-                    });
-                }
-            });
+                $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
+                        function (respuesta) {
 
 
-            //Codigo Nazario
-            $("#carg").on("change", function () {
+                            if (respuesta) {
+
+                                //alert("actualziado con exito");
+                            } else {
+
+                                // alert("no actualizado con exito");
+                            }
+
+                        }).fail(function (jqXHR) {
+                    alert("Error de tipo " + jqXHR.status);
+                });
+            }
+        });
+
+
+        //Codigo Nazario
+        $("#carg").on("change", function () {
 
 
             $("#item1").html('');
@@ -71,31 +73,31 @@
             id_rol = id;
             var idjson = JSON.stringify(id);
 
-                $.post("../resources/views/categorias.php", {rol: idjson},
-                        function (respuesta) {
+            $.post("../resources/views/categorias.php", {rol: idjson},
+                    function (respuesta) {
 
 
-                            var categorias = JSON.parse(respuesta);
+                        var categorias = JSON.parse(respuesta);
 
-                            $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
-                            for (var i = 0; i < categorias.length; i++) {
-                                $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
-                            }
+                        $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
+                        for (var i = 0; i < categorias.length; i++) {
+                            $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
+                        }
 
-                        }).fail(function (jqXHR) {
-                    alert("Error de tipo " + jqXHR.status);
-                });
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
             });
+        });
 
 
-            $("#cat").on("change", function () {
+        $("#cat").on("change", function () {
 
-                var id = $(this).val();
-                var vector = new Array();
-                vector.push(id);
-                vector.push("<?php echo $id_user ?>");
-                vector.push(id_rol);
-                var idjson = JSON.stringify(vector);
+            var id = $(this).val();
+            var vector = new Array();
+            vector.push(id);
+            vector.push("<?php echo $id_user ?>");
+            vector.push(id_rol);
+            var idjson = JSON.stringify(vector);
 
             $.post("../resources/views/tareas.php", {id: idjson},
                     function (respuesta) {
@@ -190,19 +192,19 @@
 
                     $(function () {
 
-                        /* Definimos variables que utilizaremos
+            /* Definimos variables que utilizaremos
 
-                         valor: En ella almacenaremos cuantos caracteres hay en el
-                         área de texto.
+             valor: En ella almacenaremos cuantos caracteres hay en el
+             área de texto.
 
-                         contador: Almacenará el número de caracteres restantes,
-                         descontando el valor actual desde el máximo (250).
+             contador: Almacenará el número de caracteres restantes,
+             descontando el valor actual desde el máximo (250).
 
-                         parrafo: Almacenará en que tipo de clase (estilo) se mostrará el
-                         mensaje (verde si no se ha pasado el límite, rojo si se
-                         sobrepasado).
+             parrafo: Almacenará en que tipo de clase (estilo) se mostrará el
+             mensaje (verde si no se ha pasado el límite, rojo si se
+             sobrepasado).
 
-                         */
+             */
 
                         var valor, contador, parrafo;
 
@@ -247,7 +249,7 @@
 
     }
 
-    </script>
+</script>
 @endsection
 
 @section('contenido')
@@ -335,9 +337,9 @@
 
             <div class="col-md-4 divitem">
                 <div class="item">
-                    <b>Por Hacer</b>                    
+                    <b>Por Hacer</b>
 
-                    <div id="item1" class=" conectardivisores divmover">
+                    <div id="item1" class=" conectardivisores divmover" value="Por Hacer">
                     </div>
                 </div>
             </div>
@@ -347,7 +349,7 @@
                 <div class="item">
                     <b>Pendiente</b>
 
-                    <div id="item2" class=" conectardivisores divmover">
+                    <div id="item2" class=" conectardivisores divmover" value="Pendiente">
                     </div>
                 </div>
             </div>
@@ -357,7 +359,7 @@
                 <div class="item">
                     <b>Hecho</b>
 
-                    <div id="item3" class=" conectardivisores divmover">
+                    <div id="item3" class=" conectardivisores divmover" value="Hecho">
                     </div>
                 </div>
             </div>
