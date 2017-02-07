@@ -74,7 +74,7 @@ function comprobarLongitudPass(control) {
 
     if (control.value.length < 8 || pass !== passRepetida) {
         var capa = document.getElementById("textoPassword");
-        capa.innerHTML = "<div class='alert alert-danger' style='height: 50px; padding: 6px 12px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Al menos 8 caracteres y las contraseñas deben ser iguales</div>";
+        capa.innerHTML = "<div class='alert alert-danger' style='height: 73px;'><img src='Imagenes/registro/x.png' alt='Correcto' style='width: 16px; height: 16px;' />  Al menos 8 caracteres y las contraseñas deben ser iguales</div>";
         document.getElementById('textoPassword').style.color = 'red';
         document.getElementById('password').style.color = 'red';
         document.getElementById('repetirpassword').style.color = 'red';

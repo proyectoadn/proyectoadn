@@ -156,8 +156,8 @@
                             height: 450, // Altura en px
                             title: 'Insertar comentario',
                             body: '<div class="w2ui-centered">\n\
-                      <div class="form-group" style="width: 90%; margin: auto;">  \n\
-                        <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
+                                    <div class="form-group" style="width: 90%; margin: auto;">  \n\
+                                    <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
                         <label for="comentario"></label>\n\
                         <textarea id="textocomentario"  name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;">' + mens[0] + '</textarea>\n\
                         <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
@@ -167,7 +167,8 @@
                             showMax: true, //Muestra el botón de maximizar
                             showClose: true, //Muestra el botón de cerrar el PoPUp
                             keyboard: true, // Se cierra dándole al ESC
-                            speed: 0.6 // popup speed (in seconds)
+                            speed: 0.6, // popup speed (in seconds)
+                            opacity: 0.4
 
                         });
                         $("#insertarComentario").on('click', function () {
