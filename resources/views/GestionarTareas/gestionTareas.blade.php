@@ -1,4 +1,4 @@
-@extends('maestra')
+@extends('../maestra')
 
 @section('titulo')
     Gestión de tareas
@@ -42,7 +42,7 @@
                     var estado = JSON.stringify(descripcionestado);
 
 
-                    $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
+                    $.post("../resources/views/PhpAuxiliares/actualizarestado.php", {id: idtarea, estadoactual: estado},
                             function (respuesta) {
 
 
@@ -73,7 +73,7 @@
                 id_rol = id;
                 var idjson = JSON.stringify(id);
 
-                $.post("../resources/views/categorias.php", {rol: idjson},
+                $.post("../resources/views/PhpAuxiliares/categorias.php", {rol: idjson},
                         function (respuesta) {
 
 
@@ -99,7 +99,7 @@
                 vector.push(id_rol);
                 var idjson = JSON.stringify(vector);
 
-                $.post("../resources/views/tareas.php", {id: idjson},
+                $.post("../resources/views/PhpAuxiliares/tareas.php", {id: idjson},
                         function (respuesta) {
                             var tarea = JSON.parse(respuesta);
                             $("#item1").html('');
@@ -140,7 +140,7 @@
             var id_tarea = boton.value;
             var idjson = JSON.stringify(id_tarea);
 
-            $.post("../resources/views/rellenarcomentario.php", {id: idjson},
+            $.post("../resources/views/PhpAuxiliares/rellenarcomentario.php", {id: idjson},
                     function (respuesta) {
                         var comentariotexto = JSON.parse(respuesta);
                         if (comentariotexto.length > 0) {
@@ -179,7 +179,7 @@
                             vector.push(id_tarea);
                             var comentario = JSON.stringify(vector);
 
-                            $.post("../resources/views/comentario.php", {coment: comentario},
+                            $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
                                     function (respuesta) {
 
                                     }).fail(function (jqXHR) {

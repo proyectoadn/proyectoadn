@@ -1,5 +1,5 @@
 
-@extends('maestra')
+@extends('../maestra')
 
 @section('titulo')
 Elección de rol

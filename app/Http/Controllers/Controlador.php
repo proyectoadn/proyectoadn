@@ -17,7 +17,7 @@ class Controlador extends Controller
      */
     public function index()
     {
-        return view('login');
+        return view('Login/login');
     }
 
     /**
@@ -28,12 +28,12 @@ class Controlador extends Controller
      */
     public function loginerror(Request $request)
     {
-        return view('loginerror');
+        return view('Login/loginerror');
     }
 
     public function loginconfirm(Request $request)
     {
-        return view('loginconfirm');
+        return view('Login/loginconfirm');
     }
 
     public function comprobarlogin(Request $request)
@@ -53,10 +53,10 @@ class Controlador extends Controller
         for ($i = 0; $i < count($rol); $i++) {
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
 
-                return view('elegirRol');
+                return view('Administrar/elegirRol');
             } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
 
-                return view('elegirRol');
+                return view('Administrar/elegirRol');
             }
         }
 
@@ -65,17 +65,17 @@ class Controlador extends Controller
             'id_user' => $usu->getId_usuario()
         ];
 
-        return view('gestionTareas', $datos);
+        return view('GestionarTareas/gestionTareas', $datos);
     }
 
     public function registro(Request $request)
     {
-        return view('registro');
+        return view('Registro/registro');
     }
 
     public function registroerror(Request $request)
     {
-        return view('registroerror');
+        return view('Registro/registroerror');
     }
 
     public function usuario(Request $request)
@@ -95,19 +95,19 @@ class Controlador extends Controller
             'id_user' => $usu->getId_usuario()
         ];
 
-        return view('gestionTareas', $datos);
+        return view('GestionarTareas/gestionTareas', $datos);
     }
 
     public function administrador(Request $request)
     {
 
-        return view('administrar');
+        return view('Administrar/administrar');
     }
     
     public function enviarpassword(Request $request)
     {
 
-        return view('enviarpassword');
+        return view('Login/enviarpassword');
     }
     
     public function enviarcorreo(Request $request)
@@ -157,7 +157,7 @@ class Controlador extends Controller
 
 
         //Volvemos a la página de login
-        return view('registrocorrecto');
+        return view('Registro/registrocorrecto');
     }
 
 }
