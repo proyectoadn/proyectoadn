@@ -1,21 +1,21 @@
 @extends('maestra')
 
 @section('titulo')
-    Gestión de tareas
+Gestión de tareas
 @endsection
 
 @section('js')
 
-    <script src="jquery-2.1.4.js"></script>
-    <script src="jquery-ui.min.js"></script>
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery-ui.min.js"></script>
 
 
 
-    <script>
+<script>
 
-        var id_rol;
+    var id_rol;
 
-        $(function () {
+    $(function () {
 
 
         //Codigo Dani
@@ -25,42 +25,44 @@
             start: function (event, ui) {
 
 
-                    $(ui.item).css("-webkit-transform", "rotate(7deg)");
-                },
-                stop: function (event, ui) {
+                $(ui.item).css("-webkit-transform", "rotate(7deg)");
+            },
+            stop: function (event, ui) {
 
 
-                    $(ui.item).css("-webkit-transform", "rotate(0deg)");
-
-                    var id_tarea = $(ui.item).attr('value');
-                    var idtarea = JSON.stringify(id_tarea);
-
-
-                    var descripcionestado = $(this).attr('value');
-                    var estado = JSON.stringify(descripcionestado);
+                $(ui.item).css("-webkit-transform", "rotate(0deg)");
+            },
+            receive: function(event, ui){                
+                
+                var id_tarea = $(ui.item).attr('value');
+                var idtarea = JSON.stringify(id_tarea);
 
 
-                    $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
-                            function (respuesta) {
+                var descripcionestado = $(this).attr('value');
+                var estado = JSON.stringify(descripcionestado);
 
 
-                                if (respuesta == true) {
-
-                                    alert("actualziado con exito");
-                                } else {
-
-                                    // alert("no actualizado con exito");
-                                }
-
-                            }).fail(function (jqXHR) {
-                        alert("Error de tipo " + jqXHR.status);
-                    });
-                }
-            });
+                $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
+                        function (respuesta) {
 
 
-            //Codigo Nazario
-            $("#carg").on("change", function () {
+                            if (respuesta) {
+
+                                //alert("actualziado con exito");
+                            } else {
+
+                                // alert("no actualizado con exito");
+                            }
+
+                        }).fail(function (jqXHR) {
+                    alert("Error de tipo " + jqXHR.status);
+                });
+            }
+        });
+
+
+        //Codigo Nazario
+        $("#carg").on("change", function () {
 
 
             $("#item1").html('');
@@ -71,31 +73,31 @@
             id_rol = id;
             var idjson = JSON.stringify(id);
 
-                $.post("../resources/views/categorias.php", {rol: idjson},
-                        function (respuesta) {
+            $.post("../resources/views/categorias.php", {rol: idjson},
+                    function (respuesta) {
 
 
-                            var categorias = JSON.parse(respuesta);
+                        var categorias = JSON.parse(respuesta);
 
-                            $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
-                            for (var i = 0; i < categorias.length; i++) {
-                                $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
-                            }
+                        $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
+                        for (var i = 0; i < categorias.length; i++) {
+                            $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
+                        }
 
-                        }).fail(function (jqXHR) {
-                    alert("Error de tipo " + jqXHR.status);
-                });
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
             });
+        });
 
 
-            $("#cat").on("change", function () {
+        $("#cat").on("change", function () {
 
-                var id = $(this).val();
-                var vector = new Array();
-                vector.push(id);
-                vector.push("<?php echo $id_user ?>");
-                vector.push(id_rol);
-                var idjson = JSON.stringify(vector);
+            var id = $(this).val();
+            var vector = new Array();
+            vector.push(id);
+            vector.push("<?php echo $id_user ?>");
+            vector.push(id_rol);
+            var idjson = JSON.stringify(vector);
 
             $.post("../resources/views/tareas.php", {id: idjson},
                     function (respuesta) {
@@ -104,27 +106,27 @@
                         $("#item2").html('');
                         $("#item3").html('');
 
-                            for (var i = 0; i < tarea.length; i++) {
-                                if (tarea[i]['estado'] == 1) {
-                                    $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                                <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
-                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
-                                </div></div>');
-                                } else if (tarea[i]['estado'] == 2) {
-                                    $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                                <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
-                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
-                                </div></div>');
-                                } else if (tarea[i]['estado'] == 3) {
-                                    $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                                <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
-                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
-                                </div></div>');
-                                }
+                        for (var i = 0; i < tarea.length; i++) {
+                            if (tarea[i]['estado'] == 1) {
+                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                            <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                            <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                            </div></div>');
+                            } else if (tarea[i]['estado'] == 2) {
+                                $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                            <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                            <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                            </div></div>');
+                            } else if (tarea[i]['estado'] == 3) {
+                                $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                            <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                            <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                            </div></div>');
                             }
+                        }
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -138,12 +140,12 @@
             height: 450, // Altura en px
             title: 'Insertar comentario',
             body: '<div class="w2ui-centered">\n\
-                      <div class="form-group" style="width: 90%; margin: auto;">  \n\
-                        <h4 class="modal-title text-left" >NOMBRE DE LA TAREA</h4>\n\
-                        <label for="comentario"></label>\n\
-                        <textarea id="textocomentario"  name="mensaje" id="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
-                        <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
-                      </div>',
+                  <div class="form-group" style="width: 90%; margin: auto;">  \n\
+                    <h4 class="modal-title text-left" >NOMBRE DE LA TAREA</h4>\n\
+                    <label for="comentario"></label>\n\
+                    <textarea id="textocomentario"  name="mensaje" id="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
+                    <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
+                  </div>',
             buttons:
                     '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>' +
                     '<button class="w2ui-btn" name="reset" id="reset">Borrar todo</button>',
@@ -153,7 +155,7 @@
             speed: 0.6 // popup speed (in seconds)
         });
         $("#insertarComentario").on('click', function () {
-            var texto=$("#textocomentario").val();
+            var texto = $("#textocomentario").val();
 
 
         });
@@ -167,17 +169,17 @@
         $(function () {
 
             /* Definimos variables que utilizaremos
-
+                 
              valor: En ella almacenaremos cuantos caracteres hay en el
              área de texto.
-
+                 
              contador: Almacenará el número de caracteres restantes,
              descontando el valor actual desde el máximo (250).
-
+                 
              parrafo: Almacenará en que tipo de clase (estilo) se mostrará el
              mensaje (verde si no se ha pasado el límite, rojo si se
              sobrepasado).
-
+                 
              */
 
             var valor, contador, parrafo;
@@ -218,7 +220,7 @@
         });
     }
 
-    </script>
+</script>
 @endsection
 
 @section('contenido')
@@ -306,9 +308,9 @@
 
             <div class="col-md-4 divitem">
                 <div class="item">
-                    <b>Por Hacer</b>                    
+                    <b>Por Hacer</b>
 
-                    <div id="item1" class=" conectardivisores divmover">
+                    <div id="item1" class=" conectardivisores divmover" value="Por Hacer">
                     </div>
                 </div>
             </div>
@@ -318,7 +320,7 @@
                 <div class="item">
                     <b>Pendiente</b>
 
-                    <div id="item2" class=" conectardivisores divmover">
+                    <div id="item2" class=" conectardivisores divmover" value="Pendiente">
                     </div>
                 </div>
             </div>
@@ -328,7 +330,7 @@
                 <div class="item">
                     <b>Hecho</b>
 
-                    <div id="item3" class=" conectardivisores divmover">
+                    <div id="item3" class=" conectardivisores divmover" value="Hecho">
                     </div>
                 </div>
             </div>
