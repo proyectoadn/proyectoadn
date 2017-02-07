@@ -7,6 +7,7 @@
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ URL::asset('js/funciones.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/captchaAPI.js') }}"></script>
 
 
         <!--UI JS-->

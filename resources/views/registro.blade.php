@@ -58,7 +58,6 @@ Elección de rol
             {!! csrf_field() !!}
             <!-- Columna inputs-->
             <div class="col-md-6">
-                <!--<div class="alert alert-danger" >Usuario o contraseña incorrectos</div>-->
                 <!-- Input Nombre -->
                 <div class="input-group" style="margin-bottom: 5px;">
                     <input type="text" name="nombre" title="nombre" 
@@ -98,11 +97,6 @@ Elección de rol
                            class="form-control" required> 
                     <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar2"></i></span>
                 </div>
-
-                <div class="input-group" style="margin-bottom: 5px;">
-                    <div class="g-recaptcha" data-sitekey="6LdSohQUAAAAAIxirMO1Qi0YL8Hbgcmy0Vm9JSaU"></div>
-                </div>
-                <br>
 
                 <!--Boton registrar-->
                 <input type="submit" name="registrar" id="registrar"  
