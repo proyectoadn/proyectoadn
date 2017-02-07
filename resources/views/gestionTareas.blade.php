@@ -145,7 +145,16 @@ Gestión de tareas
 
 
                     var comentariotexto = JSON.parse(respuesta);
-                    mens.push(comentariotexto[0]['mensaje']);
+                    
+                    if(comentariotexto.length > 0){
+                        
+                        mens.push(comentariotexto[0]['mensaje']);
+                    }
+                    else{
+                        
+                        mens.push('');
+                    }
+                    
 
                     w2popup.open({
                         width: 600, // Anchura en px
@@ -164,7 +173,7 @@ Gestión de tareas
                         showMax: true, //Muestra el botón de maximizar
                         showClose: true, //Muestra el botón de cerrar el PoPUp
                         keyboard: true, // Se cierra dándole al ESC
-                        speed: 0.6 // popup speed (in seconds)
+                        speed: 0.6// popup speed (in seconds)
 
                     });
                     $("#insertarComentario").on('click', function () {
