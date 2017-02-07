@@ -61,6 +61,19 @@ class Conexion {
         return $devolver;
     }
 
+    function rellenar_comentario($id_tarea) {
+        $consult='Select mensaje from comentario where id_tarea='.$id_tarea;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function rellenar_estado($consult) {
         
         $this->cursor = mysqli_query($this->conex, $consult);
@@ -107,6 +120,32 @@ class Conexion {
         /* Ejecución de la sentencia. */
         mysqli_stmt_execute($stmt);
     }
+
+    function insert_comentario($texto,$id){
+        $consult='Select * from comentario where id_tarea='.$id;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+       if($this->ir_Siguiente()){
+           $query = "update comentario set mensaje='".$texto."' where id_tarea=".$id;
+           mysqli_query($this->conex, $query);
+       }
+        else{
+            $query = "INSERT INTO comentario (id_tarea, mensaje) VALUES (?,?)"; //Estos parametros seran sustituidos mas adelante por valores.
+            $stmt = mysqli_prepare($this->conex, $query);
+
+            mysqli_stmt_bind_param($stmt, "is", $id, $texto);
+
+
+            /* Ejecución de la sentencia. */
+            mysqli_stmt_execute($stmt);
+        }
+
+
+
+
+    }
+
     function borrar($dni){
         $query = "DELETE FROM personas WHERE DNI ='".$dni."'";
         mysqli_query($this->conex, $query);

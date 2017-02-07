@@ -108,19 +108,19 @@
                                 if (tarea[i]['estado'] == 1) {
                                     $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                                 <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                                <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                                <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
                                 <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                                 </div></div>');
                                 } else if (tarea[i]['estado'] == 2) {
                                     $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                                 <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                                <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                                <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
                                 <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                                 </div></div>');
                                 } else if (tarea[i]['estado'] == 3) {
                                     $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                                 <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                                <button class="" onclick="popup()" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                                <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
                                 <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                                 </div></div>');
                                 }
@@ -132,90 +132,119 @@
         });
     });
 
-    function popup() {
-        w2popup.open({
-            width: 600, // Anchura en px
-            height: 450, // Altura en px
-            title: 'Insertar comentario',
-            body: '<div class="w2ui-centered">\n\
+    function popup(boton) {
+
+        var mens=new Array();
+        var id_tarea=boton.value;
+        var idjson = JSON.stringify(id_tarea);
+
+        $.post("../resources/views/rellenarcomentario.php", {id: idjson},
+                function (respuesta) {
+
+
+                    var comentariotexto = JSON.parse(respuesta);
+                    mens.push(comentariotexto[0]['mensaje']);
+
+                    w2popup.open({
+                        width: 600, // Anchura en px
+                        height: 450, // Altura en px
+                        title: 'Insertar comentario',
+                        body: '<div class="w2ui-centered">\n\
                       <div class="form-group" style="width: 90%; margin: auto;">  \n\
                         <h4 class="modal-title text-left" >NOMBRE DE LA TAREA</h4>\n\
                         <label for="comentario"></label>\n\
-                        <textarea id="textocomentario"  name="mensaje" id="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
+                        <textarea id="textocomentario"  name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;">'+mens[0]+'</textarea>\n\
                         <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
                       </div>',
-            buttons:
-                    '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>' +
-                    '<button class="w2ui-btn" name="reset" id="reset">Borrar todo</button>',
-            showMax: true, //Muestra el botón de maximizar
-            showClose: true, //Muestra el botón de cerrar el PoPUp
-            keyboard: true, // Se cierra dándole al ESC
-            speed: 0.6 // popup speed (in seconds)
+                        buttons:
+                        '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>' +
+                        '<button class="w2ui-btn" name="reset" id="reset">Borrar todo</button>',
+                        showMax: true, //Muestra el botón de maximizar
+                        showClose: true, //Muestra el botón de cerrar el PoPUp
+                        keyboard: true, // Se cierra dándole al ESC
+                        speed: 0.6 // popup speed (in seconds)
+
+                    });
+                    $("#insertarComentario").on('click', function () {
+                        var texto=$("#textocomentario").val();
+
+                        var vector = new Array();
+                        vector.push(texto);
+                        vector.push(id_tarea);
+                        var comentario = JSON.stringify(vector);
+
+                        $.post("../resources/views/comentario.php", {coment: comentario},
+                                function (respuesta) {
+
+                                }).fail(function (jqXHR) {
+                            alert("Error de tipo " + jqXHR.status);
+                        });
+
+                    });
+
+                    $("#reset").on('click', function () {
+                        $("#textocomentario").val("");
+
+                    });
+
+
+                    $(function () {
+
+                        /* Definimos variables que utilizaremos
+
+                         valor: En ella almacenaremos cuantos caracteres hay en el
+                         área de texto.
+
+                         contador: Almacenará el número de caracteres restantes,
+                         descontando el valor actual desde el máximo (250).
+
+                         parrafo: Almacenará en que tipo de clase (estilo) se mostrará el
+                         mensaje (verde si no se ha pasado el límite, rojo si se
+                         sobrepasado).
+
+                         */
+
+                        var valor, contador, parrafo;
+
+                        // Mostramos un mensaje inicial y lo añadimos al div de id contador.
+                        $('<p class="indicador">Tienes 250 caracteres restantes</p>').appendTo('#contador');
+
+                        // Definimos el evento para que detecte cada vez que se presione una tecla.
+                        $('#textocomentario').keydown(function () {
+
+                            // Redefinimos el valor de contador al máximo permitido (150).
+                            contador = 250;
+
+                            /* Quitamos el párrafo con clase advertencia o indicador, en caso de que ya se
+                             haya mostrado un mensaje */
+                            $('.advertencia').remove();
+                            $('.indicador').remove();
+
+                            // Tomamos el valor actual del contenido del área de texto
+                            valor = $('#textocomentario').val().length;
+
+                            // Descontamos ese valor al máximo.
+                            contador = contador - valor;
+
+                            /* Dependiendo de cuantos caracteres quedan, mostraremos el mensaje de una
+                             u otra forma (lo definiremos a continuación mediante CSS */
+                            if (contador < 0) {
+                                parrafo = '<p class="advertencia">';
+                            } else {
+                                parrafo = '<p class="indicador">';
+                            }
+
+                            // Mostramos el mensaje con el número de caracteres restantes.
+                            $('#contador').append(parrafo + 'Tienes ' + contador + ' caracteres restantes</p>');
+
+                        });
+
+                    });
+
+                }).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
         });
-        $("#insertarComentario").on('click', function () {
-            var texto=$("#textocomentario").val();
 
-
-        });
-
-        $("#reset").on('click', function () {
-            $("#textocomentario").val("");
-
-        });
-
-
-        $(function () {
-
-            /* Definimos variables que utilizaremos
-
-             valor: En ella almacenaremos cuantos caracteres hay en el
-             área de texto.
-
-             contador: Almacenará el número de caracteres restantes,
-             descontando el valor actual desde el máximo (250).
-
-             parrafo: Almacenará en que tipo de clase (estilo) se mostrará el
-             mensaje (verde si no se ha pasado el límite, rojo si se
-             sobrepasado).
-
-             */
-
-            var valor, contador, parrafo;
-
-            // Mostramos un mensaje inicial y lo añadimos al div de id contador.
-            $('<p class="indicador">Tienes 250 caracteres restantes</p>').appendTo('#contador');
-
-            // Definimos el evento para que detecte cada vez que se presione una tecla.
-            $('#mensaje').keydown(function () {
-
-                // Redefinimos el valor de contador al máximo permitido (150).
-                contador = 250;
-
-                /* Quitamos el párrafo con clase advertencia o indicador, en caso de que ya se
-                 haya mostrado un mensaje */
-                $('.advertencia').remove();
-                $('.indicador').remove();
-
-                // Tomamos el valor actual del contenido del área de texto
-                valor = $('#mensaje').val().length;
-
-                // Descontamos ese valor al máximo.
-                contador = contador - valor;
-
-                /* Dependiendo de cuantos caracteres quedan, mostraremos el mensaje de una
-                 u otra forma (lo definiremos a continuación mediante CSS */
-                if (contador < 0) {
-                    parrafo = '<p class="advertencia">';
-                } else {
-                    parrafo = '<p class="indicador">';
-                }
-
-                // Mostramos el mensaje con el número de caracteres restantes.
-                $('#contador').append(parrafo + 'Tienes ' + contador + ' caracteres restantes</p>');
-
-            });
-
-        });
     }
 
     </script>
