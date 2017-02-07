@@ -141,23 +141,76 @@ Gestión de tareas
 
     function popup() {
         w2popup.open({
-            width: 800, // Anchura en px
-            height: 600, // Altura en px
+            width: 600, // Anchura en px
+            height: 450, // Altura en px
             title: 'Insertar comentario',
             body: '<div class="w2ui-centered">\n\
                       <div class="form-group" style="width: 90%; margin: auto;">  \n\
                         <h4 class="modal-title text-left" >NOMBRE DE LA TAREA</h4>\n\
                         <label for="comentario"></label>\n\
-                        <textarea name="comentario" id="comentario" class="form-control" maxlength="250" rows="15" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
-                        <p class="text-right text-danger" style="font-size:0.8em;";>Máximo 250 caracteres.</p>\n\
+                        <textarea  name="mensaje" id="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;"></textarea>\n\
+                        <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
                       </div>',
             buttons:
-                    '<button class="w2ui-btn" name="reset">Borrar todo</button>' +
-                    '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>',
+                    '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>' +
+                    '<button class="w2ui-btn" name="reset">Borrar todo</button>',
             showMax: true, //Muestra el botón de maximizar
             showClose: true, //Muestra el botón de cerrar el PoPUp
             keyboard: true, // Se cierra dándole al ESC
             speed: 0.6 // popup speed (in seconds)
+        });
+
+        $(function () {
+
+            /* Definimos variables que utilizaremos 
+             
+             valor: En ella almacenaremos cuantos caracteres hay en el 
+             área de texto. 
+             
+             contador: Almacenará el número de caracteres restantes, 
+             descontando el valor actual desde el máximo (250). 
+             
+             parrafo: Almacenará en que tipo de clase (estilo) se mostrará el 
+             mensaje (verde si no se ha pasado el límite, rojo si se 
+             sobrepasado). 
+             
+             */
+
+            var valor, contador, parrafo;
+
+            // Mostramos un mensaje inicial y lo añadimos al div de id contador.  
+            $('<p class="indicador">Tienes 250 caracteres restantes</p>').appendTo('#contador');
+
+            // Definimos el evento para que detecte cada vez que se presione una tecla.  
+            $('#mensaje').keydown(function () {
+
+                // Redefinimos el valor de contador al máximo permitido (150).  
+                contador = 250;
+
+                /* Quitamos el párrafo con clase advertencia o indicador, en caso de que ya se 
+                 haya mostrado un mensaje */
+                $('.advertencia').remove();
+                $('.indicador').remove();
+
+                // Tomamos el valor actual del contenido del área de texto  
+                valor = $('#mensaje').val().length;
+
+                // Descontamos ese valor al máximo.  
+                contador = contador - valor;
+
+                /* Dependiendo de cuantos caracteres quedan, mostraremos el mensaje de una 
+                 u otra forma (lo definiremos a continuación mediante CSS */
+                if (contador < 0) {
+                    parrafo = '<p class="advertencia">';
+                } else {
+                    parrafo = '<p class="indicador">';
+                }
+
+                // Mostramos el mensaje con el número de caracteres restantes.  
+                $('#contador').append(parrafo + 'Tienes ' + contador + ' caracteres restantes</p>');
+
+            });
+
         });
     }
 

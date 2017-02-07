@@ -5,13 +5,12 @@
 Elección de rol
 @endsection
 <script>
-
+    
     //Nada más entrar, deja el foco en el primer campo del formulario, el nombre
     window.onload = function () {
         document.getElementById("nombre").focus();
         document.getElementById('registrar').disabled = true;
     };
-
 </script>
 
 @section('contenido')
