@@ -14,8 +14,9 @@ class Controlador extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return view('login');
+    public function index()
+    {
+        return view('Login/login');
     }
 
     /**
@@ -24,12 +25,14 @@ class Controlador extends Controller {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function loginerror(Request $request) {
-        return view('loginerror');
+    public function loginerror(Request $request)
+    {
+        return view('Login/loginerror');
     }
 
-    public function loginconfirm(Request $request) {
-        return view('loginconfirm');
+    public function loginconfirm(Request $request)
+    {
+        return view('Login/loginconfirm');
     }
 
     public function comprobarlogin(Request $request) {
@@ -48,10 +51,10 @@ class Controlador extends Controller {
         for ($i = 0; $i < count($rol); $i++) {
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
 
-                return view('elegirRol');
+                return view('Administrar/elegirRol');
             } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
 
-                return view('elegirRol');
+                return view('Administrar/elegirRol');
             }
         }
 
@@ -60,15 +63,17 @@ class Controlador extends Controller {
             'id_user' => $usu->getId_usuario()
         ];
 
-        return view('gestionTareas', $datos);
+        return view('GestionarTareas/gestionTareas', $datos);
     }
 
-    public function registro(Request $request) {
-        return view('registro');
+    public function registro(Request $request)
+    {
+        return view('Registro/registro');
     }
 
-    public function registroerror(Request $request) {
-        return view('registroerror');
+    public function registroerror(Request $request)
+    {
+        return view('Registro/registroerror');
     }
 
     public function usuario(Request $request) {
@@ -87,17 +92,17 @@ class Controlador extends Controller {
             'id_user' => $usu->getId_usuario()
         ];
 
-        return view('gestionTareas', $datos);
+        return view('GestionarTareas/gestionTareas', $datos);
     }
 
     public function administrador(Request $request) {
 
-        return view('administrar');
+        return view('Administrar/administrar');
     }
 
     public function enviarpassword(Request $request) {
 
-        return view('enviarpassword');
+        return view('Login/enviarpassword');
     }
 
     public function enviarcorreo(Request $request) {
@@ -110,7 +115,7 @@ class Controlador extends Controller {
             'email' => "Virat Gandhi"
         );
 
-        Mail::send('correoenviado', $data, function($message) {
+        \Mail::send('correoenviado', $data, function($message) {
             $message->to($email, "Proyectoadn")->subject
                     ('Cambio de contraseña');
             $message->from($emailorigen, 'Administrador');
@@ -154,7 +159,7 @@ class Controlador extends Controller {
 
 
         //Volvemos a la página de login
-        return view('registrocorrecto');
+        return view('Registro/registrocorrecto');
     }
 
 }

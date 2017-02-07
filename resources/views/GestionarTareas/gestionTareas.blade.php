@@ -1,4 +1,4 @@
-@extends('maestra')
+@extends('../maestra')
 
 @section('titulo')
     Gestión de tareas
@@ -42,7 +42,7 @@
                     var estado = JSON.stringify(descripcionestado);
 
 
-                    $.post("../resources/views/actualizarestado.php", {id: idtarea, estadoactual: estado},
+                    $.post("../resources/views/PhpAuxiliares/actualizarestado.php", {id: idtarea, estadoactual: estado},
                             function (respuesta) {
 
 
@@ -73,7 +73,7 @@
                 id_rol = id;
                 var idjson = JSON.stringify(id);
 
-                $.post("../resources/views/categorias.php", {rol: idjson},
+                $.post("../resources/views/PhpAuxiliares/categorias.php", {rol: idjson},
                         function (respuesta) {
 
 
@@ -99,7 +99,7 @@
                 vector.push(id_rol);
                 var idjson = JSON.stringify(vector);
 
-                $.post("../resources/views/tareas.php", {id: idjson},
+                $.post("../resources/views/PhpAuxiliares/tareas.php", {id: idjson},
                         function (respuesta) {
                             var tarea = JSON.parse(respuesta);
                             $("#item1").html('');
@@ -140,7 +140,7 @@
             var id_tarea = boton.value;
             var idjson = JSON.stringify(id_tarea);
 
-            $.post("../resources/views/rellenarcomentario.php", {id: idjson},
+            $.post("../resources/views/PhpAuxiliares/rellenarcomentario.php", {id: idjson},
                     function (respuesta) {
                         var comentariotexto = JSON.parse(respuesta);
                         if (comentariotexto.length > 0) {
@@ -156,8 +156,8 @@
                             height: 450, // Altura en px
                             title: 'Insertar comentario',
                             body: '<div class="w2ui-centered">\n\
-                      <div class="form-group" style="width: 90%; margin: auto;">  \n\
-                        <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
+                                    <div class="form-group" style="width: 90%; margin: auto;">  \n\
+                                    <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
                         <label for="comentario"></label>\n\
                         <textarea id="textocomentario"  name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;">' + mens[0] + '</textarea>\n\
                         <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
@@ -167,7 +167,8 @@
                             showMax: true, //Muestra el botón de maximizar
                             showClose: true, //Muestra el botón de cerrar el PoPUp
                             keyboard: true, // Se cierra dándole al ESC
-                            speed: 0.6 // popup speed (in seconds)
+                            speed: 0.6, // popup speed (in seconds)
+                            opacity: 0.4
 
                         });
                         $("#insertarComentario").on('click', function () {
@@ -178,7 +179,7 @@
                             vector.push(id_tarea);
                             var comentario = JSON.stringify(vector);
 
-                            $.post("../resources/views/comentario.php", {coment: comentario},
+                            $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
                                     function (respuesta) {
 
                                     }).fail(function (jqXHR) {
