@@ -7,16 +7,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Clases\Usuario;
 
-class Controlador extends Controller
-{
+class Controlador extends Controller {
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('login');
     }
 
@@ -26,18 +24,15 @@ class Controlador extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function loginerror(Request $request)
-    {
+    public function loginerror(Request $request) {
         return view('loginerror');
     }
 
-    public function loginconfirm(Request $request)
-    {
+    public function loginconfirm(Request $request) {
         return view('loginconfirm');
     }
 
-    public function comprobarlogin(Request $request)
-    {
+    public function comprobarlogin(Request $request) {
 
 
         $usu = new Usuario('', '', '', '', '');
@@ -68,18 +63,15 @@ class Controlador extends Controller
         return view('gestionTareas', $datos);
     }
 
-    public function registro(Request $request)
-    {
+    public function registro(Request $request) {
         return view('registro');
     }
 
-    public function registroerror(Request $request)
-    {
+    public function registroerror(Request $request) {
         return view('registroerror');
     }
 
-    public function usuario(Request $request)
-    {
+    public function usuario(Request $request) {
 
 
         $usu = new Usuario('', '', '', '', '');
@@ -98,28 +90,34 @@ class Controlador extends Controller
         return view('gestionTareas', $datos);
     }
 
-    public function administrador(Request $request)
-    {
+    public function administrador(Request $request) {
 
         return view('administrar');
     }
-    
-    public function enviarpassword(Request $request)
-    {
+
+    public function enviarpassword(Request $request) {
 
         return view('enviarpassword');
     }
-    
-    public function enviarcorreo(Request $request)
-    {
 
-        //codigo para enviar el correo
+    public function enviarcorreo(Request $request) {
+        
+        $email = $request->get('email');
+        $emailorigen = "proyectoadndaw@gmail.com";
+        
+
+        $data = array(
+            'email' => "Virat Gandhi"
+        );
+
+        Mail::send('correoenviado', $data, function($message) {
+            $message->to($email, "Proyectoadn")->subject
+                    ('Cambio de contraseña');
+            $message->from($emailorigen, 'Administrador');
+        });
     }
-    
-    
 
-    public function registrar(Request $request)
-    {
+    public function registrar(Request $request) {
 
         //Creo el usuario en blanco y lo recojo de la sesión
         $usu = new Usuario('', '', '', '', '');
@@ -133,17 +131,16 @@ class Controlador extends Controller
 
         //Hacemos el insert
         \DB::table('usuario')
-            ->insert([
-                'nombre' => $usu->getNombre(),
-                'apellidos' => $usu->getApellidos(),
-                'email' => $usu->getEmail(),
-                'password' => $usu->getPassword(),
-                'created_at' => $año . '-' . $mes . '-' . $dia,
-                'updated_at' => $año . '-' . $mes . '-' . $dia
-
+                ->insert([
+                    'nombre' => $usu->getNombre(),
+                    'apellidos' => $usu->getApellidos(),
+                    'email' => $usu->getEmail(),
+                    'password' => $usu->getPassword(),
+                    'created_at' => $año . '-' . $mes . '-' . $dia,
+                    'updated_at' => $año . '-' . $mes . '-' . $dia
         ]);
-        
-        $usuario = \DB::table('usuario')->where('email','=', $usu->getEmail())->get();
+
+        $usuario = \DB::table('usuario')->where('email', '=', $usu->getEmail())->get();
 
 
         \DB::table('cargo')
@@ -151,7 +148,7 @@ class Controlador extends Controller
                     'id_usuario' => $usuario[0]->id_usuario,
                     'id_rol' => 7
         ]);
-        
+
         $usu->setId_usuario($usuario[0]->id_usuario);
         \Session::put('u', $usu);
 
