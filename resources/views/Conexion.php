@@ -74,6 +74,20 @@ class Conexion {
         return $devolver;
     }
 
+    function rellenar_textotarea($id_tarea) {
+        $consult='Select descripcion from  tarea where id_tarea='.$id_tarea;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+
     function rellenar_estado($consult) {
         
         $this->cursor = mysqli_query($this->conex, $consult);

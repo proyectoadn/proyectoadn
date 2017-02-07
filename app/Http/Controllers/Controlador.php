@@ -68,12 +68,6 @@ class Controlador extends Controller
         return view('gestionTareas', $datos);
     }
 
-
-    public function gestionarTareas(Request $request)
-    {
-
-    }
-
     public function registro(Request $request)
     {
         return view('registro');
@@ -107,9 +101,22 @@ class Controlador extends Controller
     public function administrador(Request $request)
     {
 
-
         return view('administrar');
     }
+    
+    public function enviarpassword(Request $request)
+    {
+
+        return view('enviarpassword');
+    }
+    
+    public function enviarcorreo(Request $request)
+    {
+
+        //codigo para enviar el correo
+    }
+    
+    
 
     public function registrar(Request $request)
     {

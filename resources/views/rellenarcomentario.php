@@ -12,15 +12,24 @@ require_once 'Conexion.php';
 $conexion = new Conexion();
 $vector=[];
 $id_tarea = json_decode($_POST['id']);
-
+$mensaje='';
 if($conexion->conectar()){
     $conexion->rellenar_comentario($id_tarea);
 
    while ($conexion->ir_Siguiente()) {
-        $vector[]=[
-           'mensaje'=> $conexion->obtener_campo('mensaje'),
-        ];
+       $mensaje=$conexion->obtener_campo('mensaje');
    }
+    $conexion->rellenar_textotarea($id_tarea);
+
+    while ($conexion->ir_Siguiente()) {
+        $descripcion=$conexion->obtener_campo('descripcion');
+    }
+
+        $vector[]=[
+           'mensaje'=> $mensaje,
+            'descripcion'=> $descripcion
+        ];
+
 }
 $conexion->cerrar_Conexion();
 
