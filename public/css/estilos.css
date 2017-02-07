@@ -1,6 +1,5 @@
 body{
     background-color: #4375AE;
-    margin-left: 15px;
 }
 
 .divformulario{
@@ -83,4 +82,16 @@ b{
     margin-top: 16px;
     margin-bottom: 20px;
     margin-left: 7px;
+}
+
+.row{
+    
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.divmover{
+    
+    width: 100%;
+    min-height: 60px;
 }
