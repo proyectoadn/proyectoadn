@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Clases\Usuario;
+use Mail;
 
 class Controlador extends Controller {
 
@@ -104,6 +105,33 @@ class Controlador extends Controller {
 
         return view('Login/enviarpassword');
     }
+    
+    public function restablecerpassword(Request $request) {
+
+        return view('Login/restablecerpassword');
+    }
+    
+    public function restablecer(Request $request) {
+        
+        
+        $email = $request->get('email');
+        $password = $request->get('password');
+        
+        
+        
+        $correorestablecer = \DB::table('usuario')->where('email','=', $email)->get();
+        
+        if($correorestablecer){
+            
+            
+            \DB::table('usuario')->where('email','=', $email)->update([
+                
+                'password' => \Hash::make($password)
+            ]);
+        }
+
+        return view('Login/login');
+    }
 
     public function enviarcorreo(Request $request) {
         
@@ -111,14 +139,18 @@ class Controlador extends Controller {
         $emailorigen = "proyectoadndaw@gmail.com";
         
 
-        $data = array(
-            'email' => "Virat Gandhi"
-        );
+        $data = [
+            
+            'email' => $email
+        ];
+        
 
-        \Mail::send('correoenviado', $data, function($message) {
-            $message->to($email, "Proyectoadn")->subject
-                    ('Cambio de contraseña');
-            $message->from($emailorigen, 'Administrador');
+        Mail::send('Login/correoenviado', $data, function($message) {
+            
+            
+            $message->to('dramirez677@gmail.com', "Proyectoadn")->subject('Cambio de contraseña');
+            
+            $message->from('proyectoadndaw@gmail.com', 'Administrador');
         });
     }
 

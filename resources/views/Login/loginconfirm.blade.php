@@ -18,6 +18,9 @@ Login
 
                 <input type="text" name="usuario" id="inputEmail" class="form-control" placeholder="Usuario" required autofocus>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                
+                <a href="enviarpassword">¿Has olvidado la contraseña?</a>
+                <br>
 
                 <br>
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
