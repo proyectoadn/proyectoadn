@@ -54,7 +54,7 @@ Route::get('enviarpassword', [
     'uses' => 'Controlador@enviarpassword'
 ]);
 
-Route::get('enviarcorreo', [
+Route::post('enviarcorreo', [
 
     'as' => 'enviarcorreo',
     'uses' => 'Controlador@enviarcorreo'

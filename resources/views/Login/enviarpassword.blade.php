@@ -1,5 +1,5 @@
 
-@extends('../maestra')
+@extends('maestra')
 
 @section('titulo')
 Login
@@ -17,7 +17,7 @@ Login
             <h2 class="form-signin-heading">Has olvidado la contraseña</h2>
         </div>
         <div class="panel-footer">
-            <form action="" method="POST">
+            <form action="enviarcorreo" method="POST">
                 {!! csrf_field() !!}
 
                 <input type="text" name="email" placeholder="Introduce tu email" class="form-control">
