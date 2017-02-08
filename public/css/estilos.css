@@ -99,8 +99,14 @@ b{
     min-height: 60px;
 }
 
-
 .inputsrestablecerpassword{
     
     margin-bottom: 10px;
+}
+
+.comentarioGuardado{
+    font-size:1.0em; 
+    visibility: hidden;
+    color: green;
+    margin-bottom: 5px;
 }

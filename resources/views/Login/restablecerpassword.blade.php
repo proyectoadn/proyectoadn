@@ -79,7 +79,7 @@ Login
 
                 <div class="input-group inputsrestablecerpassword">
 
-                    <input type="text" name="email" value="{!! $_GET['email'] !!}" class="form-control" readonly>
+                    <input type="text" name="email" value="{!! $_GET['correo'] !!}" class="form-control" readonly>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
                 </div>
                 
