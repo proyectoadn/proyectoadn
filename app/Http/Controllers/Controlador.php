@@ -148,7 +148,7 @@ class Controlador extends Controller {
         Mail::send('Login/correoenviado', $data, function($message) {
             
             
-            $message->to('dramirez677@gmail.com', "Proyectoadn")->subject('Cambio de contraseña');
+            $message->to($_POST['email'], "Proyectoadn")->subject('Cambio de contraseña');
             
             $message->from('proyectoadndaw@gmail.com', 'Administrador');
         });
