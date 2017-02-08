@@ -12,10 +12,10 @@
 
         <!--UI JS-->
         <script src="assets/js/w2ui-1.5.rc1.js"></script>
-        <script src="assets/js/w2ui-1.5.rc1.min.js"></script>
+        <!--<script src="assets/js/w2ui-1.5.rc1.min.js"></script>-->
         <!--UI CSS-->
-        <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/w2ui-1.5.rc1.min.css') !!}"/>
-        <!--<link rel="stylesheet" type="text/css" href="{!! asset('assets/css/w2ui-1.5.rc1.css') !!}"/>-->
+        <!--<link rel="stylesheet" type="text/css" href="{!! asset('assets/css/w2ui-1.5.rc1.min.css') !!}"/>-->
+        <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/w2ui-1.5.rc1.css') !!}"/>
 
 
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estilos.css') !!}"/>
