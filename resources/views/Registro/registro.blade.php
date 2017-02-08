@@ -10,6 +10,7 @@ Elección de rol
     window.onload = function () {
         document.getElementById("nombre").focus();
         document.getElementById('registrar').disabled = true;
+        
         var codificar = 0;
         $("#codificarDecodificar, #codificarDecodificar2").on("click", function () {
 
@@ -37,8 +38,6 @@ Elección de rol
                 }
             }
         });
-
-
     };
 
 
@@ -85,7 +84,7 @@ Elección de rol
                 <!-- Input Contraseña -->   
                 <div class="input-group"style="margin-bottom: 5px;">
                     <input type="password" name="password" title="contraseña" 
-                           id="password" placeholder="Contraseña" onblur="" 
+                           id="password" placeholder="Contraseña" onblur="comprobarLongitudPass(this)"
                            class="form-control" required>
                     <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar"></i></span>
                 </div>

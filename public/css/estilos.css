@@ -98,3 +98,10 @@ b{
     width: 100%;
     min-height: 60px;
 }
+
+.comentarioGuardado{
+    font-size:1.0em; 
+    visibility: hidden;
+    color: green;
+    margin-bottom: 5px;
+}

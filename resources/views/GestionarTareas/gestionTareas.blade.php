@@ -156,21 +156,25 @@ Gestión de tareas
                         title: 'Insertar comentario',
                         body: '<div class="w2ui-centered">\n\
                                 <div class="form-group" style="width: 90%; margin: auto;">  \n\
-                                <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
-                    <label for="comentario"></label>\n\
-                    <textarea id="textocomentario"  name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%; margin-bottom:10px; resize: none;">' + mens[0] + '</textarea>\n\
-                    <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
-                  </div>',
-                        buttons: '<button class="w2ui-btn" name="insertarComentario" id="insertarComentario">Guardar Cambios</button>' +
-                                '<button class="w2ui-btn" name="reset" id="reset">Borrar todo</button>',
+                                    <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
+                                    <label for="comentario"></label>\n\
+                                    <div id="correcto" class="text-right comentarioGuardado"><img src="Imagenes/registro/v.png" alt="Comentario actualizado" style="width: 16px; height: 16px; margin-right: 3px;" />Comentario guardado correctamente</div>\n\
+                                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">' + mens[0] + '</textarea>\n\
+                                <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
+                               </div>',
+                        buttons: '<button class="w2ui-btn" id="insertarComentario2" name="insertarComentario2" onclick="w2popup.close();">Aceptar</button> '+
+                                '<button class="w2ui-btn" onclick="w2popup.close();">Cancelar</button> '+
+                                '<button class="w2ui-btn" disabled name="insertarComentario" id="insertarComentario">Aplicar cambios</button>',
                         showMax: true, //Muestra el botón de maximizar
                         showClose: true, //Muestra el botón de cerrar el PoPUp
                         keyboard: true, // Se cierra dándole al ESC
                         speed: 0.6, // popup speed (in seconds)
                         opacity: 0.4
+                        
 
                     });
-                    $("#insertarComentario").on('click', function () {
+            
+                    $("#insertarComentario,#insertarComentario2").on('click', function () {
                         var texto = $("#textocomentario").val();
 
                         var vector = new Array();
@@ -180,6 +184,9 @@ Gestión de tareas
 
                         $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
                                 function (respuesta) {
+                                    $("#textocomentario").css('border-color', 'green');
+                                    $("#correcto").css('visibility', 'visible');
+                                    $( "#insertarComentario" ).prop( "disabled", true );
 
                                 }).fail(function (jqXHR) {
                             alert("Error de tipo " + jqXHR.status);
@@ -187,33 +194,21 @@ Gestión de tareas
 
                     });
 
-                    $("#reset").on('click', function () {
-                        $("#textocomentario").val("");
+                    $("#textocomentario").keypress(function () {
+                        $( "#insertarComentario" ).prop( "disabled", false );
+                        $("#textocomentario").css('border-color', '#66afe9');
+                        $("#correcto").css('visibility', 'hidden');
 
                     });
 
-
                     $(function () {
 
-                        /* Definimos variables que utilizaremos
-                         
-                         valor: En ella almacenaremos cuantos caracteres hay en el
-                         área de texto.
-                         
-                         contador: Almacenará el número de caracteres restantes,
-                         descontando el valor actual desde el máximo (250).
-                         
-                         parrafo: Almacenará en que tipo de clase (estilo) se mostrará el
-                         mensaje (verde si no se ha pasado el límite, rojo si se
-                         sobrepasado).
-                         
-                         */
                         var valor, contador, parrafo;
                         contador = 250;
                         valor2 = $('#textocomentario').val().length;
-                        
+
                         // Mostramos un mensaje inicial y lo añadimos al div de id contador.
-                        $('<p class="indicador">Tienes '+(contador-valor2)+' caracteres restantes</p>').appendTo('#contador');
+                        $('<p class="indicador">Tienes ' + (contador - valor2) + ' caracteres restantes</p>').appendTo('#contador');
 
                         // Definimos el evento para que detecte cada vez que se presione una tecla.
                         $('#textocomentario').keydown(function () {
