@@ -169,11 +169,13 @@ Gestión de tareas
                         showClose: true, //Muestra el botón de cerrar el PoPUp
                         keyboard: true, // Se cierra dándole al ESC
                         speed: 0.6, // popup speed (in seconds)
-                        opacity: 0.4
+                        opacity: 0.4,
+                        color: 'black' //Cambia el color de fondo 
                         
 
                     });
             
+                    //Insert en BBDD del comentario
                     $("#insertarComentario,#insertarComentario2").on('click', function () {
                         var texto = $("#textocomentario").val();
 
@@ -184,6 +186,8 @@ Gestión de tareas
 
                         $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
                                 function (respuesta) {
+                                    
+                                    //cuando hace el insert, cambia el boton a disabled y pone el divisor de insertado
                                     $("#textocomentario").css('border-color', 'green');
                                     $("#correcto").css('visibility', 'visible');
                                     $( "#insertarComentario" ).prop( "disabled", true );
@@ -193,7 +197,8 @@ Gestión de tareas
                         });
 
                     });
-
+                    
+                    //Cuando presiona una tecla dentro del textarea del comentario pone en verde el borde, activa el boton
                     $("#textocomentario").keypress(function () {
                         $( "#insertarComentario" ).prop( "disabled", false );
                         $("#textocomentario").css('border-color', '#66afe9');
