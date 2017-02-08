@@ -7,17 +7,21 @@ Login
 
 @section('contenido')
 
-<script src="jquery-2.1.4.js"></script>
-<script src="jquery-ui.min.js"></script>
-
 
 <div class="container">
     <div class="panel panel-primary login">
         <div class="panel-body">
-            <h2 class="form-signin-heading">Iniciar sesión</h2>
+            <h2 class="form-signin-heading">Cambio de contraseña</h2>
         </div>
         <div class="panel-footer">
             
+            Buenas {!! $email !!}, <br><br>
+            
+            
+            Si quieres restablecer tu contraseña pulsa en el siguiente enlace,
+            <br><br>
+            
+            <a href="localhost/Laravel/proyectoadn/public/restablecerpassword?correo={!! $email !!}">Restablecer contraseña</a>
             
         </div>
     </div>

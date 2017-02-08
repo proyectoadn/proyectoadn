@@ -54,10 +54,16 @@ Route::get('enviarpassword', [
     'uses' => 'Controlador@enviarpassword'
 ]);
 
-Route::post('enviarcorreo', [
+Route::get('enviarcorreo', [
 
     'as' => 'enviarcorreo',
     'uses' => 'Controlador@enviarcorreo'
+]);
+
+Route::get('restablecerpassword', [
+
+    'as' => 'restablecerpassword',
+    'uses' => 'Controlador@restablecerpassword'
 ]);
 
 
@@ -96,5 +102,17 @@ Route::post('usuario', [
 Route::post('administrador', [
     'as' => 'administrador',
     'uses' => 'Controlador@administrador',
+]);
+
+Route::post('enviarcorreo', [
+
+    'as' => 'enviarcorreo',
+    'uses' => 'Controlador@enviarcorreo'
+]);
+
+Route::post('restablecer', [
+
+    'as' => 'restablecer',
+    'uses' => 'Controlador@restablecer'
 ]);
 
