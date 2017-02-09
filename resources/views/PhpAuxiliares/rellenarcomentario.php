@@ -26,8 +26,8 @@ if($conexion->conectar()){
     }
 
         $vector[]=[
-           'mensaje'=> $mensaje,
-            'descripcion'=> $descripcion
+           'mensaje'=> utf8_encode($mensaje),
+            'descripcion'=>  utf8_encode($descripcion)
         ];
 
 }

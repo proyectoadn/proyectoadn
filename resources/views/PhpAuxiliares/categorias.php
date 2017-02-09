@@ -18,7 +18,7 @@ if($conexion->conectar()){
 
    while ($conexion->ir_Siguiente()) {
         $vector[]=[
-           'descripcion'=> $conexion->obtener_campo('descripcion'),
+           'descripcion'=> utf8_encode($conexion->obtener_campo('descripcion')),
            'id'=> $conexion->obtener_campo('id_categoria')
         ];
    }

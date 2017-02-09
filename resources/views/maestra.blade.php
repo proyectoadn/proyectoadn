@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>@yield('titulo')</title>
-
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/bootstrap.min.css') !!}"/>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>

@@ -101,6 +101,7 @@ Gestión de tareas
 
             $.post("../resources/views/PhpAuxiliares/tareas.php", {id: idjson},
                     function (respuesta) {
+                        alert(respuesta);
                         var tarea = JSON.parse(respuesta);
                         $("#item1").html('');
                         $("#item2").html('');
@@ -178,13 +179,14 @@ Gestión de tareas
 
                     //Insert en BBDD del comentario
                     $("#insertarComentario,#insertarComentario2").on('click', function () {
+
                         var texto = $("#textocomentario").val();
 
                         var vector = new Array();
                         vector.push(texto);
                         vector.push(id_tarea);
                         var comentario = JSON.stringify(vector);
-
+                        alert(comentario);
                         $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
                                 function (respuesta) {
 
