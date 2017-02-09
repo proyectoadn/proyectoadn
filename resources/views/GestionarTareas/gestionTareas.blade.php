@@ -162,19 +162,20 @@ Gestión de tareas
                                     <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">' + mens[0] + '</textarea>\n\
                                 <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
                                </div>',
-                        buttons: '<button class="w2ui-btn" id="insertarComentario2" name="insertarComentario2" onclick="w2popup.close();">Aceptar</button> '+
-                                '<button class="w2ui-btn" onclick="w2popup.close();">Cancelar</button> '+
-                                '<button class="w2ui-btn" disabled name="insertarComentario" id="insertarComentario">Aplicar cambios</button>',
+                        buttons: '<button class="w2ui-btn" id="insertarComentario2" name="insertarComentario2" onclick="w2popup.close();">Aceptar</button> ' +
+                                '<button class="w2ui-btn" onclick="w2popup.close();">Cancelar</button> ' +
+                                '<button class="w2ui-btn" disabled name="insertarComentario" id="insertarComentario">Aplicar cambios</button>' +
+                                '<button class="w2ui-btn" onclick="lock(\'Loading...\')">Lock With a Message</button>',
                         showMax: true, //Muestra el botón de maximizar
                         showClose: true, //Muestra el botón de cerrar el PoPUp
                         keyboard: true, // Se cierra dándole al ESC
                         speed: 0.6, // popup speed (in seconds)
                         opacity: 0.4,
                         color: 'black' //Cambia el color de fondo 
-                        
+
 
                     });
-            
+
                     //Insert en BBDD del comentario
                     $("#insertarComentario,#insertarComentario2").on('click', function () {
                         var texto = $("#textocomentario").val();
@@ -186,21 +187,21 @@ Gestión de tareas
 
                         $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
                                 function (respuesta) {
-                                    
+
                                     //cuando hace el insert, cambia el boton a disabled y pone el divisor de insertado
                                     $("#textocomentario").css('border-color', 'green');
                                     $("#correcto").css('visibility', 'visible');
-                                    $( "#insertarComentario" ).prop( "disabled", true );
+                                    $("#insertarComentario").prop("disabled", true);
 
                                 }).fail(function (jqXHR) {
                             alert("Error de tipo " + jqXHR.status);
                         });
 
                     });
-                    
+
                     //Cuando presiona una tecla dentro del textarea del comentario pone en verde el borde, activa el boton
                     $("#textocomentario").keypress(function () {
-                        $( "#insertarComentario" ).prop( "disabled", false );
+                        $("#insertarComentario").prop("disabled", false);
                         $("#textocomentario").css('border-color', '#66afe9');
                         $("#correcto").css('visibility', 'hidden');
 
@@ -253,6 +254,12 @@ Gestión de tareas
         });
 
     }
+    function lock(msg) {
+        w2popup.lock(msg, true);
+        setTimeout(function () {
+            w2popup.unlock(); }, 1000);
+    }
+
 
 </script>
 @endsection
