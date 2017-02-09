@@ -50,10 +50,12 @@ class Controlador extends Controller {
         }
 
         for ($i = 0; $i < count($rol); $i++) {
+            
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
 
                 return view('Administrar/elegirRol');
-            } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
+            } 
+            else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
 
                 return view('Administrar/elegirRol');
             }

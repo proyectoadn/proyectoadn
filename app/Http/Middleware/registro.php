@@ -29,7 +29,7 @@ class registro {
 
         if ($usu) {
 
-            return view('registroerror', $datos);
+            return view('Registro/registroerror', $datos);
         } else {
 
             $password = $request->get('password');

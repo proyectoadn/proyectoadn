@@ -10,28 +10,6 @@ Login
 <script src="jquery-2.1.4.js"></script>
 <script src="jquery-ui.min.js"></script>
 
-<script>
-    window.onload = function () {
-        var codificar = 0;
-        $("#codificarDecodificar").on("click", function () {
-
-            if (codificar == 0) {
-                $("#inputPassword").attr({type: "text"});
-                $("#codificarDecodificar").removeClass('glyphicon-eye-close');
-                $("#codificarDecodificar").addClass('glyphicon-eye-open');
-                codificar = 1;
-            } else {
-                if (codificar == 1) {
-                    $("#inputPassword").attr({type: "password"});
-                    $("#codificarDecodificar").removeClass('glyphicon-eye-open');
-                    $("#codificarDecodificar").addClass('glyphicon-eye-close');
-                    codificar = 0;
-                }
-            }
-        });
-    };
-</script>
-
 
 <div class="container">
     <div class="panel panel-primary login">
@@ -50,7 +28,7 @@ Login
 
                 <!--Contraseña-->
                 <div class="input-group"style="margin-bottom: 5px;">
-                    <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar"></i></span>
+                    <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-lock" id="codificarDecodificar"></i></span>
                     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
                 </div>
                 

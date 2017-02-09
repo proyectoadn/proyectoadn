@@ -11,7 +11,7 @@ Elección de rol
         <h2>Elegir rol de acceso</h2>
     </div>
     <div class="row">
-        <form action="admistrador" method="POST">
+        <form action="administrador" method="POST">
             {!! csrf_field() !!}
             <div class="col-md-6 botonRol">
 
