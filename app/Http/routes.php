@@ -12,13 +12,13 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Login/login');
 });
 
 
 //Rutas get
 
-Route::get('login', [
+Route::any('login', [
 
     'as' => 'login',
     'uses' => 'Controlador@index'
@@ -115,4 +115,3 @@ Route::post('restablecer', [
     'as' => 'restablecer',
     'uses' => 'Controlador@restablecer'
 ]);
-

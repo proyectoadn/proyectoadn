@@ -152,6 +152,8 @@ class Controlador extends Controller {
             
             $message->from('proyectoadndaw@gmail.com', 'Administrador');
         });
+        
+        return view('Login/confirmacioncorreo', $data);
     }
 
     public function registrar(Request $request) {
