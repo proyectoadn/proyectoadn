@@ -78,28 +78,25 @@ Login
 
 
                 <div class="input-group inputsrestablecerpassword">
-
-                    <input type="text" name="email" value="{!! $_GET['correo'] !!}" class="form-control" readonly>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+                    <input type="text" name="email" value="{!! $_GET['correo'] !!}" class="form-control" readonly>
                 </div>
-                
+
 
                 <div class="">
                     <span class="" id="textoPassword"></span>
                 </div>
-                
-                
+
+
 
                 <div class="input-group inputsrestablecerpassword">
-
-                    <input type="password" name="password" id="password" placeholder="Escribe tu contraseña" onblur="comprobarLongitudPass2(this)" class="form-control">
                     <span class="input-group-addon"><i id="codificarDecodificar" class="glyphicon glyphicon-eye-close"></i></span>
+                    <input type="password" name="password" id="password" placeholder="Escribe tu contraseña" onblur="comprobarLongitudPass2(this)" class="form-control">
                 </div>
 
                 <div class="input-group inputsrestablecerpassword">
-
-                    <input type="password" name="repetirpassword" id="repetirpassword" placeholder="Vuelve a escribir tu contraseña" onblur="comprobarLongitudPass2(this)" class="form-control">
                     <span class="input-group-addon"><i id="codificarDecodificar2" class="glyphicon glyphicon-eye-close"></i></span>
+                    <input type="password" name="repetirpassword" id="repetirpassword" placeholder="Vuelve a escribir tu contraseña" onblur="comprobarLongitudPass2(this)" class="form-control">
                 </div>
 
                 <br>

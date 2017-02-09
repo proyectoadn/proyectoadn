@@ -60,42 +60,42 @@ Registro
                 <div class="alert alert-danger" >Usuario o contraseña incorrectos</div>
                 <!-- Input Nombre -->
                 <div class="input-group" style="margin-bottom: 5px;">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
                     <input type="text" name="nombre" title="nombre" 
                            id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
                            class="form-control" required value="{!! $nombre !!}"> 
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
                 </div>
 
                 <!-- Input Apellidos -->  
                 <div class="input-group" style="margin-bottom: 5px;">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
                     <input type="text" name="apellidos" title="apellidos" 
                            id="apellidos" placeholder="Apellidos" onblur="validarApellido(this)" 
                            class="form-control" required value="{!! $ape !!}">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
                 </div>
 
                 <!-- Input Email -->    
                 <div class="input-group" style="margin-bottom: 5px;">
+                    <span class="input-group-addon">@</span>
                     <input type="email" name="email" title="email" 
                            id="email" placeholder="Email" onblur="validarEmail(this)" 
                            class="form-control" required>
-                    <span class="input-group-addon">@</span>
                 </div>
 
                 <!-- Input Contraseña -->   
                 <div class="input-group"style="margin-bottom: 5px;">
+                    <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar"></i></span>
                     <input type="password" name="password" title="contraseña" 
                            id="password" placeholder="Contraseña" onblur="" 
                            class="form-control" required>
-                    <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar"></i></span>
                 </div>
 
                 <!-- Input repetir Contraseña -->  
                 <div class="input-group"style="margin-bottom: 5px;">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar2"></i></span>
                     <input type="password" name="repetirpassword" title="Repetir contraseña" 
                            id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)" 
                            class="form-control" required> 
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar2"></i></span>
                 </div>
 
                 <!--Boton registrar-->

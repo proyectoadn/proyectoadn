@@ -20,7 +20,10 @@ Login
             <form action="enviarcorreo" method="POST">
                 {!! csrf_field() !!}
 
-                <input type="text" name="email" placeholder="Introduce tu email" class="form-control">
+                <div class="input-group" style="margin-bottom: 5px;">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" name="email" placeholder="Introduce tu email" class="form-control">
+                </div>
                 <br>
                 <input type="submit" name="enviar" value="Enviar" class="btn btn-primary">
             </form>

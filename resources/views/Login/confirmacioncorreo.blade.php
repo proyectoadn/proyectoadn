@@ -16,11 +16,9 @@ Login
         <div class="panel-footer">
 
             Se ha enviado un correo electronico a {!! $email !!}<br><br>
-
+            
             <form action="login" method="POST">
                 {!! csrf_field() !!}
-                
-
                 <input type="submit" name="volver" value="Volver al inicio" class="btn btn-primary">
             </form>
 
