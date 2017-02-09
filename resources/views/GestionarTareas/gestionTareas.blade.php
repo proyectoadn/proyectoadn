@@ -16,6 +16,8 @@ Gestión de tareas
     var id_rol;
 
     $(function () {
+        
+        alert("hola");
 
 
         //Codigo Dani
