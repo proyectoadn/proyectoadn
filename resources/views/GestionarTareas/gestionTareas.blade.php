@@ -16,8 +16,6 @@ Gestión de tareas
     var id_rol;
 
     $(function () {
-        
-        alert("hola");
 
 
         //Codigo Dani
@@ -112,19 +110,22 @@ Gestión de tareas
                             if (tarea[i]['estado'] == 1) {
                                 $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+\n\
+                            <button class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+\n\
                             </div></div>');
                             } else if (tarea[i]['estado'] == 2) {
                                 $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                            <button class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                             </div></div>');
                             } else if (tarea[i]['estado'] == 3) {
                                 $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                            <button class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                             </div></div>');
                             }
@@ -136,6 +137,9 @@ Gestión de tareas
         });
     });
 
+
+
+    
     function popup(boton) {
 
         var mens = new Array();
@@ -152,6 +156,8 @@ Gestión de tareas
                         mens.push('');
                         mens.push(comentariotexto[0]['descripcion']);
                     }
+                    
+                    /*
                     w2popup.open({
                         width: 600, // Anchura en px
                         height: 450, // Altura en px
@@ -177,6 +183,7 @@ Gestión de tareas
 
 
                     });
+                    */
 
                     //Insert en BBDD del comentario
                     $("#insertarComentario,#insertarComentario2").on('click', function () {
@@ -259,8 +266,15 @@ Gestión de tareas
     function lock(msg) {
         w2popup.lock(msg, true);
         setTimeout(function () {
-            w2popup.unlock(); }, 1000);
+            w2popup.unlock();
+        }, 1000);
     }
+
+    $(document).on("click", ".botonX", function ()
+    {
+        
+        
+    });
 
 
 </script>
@@ -375,6 +389,31 @@ Gestión de tareas
 
                     <div id="item3" class=" conectardivisores divmover" value="Hecho">
                     </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    
+                    
+                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">Comentario de prueba</textarea>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button class="btn btn-primary" id="insertarComentario2" name="insertarComentario2" >Aceptar</button>
+                    <button class="btn btn-primary" >Cancelar</button>
+                    <button class="btn btn-primary" disabled name="insertarComentario" id="insertarComentario">Aplicar cambios</button>
                 </div>
             </div>
 
