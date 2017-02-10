@@ -14,8 +14,8 @@ Administracion
         $("#carg").on("change", function () {
 
 
-            $("#item1").html('');
-            $("#item2").html('');
+            $("#contenedortareas").html('');
+            $("#contenedordocumentos").html('');
 
             var id = $(this).val();
             id_rol = id;
@@ -46,12 +46,12 @@ Administracion
             vector.push(id_rol);
             var idjson = JSON.stringify(vector);
 
-            $.post("../resources/views/PhpAuxiliares/tareasadmin.php", {id: idjson},
+            $.post("../resources/views/PhpAuxiliares/documentacion.php", {id: idjson},
                     function (respuesta) {
 
                         var tarea = JSON.parse(respuesta);
                         $("#contenedortareas").html('');
-                        $("#documentacion").html('');
+                        $("#contenedordocumentos").html('');
                         $("#contenedortareas").append(' <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;"> <div id="tareas" class="panel panel-primary tarea" style="height: 100px;"> </p> <div style="height: 70px; width: 70px; margin: auto; padding: 0px;"> <button class="" onclick="" value="" id="comentario" style="background: transparent; border: 0px; margin:0px;"> <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/> </button> </div> </div> </div>'
                         );
                         for (var i = 0; i < tarea.length; i++) {
