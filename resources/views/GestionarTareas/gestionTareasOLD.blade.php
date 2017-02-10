@@ -17,6 +17,8 @@ Gestión de tareas
 
     $(function () {
 
+
+
         //Codigo Dani
         $("#item1,#item2,#item3").sortable({
             connectWith: ".conectardivisores",
@@ -43,11 +45,16 @@ Gestión de tareas
 
                 $.post("../resources/views/PhpAuxiliares/actualizarestado.php", {id: idtarea, estadoactual: estado},
                         function (respuesta) {
+
+
                             if (respuesta) {
+
                                 //alert("actualziado con exito");
                             } else {
+
                                 // alert("no actualizado con exito");
                             }
+
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
                 });
@@ -69,6 +76,8 @@ Gestión de tareas
 
             $.post("../resources/views/PhpAuxiliares/categorias.php", {rol: idjson},
                     function (respuesta) {
+
+
                         var categorias = JSON.parse(respuesta);
 
                         $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
@@ -79,14 +88,6 @@ Gestión de tareas
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
-        });
-
-        //Cuando presiona una tecla dentro del textarea del comentario pone en verde el borde, activa el boton
-        $("#textocomentario").keypress(function () {
-            $("#insertarComentario").prop("disabled", false);
-            $("#textocomentario").css('border-color', '#66afe9');
-            $("#correcto").css('visibility', 'hidden');
-
         });
 
 
@@ -111,30 +112,156 @@ Gestión de tareas
                             if (tarea[i]['estado'] == 1) {
                                 $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class="" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+                            <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                             </div></div>');
                             } else if (tarea[i]['estado'] == 2) {
                                 $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class="" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+                            <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                             </div></div>');
                             } else if (tarea[i]['estado'] == 3) {
                                 $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class=""  value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+                            <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                             </div></div>');
                             }
                         }
+
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
         });
-
     });
 
+    function popup(boton) {
+
+        var mens = new Array();
+        var id_tarea = boton.value;
+        var idjson = JSON.stringify(id_tarea);
+
+        $.post("../resources/views/PhpAuxiliares/rellenarcomentario.php", {id: idjson},
+                function (respuesta) {
+                    var comentariotexto = JSON.parse(respuesta);
+                    if (comentariotexto.length > 0) {
+                        mens.push(comentariotexto[0]['mensaje']);
+                        mens.push(comentariotexto[0]['descripcion']);
+                    } else {
+                        mens.push('');
+                        mens.push(comentariotexto[0]['descripcion']);
+                    }
+                    w2popup.open({
+                        width: 600, // Anchura en px
+                        height: 450, // Altura en px
+                        title: 'Insertar comentario',
+                        body: '<div class="w2ui-centered">\n\
+                                <div class="form-group" style="width: 90%; margin: auto;">  \n\
+                                    <h4 class="modal-title text-left" >' + mens[1] + '</h4>\n\
+                                    <label for="comentario"></label>\n\
+                                    <div id="correcto" class="text-right comentarioGuardado"><img src="Imagenes/registro/v.png" alt="Comentario actualizado" style="width: 16px; height: 16px; margin-right: 3px;" />Comentario guardado correctamente</div>\n\
+                                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">' + mens[0] + '</textarea>\n\
+                                <div id="contador" class="text-right text-danger" style="font-size:0.8em;">\n\
+                               </div>',
+                        buttons: '<button class="w2ui-btn" id="insertarComentario2" name="insertarComentario2" onclick="w2popup.close();">Aceptar</button> ' +
+                                '<button class="w2ui-btn" onclick="w2popup.close();">Cancelar</button> ' +
+                                '<button class="w2ui-btn" disabled name="insertarComentario" id="insertarComentario">Aplicar cambios</button>' +
+                                '<button class="w2ui-btn" onclick="lock(\'Loading...\')">Lock With a Message</button>',
+                        showMax: true, //Muestra el botón de maximizar
+                        showClose: true, //Muestra el botón de cerrar el PoPUp
+                        keyboard: true, // Se cierra dándole al ESC
+                        speed: 0.6, // popup speed (in seconds)
+                        opacity: 0.4,
+                        color: 'black' //Cambia el color de fondo 
+
+
+                    });
+
+                    //Insert en BBDD del comentario
+                    $("#insertarComentario,#insertarComentario2").on('click', function () {
+
+                        var texto = $("#textocomentario").val();
+
+                        var vector = new Array();
+                        vector.push(texto);
+                        vector.push(id_tarea);
+                        var comentario = JSON.stringify(vector);
+
+                        $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
+                                function (respuesta) {
+
+                                    //cuando hace el insert, cambia el boton a disabled y pone el divisor de insertado
+                                    $("#textocomentario").css('border-color', 'green');
+                                    $("#correcto").css('visibility', 'visible');
+                                    $("#insertarComentario").prop("disabled", true);
+
+                                }).fail(function (jqXHR) {
+                            alert("Error de tipo " + jqXHR.status);
+                        });
+
+                    });
+
+                    //Cuando presiona una tecla dentro del textarea del comentario pone en verde el borde, activa el boton
+                    $("#textocomentario").keypress(function () {
+                        $("#insertarComentario").prop("disabled", false);
+                        $("#textocomentario").css('border-color', '#66afe9');
+                        $("#correcto").css('visibility', 'hidden');
+
+                    });
+
+                    $(function () {
+
+                        var valor, contador, parrafo;
+                        contador = 250;
+                        valor2 = $('#textocomentario').val().length;
+
+                        // Mostramos un mensaje inicial y lo añadimos al div de id contador.
+                        $('<p class="indicador">Tienes ' + (contador - valor2) + ' caracteres restantes</p>').appendTo('#contador');
+
+                        // Definimos el evento para que detecte cada vez que se presione una tecla.
+                        $('#textocomentario').keydown(function () {
+
+                            // Redefinimos el valor de contador al máximo permitido (150).
+                            contador = 250;
+
+                            /* Quitamos el párrafo con clase advertencia o indicador, en caso de que ya se
+                             haya mostrado un mensaje */
+                            $('.advertencia').remove();
+                            $('.indicador').remove();
+
+                            // Tomamos el valor actual del contenido del área de texto
+                            valor = $('#textocomentario').val().length;
+
+                            // Descontamos ese valor al máximo.
+                            contador = contador - valor;
+
+                            /* Dependiendo de cuantos caracteres quedan, mostraremos el mensaje de una
+                             u otra forma (lo definiremos a continuación mediante CSS */
+                            if (contador < 0) {
+                                parrafo = '<p class="advertencia">';
+                            } else {
+                                parrafo = '<p class="indicador">';
+                            }
+
+                            // Mostramos el mensaje con el número de caracteres restantes.
+                            $('#contador').append(parrafo + 'Tienes ' + contador + ' caracteres restantes</p>');
+
+                        });
+
+                    });
+
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+
+    }
+    function lock(msg) {
+        w2popup.lock(msg, true);
+        setTimeout(function () {
+            w2popup.unlock(); }, 1000);
+    }
 
 
 </script>
@@ -254,38 +381,6 @@ Gestión de tareas
 
         </div>
     </div>
-
-
-
-
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" 
-                              style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" disabled id="insertarComentario" class="btn btn-default">Guardar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-
-
-
-
 </div>
 
 @endsection
