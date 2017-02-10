@@ -17,6 +17,7 @@ Gestión de tareas
 
     $(function () {
 
+
         //Codigo Dani
         $("#item1,#item2,#item3").sortable({
             connectWith: ".conectardivisores",
@@ -108,22 +109,26 @@ Gestión de tareas
                         $("#item3").html('');
 
                         for (var i = 0; i < tarea.length; i++) {
+
                             if (tarea[i]['estado'] == 1) {
                                 $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class="" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+\n\
+                            <button class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+\n\
                             </div></div>');
                             } else if (tarea[i]['estado'] == 2) {
                                 $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class="" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+                            <button class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                             </div></div>');
                             } else if (tarea[i]['estado'] == 3) {
                                 $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                            <button class=""  value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+                            <button class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
                             </div></div>');
                             }
@@ -133,9 +138,63 @@ Gestión de tareas
             });
         });
 
+
+
+        $(document).on("click", ".botonX", function ()
+        {
+
+            var mens = new Array();
+            var id_tarea = $(".botonX").val();
+            var idjson = JSON.stringify(id_tarea);
+
+            $.post("../resources/views/PhpAuxiliares/rellenarcomentario.php", {id: idjson},
+                    function (respuesta) {
+                        var comentariotexto = JSON.parse(respuesta);
+                        if (comentariotexto.length > 0) {
+                            mens.push(comentariotexto[0]['mensaje']);
+                            mens.push(comentariotexto[0]['descripcion']);
+                        } else {
+                            mens.push('');
+                            mens.push(comentariotexto[0]['descripcion']);
+                        }
+
+
+                        //Insert en BBDD del comentario
+                        $("#insertarComentario2").on('click', function () {
+                            
+
+                            var texto = $("#textocomentario").val();
+
+                            var vector = new Array();
+                            vector.push(texto);
+                            vector.push(id_tarea);
+                            var comentario = JSON.stringify(vector);
+
+                            $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
+                                    function (respuesta) {
+
+                                        
+                                    }).fail(function (jqXHR) {
+                                alert("Error de tipo " + jqXHR.status);
+                            });
+
+                        });
+
+                    }
+            ).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        });
     });
 
 
+
+    function lock(msg) {
+        w2popup.lock(msg, true);
+        setTimeout(function () {
+            w2popup.unlock();
+        }, 1000);
+    }
 
 </script>
 @endsection
@@ -255,10 +314,6 @@ Gestión de tareas
         </div>
     </div>
 
-
-
-
-    <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -266,26 +321,22 @@ Gestión de tareas
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title">Insertar comentario</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" 
-                              style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;"></textarea>
+
+
+                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">Comentario de prueba</textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" disabled id="insertarComentario" class="btn btn-default">Guardar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                    <button class="btn btn-primary" id="insertarComentario2" data-dismiss="modal" >Aceptar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
 
         </div>
     </div>
-
-
-
-
-
-
 </div>
 
 @endsection
