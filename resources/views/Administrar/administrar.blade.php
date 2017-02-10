@@ -14,8 +14,8 @@ Administracion
         $("#carg").on("change", function () {
 
 
-            $("#item1").html('');
-            $("#item2").html('');
+            $("#contenedortareas").html('');
+            $("#contenedordocumentos").html('');
 
             var id = $(this).val();
             id_rol = id;
@@ -46,16 +46,16 @@ Administracion
             vector.push(id_rol);
             var idjson = JSON.stringify(vector);
 
-            $.post("../resources/views/PhpAuxiliares/tareasadmin.php", {id: idjson},
+            $.post("../resources/views/PhpAuxiliares/documentacion.php", {id: idjson},
                     function (respuesta) {
 
                         var tarea = JSON.parse(respuesta);
                         $("#contenedortareas").html('');
-                        $("#documentacion").html('');
+                        $("#contenedordocumentos").html('');
                         $("#contenedortareas").append(' <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;"> <div id="tareas" class="panel panel-primary tarea" style="height: 100px;"> </p> <div style="height: 70px; width: 70px; margin: auto; padding: 0px;"> <button class="" onclick="" value="" id="comentario" style="background: transparent; border: 0px; margin:0px;"> <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/> </button> </div> </div> </div>'
-                        );
+                                );
                         for (var i = 0; i < tarea.length; i++) {
-                                $("#contenedortareas").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea col-md-4" style="padding: 0px; margin: auto; text-align: center;" ><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                            $("#contenedortareas").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea col-md-4" style="padding: 0px; margin: auto; text-align: center;" ><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                             <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
                             <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
                             <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
@@ -137,7 +137,7 @@ Administracion
 
                     @for($i=0;$i<count($roles[0]);$i++)
                         <option value="{!! $roles[0][$i]->id_rol !!}">{!! $roles[0][$i]->descripcion !!}</option>
-                    @endfor
+                        @endfor
                 </select>
             </div>
             <div class='divBotonCargoCat'>
@@ -151,14 +151,14 @@ Administracion
 
 
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-9" >
                 <div class="item" style="min-height: 400px;">
                     <b>Documentacion</b>
                     <div class="row" id="contenedordocumentos">
 
 
                         <!-- BOTON + DOCUMENTO -->
-                        <div class="col-md-6" style="padding: 0px; margin: auto; text-align: center;">
+                        <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;">
                             <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
                                 </p>
                                 <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
@@ -169,7 +169,7 @@ Administracion
                             </div>
                         </div>
 
-                        <div class="col-md-6" style="padding: 0px;">
+                        <div class="col-md-4" style="padding: 0px;">
                             <div id="documentacion" class="panel panel-primary tarea" style="height: 100px;">
                                 <p class="textotarea">  </p>
                                 <p class="textotarea">
@@ -183,45 +183,9 @@ Administracion
                             </div>
                         </div>
 
-                        <div class="col-md-6" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible;">
-                                <p class="textotarea">  </p>
-                                <p class="textotarea">
-                                    <a href=""></a>
-                                </p>
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
-                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
-                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6" >
-                <div class="item" style="min-height: 400px;">
-                    <b>Tareas</b>
-                    <div class="row" id="contenedortareas">
-
-                        <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
-                                </p>
-                                <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
-                                    <button class="" onclick="" value="" id="comentario" style="background: transparent; border: 0px; margin:0px;">
-                                        <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="col-md-4" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible;">
-                                 <p class="textotarea"> 1234567890 1234567 890 1234567890 123456789asdas dasda  asd asd as dasd asd asda sd asd asdasdasdasdas d as das das da sd as da sdasd0 </p>
+                            <div id="documentacion" class="panel panel-primary tarea" style="height: 100px;">
+                                <p class="textotarea">  </p>
                                 <p class="textotarea">
                                     <a href="">asljdh akjsdhaks dhkashdkjashdka shdkjahsdkjah dkjahsdkjashd</a>
                                 </p>
@@ -234,10 +198,10 @@ Administracion
                         </div>
 
                         <div class="col-md-4" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible;">
+                            <div id="documentacion" class="panel panel-primary tarea" style="height: 100px;">
                                 <p class="textotarea">  </p>
                                 <p class="textotarea">
-                                    <a href=""></a>
+                                    <a href="">asljdh akjsdhaks dhkashdkjashdka shdkjahsdkjah dkjahsdkjashd</a>
                                 </p>
                                 <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
                                     <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
@@ -246,28 +210,49 @@ Administracion
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-4" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible;">
-                                <p class="textotarea">  </p>
-                                <p class="textotarea">
-                                    <a href=""></a>
-                                </p>
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
-                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
-                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
 
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div><!-- FIN ROW -->
 
-@endsection
+
+
+            <div class="row">
+                <div class="col-md-3" >
+                    <div class="item" style="min-height: 400px; overflow-y: hidden;">
+                        <b>Documentacion</b>
+                        <div class="row" id="contenedordocumentos">
+
+                            <!-- BOTON + -->
+                            <div class="col-md-12" style="padding: 0px; margin: auto; text-align: center;">
+                                <div id="tareas" class="panel panel-primary tarea" style="height: 100px; ">
+                                    <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
+                                        <button class="" onclick="" value="" id="comentario" style="background: transparent; border: 0px; margin:0px;">
+                                            <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- BOTON ELIMINAR -->
+                            <div class="col-md-12" style="padding: 0px; margin: auto; text-align: center;">
+                                <div id="tareas" class="panel panel-primary tarea" style="height: 100px; ">
+                                    <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
+                                        <button class="" onclick="" value="" id="comentario" style="background: transparent; border: 0px; margin:0px;">
+                                            <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/eliminar.png" style="width: 100%; height: 100%; display: block;" class=""/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div><!-- FIN ROW -->
+
+        @endsection
