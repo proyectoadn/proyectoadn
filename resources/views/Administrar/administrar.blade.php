@@ -88,6 +88,7 @@ Elección de rol
                     <div class="row">
 
 
+                        <!-- BOTON + DOCUMENTO -->
                         <div class="col-md-6" style="padding: 0px; margin: auto; text-align: center;">
                             <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
                                 </p>
@@ -99,26 +100,9 @@ Elección de rol
                             </div>
                         </div>  
 
-
-
-
                         <div class="col-md-6" style="padding: 0px;">
                             <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
                                 <p class="textotarea">  </p>
-                                <p class="textotarea">
-                                    <a href=""></a>
-                                </p>
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
-                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
-                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>  
-
-                        <div class="col-md-6" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible; white-space: normal;">
-                                <p class="textotarea"> asdasdasdasdasdasdasdasdasdasdasdasdasdasd </p>
                                 <p class="textotarea">
                                     <a href=""></a>
                                 </p>
@@ -142,45 +126,7 @@ Elección de rol
                                     </button>
                                 </div>
                             </div>
-                        </div>  
-                        <div class="col-md-6" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
-                                <p class="textotarea">  </p>
-                                <p class="textotarea">
-                                    <a href=""></a>
-                                </p>
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
-                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
-                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-md-6" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
-                                <p class="textotarea">  </p>
-                                <p class="textotarea">
-                                    <a href=""></a>
-                                </p>
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
-                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
-                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>                          <div class="col-md-6" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
-                                <p class="textotarea">  </p>
-                                <p class="textotarea">
-                                    <a href=""></a>
-                                </p>
-                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
-                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
-                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>  
+                        </div> 
 
 
 
@@ -216,11 +162,43 @@ Elección de rol
                                     </button>
                                 </div>
                             </div>
-                        </div>  
-                    </div>
+                        </div>
 
+                        <div class="col-md-4" style="padding: 0px;">
+                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
+                                <p class="textotarea">  </p>
+                                <p class="textotarea">
+                                    <a href=""></a>
+                                </p>
+                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
+                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
+                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4" style="padding: 0px;">
+                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
+                                <p class="textotarea">  </p>
+                                <p class="textotarea">
+                                    <a href=""></a>
+                                </p>
+                                <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
+                                    <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
+                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                 </div>
             </div>
-        </div><!-- FIN ROW -->
+        </div>
+    </div>      
+</div><!-- FIN ROW -->
 
-        @endsection
+@endsection
