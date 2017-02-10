@@ -17,7 +17,7 @@ $id_cat=$id[0];
 $id_rol=$id[1];
 
 if($conexion->conectar()){
-    $conexion->rellenar_tareasadmin($id_cat,$id_rol);
+    $conexion->rellenar_documentacion($id_cat,$id_rol);
 
    while ($conexion->ir_Siguiente()) {
         $vector[]=[

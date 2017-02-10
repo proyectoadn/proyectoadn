@@ -157,7 +157,9 @@ Gestión de tareas
                             mens.push('');
                             mens.push(comentariotexto[0]['descripcion']);
                         }
-
+                        console.log(mens);
+                        $("#textocomentario").val(mens[0]);
+                        $("#titulocoment").html(mens[1]);
 
                         //Insert en BBDD del comentario
                         $("#insertarComentario2").on('click', function () {
@@ -325,8 +327,9 @@ Gestión de tareas
                 </div>
                 <div class="modal-body">
 
-
-                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">Comentario de prueba</textarea>
+                    <h4 id="titulocoment" class="modal-title"></h4>
+                    <br>
+                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;"></textarea>
                 </div>
                 <div class="modal-footer">
 
