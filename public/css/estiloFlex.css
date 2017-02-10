@@ -54,7 +54,6 @@ body{
     margin:7px; 
     min-height: 60px;
     overflow: hidden;
-    
 }
 
 .contenedorPrincipal{
@@ -92,13 +91,7 @@ body{
     white-space: normal;
 }
 
-.textotarea{
-    
-    white-space: normal;
-}
-
 .divitem{
-    
     padding: 5px;
-}
+}   
 

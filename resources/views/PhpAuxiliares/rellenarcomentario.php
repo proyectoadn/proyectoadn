@@ -22,7 +22,7 @@ if($conexion->conectar()){
     $conexion->rellenar_textotarea($id_tarea);
 
     while ($conexion->ir_Siguiente()) {
-        $descripcion=$conexion->obtener_campo('descripcion');
+        $descripcion=  utf8_encode($conexion->obtener_campo('descripcion'));
     }
 
         $vector[]=[
