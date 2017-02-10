@@ -27,7 +27,7 @@ if($conexion->conectar()){
 
         $vector[]=[
            'mensaje'=> $mensaje,
-            'descripcion'=> $descripcion
+            'descripcion'=>  $descripcion
         ];
 
 }

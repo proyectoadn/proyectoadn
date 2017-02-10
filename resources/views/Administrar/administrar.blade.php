@@ -2,9 +2,77 @@
 @extends('../maestra')
 
 @section('titulo')
-Elección de rol
+Administracion
 @endsection
+@section('js')
+<script>
 
+    var id_rol;
+
+    $(function () {
+        //Codigo Nazario
+        $("#carg").on("change", function () {
+
+
+            $("#item1").html('');
+            $("#item2").html('');
+
+            var id = $(this).val();
+            id_rol = id;
+            var idjson = JSON.stringify(id);
+
+            $.post("../resources/views/PhpAuxiliares/categorias.php", {rol: idjson},
+                    function (respuesta) {
+
+
+                        var categorias = JSON.parse(respuesta);
+
+                        $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
+                        for (var i = 0; i < categorias.length; i++) {
+                            $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
+                        }
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        });
+
+
+        $("#cat").on("change", function () {
+
+            var id = $(this).val();
+            var vector = new Array();
+            vector.push(id);
+            vector.push(id_rol);
+            var idjson = JSON.stringify(vector);
+
+            $.post("../resources/views/PhpAuxiliares/tareasadmin.php", {id: idjson},
+                    function (respuesta) {
+
+                        var tarea = JSON.parse(respuesta);
+                        $("#contenedortareas").html('');
+                        $("#documentacion").html('');
+                        $("#contenedortareas").append(' <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;"> <div id="tareas" class="panel panel-primary tarea" style="height: 100px;"> </p> <div style="height: 70px; width: 70px; margin: auto; padding: 0px;"> <button class="" onclick="" value="" id="comentario" style="background: transparent; border: 0px; margin:0px;"> <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/> </button> </div> </div> </div>'
+                        );
+                        for (var i = 0; i < tarea.length; i++) {
+                                $("#contenedortareas").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea col-md-4" style="padding: 0px; margin: auto; text-align: center;" ><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                            <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                            <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                            </div></div>');
+
+
+                        }
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        });
+    });
+
+
+</script>
+@endsection
 @section('contenido')
 
 <div style="margin-top: 55px;">
@@ -66,7 +134,10 @@ Elección de rol
             <div class='divBotonCargoCat'>
                 <select id="carg" class='botonCargoCat form-control'>
                     <option value="-1">-Elige cargo-</option>
-                    <option value="1">z</option>   
+
+                    @for($i=0;$i<count($roles[0]);$i++)
+                        <option value="{!! $roles[0][$i]->id_rol !!}">{!! $roles[0][$i]->descripcion !!}</option>
+                    @endfor
                 </select>
             </div>
             <div class='divBotonCargoCat'>
@@ -83,7 +154,7 @@ Elección de rol
             <div class="col-md-6" >
                 <div class="item" style="min-height: 400px;">
                     <b>Documentacion</b>
-                    <div class="row">
+                    <div class="row" id="contenedordocumentos">
 
 
                         <!-- BOTON + DOCUMENTO -->
@@ -96,11 +167,11 @@ Elección de rol
                                     </button>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
 
                         <div class="col-md-6" style="padding: 0px;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible;">
-                                <p class="textotarea"> 1234567890 1234567 890 1234567890 123456789asdas dasda  asd asd as dasd asd asda sd asd asdasdasdasdas d as das das da sd as da sdasd0 </p>
+                            <div id="documentacion" class="panel panel-primary tarea" style="height: 100px;">
+                                <p class="textotarea">  </p>
                                 <p class="textotarea">
                                     <a href="">asljdh akjsdhaks dhkashdkjashdka shdkjahsdkjah dkjahsdkjashd</a>
                                 </p>
@@ -110,7 +181,7 @@ Elección de rol
                                     </button>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
 
                         <div class="col-md-6" style="padding: 0px;">
                             <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible;">
@@ -124,18 +195,18 @@ Elección de rol
                                     </button>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
 
 
 
-                    </div> 
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-6" >
                 <div class="item" style="min-height: 400px;">
                     <b>Tareas</b>
-                    <div class="row">
+                    <div class="row" id="contenedortareas">
 
                         <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;">
                             <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
@@ -146,7 +217,7 @@ Elección de rol
                                     </button>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
 
                         <div class="col-md-4" style="padding: 0px;">
                             <div id="tareas" class="panel panel-primary tarea" style="height: 100px; overflow-y: visible;">
@@ -196,7 +267,7 @@ Elección de rol
                 </div>
             </div>
         </div>
-    </div>      
+    </div>
 </div><!-- FIN ROW -->
 
 @endsection

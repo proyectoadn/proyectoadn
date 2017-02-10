@@ -100,7 +100,18 @@ class Controlador extends Controller {
 
     public function administrador(Request $request) {
 
-        return view('Administrar/administrar');
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+
+            $rol[] = \DB::table('rol')->get();
+
+
+        $datos = [
+            'roles' => $rol,
+            'id_user' => $usu->getId_usuario()
+        ];
+
+        return view('Administrar/administrar', $datos);
     }
 
     public function enviarpassword(Request $request) {

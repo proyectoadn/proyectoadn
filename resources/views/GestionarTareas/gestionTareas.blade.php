@@ -101,6 +101,7 @@ Gestión de tareas
 
             $.post("../resources/views/PhpAuxiliares/tareas.php", {id: idjson},
                     function (respuesta) {
+
                         var tarea = JSON.parse(respuesta);
                         $("#item1").html('');
                         $("#item2").html('');

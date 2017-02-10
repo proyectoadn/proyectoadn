@@ -61,6 +61,19 @@ class Conexion {
         return $devolver;
     }
 
+    function rellenar_tareasadmin($id_cat, $id_rol) {
+        $consult='Select tarea.id_tarea, tarea.descripcion, tarea.id_estado, documentacion.modelo from documentacion, tarea where documentacion.id_categoria='.$id_cat.' and documentacion.id_rol='.$id_rol.' and documentacion.id_documentacion=tarea.id_documentacion';
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function rellenar_comentario($id_tarea) {
         $consult='Select mensaje from comentario where id_tarea='.$id_tarea;
 

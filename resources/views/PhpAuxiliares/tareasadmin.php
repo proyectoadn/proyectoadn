@@ -9,17 +9,22 @@
 require_once 'Conexion.php';
 
 
+
 $conexion = new Conexion();
 $vector=[];
-$rol = json_decode($_POST['rol']);
+$id = json_decode($_POST['id']);
+$id_cat=$id[0];
+$id_rol=$id[1];
 
 if($conexion->conectar()){
-    $conexion->rellenar_categorias($rol);
+    $conexion->rellenar_tareasadmin($id_cat,$id_rol);
 
    while ($conexion->ir_Siguiente()) {
         $vector[]=[
            'descripcion'=> utf8_encode($conexion->obtener_campo('descripcion')),
-           'id'=> $conexion->obtener_campo('id_categoria')
+           'id'=> $conexion->obtener_campo('id_tarea'),
+            'estado' =>  $conexion->obtener_campo('id_estado'),
+            'modelo' =>  $conexion->obtener_campo('modelo')
         ];
    }
 }
