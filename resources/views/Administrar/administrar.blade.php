@@ -19,7 +19,6 @@
 
             $("#item1").html('');
             $("#item2").html('');
-            $("#item3").html('');
 
             var id = $(this).val();
             id_rol = id;

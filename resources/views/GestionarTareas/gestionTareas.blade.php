@@ -16,8 +16,7 @@ Gestión de tareas
     var id_rol;
 
     $(function () {
-        
-        alert("hola");
+
 
 
         //Codigo Dani
@@ -188,7 +187,7 @@ Gestión de tareas
                         vector.push(texto);
                         vector.push(id_tarea);
                         var comentario = JSON.stringify(vector);
-                        alert(comentario);
+
                         $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
                                 function (respuesta) {
 
