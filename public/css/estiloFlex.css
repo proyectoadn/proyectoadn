@@ -56,6 +56,11 @@ body{
     overflow: hidden;
 }
 
+tarea2{
+    overflow-y: visible;
+    height: 100px;
+}
+
 .contenedorPrincipal{
     /*    margin-left: 8px;
         margin-right: 8px;*/
