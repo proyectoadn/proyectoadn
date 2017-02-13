@@ -51,30 +51,15 @@ Administracion
                         var documentacion = JSON.parse(respuesta);
                         $("#contenedordocumentos").html('');
                         for (var i = 0; i < documentacion.length; i++) {
-                            $("#contenedordocumentos").append('\<div class="divTareasAdmin">\n\<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary col-md-4 tarea estiloTareaAdmin" >\n\
-                                                                    <p class="textotarea">' + documentacion[i]['descripcion'] + '</p>\n\
-                                                                    <p class="textotarea">\n\
-                                                                        <a href="">' + documentacion[i]['modelo'] + '</a>\n\
-                                                                    </p>\n\
-                                                                    <div class="divisorBotonTarea">\n\
-                                                                        <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
-                                                                        </button>\n\
-                                                                    </div>\n\
-                                                                </div>');
+                            $("#contenedordocumentos").append('<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary  col-md-4 tarea" ><p class="textotarea">' + documentacion[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a></p>\n\
+                        <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                        <button class="" onclick="popup(this)" value="' + documentacion[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">\n\
+                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                        </div></div>');
 
                             //style="padding: 0px; margin: auto; text-align: center;"
                         }
-
-                        $("#contenedordocumentos").append(' <div class="divTareasAdmin">\n\
-                                                                <div id="tareas" class="panel panel-primary tarea estiloTareaAdmin">\n\
-                                                                    <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">\n\
-                                                                        <buttonclass="" data-toggle="modal" data-target="#modalCrearDocumentacion" value="crearDocumentacion" id="crearDocumentacion" style="background: transparent; border: 0px; margin:0px;">\n\
-                                                                            <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/> \n\
-                                                                        </button> \n\
-                                                                    </div>\n\
-                                                                </div> \n\
-                                                            </div>');
+                        $("#contenedordocumentos").append(' <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;"> <div id="tareas" class="panel panel-primary tarea" style="height: 100px;"> </p> <div style="height: 70px; width: 70px; margin: auto; padding: 0px;"> <button class="" onclick="" value="" id="comentario" style="background: transparent; border: 0px; margin:0px;"> <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/> </button> </div> </div> </div>');
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -193,10 +178,12 @@ Administracion
 
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3" >
                 <div class="item" style="overflow-y: hidden;">
                     <b>Acción</b>
                     <div class="row" id="contenedordocumentos">
+
+
                         <!-- BOTON ELIMINAR -->
                         <div class="col-md-12" style="padding: 0px; margin: auto; text-align: center;">
                             <div id="tareas" class="panel panel-primary tarea" style="height: 100px; ">
@@ -205,136 +192,50 @@ Administracion
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <!--INICIO MODAL DE EDITAR DOCUMENTACION-->
-            <div id="modalModificarTarea" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <!-- -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">EDITAR Documentación</h4>
-                        </div>
-                        <!-- -->
-                        <div class="modal-body">
-                            <div class="row" >
-                                <div class="col-md-12" style="margin-bottom: 10px;">
-                                    <input type="text" size="15" placeholder="modelo documentacion"> 
-                                    <br>    
-                                    <textarea id="" name="" class="form-control" maxlength="200" rows="5" type="text" 
-                                              style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">TAREA</textarea>
-                                    <input type="text" size="15" placeholder="documentacion"> 
+                        <!-- BOTON + -->
+                        <div class="col-md-12" style="padding: 0px; margin: auto; text-align: center;">
+                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; ">
+                                <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
+                                    <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/>
                                 </div>
                             </div>
                         </div>
-                        <!-- -->
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal" >Aceptar</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
-            <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
 
-            <!--INICIO MODAL DE CREAR DOCUMENTACION-->
+            <!--INICIO MODAL DE AÑADIR DOCUMENTACION-->
             <div id="modalCrearDocumentacion" class="modal fade" role="dialog">
-                <div class="modal-dialog anchuraModalCrearDocumentacion">
+                <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">MODIFCAR Documentación</h4>
+                            <h4 class="modal-title">Crear Documentación</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row" >
                                 <div class="col-md-4" style="margin-bottom: 10px;">
-                                    <h4>Categoria</h4>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
+                                    <select id="" class='form-control'>
+                                        <option value="">Categoria</option>
+                                        <option value="">asda</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <h4>Rol</h4>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div> 
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-
+                                    <select id="" class='form-control'>
+                                        <option value="">Rol</option>
+                                        <option value="">asda</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <h4 style="text-align: center;">Entrega</h4>
-                                    <div class="col-md-6">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6    ">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                    </div>
-
+                                    <select id="" class='form-control'>
+                                        <option value="">Destino</option>
+                                        <option value="">asda</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-12">
@@ -363,6 +264,8 @@ Administracion
 @endsection
 
 @section('footer')
+
+
 
 <div class="divfooter">
 

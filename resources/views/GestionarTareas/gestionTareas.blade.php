@@ -1,20 +1,69 @@
 @extends('../maestra')
 
 @section('titulo')
-Administracion
+Gestión de tareas
 @endsection
+
 @section('js')
+
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery-ui.min.js"></script>
+
+
+
 <script>
 
     var id_rol;
+    var id_tarea;
 
     $(function () {
+
+
+        //Codigo Dani
+        $("#item1,#item2,#item3").sortable({
+            connectWith: ".conectardivisores",
+            cursor: "move",
+            start: function (event, ui) {
+
+
+                $(ui.item).css("-webkit-transform", "rotate(7deg)");
+            },
+            stop: function (event, ui) {
+
+
+                $(ui.item).css("-webkit-transform", "rotate(0deg)");
+            },
+            receive: function (event, ui) {
+
+                var id_tarea = $(ui.item).attr('value');
+                var idtarea = JSON.stringify(id_tarea);
+
+
+                var descripcionestado = $(this).attr('value');
+                var estado = JSON.stringify(descripcionestado);
+
+
+                $.post("../resources/views/PhpAuxiliares/actualizarestado.php", {id: idtarea, estadoactual: estado},
+                        function (respuesta) {
+                            if (respuesta) {
+                                //alert("actualziado con exito");
+                            } else {
+                                // alert("no actualizado con exito");
+                            }
+                        }).fail(function (jqXHR) {
+                    alert("Error de tipo " + jqXHR.status);
+                });
+            }
+        });
+
+
         //Codigo Nazario
         $("#carg").on("change", function () {
 
 
-            $("#contenedortareas").html('');
-            $("#contenedordocumentos").html('');
+            $("#item1").html('');
+            $("#item2").html('');
+            $("#item3").html('');
 
             var id = $(this).val();
             id_rol = id;
@@ -22,8 +71,6 @@ Administracion
 
             $.post("../resources/views/PhpAuxiliares/categorias.php", {rol: idjson},
                     function (respuesta) {
-
-
                         var categorias = JSON.parse(respuesta);
 
                         $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
@@ -36,93 +83,117 @@ Administracion
             });
         });
 
+        //Cuando presiona una tecla dentro del textarea del comentario pone en verde el borde, activa el boton
+        $("#textocomentario").keypress(function () {
+            $("#insertarComentario").prop("disabled", false);
+            $("#textocomentario").css('border-color', '#66afe9');
+            $("#correcto").css('visibility', 'hidden');
+
+        });
+
 
         $("#cat").on("change", function () {
 
             var id = $(this).val();
             var vector = new Array();
             vector.push(id);
+            vector.push("<?php echo $id_user ?>");
             vector.push(id_rol);
             var idjson = JSON.stringify(vector);
 
-            $.post("../resources/views/PhpAuxiliares/documentacion.php", {id: idjson},
+            $.post("../resources/views/PhpAuxiliares/tareas.php", {id: idjson},
                     function (respuesta) {
 
-                        var documentacion = JSON.parse(respuesta);
-                        $("#contenedordocumentos").html('');
-                        for (var i = 0; i < documentacion.length; i++) {
-                            $("#contenedordocumentos").append('\<div class="divTareasAdmin">\n\<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary col-md-4 tarea estiloTareaAdmin" >\n\
-                                                                    <p class="textotarea">' + documentacion[i]['descripcion'] + '</p>\n\
-                                                                    <p class="textotarea">\n\
-                                                                        <a href="">' + documentacion[i]['modelo'] + '</a>\n\
-                                                                    </p>\n\
-                                                                    <div class="divisorBotonTarea">\n\
-                                                                        <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
-                                                                        </button>\n\
-                                                                    </div>\n\
-                                                                </div>');
+                        var tarea = JSON.parse(respuesta);
+                        $("#item1").html('');
+                        $("#item2").html('');
+                        $("#item3").html('');
 
-                            //style="padding: 0px; margin: auto; text-align: center;"
+                        for (var i = 0; i < tarea.length; i++) {
+
+                            if (tarea[i]['estado'] == 1) {
+                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                        <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+\n\
+                        <button onclick="popup(this)" class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+\n\
+                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                        </div></div>');
+                            } else if (tarea[i]['estado'] == 2) {
+                                $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                        <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                        <button onclick="popup(this)" class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                        </div></div>');
+                            } else if (tarea[i]['estado'] == 3) {
+                                $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                        <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
+                        <button onclick="popup(this)" class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
+                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
+                        </div></div>');
+                            }
                         }
-
-                        $("#contenedordocumentos").append(' <div class="divTareasAdmin">\n\
-                                                                <div id="tareas" class="panel panel-primary tarea estiloTareaAdmin">\n\
-                                                                    <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">\n\
-                                                                        <buttonclass="" data-toggle="modal" data-target="#modalCrearDocumentacion" value="crearDocumentacion" id="crearDocumentacion" style="background: transparent; border: 0px; margin:0px;">\n\
-                                                                            <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/> \n\
-                                                                        </button> \n\
-                                                                    </div>\n\
-                                                                </div> \n\
-                                                            </div>');
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
         });
-
-        $(function () {
-
-            var valor, contador, parrafo;
-            contador = 200;
-            valor2 = $('#textocomentario').val().length;
-
-            // Mostramos un mensaje inicial y lo añadimos al div de id contador.
-            $('<p class="indicador">Tienes ' + (contador - valor2) + ' caracteres restantes</p>').appendTo('#contador');
-
-            // Definimos el evento para que detecte cada vez que se presione una tecla.
-            $('#textocomentario').keydown(function () {
-
-                // Redefinimos el valor de contador al máximo permitido (150).
-                contador = 200;
-
-                /* Quitamos el párrafo con clase advertencia o indicador, en caso de que ya se
-                 haya mostrado un mensaje */
-                $('.advertencia').remove();
-                $('.indicador').remove();
-
-                // Tomamos el valor actual del contenido del área de texto
-                valor = $('#textocomentario').val().length;
-
-                // Descontamos ese valor al máximo.
-                contador = contador - valor;
-
-                /* Dependiendo de cuantos caracteres quedan, mostraremos el mensaje de una
-                 u otra forma (lo definiremos a continuación mediante CSS */
-                if (contador < 0) {
-                    parrafo = '<p class="advertencia">';
-                } else {
-                    parrafo = '<p class="indicador">';
-                }
-
-                // Mostramos el mensaje con el número de caracteres restantes.
-                $('#contador').append(parrafo + 'Tienes ' + contador + ' caracteres restantes</p>');
-
-            });
-
-        });
     });
 
+
+    function popup(boton) {
+
+        var mens = new Array();
+        id_tarea = boton.value;
+        var idjson = JSON.stringify(id_tarea);
+
+        $.post("../resources/views/PhpAuxiliares/rellenarcomentario.php", {id: idjson},
+                function (respuesta) {
+                    var comentariotexto = JSON.parse(respuesta);
+                    if (comentariotexto.length > 0) {
+                        mens.push(comentariotexto[0]['mensaje']);
+                        mens.push(comentariotexto[0]['descripcion']);
+                    } else {
+                        mens.push('');
+                        mens.push(comentariotexto[0]['descripcion']);
+                    }
+
+                    $("#textocomentario").val(mens[0]);
+                    $("#titulocoment").html(mens[1]);
+
+
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+    }
+
+    //Insert en BBDD del comentario
+    function insertar() {
+
+        var texto = $("#textocomentario").val();
+
+        var vector = new Array();
+        vector.push(texto);
+        vector.push(id_tarea);
+        var comentario = JSON.stringify(vector);
+
+        $.post("../resources/views/PhpAuxiliares/comentario.php", {coment: comentario},
+                function (respuesta) {
+
+
+                }).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+
+    }
+
+    function lock(msg) {
+        w2popup.lock(msg, true);
+        setTimeout(function () {
+            w2popup.unlock();
+        }, 1000);
+    }
 
 </script>
 @endsection
@@ -139,8 +210,8 @@ Administracion
             <select id="carg" class='botonCargoCat form-control'>
                 <option value="-1">-Elige cargo-</option>
 
-                @for($i=0;$i<count($roles[0]);$i++)
-                    <option value="{!! $roles[0][$i]->id_rol !!}">{!! $roles[0][$i]->descripcion !!}</option>
+                @for($i=0;$i<count($roles);$i++)
+                    <option value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
                     @endfor
             </select>
         </div>
@@ -151,273 +222,81 @@ Administracion
             </select>
         </div>
     </div>
-
     <div class='limpiar'></div>
 
 
+    <!--<div class="flex-container">-->
     <div class="row">
-        <div class="col-md-9">
-            <div class="item" style="min-height: 400px;">
-                <b>Documentacion</b>
 
-                <div class="row" id="contenedordocumentos">
+        <div class="col-md-4 divitem">
+            <div class="item">
+                <b>Por Hacer</b>
 
-                    <div class="col-md-4 divTareasAdmin">
-                        <div id="documentacion" class="panel panel-primary tarea estiloTareaAdmin" style="">
-                            <p class="textotarea">  </p>
-                            <p class="textotarea">
-                                <a href="">asljdh akjsdhaks dhkashdkjashdka shdkjahsdkjah dkjahsdkjashd</a>
-                            </p>
-                            <div class="divisorBotonTarea">
-                                <button class="botonTarea" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="">
-                                    <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 divTareasAdmin">
-                        <div id="documentacion" class="panel panel-primary tarea estiloTareaAdmin">
-                            <p class="textotarea">  </p>
-                            <p class="textotarea">
-                                <a href="">asljdh akjsdhaks dhkashdkjashdka shdkjahsdkjah dkjahsdkjashd</a>
-                            </p>
-                            <div class="divisorBotonTarea">
-                                <button class="botonTarea" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="">
-                                    <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 divTareasAdmin" style="">
-                        <div id="documentacion" class="panel panel-primary tarea estiloTareaAdmin">
-                            <p class="textotarea">  </p>
-                            <p class="textotarea">
-                                <a href="">asljdh akjsdhaks dhkashdkjashdka shdkjahsdkjah dkjahsdkjashd</a>
-                            </p>
-                            <div class="divisorBotonTarea">
-                                <button class="botonTarea" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="">
-                                    <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- BOTON + DOCUMENTO -->
-                    <div class="col-md-4 divTareasAdmin">
-                        <div id="tareas" class="panel panel-primary tarea estiloTareaAdmin">
-                            </p>
-                            <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
-                                <button class="" onclick="" data-toggle="modal" data-target="#modalCrearDocumentacion" value="crearDocumentacion" id="crearDocumentacion" style="background: transparent; border: 0px; margin:0px;">
-                                    <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
+                <div id="item1" class=" conectardivisores divmover" value="Por Hacer">
                 </div>
             </div>
         </div>
 
 
+        <div class="col-md-4 divitem">
+            <div class="item">
+                <b>Pendiente</b>
 
-        <div class="row">
-            <div class="col-md-3" >
-                <div class="item" style="overflow-y: hidden;">
-                    <b>Acción</b>
-                    <div class="row" id="contenedordocumentos">
-
-
-                        <!-- BOTON ELIMINAR -->
-                        <div class="col-md-12" style="padding: 0px; margin: auto; text-align: center;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; ">
-                                <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
-                                    <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/eliminar.png" style="width: 100%; height: 100%; display: block;" class=""/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- BOTON + -->
-                        <div class="col-md-12" style="padding: 0px; margin: auto; text-align: center;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; ">
-                                <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
-                                    <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div id="item2" class=" conectardivisores divmover" value="Pendiente">
                 </div>
             </div>
-
-            <!--INICIO MODAL DE AÑADIR DOCUMENTACION-->
-            <div id="modalCrearDocumentacion" class="modal fade" role="dialog" >
-                <div class="modal-dialog" style="width: 70%;">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Crear Documentación</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row" >
-                                <div class="col-md-4" style="margin-bottom: 10px;">
-                                    <div class="checkbox">
-                                        <h4>Categoria</h4>
-                                        <label>
-                                            <input type="checkbox" value="1">
-                                            Primer Trimestre
-                                        </label>
-                                        <br>
-                                        <label>
-                                            <input type="checkbox" value="1">
-                                            Segundo Trimestre
-                                        </label>
-                                        <br>
-                                        <label>
-                                            <input type="checkbox" value="1">
-                                            Tercer Trimestre
-                                        </label><br>
-                                        <label>
-                                            <input type="checkbox" value="1">
-                                            Todo el curso
-                                        </label><br>
-                                        <label>
-                                            <input type="checkbox" value="1">
-                                            Otros
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="checkbox">
-                                        <h4>Rol</h4>
-                                        <label><input type="checkbox" value="id_rol">
-                                            EQ_Directivo
-                                        </label><br>
-                                        <label><input type="checkbox" value="id_rol">
-                                            Coordinador calidad
-                                        </label><br>
-                                        <label><input type="checkbox" value="id_rol">
-                                            Docente    
-                                        </label><br>
-                                        <label><input type="checkbox" value="id_rol">
-                                            Tutor FCT
-                                        </label><br>
-                                        <label><input type="checkbox" value="id_rol">
-                                            Jefe DPTO
-                                        </label><br>
-                                        <label><input type="checkbox" value="id_rol">
-                                            Profesor
-                                        </label><br>
-                                        <br>
-                                        <label><input type="checkbox" value="id_rol">
-                                            Tutor
-                                        </label><br>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="checkbox">
-                                        <h4>Rol</h4>
-                                        <div class="col-md-6">
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label style="white-space: normal;"><input type="checkbox" value="id_rol">
-                                                EQ_Direasdasd asda sdasdctivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Dirsdasdsadasdasdasdasdasdectivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                            <label><input type="checkbox" value="id_rol">
-                                                EQ_Directivo
-                                            </label><br>
-                                        </div>                                            
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <h3>Nombre de la documentación</h3>
-                                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="200" rows="5" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">200 COMO MAXIMO</textarea>
-                                    <div id="contador" class="text-right text-danger" style="font-size:0.8em;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-
-                            <button class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal" >Aceptar</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
-
-            <!--PRINCIPIO MODAL MODIFICAR TAREA-->
-            <div id="modalModificarTarea" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Insertar comentario</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <h4 id="titulocoment" class="modal-title"></h4>
-                            <br>
-                            <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10"
-                                      type="text"
-                                      style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;"></textarea>
-                        </div>
-                        <div class="modal-footer">
-
-                            <button onclick="insertar()" class="btn btn-primary" id="insertarComentario2"
-                                    data-dismiss="modal">Aceptar
-                            </button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--FINAL MODAL MODIFICAR TAREA-->
-
-
         </div>
+
+
+        <div class="col-md-4 divitem">
+            <div class="item">
+                <b>Hecho</b>
+
+                <div id="item3" class=" conectardivisores divmover" value="Hecho">
+                </div>
+            </div>
+        </div>
+
     </div>
-</div><!-- FIN ROW -->
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Insertar comentario</h4>
+            </div>
+            <div class="modal-body">
+
+                <h4 id="titulocoment" class="modal-title"></h4>
+                <br>
+                <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10"
+                          type="text"
+                          style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;"></textarea>
+            </div>
+            <div class="modal-footer">
+
+                <button onclick="insertar()" class="btn btn-primary" id="insertarComentario2"
+                        data-dismiss="modal">Aceptar
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
 @endsection
 
 @section('footer')
+
+
+
+
 
 <div class="divfooter">
 
@@ -426,7 +305,7 @@ Administracion
     Daniel Ramirez Ros -
     Alberto de la Plaza Ramos -
     Nazario Castillero Redondo<br>
-
+    
     Copyright 2017 - Proyectoadn
 </div>
 
