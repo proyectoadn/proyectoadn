@@ -20,13 +20,21 @@
 
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estilos.css') !!}"/>
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloFlex.css') !!}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         @yield('js')
     </head>
     <body>
-
+        
+        
+        
         <div>
             @yield('contenido')
         </div>
 
     </body>
+    
+    <footer>
+        
+        @yield('footer')
+    </footer>
 </html>

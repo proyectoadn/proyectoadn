@@ -1,5 +1,5 @@
 body{
-    background-color: #4375AE;
+    background-color: #215891;
 }
 i{
     cursor: pointer;
@@ -68,7 +68,7 @@ textarea{
 }
 
 b{
-    
+
     padding: 7px;
 }
 
@@ -88,19 +88,19 @@ b{
 }
 
 .row{
-    
+
     margin-left: 0px;
     margin-right: 0px;
 }
 
 .divmover{
-    
+
     width: 100%;
     min-height: 60px;
 }
 
 .inputsrestablecerpassword{
-    
+
     margin-bottom: 10px;
 }
 
@@ -110,3 +110,41 @@ b{
     color: green;
     margin-bottom: 5px;
 }
+
+.navbar-default .navbar-brand{
+
+    color: #215891;
+}
+
+.navbar-default .navbar-brand:hover{
+
+    color: #215891;
+}
+
+.navbar-default .navbar-nav > li > a{
+
+    color: #215891;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a {
+
+    color: #215891;
+    background-color: #F2CF3D;
+}
+
+.navbar{
+
+    background-color: #F2CF3D;
+    border-color: #F2CF3D;
+}
+
+.divfooter{
+    
+    text-align: center;
+    color: white;
+    border-top: 1px solid #F3F3F3;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+

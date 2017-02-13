@@ -1,7 +1,3 @@
-body{
-    
-    background-color: #4375AE;
-}
 
 .flex-container{
     min-height: 530px;
@@ -64,7 +60,7 @@ tarea2{
 .contenedorPrincipal{
     /*    margin-left: 8px;
         margin-right: 8px;*/
-    background-color: #4375AE;
+    background-color: #215891;
     min-height: 600px;
 
 }
@@ -79,7 +75,7 @@ tarea2{
 }
 
 .botonCargoCat{
-    margin-left: 30px;
+    margin-left: 5px;
     margin-top: 10px;
 }
 
