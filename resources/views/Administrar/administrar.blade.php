@@ -113,58 +113,7 @@
 @endsection
 @section('contenido')
 
-    <div style="margin-top: 55px;">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                 para mostrarlos mejor en los dispositivos móviles -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Logotipo</a>
-            </div>
-
-            <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-                 otro elemento que se pueda ocultar al minimizar la barra -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-right: 2%;">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Enlace #1</a></li>
-                    <li><a href="#">Enlace #2</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Menú #2 <b class="caret"></b>
-                        </a>
-
-                        <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
-                            <div class="container" style="width: 100%; height: 200px;">
-                                <div style="height: 70%; background-color: blue;">
-
-                                </div>
-                                <div style="height: 30%; background-color: red;">
-                                    <div class="col-md-6">
-                                        <input type="submit" name="registrar" id="registrar"
-                                               value="Registrar" class="btn btn-primary">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="submit" name="registrar" id="registrar"
-                                               value="Registrar" class="btn btn-primary">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
-            </div>
-        </nav>
+    @include ('PhpAuxiliares/cabeceraadministrador')
 
         <div class="contenedorPrincipal">
             <!--div que contiene los cargos y las categorias-->

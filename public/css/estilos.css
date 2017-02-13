@@ -118,7 +118,12 @@ b{
 
 .navbar-default .navbar-brand:hover{
 
-    color: #215891;
+    color: white;
+}
+
+.navbar-header:hover{
+    
+    background-color: #EDCC47;
 }
 
 .navbar-default .navbar-nav > li > a{
@@ -130,6 +135,12 @@ b{
 
     color: #215891;
     background-color: #F2CF3D;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    
+    background-color: #EDCC47;
+    color: white;
 }
 
 .navbar{
