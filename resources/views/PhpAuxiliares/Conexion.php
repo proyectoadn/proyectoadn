@@ -62,7 +62,7 @@ class Conexion {
     }
 
     function rellenar_documentacion($id_cat, $id_rol) {
-        $consult='Select tarea.id_tarea, tarea.descripcion, tarea.id_estado, documentacion.modelo from documentacion, tarea where documentacion.id_categoria='.$id_cat.' and documentacion.id_rol='.$id_rol.' and documentacion.id_documentacion=tarea.id_documentacion';
+        $consult='Select * from documentacion where id_categoria='.$id_cat.' and id_rol='.$id_rol;
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
