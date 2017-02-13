@@ -121,9 +121,9 @@ b{
     color: white;
 }
 
-.navbar-header:hover{
+.navbar-default .navbar-brand:hover{
     
-    background-color: #EDCC47;
+    background-color: #ECC210;
 }
 
 .navbar-default .navbar-nav > li > a{
@@ -139,7 +139,7 @@ b{
 
 .navbar-default .navbar-nav > li > a:hover {
     
-    background-color: #EDCC47;
+    background-color: #ECC210;
     color: white;
 }
 
@@ -147,6 +147,7 @@ b{
 
     background-color: #F2CF3D;
     border-color: #F2CF3D;
+    border-radius: 0px;
 }
 
 .divfooter{
@@ -157,5 +158,3 @@ b{
     padding-top: 10px;
     margin-bottom: 20px;
 }
-
-
