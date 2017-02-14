@@ -177,6 +177,12 @@ class Conexion {
         $query = "DELETE FROM personas WHERE DNI ='".$dni."'";
         mysqli_query($this->conex, $query);
     }
+
+    function borrar_documentacion($id){
+        $query = "DELETE FROM documentacion WHERE id_documentacion =".$id;
+        mysqli_query($this->conex, $query);
+    }
+
     function modificar($dniviejo,$dninuevo){
         $query = "update personas set DNI='".$dninuevo."' where DNI='".$dniviejo."'";
         mysqli_query($this->conex, $query);
