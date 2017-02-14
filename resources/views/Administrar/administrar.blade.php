@@ -35,7 +35,7 @@ Administracion
 
 
         //Codigo Nazario
-        $("#carg").on("change", function () {            
+        $("#carg").on("change", function () {
 
 
             $("#contenedortareas").html('');
@@ -76,20 +76,29 @@ Administracion
                         var documentacion = JSON.parse(respuesta);
                         $("#item1").html('');
                         for (var i = 0; i < documentacion.length; i++) {
-                            $("#item1").append('\<div class="divTareasAdmin">\n\<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary col-md-4 tarea estiloTareaAdmin" >\n\
-                                                                    <p class="textotarea">' + documentacion[i]['descripcion'] + '</p>\n\
-                                                                    <p class="textotarea">\n\
-                                                                        <a href="">' + documentacion[i]['modelo'] + '</a>\n\
-                                                                    </p>\n\
-                                                                    <div class="divisorBotonTarea">\n\
-                                                                        <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
-                                                                        </button>\n\
-                                                                    </div>\n\
-                                                                </div>');
+//                            $("#item1").append('\<div class="divTareasAdmin">\n\<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary col-lg-3 col-md-6 tarea estiloTareaAdmin" >\n\
+//                                                                    <p class="textotarea">' + documentacion[i]['descripcion'] + '</p>\n\
+//                                                                    <p class="textotarea">\n\
+//                                                                        <a href="">' + documentacion[i]['modelo'] + '</a>\n\
+//                                                                    </p>\n\
+//                                                                    <div class="divisorBotonTarea">\n\
+//                                                                        <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+//                                                                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+//                                                                        </button>\n\
+//                                                                    </div>\n\
+//                                                                </div>');
+//
+//                            //style="padding: 0px; margin: auto; text-align: center;"
+//
+//                        }
 
-                            //style="padding: 0px; margin: auto; text-align: center;"
-                            
+                            $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
+                                                    <div class="documentacion">\n\
+                                                        <p>' + documentacion[i]['descripcion'] + '</p>\n\
+                                                        <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
+                                                    </div>\n\
+                                                </div>');                            
+
                         }
 
                     }).fail(function (jqXHR) {
@@ -130,228 +139,36 @@ Administracion
     <div class='limpiar'></div>
 
 
+
     <div class="row">
-        <div class="col-md-9">
 
-            <div class="item" style="min-height: 400px;">
+        <div class="col-md-9 ">
+            <div class="item">
+                <b>Documentacion</b>
 
-                <b>Documentacion</b>    
-
-                <div class="row conectardivisores" id="item1" style="min-height: 100px;">
-                    
-                    
-                    
-                    <div class="col-md-4 divitem">
-
-                        <div class="item divmover" style="background-color: red;">
-                            <p>Prueba</p>
-                        </div>                        
-                    </div>
-                    
-                    <div class="col-md-4 divitem">
-
-                        <div class="item divmover" style="background-color: red;">
-                            <p>Prueba</p>
-                        </div>                        
-                    </div>
-                    
-                    <div class="col-md-4 divitem">
-
-                        <div class="item divmover" style="background-color: red;">
-                            <p>Prueba</p>
-                        </div>                        
-                    </div>
-                    
-                    <div class="col-md-4 divitem">
-
-                        <div class="item divmover" style="background-color: red;">
-                            <p>Prueba</p>
-                        </div>                        
-                    </div>
-                    
-                    <div class="col-md-4 divitem">
-
-                        <div class="item divmover" style="background-color: red;">
-                            <p>Prueba</p>
-                        </div>                        
-                    </div>
-                    
-                    <div class="col-md-4 divitem">
-
-                        <div class="item divmover" style="background-color: red;">
-                            <p>Prueba</p>
-                        </div>                        
-                    </div>
-
+                <div class="row conectardivisores" id="item1" style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
                 </div>
             </div>
         </div>
 
 
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="item">
-                    <b>Acción</b>
-                    <div class="conectardivisores" id="item2" style="min-height: 100px;">
+        <div class="col-md-3 ">
+            <div class="divborrar">
+                <b>Borrar</b>
 
-                    </div>
+
+                <div id="item2" class="conectardivisores divborrar">                    
                 </div>
             </div>
-
-
-
-            <!--INICIO MODAL DE EDITAR DOCUMENTACION-->
-            <div id="modalModificarTarea" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <!-- -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">EDITAR Documentación</h4>
-                        </div>
-                        <!-- -->
-                        <div class="modal-body">
-                            <div class="row" >
-                                <div class="col-md-12" style="margin-bottom: 10px;">
-                                    <input type="text" size="15" placeholder="modelo documentacion"> 
-                                    <br>    
-                                    <textarea id="" name="" class="form-control" maxlength="200" rows="5" type="text" 
-                                              style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">TAREA</textarea>
-                                    <input type="text" size="15" placeholder="documentacion"> 
-                                </div>
-                            </div>
-                        </div>
-                        <!-- -->
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal" >Aceptar</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
-
-            <!--INICIO MODAL DE CREAR DOCUMENTACION-->
-            <div id="modalCrearDocumentacion" class="modal fade" role="dialog">
-                <div class="modal-dialog anchuraModalCrearDocumentacion">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">MODIFCAR Documentación</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row" >
-                                <div class="col-md-4" style="margin-bottom: 10px;">
-                                    <h4>Categoria</h4>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <h4>Rol</h4>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div> 
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="">Option 1</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4">
-                                    <h4 style="text-align: center;">Entrega</h4>
-                                    <div class="col-md-6">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6    ">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Option 1</label>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-12">
-                                    <h3>Nombre de la documentación</h3>
-                                    <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="200" rows="5" type="text" style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;">200 COMO MAXIMO</textarea>
-                                    <div id="contador" class="text-right text-danger" style="font-size:0.8em;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-
-                            <button class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal" >Aceptar</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
-
-
         </div>
     </div>
-</div><!-- FIN ROW -->
+
+
 </div>
-</div>
+
+
+
 @endsection
 
 @section('footer')

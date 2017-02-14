@@ -31,6 +31,24 @@
     border: 0px solid #000000;
 }
 
+.divborrar{
+    width: 100%;  
+    background-color: #F3F3F3;
+    box-sizing: border-box;
+    display: inline-block; /*Esto deja las columnas en horizontal, hace que no se bajen*/
+    vertical-align: top;
+    padding-top: 7px;
+    max-height: 200px;
+    min-height: 200px;
+
+
+    /* BORDE */
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border: 0px solid #000000;
+}
+
 /*.dentro{
     width: 90%;
     min-height: 60px;
@@ -47,9 +65,26 @@
 
 .tarea{
     padding: 3px; 
-    margin:7px; 
+    margin:0px; 
     min-height: 60px;
     overflow: hidden;
+}
+
+.divdocumentacion{
+    
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.documentacion{
+    
+    min-height: 100px;
+    max-height: 100px;
+    background-color: white;
+    overflow-y: scroll;
+    margin-top: 7px;
+    padding: 3px;
+    border-radius: 5px;
 }
 
 tarea2{
@@ -104,7 +139,7 @@ tarea2{
 
 .estiloTareaAdmin{
     padding-left: 5px;
-    height: 100px;
+    height: 140px;
 }
 
 .divisorBotonTarea{
