@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/bootstrap.min.css') !!}"/>
         <script src="assets/js/jquery.min.js"></script>
+        <script src="jquery-2.1.4.js"></script>
+        <script src="jquery-ui.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ URL::asset('js/funciones.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/captchaAPI.js') }}"></script>

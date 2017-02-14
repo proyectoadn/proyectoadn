@@ -168,15 +168,8 @@ class Conexion {
             mysqli_stmt_execute($stmt);
         }
 
-
-
-
     }
 
-    function borrar($dni){
-        $query = "DELETE FROM personas WHERE DNI ='".$dni."'";
-        mysqli_query($this->conex, $query);
-    }
 
     function borrar_documentacion($id){
         $query = "DELETE FROM documentacion WHERE id_documentacion =".$id;

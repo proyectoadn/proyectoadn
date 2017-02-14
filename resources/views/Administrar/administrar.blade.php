@@ -63,7 +63,6 @@ Administracion
                                                                     </div>\n\
                                                                 </div>');
 
-                            //style="padding: 0px; margin: auto; text-align: center;"
                         }
 
                         $("#contenedordocumentos").append(' <div class="divTareasAdmin">\n\
