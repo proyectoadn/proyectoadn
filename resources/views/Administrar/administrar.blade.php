@@ -20,17 +20,11 @@ Administracion
             cursor: "move",
             stop: function (event, ui) {
 
-
+                alert("aqui llega");
+                var prueba = $(ui.item).attr('value');
+                alert(prueba);
             }
         });
-
-
-
-
-
-
-
-
 
 
 
