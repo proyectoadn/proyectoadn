@@ -46,6 +46,9 @@ Elección de rol
 @section('contenido')
 
 
+@include ('PhpAuxiliares/cabeceraregistro')
+
+
 
 <div class="container divregistro">
     <div class="col-md-8 col-md-push-4">

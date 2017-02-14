@@ -5,6 +5,7 @@
 Login
 @endsection
 
+
 @section('contenido')
 
 <script src="jquery-2.1.4.js"></script>
@@ -19,7 +20,7 @@ Login
         <div class="panel-footer">
             <form action="validar" method="POST">
                 {!! csrf_field() !!}
-                
+
                 <!--Email-->
                 <div class="input-group" style="margin-bottom: 5px;">
                     <span class="input-group-addon">@</span>
@@ -31,7 +32,7 @@ Login
                     <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-lock" id="codificarDecodificar"></i></span>
                     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
                 </div>
-                
+
                 <a href="enviarpassword">¿Has olvidado la contraseña?</a>
                 <br>
 
@@ -70,6 +71,6 @@ Login
             });
         });
     </script>
-    
+
 </div>
 @endsection
