@@ -137,6 +137,11 @@ class Conexion {
         mysqli_free_result($this->cursor);
         mysqli_close($this->conex);
     }
+
+    function cerrar_Conexion2() {
+        mysqli_close($this->conex);
+    }
+
     function insertar($val1,$val2,$val3){
         $query = "INSERT INTO personas (DNI, Nombre, Tfno) VALUES (?,?,?)"; //Estos parametros seran sustituidos mas adelante por valores.
         $stmt = mysqli_prepare($this->conex, $query);

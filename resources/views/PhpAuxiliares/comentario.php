@@ -19,7 +19,7 @@ if($conexion->conectar()){
     $conexion->insert_comentario($text,$id_tarea);
     $aux="ok";
 }
-$conexion->cerrar_Conexion();
+$conexion->cerrar_Conexion2();
 
 $vector=  json_encode($aux);
 echo $vector;

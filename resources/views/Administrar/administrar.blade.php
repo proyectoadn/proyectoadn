@@ -18,11 +18,23 @@ Administracion
         $("#item1,#item2").sortable({
             connectWith: ".conectardivisores",
             cursor: "move",
-            stop: function (event, ui) {
+            receive: function (event, ui) {
+                $("#item2").html('');
 
-                alert("aqui llega");
-                var prueba = $(ui.item).attr('value');
-                alert(prueba);
+            var borrar=$(this).attr('value');
+                if(borrar=='Borrar') {
+                    var id_doc = $(ui.item).attr('value');
+                    var iddoc = JSON.stringify(id_doc);
+                    console.log(iddoc);
+                     $.post("../resources/views/PhpAuxiliares/borrardocumentacion.php", {id: iddoc},
+                     function (respuesta) {
+                    console.log(respuesta);
+
+                     }).fail(function (jqXHR) {
+                     alert("Error de tipo " + jqXHR.status);
+                     });
+
+                }
             }
         });
 
@@ -140,7 +152,7 @@ Administracion
             <div class="item">
                 <b>Documentacion</b>
 
-                <div class="row conectardivisores" id="item1" style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
+                <div class="row conectardivisores" value="Documentacion" id="item1" style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
                 </div>
             </div>
         </div>
@@ -152,7 +164,7 @@ Administracion
                 <b>Borrar</b>
 
 
-                <div id="item2" class="conectardivisores divborrar">                    
+                <div id="item2" class="conectardivisores divborrar" value="Borrar">
                 </div>
             </div>
         </div>

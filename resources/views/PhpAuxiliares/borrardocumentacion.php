@@ -11,17 +11,16 @@ require_once 'Conexion.php';
 
 
 $conexion = new Conexion();
-$vector=[];
 $id = json_decode($_POST['id']);
-$id_doc=$id[0];
+
 
 
 if($conexion->conectar()){
-    $conexion->borrar_documentacion($id_doc);
+    $conexion->borrar_documentacion($id);
     $aux="ok";
 
 }
-$conexion->cerrar_Conexion();
+$conexion->cerrar_Conexion2();
 
 $vector=  json_encode($aux);
 echo $vector;
