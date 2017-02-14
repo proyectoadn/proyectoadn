@@ -3,18 +3,43 @@
 @section('titulo')
 Administracion
 @endsection
+
+
 @section('js')
+
 <script>
 
     var id_rol;
 
     $(function () {
+
+
+
+        $("#item1,#item2").sortable({
+            connectWith: ".conectardivisores",
+            cursor: "move",
+            stop: function (event, ui) {
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
         //Codigo Nazario
-        $("#carg").on("change", function () {
+        $("#carg").on("change", function () {            
 
 
             $("#contenedortareas").html('');
-            $("#contenedordocumentos").html('');
+            $("#item1").html('');
 
             var id = $(this).val();
             id_rol = id;
@@ -49,9 +74,9 @@ Administracion
                     function (respuesta) {
 
                         var documentacion = JSON.parse(respuesta);
-                        $("#contenedordocumentos").html('');
+                        $("#item1").html('');
                         for (var i = 0; i < documentacion.length; i++) {
-                            $("#contenedordocumentos").append('\<div class="divTareasAdmin">\n\<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary col-md-4 tarea estiloTareaAdmin" >\n\
+                            $("#item1").append('\<div class="divTareasAdmin">\n\<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary col-md-4 tarea estiloTareaAdmin" >\n\
                                                                     <p class="textotarea">' + documentacion[i]['descripcion'] + '</p>\n\
                                                                     <p class="textotarea">\n\
                                                                         <a href="">' + documentacion[i]['modelo'] + '</a>\n\
@@ -64,68 +89,20 @@ Administracion
                                                                 </div>');
 
                             //style="padding: 0px; margin: auto; text-align: center;"
+                            
                         }
-
-                        $("#contenedordocumentos").append(' <div class="divTareasAdmin">\n\
-                                                                <div id="tareas" class="panel panel-primary tarea estiloTareaAdmin">\n\
-                                                                    <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">\n\
-                                                                        <buttonclass="" data-toggle="modal" data-target="#modalCrearDocumentacion" value="crearDocumentacion" id="crearDocumentacion" style="background: transparent; border: 0px; margin:0px;">\n\
-                                                                            <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/> \n\
-                                                                        </button> \n\
-                                                                    </div>\n\
-                                                                </div> \n\
-                                                            </div>');
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
-        });
-
-        $(function () {
-
-            var valor, contador, parrafo;
-            contador = 200;
-            valor2 = $('#textocomentario').val().length;
-
-            // Mostramos un mensaje inicial y lo añadimos al div de id contador.
-            $('<p class="indicador">Tienes ' + (contador - valor2) + ' caracteres restantes</p>').appendTo('#contador');
-
-            // Definimos el evento para que detecte cada vez que se presione una tecla.
-            $('#textocomentario').keydown(function () {
-
-                // Redefinimos el valor de contador al máximo permitido (150).
-                contador = 200;
-
-                /* Quitamos el párrafo con clase advertencia o indicador, en caso de que ya se
-                 haya mostrado un mensaje */
-                $('.advertencia').remove();
-                $('.indicador').remove();
-
-                // Tomamos el valor actual del contenido del área de texto
-                valor = $('#textocomentario').val().length;
-
-                // Descontamos ese valor al máximo.
-                contador = contador - valor;
-
-                /* Dependiendo de cuantos caracteres quedan, mostraremos el mensaje de una
-                 u otra forma (lo definiremos a continuación mediante CSS */
-                if (contador < 0) {
-                    parrafo = '<p class="advertencia">';
-                } else {
-                    parrafo = '<p class="indicador">';
-                }
-
-                // Mostramos el mensaje con el número de caracteres restantes.
-                $('#contador').append(parrafo + 'Tienes ' + contador + ' caracteres restantes</p>');
-
-            });
-
         });
     });
 
 
 </script>
 @endsection
+
+
 @section('contenido')
 
 @include ('PhpAuxiliares/cabeceraadministrador')
@@ -155,35 +132,55 @@ Administracion
 
     <div class="row">
         <div class="col-md-9">
+
             <div class="item" style="min-height: 400px;">
-                <b>Documentacion</b>
 
-                <div class="row" id="contenedordocumentos">
+                <b>Documentacion</b>    
 
-                    <div class="col-md-4" style="padding: 0px;">
-                        <div id="documentacion" class="panel panel-primary tarea" style="height: 100px;">
-                            <p class="textotarea">  </p>
-                            <p class="textotarea">
-                                <a href="">asljdh akjsdhaks dhkashdkjashdka shdkjahsdkjah dkjahsdkjashd</a>
-                            </p>
-                            <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">
-                                <button class="" onclick="popup(this)" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;">
-                                    <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
-                                </button>
-                            </div>
-                        </div>
+                <div class="row conectardivisores" id="item1" style="min-height: 100px;">
+                    
+                    
+                    
+                    <div class="col-md-4 divitem">
+
+                        <div class="item divmover" style="background-color: red;">
+                            <p>Prueba</p>
+                        </div>                        
                     </div>
+                    
+                    <div class="col-md-4 divitem">
 
-                    <!-- BOTON + DOCUMENTO -->
-                    <div class="col-md-4" style="padding: 0px; margin: auto; text-align: center;">
-                        <div id="tareas" class="panel panel-primary tarea" style="height: 100px;">
-                            </p>
-                            <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
-                                <button class="" onclick="" data-toggle="modal" data-target="#modalCrearDocumentacion" value="crearDocumentacion" id="crearDocumentacion" style="background: transparent; border: 0px; margin:0px;">
-                                    <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/+.png" style="width: 100%; height: 100%; display: block;" class=""/>
-                                </button>
-                            </div>
-                        </div>
+                        <div class="item divmover" style="background-color: red;">
+                            <p>Prueba</p>
+                        </div>                        
+                    </div>
+                    
+                    <div class="col-md-4 divitem">
+
+                        <div class="item divmover" style="background-color: red;">
+                            <p>Prueba</p>
+                        </div>                        
+                    </div>
+                    
+                    <div class="col-md-4 divitem">
+
+                        <div class="item divmover" style="background-color: red;">
+                            <p>Prueba</p>
+                        </div>                        
+                    </div>
+                    
+                    <div class="col-md-4 divitem">
+
+                        <div class="item divmover" style="background-color: red;">
+                            <p>Prueba</p>
+                        </div>                        
+                    </div>
+                    
+                    <div class="col-md-4 divitem">
+
+                        <div class="item divmover" style="background-color: red;">
+                            <p>Prueba</p>
+                        </div>                        
                     </div>
 
                 </div>
@@ -194,20 +191,15 @@ Administracion
 
         <div class="row">
             <div class="col-md-3">
-                <div class="item" style="overflow-y: hidden;">
+                <div class="item">
                     <b>Acción</b>
-                    <div class="row" id="contenedordocumentos">
-                        <!-- BOTON ELIMINAR -->
-                        <div class="col-md-12" style="padding: 0px; margin: auto; text-align: center;">
-                            <div id="tareas" class="panel panel-primary tarea" style="height: 100px; ">
-                                <div style="height: 90px; width: 90px; margin: auto; padding: 0px;">
-                                    <img alt="Añadir documento" title="Añadir documento" src="Imagenes/Administrador/eliminar.png" style="width: 100%; height: 100%; display: block;" class=""/>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="conectardivisores" id="item2" style="min-height: 100px;">
+
                     </div>
                 </div>
             </div>
+
+
 
             <!--INICIO MODAL DE EDITAR DOCUMENTACION-->
             <div id="modalModificarTarea" class="modal fade" role="dialog">

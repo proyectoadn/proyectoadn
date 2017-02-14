@@ -6,9 +6,6 @@ Gestión de tareas
 
 @section('js')
 
-<script src="jquery-2.1.4.js"></script>
-<script src="jquery-ui.min.js"></script>
-
 
 
 <script>
