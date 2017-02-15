@@ -6,9 +6,10 @@ Elección de rol
 @endsection
 
 @section('contenido')
+@include ('PhpAuxiliares/cabeceraelegirrol')
 <div class="container">
     <div class="tituloElegirRol">
-        <h2>Elegir rol de acceso</h2>
+        <h2 style="color: #F3F3F3;">Elegir rol de acceso</h2>
     </div>
     <div class="row">
         <form action="administrador" method="POST">
@@ -17,7 +18,7 @@ Elección de rol
 
                 <button type="submit" name="admin" id="admin" class="botonImagen" value="">
                     <img src="Imagenes/elegirRol/admin.png" class="imagenBoton"/></button>
-                <h4>Administrador</h4>
+                   <h4 style="color: #F3F3F3;">Administrador</h4>
             </div>
         </form>    
         <form action="usuario" method="POST">
@@ -26,7 +27,7 @@ Elección de rol
                 <button type="submit" name="usuario" id="usuario" class="botonImagen" value="">
                     <img src="Imagenes/elegirRol/usuario.png" class="imagenBoton"/></button>
                 <br>
-                <h4>Usuario</h4>
+                <h4 style="color: #F3F3F3;">Usuario</h4>
             </div>
         </form>
     </div>

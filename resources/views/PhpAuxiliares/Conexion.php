@@ -36,10 +36,23 @@ class Conexion {
     }
 
     function rellenar_categorias($rol) {
-        $consult='Select DISTINCT categoria.id_categoria, categoria.descripcion from documentacion,categoria where documentacion.id_rol='.$rol.' and documentacion.id_categoria=categoria.id_categoria';
+    $consult='Select DISTINCT categoria.id_categoria, categoria.descripcion from documentacion,categoria where documentacion.id_rol='.$rol.' and documentacion.id_categoria=categoria.id_categoria';
+
+    $this->cursor = mysqli_query($this->conex, $consult);
+
+    if ($this->cursor) {
+        $devolver = true;
+    } else{
+        $devolver = false;
+    }
+    return $devolver;
+}
+
+    function rellenar_todas_categorias() {
+        $consult='Select * from categoria';
 
         $this->cursor = mysqli_query($this->conex, $consult);
-        
+
         if ($this->cursor) {
             $devolver = true;
         } else{
@@ -47,6 +60,7 @@ class Conexion {
         }
         return $devolver;
     }
+
 
     function rellenar_tareas($id_cat, $id_rol, $id_user) {
         $consult='Select tarea.id_tarea, tarea.descripcion, tarea.id_estado, documentacion.modelo from documentacion, tarea where documentacion.id_categoria='.$id_cat.' and documentacion.id_rol='.$id_rol.' and documentacion.id_documentacion=tarea.id_documentacion and tarea.id_usuario='.$id_user;
@@ -87,6 +101,19 @@ class Conexion {
         return $devolver;
     }
 
+    function rellenar_documento($id_docu) {
+        $consult='Select * from documentacion where id_documentacion='.$id_docu;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function rellenar_textotarea($id_tarea) {
         $consult='Select descripcion from  tarea where id_tarea='.$id_tarea;
 
@@ -105,6 +132,30 @@ class Conexion {
         
         $this->cursor = mysqli_query($this->conex, $consult);
         
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function rellenar_roles() {
+
+        $consult='Select * from  rol';
+        $this->cursor = mysqli_query($this->conex, $consult);
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function rellenar_entregar() {
+
+        $consult='Select * from  entregar';
+        $this->cursor = mysqli_query($this->conex, $consult);
         if ($this->cursor) {
             $devolver = true;
         } else{

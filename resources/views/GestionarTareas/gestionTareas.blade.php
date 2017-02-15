@@ -107,19 +107,25 @@ Gestión de tareas
                         for (var i = 0; i < tarea.length; i++) {
 
                             if (tarea[i]['estado'] == 1) {
-                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
-                        <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-\n\
-                        <button onclick="popup(this)" class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
-\n\
-                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
-                        </div></div>');
+                                $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea">\n\
+                                                    <p class="textotarea">' + tarea[i]['descripcion'] + '</p>\n\
+                                                    <p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                                        <div class="divisorBotonTarea" style="">\n\
+                                                            <button onclick="popup(this)" class="botonTarea botonX" value="' + tarea[i]['id'] + '" id="comentario" style="" data-toggle="modal" data-target="#myModal">\n\
+                                                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+                                                            </button>\n\
+                                                        </div>\n\
+                                                    </div>');
                             } else if (tarea[i]['estado'] == 2) {
-                                $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
-                        <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
-                        <button onclick="popup(this)" class="botonX" value="' + tarea[i]['id'] + '" id="comentario" style="width:100%; height:100%; background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#myModal">\n\
-                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/></button>\n\
-                        </div></div>');
+                                $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea">\n\
+                                                    <p class="textotarea">' + tarea[i]['descripcion'] + '</p>\n\
+                                                    <p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                                        <div class="divisorBotonTarea" style="">\n\
+                                                            <button onclick="popup(this)" class="botonTarea botonX" value="' + tarea[i]['id'] + '" id="comentario" style="" data-toggle="modal" data-target="#myModal">\n\
+                                                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+                                                            </button>\n\
+                                                        </div>\n\
+                                                    </div>');
                             } else if (tarea[i]['estado'] == 3) {
                                 $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                         <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\

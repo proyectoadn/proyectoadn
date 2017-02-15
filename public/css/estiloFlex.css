@@ -78,8 +78,8 @@
 
 .documentacion{
     
-    min-height: 100px;
-    max-height: 100px;
+    min-height: 115px;
+    max-height: 115px;
     background-color: white;
     overflow-y: scroll;
     margin-top: 7px;
@@ -143,7 +143,7 @@ tarea2{
 }
 
 .divisorBotonTarea{
-    height: 25px;
+    height: 22px;
     width: 32px; 
     float: right;
     margin: 0px; 
@@ -161,4 +161,8 @@ tarea2{
 
 .anchuraModalCrearDocumentacion{
     width: 70%;
+}
+
+.displayBock{
+    display: block;
 }

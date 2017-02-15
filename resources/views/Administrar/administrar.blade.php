@@ -130,6 +130,11 @@ Administracion
                                                     <div class="documentacion">\n\
                                                         <p>' + documentacion[i]['descripcion'] + '</p>\n\
                                                         <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
+                                                        <div class="divisorBotonTarea">\n\
+                                                            <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                                <img alt="Editar documentacion" title="Editar documentacion" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+                                                            </button>\n\
+                                                        </div>\n\
                                                     </div>\n\
                                                 </div>');
 
@@ -187,6 +192,17 @@ Administracion
                 <b>Documentacion</b>
 
                 <div class="row conectardivisores" value="Documentacion" id="item1" style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
+                    <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
+                        <div class="documentacion">
+                            <p>' + documentacion[i]['descripcion'] + '</p>\n\
+                            <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a></p>
+                            <div class="divisorBotonTarea">
+                                <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">
+                                    <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -205,6 +221,76 @@ Administracion
 <div class="alert alert-danger borrardocumentacion">
 </div>
 
+<!--INICIO MODAL DE AÑADIR DOCUMENTACION-->
+<div id="modalModificarTarea" class="modal fade" role="dialog">
+    <div class="modal-dialog anchuraModalCrearDocumentacion">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <!--<div class="modal-header">
+                <div class="form-group">
+                    <label for="nombreDoc">Nombre Documentación</label>
+                        <input name="nombreDoc" id="nombreDoc" type="text" class="form-control" id="nombreTarea" value="asdad">
+                </div>
+            </div>-->
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="row" >
+                    <div class="col-md-12" style="margin-bottom: 10px;">
+                        <label for="nombreDoc">Nombre Documentación</label>
+                        <input name="nombreDoc" id="nombreDoc" type="text" class="form-control" id="nombreTarea" value="asdad">
+                    </div>
+                    <div class="col-md-4" style="margin-bottom: 10px;">
+                        <h4>Categorias</h4>
+                        <div id="categorias" class="checkbox">
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Esta e
+                            </label>
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Esta har
+                            </label>
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Esta 
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="roles" class="col-md-4">
+                        <h4>Roles</h4>
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+
+                    <div id="entregar" class="col-md-4">
+                        <h4>Entrega</h4>
+                        <select class="form-control">
+                            <option>1</option>
+                        </select>
+
+                    </div>
+                    <div class="col-md-12">
+                        <label for="nombreModelo">Modelo</label>
+                        <input name="nombreModelo" id="nombreModelo" type="text" class="form-control" id="nombreTarea" value="asdad">
+                        <br>
+
+                        <label for="linkModelo">Link del modelo</label>
+                        <input name="linkModelo" id="linkModelo" type="text" class="form-control" id="nombreTarea" value="asdad">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal" >Aceptar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
+
 
 
 @endsection
@@ -220,6 +306,7 @@ Administracion
     Nazario Castillero Redondo<br>
 
     Copyright 2017 - Proyectoadn
+
 </div>
 
 
