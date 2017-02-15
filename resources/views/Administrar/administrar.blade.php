@@ -21,18 +21,18 @@ Administracion
             receive: function (event, ui) {
                 $("#item2").html('');
 
-            var borrar=$(this).attr('value');
-                if(borrar=='Borrar') {
+                var borrar = $(this).attr('value');
+                if (borrar == 'Borrar') {
                     var id_doc = $(ui.item).attr('value');
                     var iddoc = JSON.stringify(id_doc);
                     console.log(iddoc);
-                     $.post("../resources/views/PhpAuxiliares/borrardocumentacion.php", {id: iddoc},
-                     function (respuesta) {
-                    console.log(respuesta);
+                    $.post("../resources/views/PhpAuxiliares/borrardocumentacion.php", {id: iddoc},
+                            function (respuesta) {
+                                console.log(respuesta);
 
-                     }).fail(function (jqXHR) {
-                     alert("Error de tipo " + jqXHR.status);
-                     });
+                            }).fail(function (jqXHR) {
+                        alert("Error de tipo " + jqXHR.status);
+                    });
 
                 }
             }
@@ -102,8 +102,13 @@ Administracion
                                                     <div class="documentacion">\n\
                                                         <p>' + documentacion[i]['descripcion'] + '</p>\n\
                                                         <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
+                                                        <div class="divisorBotonTarea">\n\
+                                                            <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+                                                            </button>\n\
+                                                        </div>\n\
                                                     </div>\n\
-                                                </div>');                            
+                                                </div>');
 
                         }
 
@@ -169,9 +174,101 @@ Administracion
             </div>
         </div>
     </div>
-
-
 </div>
+
+<!--INICIO MODAL DE AÑADIR DOCUMENTACION-->
+<div id="modalModificarTarea" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 70%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nombreTarea" value="asdad">
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row" >
+                    <div class="col-md-4" style="margin-bottom: 10px;">
+                        <div class="checkbox">
+                            <h4>Categorias</h4>
+                            <label>
+                                <input type="checkbox" value="">Option 1
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="checkbox">
+                            <h4>Roles</h4>
+                            <label>
+                                <input type="checkbox" value="">Option 1
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="checkbox">
+                            <h4>Entrega</h4>
+                            <div class="col-md-6">
+                                <label>
+                                    <input type="checkbox" value="">Option 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 1
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>
+                                    <input type="checkbox" value="">Option 12
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 12
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 12
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 12
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 12
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="">Option 12
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Nombre de la documentación</h3>
+                        <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="200" rows="3" type="text" 
+                                  style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;"
+                                  value="NUMERO MDF3234"></textarea>
+                        <div id="contador" class="text-right text-danger" style="font-size:0.8em;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal" >Aceptar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
 
 
 
