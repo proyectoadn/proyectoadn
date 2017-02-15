@@ -162,3 +162,7 @@ tarea2{
 .anchuraModalCrearDocumentacion{
     width: 70%;
 }
+
+.displayBock{
+    display: block;
+}
