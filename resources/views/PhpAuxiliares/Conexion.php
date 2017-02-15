@@ -237,4 +237,9 @@ class Conexion {
         mysqli_query($this->conex, $query);
     }
 
+    function update_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo,$id_doc){
+        $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar='".$id_entregar."',id_categoria='".$id_categoria."' where id_documentacion='".$id_doc."'";
+        mysqli_query($this->conex, $query);
+    }
+
 }
