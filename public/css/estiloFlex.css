@@ -38,7 +38,7 @@
     display: inline-block; /*Esto deja las columnas en horizontal, hace que no se bajen*/
     vertical-align: top;
     padding-top: 7px;
-    max-height: 200px;
+    max-height: 230px;
     min-height: 200px;
 
 
@@ -78,8 +78,8 @@
 
 .documentacion{
     
-    min-height: 100px;
-    max-height: 100px;
+    min-height: 115px;
+    max-height: 115px;
     background-color: white;
     overflow-y: scroll;
     margin-top: 7px;

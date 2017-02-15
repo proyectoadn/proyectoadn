@@ -17,28 +17,55 @@
 
 
 
-            $("#item1,#item2").sortable({
-                connectWith: ".conectardivisores",
-                cursor: "move",
-                receive: function (event, ui) {
-                    $("#item2").html('');
 
-                    var borrar = $(this).attr('value');
-                    if (borrar == 'Borrar') {
-                        var id_doc = $(ui.item).attr('value');
-                        var iddoc = JSON.stringify(id_doc);
-                        console.log(iddoc);
-                        $.post("../resources/views/PhpAuxiliares/borrardocumentacion.php", {id: iddoc},
-                                function (respuesta) {
-                                    console.log(respuesta);
+        $("#item1,#item2").sortable({
+            connectWith: ".conectardivisores",
+            cursor: "move",
+            receive: function (event, ui) {
+                $("#item2").html('');
+
+                $(".borrardocumentacion").html('Documentacion borrada correctamente');
+                $(".borrardocumentacion").slideToggle("slow", function () {
+
+                    setTimeout(function () {
+                        $(".borrardocumentacion").remove();
+                    }, 3000);
+                });
+
+                var borrar = $(this).attr('value');
+                if (borrar == 'Borrar') {
+                    var id_doc = $(ui.item).attr('value');
+                    var iddoc = JSON.stringify(id_doc);
+
+                    $.post("../resources/views/PhpAuxiliares/borrardocumentacion.php", {id: iddoc},
+                            function (respuesta) {
 
                                 }).fail(function (jqXHR) {
                             alert("Error de tipo " + jqXHR.status);
                         });
 
-                    }
                 }
-            });
+            },
+            start: function (event, ui) {
+
+                $(".contenidoborrar").css("border-radius", "0px");
+                $(".contenidoborrar").css("background-color", "red");
+                $(".contenidoborrar").css("opacity", "0.8");
+                $(".contenidoborrar").css("background-image", "url('Imagenes/papelera.png')");
+                $(".contenidoborrar").css("background-repeat", "no-repeat");
+
+
+            },
+            stop: function (event, ui) {
+
+
+                $("#borrar").css("border", "none");
+                $(".contenidoborrar").css("background-color", "none");
+                $(".contenidoborrar").css("opacity", "0.0");
+                $(".contenidoborrar").html('');
+
+            }
+        });
 
 
             //Codigo Nazario
@@ -270,15 +297,19 @@
 
 
             <div class="col-md-3 ">
-                <div class="divborrar">
+                <div class="divborrar" id="borrar">
                     <b>Borrar</b>
 
 
-                    <div id="item2" class="conectardivisores divborrar" value="Borrar">
+                    <div id="item2" class="conectardivisores divborrar contenidoborrar" value="Borrar">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="alert alert-danger borrardocumentacion">
+
     </div>
 
     <!--INICIO MODAL DE AÑADIR DOCUMENTACION-->
