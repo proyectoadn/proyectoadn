@@ -103,8 +103,8 @@ Administracion
                                                         <p>' + documentacion[i]['descripcion'] + '</p>\n\
                                                         <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
                                                         <div class="divisorBotonTarea">\n\
-                                                            <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+                                                            <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                                <img alt="Editar documentacion" title="Editar documentacion" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
                                                             </button>\n\
                                                         </div>\n\
                                                     </div>\n\
@@ -117,6 +117,37 @@ Administracion
             });
         });
     });
+    function popup(boton) {
+
+        var mens = new Array();
+        id_docu = boton.value;
+        var idjson = JSON.stringify(id_docu);
+
+        $.post("../resources/views/PhpAuxiliares/rellenardocumentacion.php", {id: idjson},
+                function (respuesta) {
+                    var datos = JSON.parse(respuesta);
+                    console.log(datos);
+                    var documento=datos[0]['documento']
+                    var categorias=datos[0]['categorias'];
+                    var entregar=datos[0]['entregar'];
+                    var rol=datos[0]['rol'];
+                    if (comentariotexto.length > 0) {
+                        mens.push(comentariotexto[0]['mensaje']);
+                        mens.push(comentariotexto[0]['descripcion']);
+                    } else {
+                        mens.push('');
+                        mens.push(comentariotexto[0]['descripcion']);
+                    }
+
+                    $("#textocomentario").val(mens[0]);
+                    $("#titulocoment").html(mens[1]);
+
+
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+    }
 
 
 </script>
@@ -190,26 +221,28 @@ Administracion
             <div class="modal-body">
                 <div class="row" >
                     <div class="col-md-4" style="margin-bottom: 10px;">
-                        <div class="checkbox">
-                            <h4>Categorias</h4>
+                        <h4>Categorias</h4>
+                        <div id="categorias" class="checkbox">
                             <label>
                                 <input type="checkbox" value="">Option 1
                             </label>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="checkbox">
-                            <h4>Roles</h4>
+                    <div  class="col-md-4">
+                        <h4>Roles</h4>
+                        <div id="roles" class="checkbox">
+
                             <label>
                                 <input type="checkbox" value="">Option 1
                             </label>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="checkbox">
-                            <h4>Entrega</h4>
+                    <div id="entregar" class="col-md-4">
+                        <h4>Entrega</h4>
+                        <div id="entregar" class="checkbox">
+
                             <div class="col-md-6">
                                 <label>
                                     <input type="checkbox" value="">Option 1
