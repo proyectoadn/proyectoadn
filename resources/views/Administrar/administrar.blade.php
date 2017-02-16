@@ -125,6 +125,9 @@ Administracion
                         }
                         
                         $("#item1").append('<img src="Imagenes/papelera.png>"');
+                        
+                        $("#item1").append('<img src="Imagenes/papelera.png>"');
+                        $("#item1").append('<img src="Imagenes/papelera.png>"');
 
 
                     }).fail(function (jqXHR) {
@@ -132,6 +135,8 @@ Administracion
             });
         });
     });
+    
+    
 
 
 </script>
