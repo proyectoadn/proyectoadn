@@ -8,7 +8,7 @@
 @section('js')
 
     <script>
-
+// dwdw
         var id_rol;
         var id_doc;
 
