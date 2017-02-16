@@ -14,10 +14,6 @@
 
         $(function () {
 
-
-
-
-
         $("#item1,#item2").sortable({
             connectWith: ".conectardivisores",
             cursor: "move",
@@ -54,10 +50,8 @@
                 $(".contenidoborrar").css("background-image", "url('Imagenes/papelera.png')");
                 $(".contenidoborrar").css("background-repeat", "no-repeat");
 
-
             },
             stop: function (event, ui) {
-
 
                 $("#borrar").css("border", "none");
                 $(".contenidoborrar").css("background-color", "none");
@@ -144,8 +138,6 @@
                     alert("Error de tipo " + jqXHR.status);
                 });
             });
-
-
             $('#editDoc').on('click',function(){
 
                 var descripcion= $('#nombreDoc').val();
@@ -174,9 +166,6 @@
 
             });
         });
-
-
-
 
         function popup(boton) {
 
@@ -237,7 +226,6 @@
                 alert("Error de tipo " + jqXHR.status);
             });
         }
-
 
     </script>
 @endsection
@@ -351,7 +339,6 @@
                                 <option>1</option>
                                 <option>2</option>
                             </select>
-
 
                         </div>
 
