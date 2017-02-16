@@ -160,7 +160,6 @@ b{
 }
 
 .contenidoborrar{
-    
     background-position: center;
 }
 
@@ -178,4 +177,21 @@ b{
     width: 35%;
     margin: auto;
     text-align: center;
+}
+
+.centrarTexto{
+    text-align: center;
+}
+
+.margenRegistro{
+    margin-bottom: 5px;
+}
+
+.validacionRegistro{
+    height: 34px;
+    margin-bottom: 5px;
+}
+
+.colorGris{
+    color: #F3F3F3;
 }
