@@ -161,6 +161,7 @@
                 update.push(modelo);
                 update.push(id_doc);
                 var vector = JSON.stringify(update);
+                console.log(vector);
 
                 $.post("../resources/views/PhpAuxiliares/actualizardocumentos.php", {datos: vector},
                         function (respuesta) {
@@ -192,7 +193,7 @@
                         var categorias = datos[0]['categorias'];
                         var entregar = datos[0]['entregar'];
                         var rol = datos[0]['rol'];
-                        console.log(rol);
+
                         $('#nombreDoc').val(documento[0]['descripcion']);
                         $('#nombreModelo').val(documento[0]['modelo']);
                         $('#roles').html('');

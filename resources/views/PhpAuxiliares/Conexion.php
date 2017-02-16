@@ -238,7 +238,14 @@ class Conexion {
     }
 
     function update_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo,$id_doc){
-        $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar='".$id_entregar."',id_categoria='".$id_categoria."' where id_documentacion='".$id_doc."'";
+        if($id_entregar=="0"){
+            $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar=NULL,id_categoria='".$id_categoria."' where id_documentacion='".$id_doc."'";
+
+        }
+        else{
+            $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar=".$id_entregar.",id_categoria='".$id_categoria."' where id_documentacion='".$id_doc."'";
+
+        }
         mysqli_query($this->conex, $query);
     }
 
