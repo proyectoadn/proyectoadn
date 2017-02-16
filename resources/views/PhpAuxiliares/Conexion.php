@@ -232,10 +232,6 @@ class Conexion {
         mysqli_query($this->conex, $query);
     }
 
-    function modificar($dniviejo,$dninuevo){
-        $query = "update personas set DNI='".$dninuevo."' where DNI='".$dniviejo."'";
-        mysqli_query($this->conex, $query);
-    }
 
     function update_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo,$id_doc){
         if($id_entregar=="0"){
