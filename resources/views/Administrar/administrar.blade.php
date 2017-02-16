@@ -110,6 +110,21 @@ Administracion
                         var documentacion = JSON.parse(respuesta);
                         $("#item1").html('');
                         for (var i = 0; i < documentacion.length; i++) {
+//                            $("#item1").append('\<div class="divTareasAdmin">\n\<div value="' + documentacion[i]['id'] + '"  id="tareas" class="panel panel-primary col-lg-3 col-md-6 tarea estiloTareaAdmin" >\n\
+//                                                                    <p class="textotarea">' + documentacion[i]['descripcion'] + '</p>\n\
+//                                                                    <p class="textotarea">\n\
+//                                                                        <a href="">' + documentacion[i]['modelo'] + '</a>\n\
+//                                                                    </p>\n\
+//                                                                    <div class="divisorBotonTarea">\n\
+//                                                                        <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+//                                                                            <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+//                                                                        </button>\n\
+//                                                                    </div>\n\
+//                                                                </div>');
+//
+//                            //style="padding: 0px; margin: auto; text-align: center;"
+//
+//                        }
 
                             $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
                                                     <div class="documentacion">\n\
@@ -122,16 +137,21 @@ Administracion
                                                         </div>\n\
                                                     </div>\n\
                                                 </div>');
-                        }
-                        
-                        $("#item1").append('<img src="Imagenes/papelera.png>"');
 
+                        }
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
         });
     });
+
+    function esperaralerta() {
+
+        setTimeout(function () {
+            $(".borrardocumentacion").remove();
+        }, 3000);
+    }
 
 
 </script>
