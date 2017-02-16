@@ -8,58 +8,58 @@
 @section('js')
 
     <script>
-// dwdw
+        // dwdw
         var id_rol;
         var id_doc;
 
         $(function () {
 
-        $("#item1,#item2").sortable({
-            connectWith: ".conectardivisores",
-            cursor: "move",
-            receive: function (event, ui) {
-                $("#item2").html('');
+            $("#item1,#item2").sortable({
+                connectWith: ".conectardivisores",
+                cursor: "move",
+                receive: function (event, ui) {
+                    $("#item2").html('');
 
-                $(".borrardocumentacion").html('Documentacion borrada correctamente');
-                $(".borrardocumentacion").slideToggle("slow", function () {
+                    $(".borrardocumentacion").html('Documentacion borrada correctamente');
+                    $(".borrardocumentacion").slideToggle("slow", function () {
 
-                    setTimeout(function () {
-                        $(".borrardocumentacion").remove();
-                    }, 3000);
-                });
+                        setTimeout(function () {
+                            $(".borrardocumentacion").remove();
+                        }, 3000);
+                    });
 
-                var borrar = $(this).attr('value');
-                if (borrar == 'Borrar') {
-                    var id_doc = $(ui.item).attr('value');
-                    var iddoc = JSON.stringify(id_doc);
+                    var borrar = $(this).attr('value');
+                    if (borrar == 'Borrar') {
+                        var id_doc = $(ui.item).attr('value');
+                        var iddoc = JSON.stringify(id_doc);
 
-                    $.post("../resources/views/PhpAuxiliares/borrardocumentacion.php", {id: iddoc},
-                            function (respuesta) {
+                        $.post("../resources/views/PhpAuxiliares/borrardocumentacion.php", {id: iddoc},
+                                function (respuesta) {
 
                                 }).fail(function (jqXHR) {
                             alert("Error de tipo " + jqXHR.status);
                         });
 
+                    }
+                },
+                start: function (event, ui) {
+
+                    $(".contenidoborrar").css("border-radius", "0px");
+                    $(".contenidoborrar").css("background-color", "red");
+                    $(".contenidoborrar").css("opacity", "0.8");
+                    $(".contenidoborrar").css("background-image", "url('Imagenes/papelera.png')");
+                    $(".contenidoborrar").css("background-repeat", "no-repeat");
+
+                },
+                stop: function (event, ui) {
+
+                    $("#borrar").css("border", "none");
+                    $(".contenidoborrar").css("background-color", "none");
+                    $(".contenidoborrar").css("opacity", "0.0");
+                    $(".contenidoborrar").html('');
+
                 }
-            },
-            start: function (event, ui) {
-
-                $(".contenidoborrar").css("border-radius", "0px");
-                $(".contenidoborrar").css("background-color", "red");
-                $(".contenidoborrar").css("opacity", "0.8");
-                $(".contenidoborrar").css("background-image", "url('Imagenes/papelera.png')");
-                $(".contenidoborrar").css("background-repeat", "no-repeat");
-
-            },
-            stop: function (event, ui) {
-
-                $("#borrar").css("border", "none");
-                $(".contenidoborrar").css("background-color", "none");
-                $(".contenidoborrar").css("opacity", "0.0");
-                $(".contenidoborrar").html('');
-
-            }
-        });
+            });
 
 
             //Codigo Nazario
@@ -138,14 +138,14 @@
                     alert("Error de tipo " + jqXHR.status);
                 });
             });
-            $('#editDoc').on('click',function(){
+            $('#editDoc').on('click', function () {
 
-                var descripcion= $('#nombreDoc').val();
-                var categoria=$('#categ').val();
-                var rol=$('#roles').val();
-                var entrega=$('#entregar').val();
-                var modelo=$('#nombreModelo').val();
-                var update=new Array();
+                var descripcion = $('#nombreDoc').val();
+                var categoria = $('#categ').val();
+                var rol = $('#roles').val();
+                var entrega = $('#entregar').val();
+                var modelo = $('#nombreModelo').val();
+                var update = new Array();
                 update.push(descripcion);
                 update.push(categoria);
                 update.push(rol);
@@ -171,7 +171,7 @@
 
             var mens = new Array();
             id_docu = boton.value;
-            id_doc=id_docu;
+            id_doc = id_docu;
             var idjson = JSON.stringify(id_docu);
 
             $.post("../resources/views/PhpAuxiliares/rellenardocumentacion.php", {id: idjson},
@@ -187,12 +187,15 @@
                         $('#nombreModelo').val(documento[0]['modelo']);
                         $('#roles').html('');
                         for (var i = 0; i < rol.length; i++) {
-                            if (rol[i]['id_rol'] == documento[0]['id_rol']) {
-                                $('#roles').append('<option selected value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+                            if (rol[i]['descripcion'] != 'Profesor') {
 
-                            }
-                            else {
-                                $('#roles').append('<option value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+                                if (rol[i]['id_rol'] == documento[0]['id_rol']) {
+                                    $('#roles').append('<option selected value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+
+                                }
+                                else {
+                                    $('#roles').append('<option value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+                                }
                             }
                         }
 
@@ -243,7 +246,9 @@
                     <option value="-1">-Elige cargo-</option>
 
                     @for($i=0;$i<count($roles[0]);$i++)
+                        @if($roles[0][$i]->descripcion!='Profesor')
                         <option value="{!! $roles[0][$i]->id_rol !!}">{!! $roles[0][$i]->descripcion !!}</option>
+                        @endif
                     @endfor
                 </select>
             </div>
@@ -365,7 +370,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">Aceptar</button>
+                    <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
+                        Aceptar
+                    </button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
