@@ -121,6 +121,7 @@ b{
     color: white;
 }
 
+
 .navbar-default .navbar-brand:hover{
 
     background-color: #ECC210;
@@ -194,4 +195,42 @@ b{
 
 .colorGris{
     color: #F3F3F3;
+}
+
+.dropdown-menu {
+    
+    padding: 0px;
+}
+
+.divdesplegableusuario{
+    
+    width: 350px;
+    padding-top: 10px;
+}
+
+.divgeneralusuario{
+    
+    width: 100%;
+    height: auto;
+}
+
+.divcontenidousuario{
+    
+    max-height: 150px;
+    min-height: 150px;
+    padding-left: 10px;
+}
+
+.imagenusuario{
+    
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.divcerrarsesion{
+    
+    background-color: #E0E0E0;
+    padding: 5px;
+    padding-right: 15px;
+    min-height: 45px;
 }

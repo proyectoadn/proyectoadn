@@ -245,4 +245,21 @@ class Conexion {
         mysqli_query($this->conex, $query);
     }
 
+    function insertar_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo){
+        if($id_entregar=="0"){
+            $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol) VALUES (?,?,?,?)";
+            $stmt = mysqli_prepare($this->conex, $query);
+
+            mysqli_stmt_bind_param($stmt, "sisi", $descripcion, $id_categoria, $modelo,$id_rol);
+        }
+        else{
+            $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol,id_entregar) VALUES (?,?,?,?,?)";
+            $stmt = mysqli_prepare($this->conex, $query);
+
+            mysqli_stmt_bind_param($stmt, "sisii", $descripcion, $id_categoria, $modelo,$id_rol,$id_entregar);
+        }
+        /* Ejecución de la sentencia. */
+        mysqli_stmt_execute($stmt);
+    }
+
 }

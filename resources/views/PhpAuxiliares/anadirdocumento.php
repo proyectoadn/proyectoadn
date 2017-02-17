@@ -12,17 +12,29 @@ require_once 'Conexion.php';
 $conexion = new Conexion();
 $vector=[];
 $datos = json_decode($_POST['datos']);
+
 $descripcion=utf8_decode($datos[0]);
-$categoria=$datos[1];
+if(count($datos[1])==1){
+    $categoria[]=$datos[1];
+}
+else{
+    for($i=0;$i<count($datos[1]);$i++){
+        $categoria[]=$datos[1][$i];
+    }
+}
+
 $rol=$datos[2];
 $entrega=$datos[3];
 $modelo=$datos[4];
-$id_doc=$datos[5];
 
 if($conexion->conectar()){
-    $conexion->update_documento($descripcion,$categoria,$rol,$entrega,$modelo,$id_doc);
+    for($i=0;$i<count($categoria);$i++){
+        $conexion->insertar_documento($descripcion,$categoria[$i],$rol,$entrega,$modelo);
+    }
+
     $aux="ok";
 }
+
 $conexion->cerrar_Conexion2();
 
 $vector=  json_encode($aux);

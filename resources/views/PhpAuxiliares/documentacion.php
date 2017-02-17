@@ -20,7 +20,7 @@ if($conexion->conectar()){
     $conexion->rellenar_documentacion($id_cat,$id_rol);
 
    while ($conexion->ir_Siguiente()) {
-       $desc=$conexion->obtener_campo('descripcion');
+       $desc=utf8_encode($conexion->obtener_campo('descripcion'));
         $vector[]=[
            'descripcion'=> $desc,
            'id'=> $conexion->obtener_campo('id_documentacion'),

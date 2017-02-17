@@ -83,6 +83,8 @@ class Controlador extends Controller {
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
 
+        \Session::put('rol', 'Usuario');
+
         $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
         for ($i = 0; $i < count($cargo); $i++) {
             $rol[] = \DB::table('rol')->where('id_rol', '=', $cargo[$i]->id_rol)->get();
@@ -100,6 +102,8 @@ class Controlador extends Controller {
 
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
+
+        \Session::put('rol', 'Administrador');
 
         $rol[] = \DB::table('rol')->get();
 
