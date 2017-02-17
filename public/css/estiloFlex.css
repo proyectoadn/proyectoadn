@@ -166,3 +166,25 @@ tarea2{
 .displayBock{
     display: block;
 }
+
+
+.divAniadirDoc{
+    text-align: center;
+    overflow-y: hidden;
+    padding: 0px;
+}
+
+.botonAniadirDoc{
+    background-color: transparent;
+    width: 100%;
+    border:0; 
+    outline:0 none;
+}
+
+.imagenAniadiDoc{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    max-height: 105px;
+    min-height: 105px;
+
+}
