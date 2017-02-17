@@ -12,7 +12,7 @@ require_once 'Conexion.php';
 $conexion = new Conexion();
 $vector=[];
 $coment = json_decode($_POST['coment']);
-$text=$coment[0];
+$text=utf8_decode($coment[0]);
 $id_tarea=$coment[1];
 
 if($conexion->conectar()){

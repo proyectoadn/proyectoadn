@@ -12,7 +12,7 @@ require_once 'Conexion.php';
 $conexion = new Conexion();
 $vector=[];
 $datos = json_decode($_POST['datos']);
-$descripcion=$datos[0];
+$descripcion=utf8_decode($datos[0]);
 $categoria=$datos[1];
 $rol=$datos[2];
 $entrega=$datos[3];

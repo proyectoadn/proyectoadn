@@ -89,6 +89,15 @@ Administracion
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
+
+            //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
+            $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
+                                                    <div class="documentacion divAniadirDoc">\n\
+                                                        <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
+                                                            <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
+                                                        </button>\n\
+                                                        </div>\n\
+                                                </div>');
         });
 
 
@@ -99,12 +108,12 @@ Administracion
             vector.push(id);
             vector.push(id_rol);
             var idjson = JSON.stringify(vector);
-
+            $("#item1").html('');
             $.post("../resources/views/PhpAuxiliares/documentacion.php", {id: idjson},
                     function (respuesta) {
-
+                    console.log(respuesta);
                         var documentacion = JSON.parse(respuesta);
-                        $("#item1").html('');
+
                         for (var i = 0; i < documentacion.length; i++) {
                             $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
                                                 <div class="documentacion">\n\
@@ -122,7 +131,7 @@ Administracion
                         //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
                         $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
                                                     <div class="documentacion divAniadirDoc">\n\
-                                                        <button class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
+                                                        <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
                                                             <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
                                                         </button>\n\
                                                         </div>\n\
@@ -160,6 +169,67 @@ Administracion
 
         });
     });
+
+    function popupAdd(boton) {
+
+        var mens = new Array();
+        id_docu = boton.value;
+        id_doc = id_docu;
+        var idjson = JSON.stringify(id_docu);
+
+        $.post("../resources/views/PhpAuxiliares/rellenardocumentacion.php", {id: idjson},
+                function (respuesta) {
+                    var datos = JSON.parse(respuesta);
+
+                    var documento = datos[0]['documento'];
+                    var categorias = datos[0]['categorias'];
+                    var entregar = datos[0]['entregar'];
+                    var rol = datos[0]['rol'];
+
+                    $('#nombreDoc').val(documento[0]['descripcion']);
+                    $('#nombreModelo').val(documento[0]['modelo']);
+                    $('#roles').html('');
+                    for (var i = 0; i < rol.length; i++) {
+                        if (rol[i]['descripcion'] != 'Profesor') {
+
+                            if (rol[i]['id_rol'] == documento[0]['id_rol']) {
+                                $('#roles').append('<option selected value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+
+                            } else {
+                                $('#roles').append('<option value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+                            }
+                        }
+                    }
+
+                    $('#entregar').html('');
+                    $('#entregar').append('<option value="0">A nadie</option>');
+
+                    for (var i = 0; i < entregar.length; i++) {
+
+                        if (entregar[i]['id_entregar'] == documento[0]['id_entregar']) {
+                            $('#entregar').append('<option selected value="' + entregar[i]['id_entregar'] + '">' + entregar[i]['descripcion'] + '</option>');
+                        } else {
+
+                            $('#entregar').append('<option value="' + entregar[i]['id_entregar'] + '">' + entregar[i]['descripcion'] + '</option>');
+                        }
+                    }
+
+                    $('#categ').html('');
+                    for (var i = 0; i < categorias.length; i++) {
+                        if (categorias[i]['id_categoria'] == documento[0]['id_categoria']) {
+                            $('#categ').append('<option selected value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</option>');
+                        } else {
+                            $('#categ').append('<option value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</option>');
+                        }
+                    }
+
+
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+    }
+
 
     function popup(boton) {
 
