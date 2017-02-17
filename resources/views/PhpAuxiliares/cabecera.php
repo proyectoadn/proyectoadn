@@ -6,6 +6,11 @@
  */
 ?>
 
+<?php
+$usu = new Usuario('', '', '', '', '');
+$usu = \Session::get('u');
+?>
+
 <nav class="navbar navbar-default" role="navigation">
     <!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
@@ -26,12 +31,23 @@
 
         <ul class="nav navbar-nav navbar-right">
 
-            <li><a class="navbar-brand" href="#">Cambiar Rol</a></li>
+
+            <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"> Cambiar Rol <i class="fa fa-caret-down"></i></a>
+
+            <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
+
+                <div class="" style="width: 50%;padding-left: 20px;">
+
+                    <a href="administrador"> Administrador </a><br>
+                    <a href="usuario"> Usuario </a>
+
+                </div>
+            </div>
 
 
 
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>  Usuario <i class="fa fa-caret-down"></i></a>
+                <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i class="fa fa-caret-down"></i></a>
 
                 <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
 
