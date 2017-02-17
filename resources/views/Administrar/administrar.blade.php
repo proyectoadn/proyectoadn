@@ -368,8 +368,28 @@ Administracion
                     </div>
                     <div class="col-md-4" style="margin-bottom: 10px;">
                         <h4>Categorias</h4>
-                        <select id="categ" class="form-control">
-                        </select>
+                        <div class="checkbox">
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Option 1
+                            </label>
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Option 1
+                            </label>
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Option 1
+                            </label>
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Option 1
+                            </label>
+                            <label class="displayBock">
+                                <input type="checkbox" value="">
+                                Option 1
+                            </label>
+                        </div>
                     </div>
 
                     <div class="col-md-4">
