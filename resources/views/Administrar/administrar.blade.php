@@ -8,7 +8,9 @@
 @section('js')
 
     <script>
-        // dwdw
+
+
+        //para borrar
         var id_rol;
         var id_doc;
 
@@ -178,7 +180,7 @@
                     function (respuesta) {
                         var datos = JSON.parse(respuesta);
 
-                        var documento = datos[0]['documento']
+                        var documento = datos[0]['documento'];
                         var categorias = datos[0]['categorias'];
                         var entregar = datos[0]['entregar'];
                         var rol = datos[0]['rol'];
