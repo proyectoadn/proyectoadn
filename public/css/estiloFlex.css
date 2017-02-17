@@ -76,6 +76,11 @@
     padding-right: 5px;
 }
 
+/* Al pasar por encima de la documentacion, se oscurece */
+.documentacion:hover{
+    background-color: #E0E0E0;
+}
+
 .documentacion{
     
     min-height: 115px;

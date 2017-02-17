@@ -13,6 +13,7 @@
         //para borrar
         var id_rol;
         var id_doc;
+        var countCat = 0;
 
         $(function () {
 
@@ -89,6 +90,15 @@
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
                 });
+
+                //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
+                $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
+                                                    <div class="documentacion divAniadirDoc">\n\
+                                                        <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
+                                                            <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
+                                                        </button>\n\
+                                                        </div>\n\
+                                                </div>');
             });
 
 
@@ -99,34 +109,34 @@
                 vector.push(id);
                 vector.push(id_rol);
                 var idjson = JSON.stringify(vector);
-
+                $("#item1").html('');
                 $.post("../resources/views/PhpAuxiliares/documentacion.php", {id: idjson},
                         function (respuesta) {
 
                             var documentacion = JSON.parse(respuesta);
-                            $("#item1").html('');
+
                             for (var i = 0; i < documentacion.length; i++) {
                                 $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
-                                                    <div class="documentacion">\n\
-                                                        <p>' + documentacion[i]['descripcion'] + '</p>\n\
-                                                        <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
-                                                        <div class="divisorBotonTarea">\n\
-                                                            <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                                <img alt="Editar documentacion" title="Editar documentacion" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
-                                                            </button>\n\
-                                                        </div>\n\
+                                                <div class="documentacion">\n\
+                                                    <p>' + documentacion[i]['descripcion'] + '</p>\n\
+                                                    <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
+                                                    <div class="divisorBotonTarea">\n\
+                                                        <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                            <img alt="Editar documentacion" title="Editar documentacion" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+                                                        </button>\n\
                                                     </div>\n\
-                                                </div>');
+                                                </div>\n\
+                                            </div>');
 
                             }
-                                //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
-                                $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
-                                                        <div class="documentacion divAniadirDoc">\n\
-                                                            <button class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                                <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
-                                                            </button>\n\
-                                                            </div>\n\
-                                                    </div>');
+                            //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
+                            $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
+                                                    <div class="documentacion divAniadirDoc">\n\
+                                                        <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
+                                                            <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
+                                                        </button>\n\
+                                                        </div>\n\
+                                                </div>');
 
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
@@ -159,7 +169,98 @@
 
 
             });
+
+            $('#addDoc').on('click', function () {
+
+                var descripcion = $('#anadirDoc').val();
+
+                var categoria = new Array();
+                for (var i = 0; i < countCat; i++) {
+                    if ($("#cat" + i).prop('checked')) {
+                        categoria.push($("#cat" + i).val());
+                    }
+                }
+
+                var rol = $('#anadirRoles').val();
+                var entrega = $('#anadirEntregar').val();
+                var modelo = $('#anadirModelo').val();
+                var insert = new Array();
+                insert.push(descripcion);
+                insert.push(categoria);
+                insert.push(rol);
+                insert.push(entrega);
+                insert.push(modelo);
+                var vector = JSON.stringify(insert);
+                console.log(vector);
+
+                $.post("../resources/views/PhpAuxiliares/anadirdocumento.php", {datos: vector},
+                        function (respuesta) {
+                            console.log(respuesta);
+
+                        }).fail(function (jqXHR) {
+                    alert("Error de tipo " + jqXHR.status);
+                });
+
+
+            });
         });
+
+        function popupAdd(boton) {
+
+            var mens = new Array();
+            countCat = 0;
+            $.post("../resources/views/PhpAuxiliares/rellenaranadir.php", {},
+                    function (respuesta) {
+
+                        var datos = JSON.parse(respuesta);
+
+                        var categorias = datos[0]['categorias'];
+                        var entregar = datos[0]['entregar'];
+                        var rol = datos[0]['rol'];
+                        $('#anadirDoc').val('');
+                        $('#anadirModelo').val('');
+                        $('#anadirRoles').html('');
+                        for (var i = 0; i < rol.length; i++) {
+                            if (rol[i]['descripcion'] != 'Profesor') {
+
+                                if (rol[i]['id_rol'] == $("#carg").val()) {
+                                    $('#anadirRoles').append('<option selected value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+
+                                } else {
+                                    $('#anadirRoles').append('<option value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
+                                }
+                            }
+                        }
+
+                        $('#anadirEntregar').html('');
+                        $('#anadirEntregar').append('<option value="0">A nadie</option>');
+
+                        for (var i = 0; i < entregar.length; i++) {
+
+                            $('#anadirEntregar').append('<option value="' + entregar[i]['id_entregar'] + '">' + entregar[i]['descripcion'] + '</option>');
+
+                        }
+
+                        $('#anadirCat').html('');
+                        for (var i = 0; i < categorias.length; i++) {
+                            countCat++;
+                            if (categorias[i]['id_categoria'] == $("#cat").val()) {
+                                $('#anadirCat').append(' <label class="displayBock"> <input  id="cat' + i + '" checked type="checkbox" value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</label>');
+                            } else {
+                                $('#anadirCat').append(' <label class="displayBock"> <input id="cat' + i + '" type="checkbox" value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</label>');
+                            }
+                        }
+                        /*      <label class="displayBock">
+                         <input type="checkbox" value="">
+                         Option 1
+                         </label>
+                         */
+                    }
+            ).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        }
+
 
         function popup(boton) {
 
@@ -186,8 +287,7 @@
                                 if (rol[i]['id_rol'] == documento[0]['id_rol']) {
                                     $('#roles').append('<option selected value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
 
-                                }
-                                else {
+                                } else {
                                     $('#roles').append('<option value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
                                 }
                             }
@@ -200,8 +300,7 @@
 
                             if (entregar[i]['id_entregar'] == documento[0]['id_entregar']) {
                                 $('#entregar').append('<option selected value="' + entregar[i]['id_entregar'] + '">' + entregar[i]['descripcion'] + '</option>');
-                            }
-                            else {
+                            } else {
 
                                 $('#entregar').append('<option value="' + entregar[i]['id_entregar'] + '">' + entregar[i]['descripcion'] + '</option>');
                             }
@@ -211,8 +310,7 @@
                         for (var i = 0; i < categorias.length; i++) {
                             if (categorias[i]['id_categoria'] == documento[0]['id_categoria']) {
                                 $('#categ').append('<option selected value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</option>');
-                            }
-                            else {
+                            } else {
                                 $('#categ').append('<option value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</option>');
                             }
                         }
@@ -241,7 +339,7 @@
 
                     @for($i=0;$i<count($roles[0]);$i++)
                         @if($roles[0][$i]->descripcion!='Profesor')
-                        <option value="{!! $roles[0][$i]->id_rol !!}">{!! $roles[0][$i]->descripcion !!}</option>
+                            <option value="{!! $roles[0][$i]->id_rol !!}">{!! $roles[0][$i]->descripcion !!}</option>
                         @endif
                     @endfor
                 </select>
@@ -300,17 +398,11 @@
 
     </div>
 
-    <!--INICIO MODAL DE AÑADIR DOCUMENTACION-->
+    <!--INICIO MODAL DE MODIFICAR DOCUMENTACION-->
     <div id="modalModificarTarea" class="modal fade" role="dialog">
         <div class="modal-dialog anchuraModalCrearDocumentacion">
             <!-- Modal content-->
             <div class="modal-content">
-                <!--<div class="modal-header">
-                    <div class="form-group">
-                        <label for="nombreDoc">Nombre Documentación</label>
-                            <input name="nombreDoc" id="nombreDoc" type="text" class="form-control" id="nombreTarea" value="asdad">
-                    </div>
-                </div>-->
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="row">
@@ -319,42 +411,28 @@
                             <input name="nombreDoc" id="nombreDoc" type="text" class="form-control" id="nombreTarea"
                                    value="">
                         </div>
+
                         <div class="col-md-4" style="margin-bottom: 10px;">
                             <h4>Categorias</h4>
-
-
                             <select id="categ" class="form-control">
-                                <option>1</option>
-                                <option>2</option>
                             </select>
-
-
                         </div>
 
                         <div class="col-md-4">
                             <h4>Roles</h4>
-
                             <select id="roles" class="form-control">
-                                <option>1</option>
-                                <option>2</option>
                             </select>
-
                         </div>
-
                         <div class="col-md-4">
                             <h4>Entrega</h4>
-
-
                             <select id="entregar" class="form-control">
-                                <option>1</option>
                             </select>
-
-
                         </div>
+
                         <div class="col-md-12">
                             <label for="nombreModelo">Modelo</label>
                             <input name="nombreModelo" id="nombreModelo" type="text" class="form-control"
-                                   id="nombreTarea" value="asdad">
+                                   id="nombreTarea" value="">
                             <br>
 
                             <label for="linkModelo">Link del modelo</label>
@@ -367,13 +445,73 @@
                     <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
                         Aceptar
                     </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FINAL MODAL DE MODIFICAR DOCUMENTACION-->
+
+    <!--INICIO MODAL DE AÑADIR DOCUMENTACION-->
+    <div id="modalAddDoc" class="modal fade" role="dialog">
+        <div class="modal-dialog anchuraModalCrearDocumentacion">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-bottom: 10px;">
+                            <label for="nombreDoc">Descripción Documentación</label>
+                            <input name="nombreDoc" id="anadirDoc" type="text" class="form-control" id="nombreTarea"
+                                   value="">
+                        </div>
+                        <div class="col-md-4" style="margin-bottom: 10px;">
+                            <h4>Categorias</h4>
+
+                            <div class="checkbox" id="anadirCat">
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4>Roles</h4>
+                            <select id="anadirRoles" class="form-control">
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4>Entrega</h4>
+                            <select id="anadirEntregar" class="form-control">
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="nombreModelo">Modelo</label>
+                            <input name="nombreModelo" id="anadirModelo" type="text" class="form-control"
+                                   id="nombreTarea" value="">
+                            <br>
+
+                            <label for="linkModelo">Link del modelo</label>
+                            <input name="linkModelo" id="anadirLink" type="text" class="form-control" id="nombreTarea"
+                                   value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="addDoc" class="btn btn-primary" id="anadirDocumentacion" data-dismiss="modal">
+                        Aceptar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Cancelar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
     <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
-
 
 
 @endsection
