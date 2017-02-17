@@ -15,8 +15,7 @@ class Controlador extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('Login/login');
     }
 
@@ -26,13 +25,15 @@ class Controlador extends Controller {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function loginerror(Request $request)
-    {
+    public function loginerror(Request $request) {
         return view('Login/loginerror');
     }
 
-    public function loginconfirm(Request $request)
-    {
+    public function asignarTareas(Request $request) {
+        return view('asignarTareas');
+    }
+
+    public function loginconfirm(Request $request) {
         return view('Login/loginconfirm');
     }
 
@@ -50,12 +51,11 @@ class Controlador extends Controller {
         }
 
         for ($i = 0; $i < count($rol); $i++) {
-            
+
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
 
                 return view('Administrar/elegirRol');
-            } 
-            else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
+            } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
 
                 return view('Administrar/elegirRol');
             }
@@ -69,13 +69,11 @@ class Controlador extends Controller {
         return view('GestionarTareas/gestionTareas', $datos);
     }
 
-    public function registro(Request $request)
-    {
+    public function registro(Request $request) {
         return view('Registro/registro');
     }
 
-    public function registroerror(Request $request)
-    {
+    public function registroerror(Request $request) {
         return view('Registro/registroerror');
     }
 
@@ -103,7 +101,7 @@ class Controlador extends Controller {
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
 
-            $rol[] = \DB::table('rol')->get();
+        $rol[] = \DB::table('rol')->get();
 
 
         $datos = [
@@ -118,27 +116,27 @@ class Controlador extends Controller {
 
         return view('Login/enviarpassword');
     }
-    
+
     public function restablecerpassword(Request $request) {
 
         return view('Login/restablecerpassword');
     }
-    
+
     public function restablecer(Request $request) {
-        
-        
+
+
         $email = $request->get('email');
         $password = $request->get('password');
-        
-        
-        
-        $correorestablecer = \DB::table('usuario')->where('email','=', $email)->get();
-        
-        if($correorestablecer){
-            
-            
-            \DB::table('usuario')->where('email','=', $email)->update([
-                
+
+
+
+        $correorestablecer = \DB::table('usuario')->where('email', '=', $email)->get();
+
+        if ($correorestablecer) {
+
+
+            \DB::table('usuario')->where('email', '=', $email)->update([
+
                 'password' => \Hash::make($password)
             ]);
         }
@@ -147,25 +145,25 @@ class Controlador extends Controller {
     }
 
     public function enviarcorreo(Request $request) {
-        
+
         $email = $request->get('email');
         $emailorigen = "proyectoadndaw@gmail.com";
-        
+
 
         $data = [
-            
+
             'email' => $email
         ];
-        
+
 
         Mail::send('Login/correoenviado', $data, function($message) {
-            
-            
+
+
             $message->to($_POST['email'], "Proyectoadn")->subject('Cambio de contraseña');
-            
+
             $message->from('proyectoadndaw@gmail.com', 'Administrador');
         });
-        
+
         return view('Login/confirmacioncorreo', $data);
     }
 

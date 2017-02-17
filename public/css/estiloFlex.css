@@ -76,7 +76,7 @@
     padding-right: 5px;
 }
 
-/* Al pasar por encima de la documentacion, se oscurece */
+/* Al pasar por encima de la documentacionzz, se oscurece */
 .documentacion:hover{
     background-color: #E0E0E0;
 }
@@ -192,4 +192,13 @@ tarea2{
     max-height: 105px;
     min-height: 105px;
 
+}
+
+.cajaAsignarTareas{
+    overflow-y: hidden;
+    min-height: 500px;
+}
+
+.margenIzqAsignarDoc{
+    margin-left: 15px;
 }
