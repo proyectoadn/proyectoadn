@@ -6,9 +6,40 @@
  */
 ?>
 
+<script>
+
+    $(function () {
+
+        $("#cambiarrol").on("click", function () {
+
+
+            document.location = "usuario";
+        });
+
+        $("#cambiarimagen").on("click", function () {
+
+            var input = $(document.createElement('input'));
+            input.attr("type", "file");
+            input.trigger('click');
+            return false;
+        });
+    });
+
+</script>
+
 <?php
 $usu = new Usuario('', '', '', '', '');
 $usu = \Session::get('u');
+
+
+if (\Session::get('rol') == 'Administrador') {
+
+    $rol = 'Usuario';
+} 
+else {
+
+    $rol = 'Administrador';
+}
 ?>
 
 <nav class="navbar navbar-default" role="navigation">
@@ -36,7 +67,7 @@ $usu = \Session::get('u');
 
             <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"> Cambiar Rol <i class="fa fa-caret-down"></i></a>
 
-            <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
+            <div class="dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
 
                 <div class="" style="width: 50%;padding-left: 20px;">
 
@@ -49,15 +80,40 @@ $usu = \Session::get('u');
 
 
             <li class="dropdown">
+
+
                 <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i class="fa fa-caret-down"></i></a>
 
-                <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
+                <div class="row dropdown-menu divdesplegableusuario">
 
-                    <div class="container" style="width: 100%; height: 200px;">
+                    <div class="divgeneralusuario">
 
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                        <div class="divcontenidousuario">
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-4 col-xs-4 imagenusuario">
+                                    <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil" class="img-circle">
+                                </div>
+
+
+                                <div class="col-md-8 col-xs-6">
+                                    <label><?php echo $usu->getNombre(); ?></label>
+                                    <p><?php echo $usu->getEmail(); ?></p>
+                                    <br>
+                                    <input type="submit" name="perfil" style="width: 100%;" value="Mi perfil" class="btn btn-primary">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="divcerrarsesion">
+
+                            <input type="submit" style="text-align: left;" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default">
+                            <input type="submit" style="position: absolute; right: 5px;" name="cerrarsesion" value="Cerrar sesion" class="btn btn-default">
+                        </div>
 
                     </div>
                 </div>

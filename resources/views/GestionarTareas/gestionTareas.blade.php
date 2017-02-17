@@ -78,14 +78,6 @@ Gestión de tareas
             });
         });
 
-        //Cuando presiona una tecla dentro del textarea del comentario pone en verde el borde, activa el boton
-        $("#textocomentario").keypress(function () {
-            $("#insertarComentario").prop("disabled", false);
-            $("#textocomentario").css('border-color', '#66afe9');
-            $("#correcto").css('visibility', 'hidden');
-
-        });
-
 
         $("#cat").on("change", function () {
 
