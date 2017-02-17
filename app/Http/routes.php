@@ -66,6 +66,17 @@ Route::get('restablecerpassword', [
     'uses' => 'Controlador@restablecerpassword'
 ]);
 
+Route::get('usuario', [
+
+    'as' => 'usuario',
+    'uses' => 'Controlador@usuario',
+]);
+
+Route::get('administrador', [
+    'as' => 'administrador',
+    'uses' => 'Controlador@administrador',
+]);
+
 
 
 
