@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Clases\Usuario;
 use Mail;
+use Crypt;
 
 class Controlador extends Controller {
 
@@ -140,8 +141,17 @@ class Controlador extends Controller {
     
     public function miperfil(Request $request) {
         
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+        
+        
+        $datos = [
+            
+            'usuario' => $usu
+        ];
+        
 
-        return view('gestionTareas/miperfil');
+        return view('GestionarTareas/miperfil', $datos);
     }
 
     public function restablecer(Request $request) {
@@ -190,10 +200,15 @@ class Controlador extends Controller {
     }
 
     public function registrar(Request $request) {
-
-        //Creo el usuario en blanco y lo recojo de la sesión
+        
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
+        
+        
+        $nombre = $request->get('nombre');
+        $apellidos = $request->get('apellidos');
+        $email = $request->get('email');
+        $password = $request->get('password');
 
         //Con estas variables creamos la fecha dia, mes y año para meterlo en la BBDD
         $hoy = getdate();
@@ -204,24 +219,28 @@ class Controlador extends Controller {
         //Hacemos el insert
         \DB::table('usuario')
                 ->insert([
-                    'nombre' => $usu->getNombre(),
-                    'apellidos' => $usu->getApellidos(),
-                    'email' => $usu->getEmail(),
-                    'password' => $usu->getPassword(),
+                    'nombre' => $nombre,
+                    'apellidos' => $apellidos,
+                    'email' => $email,
+                    'password' => Crypt::encrypt($password),
                     'created_at' => $año . '-' . $mes . '-' . $dia,
                     'updated_at' => $año . '-' . $mes . '-' . $dia
         ]);
+        
 
-        $usuario = \DB::table('usuario')->where('email', '=', $usu->getEmail())->get();
+        $usuario = \DB::table('usuario')->where('email', '=', $email)->get();
+        
+        
+        $usu = new Usuario($usuario[0]->id_usuario, $usuario[0]->nombre, $usuario[0]->apellidos, $usuario[0]->email, $usuario[0]->password);
 
 
+        
         \DB::table('cargo')
                 ->insert([
                     'id_usuario' => $usuario[0]->id_usuario,
                     'id_rol' => 7
         ]);
 
-        $usu->setId_usuario($usuario[0]->id_usuario);
         \Session::put('u', $usu);
 
 
