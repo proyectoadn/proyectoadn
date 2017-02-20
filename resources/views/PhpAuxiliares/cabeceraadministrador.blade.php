@@ -18,10 +18,7 @@
 
         $("#cambiarimagen").on("click", function () {
 
-            var input = $(document.createElement('input'));
-            input.attr("type", "file");
-            input.trigger('click');
-            return false;
+
         });
     });
 
@@ -35,8 +32,7 @@ $usu = \Session::get('u');
 if (\Session::get('rol') == 'Administrador') {
 
     $rol = 'Usuario';
-} 
-else {
+} else {
 
     $rol = 'Administrador';
 }
@@ -103,7 +99,11 @@ else {
                                     <label><?php echo $usu->getNombre(); ?></label>
                                     <p><?php echo $usu->getEmail(); ?></p>
                                     <br>
-                                    <input type="submit" name="perfil" style="width: 100%;" value="Mi perfil" class="btn btn-primary">
+                                    <form action="miperfil" method="POST">
+                                        {!! csrf_field() !!}
+                                        
+                                        <input type="submit" name="perfil" style="width: 100%;" value="Mi perfil" class="btn btn-primary">
+                                    </form>
                                 </div>
 
                             </div>
@@ -111,8 +111,13 @@ else {
 
                         <div class="divcerrarsesion">
 
-                            <input type="submit" style="text-align: left;" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default">
-                            <input type="submit" style="position: absolute; right: 5px;" name="cerrarsesion" value="Cerrar sesion" class="btn btn-default">
+                            <input type="submit" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default botoncambiarrol">
+
+                            <form action="cerrarsesion" method="POST" class="form-inline">
+                                {!! csrf_field() !!}
+
+                                <input type="submit" name="cerrarsesion" value="Cerrar sesion" class="btn btn-default botoncerrarsesion">
+                            </form>
                         </div>
 
                     </div>

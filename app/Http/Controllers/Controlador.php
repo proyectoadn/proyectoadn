@@ -86,12 +86,13 @@ class Controlador extends Controller {
         \Session::put('rol', 'Usuario');
 
         $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
+        
         for ($i = 0; $i < count($cargo); $i++) {
             $rol[] = \DB::table('rol')->where('id_rol', '=', $cargo[$i]->id_rol)->get();
         }
 
-        $datos = [
-            'roles' => $rol,
+        $datos = [ 
+           'roles' => $rol,
             'id_user' => $usu->getId_usuario()
         ];
 
@@ -105,7 +106,8 @@ class Controlador extends Controller {
 
         \Session::put('rol', 'Administrador');
 
-        $rol[] = \DB::table('rol')->get();
+        $rol = \DB::table('rol')->get();
+
 
 
         $datos = [
@@ -124,6 +126,22 @@ class Controlador extends Controller {
     public function restablecerpassword(Request $request) {
 
         return view('Login/restablecerpassword');
+    }
+    
+    public function cerrarsesion(Request $request) {
+        
+        
+        \Session::forget('u');
+        \Session::forget('rol');
+        
+
+        return view('Login/cerrarsesion');
+    }
+    
+    public function miperfil(Request $request) {
+        
+
+        return view('gestionTareas/miperfil');
     }
 
     public function restablecer(Request $request) {

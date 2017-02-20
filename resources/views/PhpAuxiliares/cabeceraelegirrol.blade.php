@@ -65,7 +65,11 @@ $usu = \Session::get('u');
 
                         <div class="divcerrarsesion">
 
-                            <input type="submit" style="position: absolute; right: 5px;" name="cerrarsesion" value="Cerrar sesion" class="btn btn-default">
+                            <form action="cerrarsesion" method="POST">
+                                {!! csrf_field() !!}
+                                
+                                <input type="submit" name="cerrarsesion" value="Cerrar sesion" class="btn btn-default botoncerrarsesion">
+                            </form>
                         </div>
 
                     </div>

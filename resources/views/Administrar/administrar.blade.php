@@ -337,9 +337,9 @@
                 <select id="carg" class='botonCargoCat form-control'>
                     <option value="-1">-Elige cargo-</option>
 
-                    @for($i=0;$i<count($roles[0]);$i++)
-                        @if($roles[0][$i]->descripcion!='Profesor')
-                            <option value="{!! $roles[0][$i]->id_rol !!}">{!! $roles[0][$i]->descripcion !!}</option>
+                    @for($i=0;$i<count($roles);$i++)
+                        @if($roles[$i]->descripcion!='Profesor')
+                            <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
                         @endif
                     @endfor
                 </select>
