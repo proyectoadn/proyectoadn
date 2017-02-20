@@ -77,9 +77,14 @@ Route::get('administrador', [
     'uses' => 'Controlador@administrador',
 ]);
 
-Route::post('asignarTareas', [
+Route::get('asignarTareas', [
     'as' => 'asignarTareas',
     'uses' => 'Controlador@asignarTareas',
+]);
+
+Route::get('activarUsuarios', [
+    'as' => 'activarUsuarios',
+    'uses' => 'Controlador@activarUsuarios',
 ]);
 
 

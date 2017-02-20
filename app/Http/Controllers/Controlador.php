@@ -30,7 +30,15 @@ class Controlador extends Controller {
     }
 
     public function asignarTareas(Request $request) {
-        return view('asignarTareas');
+
+        $rol = \DB::table('rol')->get();
+
+        $datos = [
+            'roles' => $rol,
+            //'id_user' => $usu->getId_usuario()
+        ];
+        
+        return view('Administrar/asignarTareas', $datos);
     }
 
     public function loginconfirm(Request $request) {
@@ -75,6 +83,10 @@ class Controlador extends Controller {
 
     public function registroerror(Request $request) {
         return view('Registro/registroerror');
+    }
+    
+        public function activarUsuarios(Request $request) {
+        return view('Administrar/activarUsuarios');
     }
 
     public function usuario(Request $request) {
