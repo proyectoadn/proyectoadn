@@ -29,6 +29,10 @@ class Controlador extends Controller {
         return view('Login/loginerror');
     }
 
+    public function asignarTareas(Request $request) {
+        return view('asignarTareas');
+    }
+
     public function loginconfirm(Request $request) {
         return view('Login/loginconfirm');
     }

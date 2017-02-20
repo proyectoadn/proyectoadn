@@ -361,12 +361,18 @@
                 <div class="item">
                     <b>Documentacion</b>
 
-                    <div class="row conectardivisores" value="Documentacion" id="item1"
-                         style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
-                        <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
-                            <div class="documentacion">
-                                <p>' + documentacion[i]['descripcion'] + '</p>\n\
-                                <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a></p>
+                <form action="asignarTareas" method="POST">
+                        {!! csrf_field() !!}
+                        <input type="submit" class="btn btn-primary" value="Asignar Tareas"/>
+                    </form>
+                
+                <div class="row conectardivisores" value="Documentacion" id="item1"
+                     style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
+                    
+                    <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
+                        <div class="documentacion">
+                            <p>' + documentacion[i]['descripcion'] + '</p>\n\
+                            <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a></p>
 
                                 <div class="divisorBotonTarea">
                                     <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"
