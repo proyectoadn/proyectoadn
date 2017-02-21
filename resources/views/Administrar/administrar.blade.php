@@ -250,11 +250,6 @@
                                 $('#anadirCat').append(' <label class="displayBock"> <input id="cat' + i + '" type="checkbox" value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</label>');
                             }
                         }
-                        /*      <label class="displayBock">
-                         <input type="checkbox" value="">
-                         Option 1
-                         </label>
-                         */
                     }
             ).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -360,11 +355,6 @@
             <div class="col-md-9 ">
                 <div class="item">
                     <b>Documentacion</b>
-
-                <form action="asignarTareas" method="POST">
-                        {!! csrf_field() !!}
-                        <input type="submit" class="btn btn-primary" value="Asignar Tareas"/>
-                    </form>
                 
                 <div class="row conectardivisores" value="Documentacion" id="item1"
                      style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">

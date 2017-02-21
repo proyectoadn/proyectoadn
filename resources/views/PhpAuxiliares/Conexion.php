@@ -74,12 +74,38 @@ class Conexion {
         }
         return $devolver;
     }
+    
+    function rellenar_tareas_admin($id_rol) {
+        $consult='Select * FROM documentacion WHERE id_rol='.$id_rol;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
 
     function rellenar_documentacion($id_cat, $id_rol) {
         $consult='Select * from documentacion where id_categoria='.$id_cat.' and id_rol='.$id_rol;
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+        function rellenar_usuarios($id_rol) {
+        $consult='SELECT usuario.nombre, usuario.id_usuario, usuario.apellidos FROM usuario, cargo WHERE usuario.id_usuario=cargo.id_usuario AND cargo.id_rol='.$id_rol;
+        $this->cursor = mysqli_query($this->conex, $consult);
+        
+        
         if ($this->cursor) {
             $devolver = true;
         } else{

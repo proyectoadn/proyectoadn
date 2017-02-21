@@ -211,7 +211,6 @@ Gestión de tareas
         <div class='divBotonCargoCat'>
             <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
                 <option id="categorias" value="-1">-Elige categoria-</option>
-
             </select>
         </div>
     </div>
