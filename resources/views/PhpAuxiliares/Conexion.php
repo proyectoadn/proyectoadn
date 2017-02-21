@@ -76,7 +76,8 @@ class Conexion {
     }
     
     function rellenar_tareas_admin($id_rol) {
-        $consult='Select * FROM documentacion WHERE id_rol='.$id_rol;
+      //  $consult='Select * FROM tareas,cargo WHERE cargo.id_rol='.$id_rol.' and tareas.id_usuario=cargo.id_usuario';
+        $consult='Select tarea.descripcion, tarea.id_tarea FROM tarea,documentacion WHERE tarea.id_documentacion=documentacion.id_documentacion and documentacion.id_rol='.$id_rol;
 
         $this->cursor = mysqli_query($this->conex, $consult);
 

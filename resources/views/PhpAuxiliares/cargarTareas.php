@@ -19,11 +19,9 @@ if ($conexion->conectar()) {
 
     while ($conexion->ir_Siguiente()) {
         $vector[] = [
-            'id_documentacion' => $conexion->obtener_campo('id_documentacion'),
-            'descripcion' => utf8_encode($conexion->obtener_campo('descripcion')),
-            'id_categoria' => $conexion->obtener_campo('id_categoria'),
-            'modelo' => $conexion->obtener_campo('modelo'),
-            'id_entregar' => $conexion->obtener_campo('id_entregar')
+            'id_tarea' => $conexion->obtener_campo('id_tarea'),
+            'descripcion' => utf8_encode($conexion->obtener_campo('descripcion'))
+
         ];
     }
 }

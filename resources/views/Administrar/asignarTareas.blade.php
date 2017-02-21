@@ -32,7 +32,7 @@ Administracion
                         for (var i = 0; i < tarea.length; i++) {
                             //Pinto las tareas con checkbox
                             $("#tareas").append('<label class="displayBock">\n\
-                                <input type="checkbox" value="">\n\
+                                <input type="checkbox" value="' + tarea[i]['id_tarea'] + '">\n\
                                 ' + tarea[i]['descripcion'] + '\n\
                                 </label>');
                         }
