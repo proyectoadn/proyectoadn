@@ -10,9 +10,9 @@
     <script>
 
 
-        //para borrar
         var id_rol;
         var id_doc;
+        var id_cat;
         var countCat = 0;
 
         $(function () {
@@ -104,44 +104,14 @@
 
             $("#cat").on("change", function () {
 
-                var id = $(this).val();
-                var vector = new Array();
-                vector.push(id);
-                vector.push(id_rol);
-                var idjson = JSON.stringify(vector);
-                $("#item1").html('');
-                $.post("../resources/views/PhpAuxiliares/documentacion.php", {id: idjson},
-                        function (respuesta) {
 
-                            var documentacion = JSON.parse(respuesta);
+                id_cat = $(this).val();
+                llenar_documentos();
 
-                            for (var i = 0; i < documentacion.length; i++) {
-                                $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
-                                                <div class="documentacion">\n\
-                                                    <p>' + documentacion[i]['descripcion'] + '</p>\n\
-                                                    <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
-                                                    <div class="divisorBotonTarea">\n\
-                                                        <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                            <img alt="Editar documentacion" title="Editar documentacion" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
-                                                        </button>\n\
-                                                    </div>\n\
-                                                </div>\n\
-                                            </div>');
-
-                            }
-                            //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
-                            $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
-                                                    <div class="documentacion divAniadirDoc">\n\
-                                                        <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
-                                                            <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
-                                                        </button>\n\
-                                                        </div>\n\
-                                                </div>');
-
-                        }).fail(function (jqXHR) {
-                    alert("Error de tipo " + jqXHR.status);
-                });
             });
+
+
+
             $('#editDoc').on('click', function () {
 
                 var descripcion = $('#nombreDoc').val();
@@ -149,6 +119,7 @@
                 var rol = $('#roles').val();
                 var entrega = $('#entregar').val();
                 var modelo = $('#nombreModelo').val();
+                var link = $('#linkModelo').val();
                 var update = new Array();
                 update.push(descripcion);
                 update.push(categoria);
@@ -156,16 +127,18 @@
                 update.push(entrega);
                 update.push(modelo);
                 update.push(id_doc);
+                update.push(link);
                 var vector = JSON.stringify(update);
-                console.log(vector);
 
                 $.post("../resources/views/PhpAuxiliares/actualizardocumentos.php", {datos: vector},
                         function (respuesta) {
-                            console.log(respuesta);
 
+                            llenar_documentos();
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
                 });
+
+
 
 
             });
@@ -184,19 +157,21 @@
                 var rol = $('#anadirRoles').val();
                 var entrega = $('#anadirEntregar').val();
                 var modelo = $('#anadirModelo').val();
+                var link = $('#anadirLink').val();
                 var insert = new Array();
                 insert.push(descripcion);
                 insert.push(categoria);
                 insert.push(rol);
                 insert.push(entrega);
                 insert.push(modelo);
+                insert.push(link);
                 var vector = JSON.stringify(insert);
                 console.log(vector);
 
                 $.post("../resources/views/PhpAuxiliares/anadirdocumento.php", {datos: vector},
                         function (respuesta) {
-                            console.log(respuesta);
 
+                            llenar_documentos();
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
                 });
@@ -220,6 +195,7 @@
                         $('#anadirDoc').val('');
                         $('#anadirModelo').val('');
                         $('#anadirRoles').html('');
+                        $('#anadirLink').val('');
                         for (var i = 0; i < rol.length; i++) {
                             if (rol[i]['descripcion'] != 'Profesor') {
 
@@ -268,18 +244,25 @@
                     function (respuesta) {
                         var datos = JSON.parse(respuesta);
 
-                        var documento = datos[0]['documento'];
+
                         var categorias = datos[0]['categorias'];
                         var entregar = datos[0]['entregar'];
                         var rol = datos[0]['rol'];
-
-                        $('#nombreDoc').val(documento[0]['descripcion']);
-                        $('#nombreModelo').val(documento[0]['modelo']);
+                        var nombre=datos[0]['nombre'];
+                        var link=datos[0]['link'];
+                        var id_rol=datos[0]['id_rol'];
+                        var id_entrega=datos[0]['id_entrega'];
+                        var id_categoria=datos[0]['id_categoria'];
+                        var modelo=datos[0]['modelo'];
+                        $('#nombreDoc').val(nombre);
+                        $('#nombreModelo').val(modelo);
+                        $('#linkModelo').val('');
+                        $('#linkModelo').val(link);
                         $('#roles').html('');
                         for (var i = 0; i < rol.length; i++) {
                             if (rol[i]['descripcion'] != 'Profesor') {
 
-                                if (rol[i]['id_rol'] == documento[0]['id_rol']) {
+                                if (rol[i]['id_rol'] == id_rol) {
                                     $('#roles').append('<option selected value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
 
                                 } else {
@@ -293,7 +276,7 @@
 
                         for (var i = 0; i < entregar.length; i++) {
 
-                            if (entregar[i]['id_entregar'] == documento[0]['id_entregar']) {
+                            if (entregar[i]['id_entregar'] == id_entrega) {
                                 $('#entregar').append('<option selected value="' + entregar[i]['id_entregar'] + '">' + entregar[i]['descripcion'] + '</option>');
                             } else {
 
@@ -303,7 +286,7 @@
 
                         $('#categ').html('');
                         for (var i = 0; i < categorias.length; i++) {
-                            if (categorias[i]['id_categoria'] == documento[0]['id_categoria']) {
+                            if (categorias[i]['id_categoria'] == id_categoria) {
                                 $('#categ').append('<option selected value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</option>');
                             } else {
                                 $('#categ').append('<option value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</option>');
@@ -313,6 +296,45 @@
 
                     }
             ).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        }
+
+        function llenar_documentos(){
+            var vector = new Array();
+            vector.push(id_cat);
+            vector.push(id_rol);
+            var idjson = JSON.stringify(vector);
+            $("#item1").html('');
+            $.post("../resources/views/PhpAuxiliares/documentacion.php", {id: idjson},
+                    function (respuesta) {
+
+                        var documentacion = JSON.parse(respuesta);
+
+                        for (var i = 0; i < documentacion.length; i++) {
+                            $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
+                                                <div class="documentacion">\n\
+                                                    <p>' + documentacion[i]['descripcion'] + '</p>\n\
+                                                    <p class="textotarea"><a href="'+ documentacion[i]['link'] +'">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
+                                                    <div class="divisorBotonTarea">\n\
+                                                        <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                            <img alt="Editar documentacion" title="Editar documentacion" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
+                                                        </button>\n\
+                                                    </div>\n\
+                                                </div>\n\
+                                            </div>');
+
+                        }
+                        //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
+                        $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
+                                                    <div class="documentacion divAniadirDoc">\n\
+                                                        <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
+                                                            <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
+                                                        </button>\n\
+                                                        </div>\n\
+                                                </div>');
+
+                    }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
         }

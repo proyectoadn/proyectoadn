@@ -259,30 +259,30 @@ class Conexion {
     }
 
 
-    function update_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo,$id_doc){
+    function update_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo,$id_doc,$link){
         if($id_entregar=="0"){
-            $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar=NULL,id_categoria='".$id_categoria."' where id_documentacion='".$id_doc."'";
+            $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar=NULL,id_categoria='".$id_categoria."',link='".$link."' where id_documentacion='".$id_doc."'";
 
         }
         else{
-            $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar=".$id_entregar.",id_categoria='".$id_categoria."' where id_documentacion='".$id_doc."'";
+            $query = "update documentacion set descripcion='".$descripcion."', modelo='".$modelo."',id_rol='".$id_rol."',id_entregar=".$id_entregar.",id_categoria='".$id_categoria."',link='".$link."' where id_documentacion='".$id_doc."'";
 
         }
         mysqli_query($this->conex, $query);
     }
 
-    function insertar_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo){
+    function insertar_documento($descripcion,$id_categoria,$id_rol, $id_entregar, $modelo,$link){
         if($id_entregar=="0"){
-            $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol) VALUES (?,?,?,?)";
+            $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol,link) VALUES (?,?,?,?,?)";
             $stmt = mysqli_prepare($this->conex, $query);
 
-            mysqli_stmt_bind_param($stmt, "sisi", $descripcion, $id_categoria, $modelo,$id_rol);
+            mysqli_stmt_bind_param($stmt, "sisis", $descripcion, $id_categoria, $modelo,$id_rol,$link);
         }
         else{
-            $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol,id_entregar) VALUES (?,?,?,?,?)";
+            $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol,id_entregar,link) VALUES (?,?,?,?,?,?)";
             $stmt = mysqli_prepare($this->conex, $query);
 
-            mysqli_stmt_bind_param($stmt, "sisii", $descripcion, $id_categoria, $modelo,$id_rol,$id_entregar);
+            mysqli_stmt_bind_param($stmt, "sisiis", $descripcion, $id_categoria, $modelo,$id_rol,$id_entregar,$link);
         }
         /* Ejecución de la sentencia. */
         mysqli_stmt_execute($stmt);
