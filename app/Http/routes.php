@@ -87,6 +87,12 @@ Route::get('activarUsuarios', [
     'uses' => 'Controlador@activarUsuarios',
 ]);
 
+Route::get('administrar', [
+    'as' => 'administrar',
+    'uses' => 'Controlador@administrador',
+]);
+
+
 
 
 
@@ -147,4 +153,20 @@ Route::post('miperfil', [
 
     'as' => 'miperfil',
     'uses' => 'Controlador@miperfil'
+]);
+
+Route::post('actualizarperfil', [
+
+    'as' => 'actualizarperfil',
+    'uses' => 'Controlador@actualizarperfil'
+]);
+
+Route::post('passwordperfil', [
+    'as' => 'passwordperfil',
+    'uses' => 'Controlador@passwordperfil',
+]);
+
+Route::post('cambiarpasswordperfil', [
+    'as' => 'cambiarpasswordperfil',
+    'uses' => 'Controlador@cambiarpasswordperfil',
 ]);

@@ -165,6 +165,77 @@ class Controlador extends Controller {
 
         return view('GestionarTareas/miperfil', $datos);
     }
+    
+    public function actualizarperfil(Request $request) {
+        
+        
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+        
+        
+        $nombre = $request->get('nombre');
+        $apellidos = $request->get('apellidos');
+        $email = $request->get('email');
+        
+        
+        $hoy = getdate();
+        $dia = $hoy['mday'];
+        $mes = $hoy['mon'];
+        $año = $hoy['year'];
+        
+        
+        \DB::table('usuario')->where('id_usuario', '=' , $usu->getId_usuario())->update([
+            
+            'nombre' => $nombre,
+            'apellidos' => $apellidos,
+            'email' => $email,
+            'updated_at' => $año . '-' . $mes . '-' . $dia
+            
+        ]);
+        
+        $usu->setNombre($nombre);
+        $usu->setApellidos($apellidos);
+        $usu->setEmail($email);
+        
+        \Session::put('usuario', $usu);
+        
+        $datos = [
+            
+            'usuario' => $usu
+        ];
+        
+        
+        return view('GestionarTareas/miperfilactualizado', $datos);
+    }
+    
+    public function passwordperfil(Request $request) {
+        
+        return view('GestionarTareas/cambiarpasswordperfil');
+    }
+    
+    public function cambiarpasswordperfil(Request $request) {
+        
+        
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+        
+        $contraseñaantigua = $request->get('contraseñaantigua');
+        $password = $request->get('password');
+        
+        if(\Hash::check($contraseñaantigua, $usu->getPassword())){
+            
+            
+            
+            \DB::table('usuario')->where('id_usuario','=', $usu->getId_usuario())->update([
+                
+                'password' => \Hash::make($password)
+            ]);
+        }
+        
+        
+        
+        return view('GestionarTareas/cambiarpasswordperfil');
+    }
 
     public function restablecer(Request $request) {
 
@@ -234,7 +305,7 @@ class Controlador extends Controller {
                     'nombre' => $nombre,
                     'apellidos' => $apellidos,
                     'email' => $email,
-                    'password' => Crypt::encrypt($password),
+                    'password' => \Hash::make($password),
                     'created_at' => $año . '-' . $mes . '-' . $dia,
                     'updated_at' => $año . '-' . $mes . '-' . $dia
         ]);

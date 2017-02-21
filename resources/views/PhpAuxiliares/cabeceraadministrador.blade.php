@@ -50,7 +50,7 @@ if (\Session::get('rol') == 'Administrador') {
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="login">Inicio</a>
-        <a class="navbar-brand" href="login">Administrar documentacion</a>
+        <a class="navbar-brand" href="administrar">Administrar documentacion</a>
         <a class="navbar-brand" href="asignarTareas">Asignar tareas</a>
         <a class="navbar-brand" href="activarUsuarios">Activar usuarios</a>
     </div>

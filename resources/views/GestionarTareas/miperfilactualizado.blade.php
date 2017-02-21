@@ -14,6 +14,8 @@ Login
 
 @include ('PhpAuxiliares/cabeceraadministrador')
 
+<div class="alert alert-success divperfilactualziado" >Datos actualziados correctamente</div>
+
 
 <div class="panel panel-primary divmiperfil">
 
@@ -24,7 +26,7 @@ Login
     <div class="panel-footer">
 
 
-        <form action="passwordperfil" method="POST">
+        <form action="cambiarpasswordperfil" method="POST">
             {!! csrf_field() !!}
             
 
