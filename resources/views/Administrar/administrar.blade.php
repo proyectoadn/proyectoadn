@@ -382,18 +382,7 @@
                      style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
                     
                     <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
-                        <div class="documentacion">
-                            <p>' + documentacion[i]['descripcion'] + '</p>\n\
-                            <p class="textotarea"><a href="">' + documentacion[i]['modelo'] + '</a></p>
 
-                                <div class="divisorBotonTarea">
-                                    <button class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"
-                                            data-toggle="modal" data-target="#modalModificarTarea">
-                                        <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png"
-                                             style="width: 100%; height: 100%;" class=""/>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

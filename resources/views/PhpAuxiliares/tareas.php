@@ -25,7 +25,8 @@ if($conexion->conectar()){
            'descripcion'=> utf8_encode($conexion->obtener_campo('descripcion')),
            'id'=> $conexion->obtener_campo('id_tarea'),
             'estado' =>  $conexion->obtener_campo('id_estado'),
-            'modelo' =>  $conexion->obtener_campo('modelo')
+            'modelo' =>  $conexion->obtener_campo('modelo'),
+            'link' => $conexion->obtener_campo('link')
         ];
    }
 }

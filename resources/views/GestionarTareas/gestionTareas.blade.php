@@ -101,7 +101,7 @@ Gestión de tareas
                             if (tarea[i]['estado'] == 1) {
                                 $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea">\n\
                                                     <p class="textotarea">' + tarea[i]['descripcion'] + '</p>\n\
-                                                    <p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                                    <p class="textotarea"><a href="' + tarea[i]['link'] + '">' + tarea[i]['modelo'] + '</a></p>\n\
                                                         <div class="divisorBotonTarea" style="">\n\
                                                             <button onclick="popup(this)" class="botonTarea botonX" value="' + tarea[i]['id'] + '" id="comentario" style="" data-toggle="modal" data-target="#myModal">\n\
                                                                 <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
@@ -111,7 +111,7 @@ Gestión de tareas
                             } else if (tarea[i]['estado'] == 2) {
                                 $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea">\n\
                                                     <p class="textotarea">' + tarea[i]['descripcion'] + '</p>\n\
-                                                    <p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
+                                                    <p class="textotarea"><a href="' + tarea[i]['link'] + '">' + tarea[i]['modelo'] + '</a></p>\n\
                                                         <div class="divisorBotonTarea" style="">\n\
                                                             <button onclick="popup(this)" class="botonTarea botonX" value="' + tarea[i]['id'] + '" id="comentario" style="" data-toggle="modal" data-target="#myModal">\n\
                                                                 <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
