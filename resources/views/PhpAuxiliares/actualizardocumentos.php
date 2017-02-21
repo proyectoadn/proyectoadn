@@ -18,9 +18,10 @@ $rol=$datos[2];
 $entrega=$datos[3];
 $modelo=$datos[4];
 $id_doc=$datos[5];
+$link=utf8_decode($datos[6]);
 
 if($conexion->conectar()){
-    $conexion->update_documento($descripcion,$categoria,$rol,$entrega,$modelo,$id_doc);
+    $conexion->update_documento($descripcion,$categoria,$rol,$entrega,$modelo,$id_doc,$link);
     $aux="ok";
 }
 $conexion->cerrar_Conexion2();

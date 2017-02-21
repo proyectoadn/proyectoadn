@@ -19,8 +19,17 @@ if($conexion->conectar()){
 
    while ($fila=$conexion->ir_Siguiente()) {
        $documento[]=$fila;
+       $nombre=$conexion->obtener_campo('descripcion');
+       $link=$conexion->obtener_campo('link');
+       $id_entrega=$conexion->obtener_campo('id_entregar');
+       $id_categoria=$conexion->obtener_campo('id_categoria');
+       $id_rol=$conexion->obtener_campo('id_rol');
+       $modelo=$conexion->obtener_campo('modelo');
 
    }
+
+
+
     $conexion->rellenar_todas_categorias();
 
     while ($fila=$conexion->ir_Siguiente()) {
@@ -40,7 +49,12 @@ if($conexion->conectar()){
     }
 
         $vector[]=[
-           'documento'=> $documento,
+            'id_rol'=>$id_rol,
+            'id_entrega'=>$id_entrega,
+            'id_categoria'=>$id_categoria,
+            'modelo'=>$modelo,
+            'nombre'=> utf8_encode($nombre),
+            'link'=> utf8_encode($link),
             'categorias'=>  $categorias,
             'rol'=>$roles,
             'entregar'=>$entregar

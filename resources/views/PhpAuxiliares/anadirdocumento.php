@@ -14,6 +14,7 @@ $vector=[];
 $datos = json_decode($_POST['datos']);
 
 $descripcion=utf8_decode($datos[0]);
+$link=utf8_decode($datos[5]);
 if(count($datos[1])==1){
     $categoria[]=$datos[1];
 }
@@ -29,7 +30,7 @@ $modelo=$datos[4];
 
 if($conexion->conectar()){
     for($i=0;$i<count($categoria);$i++){
-        $conexion->insertar_documento($descripcion,$categoria[$i],$rol,$entrega,$modelo);
+        $conexion->insertar_documento($descripcion,$categoria[$i],$rol,$entrega,$modelo,$link);
     }
 
     $aux="ok";

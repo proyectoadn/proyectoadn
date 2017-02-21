@@ -21,10 +21,12 @@ if($conexion->conectar()){
 
    while ($conexion->ir_Siguiente()) {
        $desc=utf8_encode($conexion->obtener_campo('descripcion'));
+       $link=utf8_encode($conexion->obtener_campo('link'));
         $vector[]=[
            'descripcion'=> $desc,
            'id'=> $conexion->obtener_campo('id_documentacion'),
-            'modelo' =>  $conexion->obtener_campo('modelo')
+            'modelo' =>  $conexion->obtener_campo('modelo'),
+            'link' =>  $link
         ];
    }
 }
