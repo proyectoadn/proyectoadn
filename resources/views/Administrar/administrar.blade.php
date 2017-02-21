@@ -382,19 +382,20 @@ Administracion
                      style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
 
                     <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
-                        
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="col-md-3 ">
-            <div class="divborrar" id="borrar">
-                <b>Borrar</b>
+            <div class="col-md-3 ">
+                <div class="divborrar" id="borrar">
+                    <b>Borrar</b>
 
 
-                <div id="item2" class="conectardivisores divborrar contenidoborrar" value="Borrar">
+                    <div id="item2" class="conectardivisores divborrar contenidoborrar" value="Borrar">
+                    </div>
                 </div>
             </div>
         </div>
