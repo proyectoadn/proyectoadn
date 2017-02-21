@@ -136,3 +136,15 @@ Route::post('restablecer', [
     'as' => 'restablecer',
     'uses' => 'Controlador@restablecer'
 ]);
+
+Route::post('cerrarsesion', [
+
+    'as' => 'cerrarsesion',
+    'uses' => 'Controlador@cerrarsesion'
+]);
+
+Route::post('miperfil', [
+
+    'as' => 'miperfil',
+    'uses' => 'Controlador@miperfil'
+]);

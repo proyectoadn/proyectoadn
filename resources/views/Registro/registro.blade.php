@@ -83,7 +83,7 @@ Elección de rol
                 <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
                 <input type="text" name="nombre" title="nombre" 
                        id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
-                       class="form-control" required> 
+                       class="form-control" required>
             </div>
 
             <!-- Input Apellidos -->  

@@ -234,3 +234,14 @@ b{
     padding-right: 15px;
     min-height: 45px;
 }
+
+.botoncambiarrol{
+    
+    float: left;
+}
+
+.botoncerrarsesion{
+    
+    position: absolute;
+    right: 5px;
+}
