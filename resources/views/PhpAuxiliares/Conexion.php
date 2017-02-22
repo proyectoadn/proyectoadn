@@ -115,6 +115,20 @@ class Conexion {
         return $devolver;
     }
 
+
+    function rellenar_usuariosActivo() {
+        $consult='SELECT * FROM usuario WHERE confirmado=0';
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function rellenar_comentario($id_tarea) {
         $consult='Select mensaje from comentario where id_tarea='.$id_tarea;
 
@@ -155,8 +169,8 @@ class Conexion {
     }
 
 
-    function rellenar_estado($consult) {
-        
+    function rellenar_estado($estado) {
+        $consult = "select * from estado where descripcion='" . $estado . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
         
         if ($this->cursor) {
@@ -191,10 +205,34 @@ class Conexion {
         return $devolver;
     }
     
-    function actualizar_estado($consult) {
-        
+    function actualizar_estado($id_estado,$id_tarea) {
+        $consult = 'update tarea set id_estado = '.$id_estado.' where id_tarea = '.$id_tarea;
         $this->cursor = mysqli_query($this->conex, $consult);
-        
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function validar_usuario($id_usuario) {
+        $consult = 'update usuario set confirmado = 1 where id_usuario = '.$id_usuario;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else{
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function denegar_usuario($id_usuario) {
+        $consult = "DELETE FROM usuario WHERE id_usuario =".$id_usuario;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
         if ($this->cursor) {
             $devolver = true;
         } else{

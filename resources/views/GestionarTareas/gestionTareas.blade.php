@@ -66,6 +66,7 @@ Gestión de tareas
 
             $.post("../resources/views/PhpAuxiliares/categorias.php", {rol: idjson},
                     function (respuesta) {
+                        console.log(respuesta);
                         var categorias = JSON.parse(respuesta);
 
                         $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
