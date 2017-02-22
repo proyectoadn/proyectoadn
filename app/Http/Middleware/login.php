@@ -32,7 +32,7 @@ class login {
                 $usuariosesion = new \Usuario($usu[0]->id_usuario, $usu[0]->nombre, $usu[0]->apellidos, $usu[0]->email, $usu[0]->password);
                 
 
-                if (!$usu[0]->confirmado) {
+                if (!$usu[0]->confirmado==1) {
 
                     return redirect('loginconfirm');
                 } 

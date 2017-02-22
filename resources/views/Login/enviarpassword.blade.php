@@ -10,7 +10,6 @@ Login
 <script src="jquery-2.1.4.js"></script>
 <script src="jquery-ui.min.js"></script>
 
-
 <div class="container">
     <div class="panel panel-primary login">
         <div class="panel-body">
