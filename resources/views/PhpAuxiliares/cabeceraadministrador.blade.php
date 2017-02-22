@@ -6,6 +6,7 @@
  */
 ?>
 
+
 <script>
 
     $(function () {
@@ -15,10 +16,10 @@
 
             document.location = "usuario";
         });
-
-        $("#cambiarimagen").on("click", function () {
-
-
+        
+        $("#archivo").change(function(){
+            
+            alert(this.files[0].mozFullPath);
         });
     });
 
@@ -74,9 +75,7 @@ if (\Session::get('rol') == 'Administrador') {
             </div>
 
 
-
             <li class="dropdown">
-
 
                 <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i class="fa fa-caret-down"></i></a>
 
@@ -91,7 +90,7 @@ if (\Session::get('rol') == 'Administrador') {
                             <div class="row">
 
                                 <div class="col-md-4 col-xs-4 imagenusuario">
-                                    <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil" class="img-circle">
+                                    <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil" data-toggle="modal" data-target="#modalimagen" class="img-circle">
                                 </div>
 
 
@@ -101,7 +100,7 @@ if (\Session::get('rol') == 'Administrador') {
                                     <br>
                                     <form action="miperfil" method="POST">
                                         {!! csrf_field() !!}
-                                        
+
                                         <input type="submit" name="perfil" style="width: 100%;" value="Mi perfil" class="btn btn-primary">
                                     </form>
                                 </div>
@@ -127,3 +126,32 @@ if (\Session::get('rol') == 'Administrador') {
         </ul>
     </div>
 </nav>
+
+<div id="modalimagen" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cambiar foto de perfil</h4>
+            </div>
+            <div class="modal-body">
+
+                <div>
+
+                    <textarea name="foto" rows="4" cols="5" class="form-control">
+                    </textarea>
+                    <br>
+                    
+                    <input type="file" name="archivo" id="archivo">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
