@@ -8,78 +8,83 @@ Administracion
 @section('js')
 <script>
 
+
     $(function () {
-        $("#categ").on("change", function () {
 
-            //Guardo el ID del combo que pulso
-            var id = $(this).val();
-            //Creo un vector para guardarlo
-            var vector = new Array();
-            //Meto el id del combo en el vector
-            vector.push(id);
-            //Lo paso
-            var idjson = JSON.stringify(vector);
+        //Filtro para la tabla
+        $('#filter').keyup(function () {
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
 
+        })
 
-            $.post("../resources/views/PhpAuxiliares/cargarTareas.php", {id: idjson},
-                    function (respuesta) {
+        $("#usuarios").html('');
+        $.post("../resources/views/PhpAuxiliares/usuariosActivar.php", {},
+                function (respuesta) {
+                    var usuarios = JSON.parse(respuesta);
 
-                        var tarea = JSON.parse(respuesta);
+                    //Elimino lo que haya en el divisor donde se pitan las tareas
+                    $("#usuarios").html('');
 
-                        //Elimino lo que haya en el divisor donde se pitan las tareas
-                        $("#tareas").html('');
+                    for (var i = 0; i < usuarios.length; i++) {
+                        //Pinto las tareas con checkbox
+                        $("#usuarios").append('<tr class="fila"><th scope="row">1</th><td>' + usuarios[i]['nombre'] + '</td><td>' + usuarios[i]['apellidos'] + '</td><td>' + usuarios[i]['email'] + '</td><td>\n\
+                                                        <div class="row divisorUsuarios">\n\
+                                                        <div class="col-md-6">\n\
+                                                        <button title="Validar usuario" onclick="validar(this)" class="botonTarea" value="' + usuarios[i]['id_usuario'] + '" id="validar"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                            <span class="glyphicon glyphicon-ok" style="width: 22px; height: 22px;"></span>\n\
+                                                        </button>\n\
+                                                        </div>\n\
+                                                        <div class="col-md-6">\n\
+                                                        <button title="Denegar usuario" onclick="denegar(this)" class="botonTarea" value="' + usuarios[i]['id_usuario'] + '" id="denegar"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                            <span class="glyphicon glyphicon-remove" style="width: 22px; height: 22px;"></span>\n\
+                                                        </button>\n\
+                                                        </div>\n\
+                                                    </div>\n\
+                                                        </td></tr>');
 
-                        for (var i = 0; i < tarea.length; i++) {
-                            //Pinto las tareas con checkbox
-                            $("#tareas").append('<label class="displayBock">\n\
-                                <input type="checkbox" value="">\n\
-                                ' + tarea[i]['descripcion'] + '\n\
-                                </label>');
-                        }
+                    }
 
-                    }).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
-            });
+                }).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
 
-        });//CIERRA ON CHANGE #CATEG
+    });
 
+    function validar(boton) {
+        var id_usuario = boton.value;
 
-        $("#tipo").on("change", function () {
-            //Guardo el ID del combo que pulso
-            var id = $(this).val();
-            //Creo un vector para guardarlo
-            var vector = new Array();
-            //Meto el id del combo en el vector
-            vector.push(id);
+        var id = JSON.stringify(id_usuario);
 
-            //Lo paso
-            var idjson = JSON.stringify(vector);
-
-            $.post("../resources/views/PhpAuxiliares/cargarUsuarios.php", {id: idjson},
-                    function (respuesta) {
-
-                        var tarea = JSON.parse(respuesta);
-
-                        //Elimino lo que haya en el divisor donde se pitan los usuarios
-                        $("#usuarios").html('');
-
-                        for (var i = 0; i < tarea.length; i++) {
-                            //Pinto los usuarios con checkboxes
-                            $("#usuarios").append('<label class="displayBock">\n\
-                                <input value="' + tarea[i]['id_usuario'] + '" type="checkbox" value="">\n\
-                                ' + tarea[i]['nombre'] + ' ' + tarea[i]['apellidos'] + '\n\
-                                </label>');
-                        }
-
-                    }).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
-            });
-        });//CIERRA ON CHANGE #TIPo
+        $.post("../resources/views/PhpAuxiliares/validarUsuario.php", {id: id},
+                function (respuesta) {
 
 
-    });//CIERRA EL FUNCTION GENERAL
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+
+    }
+
+    function denegar(boton) {
+        var id_usuario = boton.value;
+
+        var id = JSON.stringify(id_usuario);
+
+        $.post("../resources/views/PhpAuxiliares/denegarUsuario.php", {id: id},
+                function (respuesta) {
 
 
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+
+    }
 
 </script>
 
@@ -91,36 +96,38 @@ Administracion
 @include ('PhpAuxiliares/cabeceraadministrador')
 
 <div class="contenedorPrincipal">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
+    <div class="cargoCat" style="width: 50%;">
+        <div class="row">
+            <div class="col-md-push-1 col-md-1" style="padding: 7px;">
+                <label class="letrasblancas">Filtro</label>
+            </div>
+            
+            <div class="col-md-push-1 col-md-10">
+                <input id="filter" type="text" class="form-control" placeholder="Filtro tabla..."/>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    <div class="form-group">
+        <table class="tanle table-hover letrasblancas tablaUsuarios">
+            <thead>
+                <tr>
+                    <th class="">#</th>
+                    <th class="centrarCabeceras">Nombre</th>
+                    <th class="centrarCabeceras">Apellidos</th>
+                    <th class="centrarCabeceras">Email</th>
+                    <th class="centrarCabeceras">Opciones</th>
+                </tr>
+            </thead>
+            <tbody id="usuarios" class="searchable">
+
+            </tbody>
+        </table>
+    </div>
 
 
 

@@ -60,6 +60,8 @@ Route::get('enviarcorreo', [
     'uses' => 'Controlador@enviarcorreo'
 ]);
 
+
+
 Route::get('restablecerpassword', [
 
     'as' => 'restablecerpassword',
@@ -135,6 +137,12 @@ Route::post('enviarcorreo', [
 
     'as' => 'enviarcorreo',
     'uses' => 'Controlador@enviarcorreo'
+]);
+
+Route::post('enviarconfirm', [
+
+    'as' => 'enviarconfirm',
+    'uses' => 'Controlador@enviarconfirm'
 ]);
 
 Route::post('restablecer', [

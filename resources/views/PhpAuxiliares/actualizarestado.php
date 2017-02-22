@@ -17,18 +17,13 @@ $estado = json_decode($_POST['estadoactual']);
 
 
 if ($conexion->conectar()) {
-
-    $consult = "select * from estado where descripcion='" . $estado . "'";
     
-
-    
-    $id_estado = $conexion->rellenar_estado($consult);
+    $conexion->rellenar_estado($estado);
     $conexion->ir_Siguiente();
     $idestado = $conexion->obtener_campo('id_estado');
     
     
-    $consult = 'update tarea set id_estado = '.$idestado.' where id_tarea = '.$id_tarea;
-    $actualizado = $conexion->actualizar_estado($consult);
+    $actualizado = $conexion->actualizar_estado($idestado,$id_tarea);
     
     $conexion->cerrar_Conexion();
     

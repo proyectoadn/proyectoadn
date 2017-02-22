@@ -10,6 +10,8 @@
 <script>
 
     $(function () {
+        
+        $("#archivo").val('');
 
         $("#cambiarrol").on("click", function () {
 
@@ -19,8 +21,9 @@
         
         $("#archivo").change(function(){
             
-            alert(this.files[0].mozFullPath);
+            alert($(this).files[0].name);
         });
+        
     });
 
 </script>
@@ -144,7 +147,7 @@ if (\Session::get('rol') == 'Administrador') {
                     </textarea>
                     <br>
                     
-                    <input type="file" name="archivo" id="archivo">
+                    <input type="file" name="archivo" id="archivo" value="prueba">
                 </div>
             </div>
             <div class="modal-footer">

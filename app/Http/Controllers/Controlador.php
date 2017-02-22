@@ -282,6 +282,28 @@ class Controlador extends Controller {
         return view('Login/confirmacioncorreo', $data);
     }
 
+    public function enviarconfirm(Request $request) {
+
+        $email = $request->get('email');
+        $emailorigen = "proyectoadndaw@gmail.com";
+
+        $data = [
+
+            'email' => $email
+        ];
+
+
+        Mail::send('Login/correoenviado', $data, function($message) {
+
+
+            $message->to($_POST['email'], "Proyectoadn")->subject('Cambio de contraseña');
+
+            $message->from('proyectoadndaw@gmail.com', 'Administrador');
+        });
+
+        return view('Login/confirmacioncorreo', $data);
+    }
+
     public function registrar(Request $request) {
         
         $usu = new Usuario('', '', '', '', '');

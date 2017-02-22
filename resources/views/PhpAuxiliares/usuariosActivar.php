@@ -12,17 +12,16 @@ require_once 'Conexion.php';
 
 $conexion = new Conexion();
 $vector = [];
-$id = json_decode($_POST['id']);
-$id_rol = $id[0];
 
 
 if ($conexion->conectar()) {
-    $conexion->rellenar_usuarios($id_rol);
+    $conexion->rellenar_usuariosActivo();
 
     while ($conexion->ir_Siguiente()) {
         $vector[] = [
             'nombre' => utf8_encode($conexion->obtener_campo('nombre')),
             'apellidos' => utf8_encode($conexion->obtener_campo('apellidos')),
+            'email' => utf8_encode($conexion->obtener_campo('email')),
             'id_usuario' => utf8_encode($conexion->obtener_campo('id_usuario'))
             
         ];
