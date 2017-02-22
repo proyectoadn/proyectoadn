@@ -6,9 +6,12 @@ Administracion
 
 
 @section('js')
-<script>
 
+
+<script>
     $(function () {
+
+
         $("#categ").on("change", function () {
 
             //Guardo el ID del combo que pulso
@@ -32,10 +35,16 @@ Administracion
                         for (var i = 0; i < tarea.length; i++) {
                             //Pinto las tareas con checkbox
                             $("#tareas").append('<label class="displayBock">\n\
-                                <input type="checkbox" value="' + tarea[i]['id_tarea'] + '">\n\
-                                ' + tarea[i]['descripcion'] + '\n\
-                                </label>');
+                                                    <input class="seleccionarTareas" type="checkbox" value="' + tarea[i]['id_tarea'] + '">\n\
+                                                    ' + tarea[i]['descripcion'] + '\n\
+                                                </label>');
                         }
+
+                        //Pinto dinamicamente el seleccionar todo, fuera del for.
+                        $("#tareas").append('<label class="displayBock" style="margin-top: 10px;">\n\
+                                                <input type="checkbox" onclick="seleccionarTareas(this);"/>\n\
+                                                Seleccionar todo\n\
+                                            </label>');
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -59,18 +68,22 @@ Administracion
                     function (respuesta) {
 
                         var tarea = JSON.parse(respuesta);
-                        
+
                         //Elimino lo que haya en el divisor donde se pitan los usuarios
                         $("#usuarios").html('');
 
+                        $("#usuarios").append('<select style="margin-left: 15px;" id="selectUsuarios" class="selectpicker botonCargoCat form-control">');
+
                         for (var i = 0; i < tarea.length; i++) {
                             //Pinto los usuarios con checkboxes
-                            $("#usuarios").append('<label class="displayBock" style="margin-left: 17px;">\n\
-                                <input value="' + tarea[i]['id_usuario'] + '" type="checkbox" value="">\n\
-                                ' + tarea[i]['nombre'] + ' ' + tarea[i]['apellidos'] + '\n\
-                                </label>');
+
+                            $(".selectpicker").append('<option value="' + tarea[i]['id_usuario'] + '">\n\
+                                                        ' + tarea[i]['nombre'] + ' ' + tarea[i]['apellidos'] + '\
+                                                        </option>');
+
                         }
 
+                        $("#usuarios").append('</select>');
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
@@ -90,18 +103,9 @@ Administracion
 
 @include ('PhpAuxiliares/cabeceraadministrador')
 
+
 <div class="contenedorPrincipal">
     <!--div que contiene los cargos y las categorias-->
-    <div class="cargoCat">
-        <div class='divBotonCargoCat'>
-            <select id="categ" class='botonCargoCat form-control'>
-                <option value="-1">-Elige cargo-</option>
-                @for($i=0;$i<count($roles);$i++)
-                    <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
-                    @endfor
-            </select>
-        </div>
-    </div>
 
     <div class='limpiar'></div>
     <!-- DIVISOR ROW DE TODO -->
@@ -110,7 +114,21 @@ Administracion
         <div class="col-md-6 ">
             <div class="item cajaAsignarTareas">
                 <b>Tareas</b>
+
+                <div class="cargoCat">
+                    <div class='divBotonCargoCat' style="width: auto;">
+                        <select id="categ" class='botonCargoCat form-control'>
+                            <option value="-1">-Elige cargo-</option>
+                            @for($i=0;$i<count($roles);$i++)
+                                <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
+                                @endfor
+                        </select>
+                    </div>
+                </div>
+
+
                 <div id="tareas" class="checkbox margenIzqAsignarDoc">
+
 
                 </div>
             </div>
@@ -122,6 +140,7 @@ Administracion
         <div class="col-md-6 ">
             <!-- Lo pinta de gris y le pone un alto minimo -->
             <div class="item cajaAsignarTareas">
+
                 <!-- Pongo clase row para dividirlo en la mitad, usuarios y categorias -->
                 <div class="row">
 
@@ -134,7 +153,7 @@ Administracion
                                 <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
                                 @endfor
                         </select>
-                        <div id="usuarios" class="checkbox">
+                        <div id="usuarios">
 
                         </div>
                     </div>
@@ -145,10 +164,16 @@ Administracion
                         <div class="checkbox">
                             @for($i=0;$i<count($roles);$i++)
                                 <label class="displayBock">
-                                    <input value="{!! $roles[$i]->id_rol !!}" type="checkbox" value="">
+                                    <input class="seleccionarRoles" value="{!! $roles[$i]->id_rol !!}" type="checkbox" value="">
                                     {!! $roles[$i]->descripcion !!}
                                 </label>
                                 @endfor
+
+                                <!--SELECCIONAR TODOS-->
+                                <label class="displayBock" style="margin-top: 10px;">
+                                    <input type="checkbox" onclick="seleccionarRoles(this);"/> 
+                                    Seleccionar todo
+                                </label>
 
                         </div>
                     </div>
