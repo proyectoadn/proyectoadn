@@ -496,29 +496,6 @@ Administracion
                         <input name="linkModelo" id="linkModelo" type="text" class="form-control" id="nombreTarea"
                                value="">
                     </div>
-
-                    <div class="col-md-4">
-                        <h4>Roles</h4>
-                        <select id="anadirRoles" class="form-control">
-                        </select>
-                    </div>
-
-                    <div class="col-md-4">
-                        <h4>Entrega</h4>
-                        <select id="anadirEntregar" class="form-control">
-                        </select>
-                    </div>
-
-                    <div class="col-md-12">
-                        <label for="nombreModelo">Modelo</label>
-                        <input name="nombreModelo" id="anadirModelo" type="text" class="form-control"
-                               id="nombreTarea" value="">
-                        <br>
-
-                        <label for="linkModelo">Link del modelo</label>
-                        <input name="linkModelo" id="anadirLink" type="text" class="form-control" id="nombreTarea"
-                               value="">
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
