@@ -11,6 +11,8 @@ Administracion
 <script>
 
 
+
+
     var id_rol;
     var id_doc;
     var id_cat;
@@ -21,6 +23,35 @@ Administracion
     var alto;
 
     $(function () {
+
+        //Funcion que actualiza el textarea de los comentarios de los administradores cada 15segundos
+        //Lo carga desde la tabla comentarioadmin,
+        function actualizarComentario() {
+            $.post("../resources/views/PhpAuxiliares/actualizarComentarioAdmin.php", {},
+                    function (response) {
+
+                        //Saca el comentario 
+                        var mensaje = JSON.parse(response);
+
+                        //seleccionamos el textarea con javaScript
+                        var textarea = document.getElementById("textoComenAdmin");
+
+                        //Si tiene focus el textarea no hace nada
+                        //Si no lo tiene actualiza el mensaje (por si lo ha cambiado otro admin)
+                        if (document.activeElement === textarea) {
+                            //No hace nada
+                        } else {
+                            $("#textoComenAdmin").val(mensaje);
+                        }
+                        //Lo actualiza cada 15 segundos
+                        setTimeout(actualizarComentario, 15000);
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        }
+        //Llama a los 15 segundos de iniciar la página de administrar
+        //Y entra en bucle cada 15 seg actualiza si no tiene el focus
+        setTimeout(actualizarComentario, 15000);
 
         $("#item1,#item2").sortable({
             connectWith: ".conectardivisores",
@@ -145,6 +176,50 @@ Administracion
 
 
 
+
+        });
+
+
+        //Cuando haces click en el botón de guardar de los comentarios
+        //de los administradores
+        $('#comenAdmin').on('click', function () {
+
+            //Cojo el texto que tiene el textarea de los comentarios de los administradores
+            var descripcion = $('#textoComenAdmin').val();
+            //Traduzco a json
+            var datos = JSON.stringify(descripcion);
+
+            //Select con php auxiliar del comentario
+            $.post("../resources/views/PhpAuxiliares/comentarioAdmin.php", {datos: datos},
+                    function (respuesta) {
+                        //Pinto el comentario (siempre va a haber solo 1)
+                        //En el campo de mensaje de la tabla comentarioadmin
+                        $('#textoComenAdmin').html = ("datos[0]['comentario']");
+
+                        //Muestro el divisor de guardado
+                        document.getElementById("guardado").style.display = "inline";
+                        //Pongo los bordes de arriba y abajo verdes
+                        document.getElementById("textoComenAdmin").style.borderTop = "solid 1px green";
+                        document.getElementById("textoComenAdmin").style.borderBottom = "solid 1px green";
+                        //Pongo el fondo con un verde claro
+                        document.getElementById("textoComenAdmin").style.backgroundColor  = "#ACFF9F";
+                 
+                        //A los 2.5 segundos se ejecutan estos comandos
+                        setTimeout(function () {
+                            //Pongo los bordes como estaban, negros arriba y abajo
+                            document.getElementById("textoComenAdmin").style.borderTop = "solid 1px";
+                            document.getElementById("textoComenAdmin").style.borderBottom = "solid 1px";
+                            //Oculto el divisor de guardado
+                            document.getElementById("guardado").style.display = "none";
+                            //vuelvo a poner el textarea con fondo blanco
+                            document.getElementById("textoComenAdmin").style.backgroundColor  = "white";
+                        }, 2500);
+
+
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
 
         });
 
@@ -423,7 +498,7 @@ Administracion
 
     <div class="row">
 
-        <div class="col-md-9 ">
+        <div class="col-md-9 " >
             <div class="item">
                 <b>Documentacion</b>
 
@@ -447,6 +522,20 @@ Administracion
                 </div>
             </div>
         </div>
+
+        <div class="col-md-3">
+            <div class="divborrar" style='margin-top: 15px;'>
+                <b>Comentarios</b>
+                <textarea id="textoComenAdmin" value=""
+                          style="padding: 7px; height: 150px; border-left: none; border-top: solid 1px; border-bottom: solid 1px;">{!! $comentarioAdmin !!}</textarea>
+
+                <div id="guardado" style="color: green; padding: 8px; display: none; width: 70%; float: left;">Comentario guardado</div>
+
+                <button id="comenAdmin" class="btn btn-primary" style="margin: 5px; float: right;">Guardar</button>
+
+            </div>
+        </div>
+
     </div>
 </div>
 </div>
