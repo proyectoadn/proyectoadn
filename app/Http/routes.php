@@ -94,6 +94,11 @@ Route::get('administrar', [
     'uses' => 'Controlador@administrador',
 ]);
 
+Route::get('activar', [
+    'as' => 'activar',
+    'uses' => 'Controlador@activar',
+]);
+
 
 
 

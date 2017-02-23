@@ -28,6 +28,11 @@ i{
     width:50%;
 }
 
+FORM.tr
+{
+    display:table-row;
+}
+
 textarea{
 
     width: 100%;
