@@ -113,6 +113,7 @@
 
         <div class="form-group">
             <form action="enviarconfirm" method="POST">
+                {!! csrf_field() !!}
                 <table class="tanle table-hover letrasblancas tablaUsuarios">
                     <thead>
                     <tr>
