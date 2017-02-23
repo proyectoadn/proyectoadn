@@ -324,6 +324,7 @@ class Controlador extends Controller {
 
             'confirmado' => 1
         ]);
+        return view('Login/usuarioActivado');
     }
 
 
