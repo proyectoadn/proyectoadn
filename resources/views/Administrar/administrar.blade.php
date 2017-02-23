@@ -180,19 +180,25 @@ Administracion
         });
 
 
-        //DOCUMENTOS ADMINISTRADORES
+        //Cuando haces click en el botón de guardar de los comentarios
+        //de los administradores
         $('#comenAdmin').on('click', function () {
 
+            //Cojo el texto que tiene el textarea de los comentarios de los administradores
             var descripcion = $('#textoComenAdmin').val();
-
+            //Traduzco a json
             var datos = JSON.stringify(descripcion);
 
-
+            //Select con php auxiliar del comentario
             $.post("../resources/views/PhpAuxiliares/comentarioAdmin.php", {datos: datos},
                     function (respuesta) {
-
+                        //Pinto el comentario (siempre va a haber solo 1)
+                        //En el campo de mensaje de la tabla comentarioadmin
                         $('#textoComenAdmin').html = ("datos[0]['comentario']");
-                        //   setTimeout(actualizarComentario, 15000);
+                        
+                        
+                        
+                        
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
             });
@@ -504,7 +510,8 @@ Administracion
                 <b>Comentarios</b>
                 <textarea id="textoComenAdmin" value=""
                           style="padding: 7px; height: 150px; border-left: none; border-top: solid 1px; border-bottom: solid 1px;">{!! $comentarioAdmin !!}</textarea>
-
+                          
+                          <div style="padding: 7px;width: 50%; background-color: red; float: left;">sdasdasd</div>
                 <button id="comenAdmin" class="btn btn-primary" style="margin: 5px; float: right;">Guardar</button>
 
             </div>
