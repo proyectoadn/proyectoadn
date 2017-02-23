@@ -10,7 +10,12 @@
 <script>
 
     $(function () {
-        
+
+        var ejex;
+        var ejey;
+        var ancho;
+        var alto;
+
         $("#archivo").val('');
 
         $("#cambiarrol").on("click", function () {
@@ -18,12 +23,57 @@
 
             document.location = "usuario";
         });
-        
-        $("#archivo").change(function(){
-            
-            alert($(this).files[0].name);
+
+        $("#archivo").change(function () {
+
+            //alert($(this).files[0].name);
+
+
+            //$("#fotoperfil").html('<img src="Imagenes/foto.jpg" id="prueba" class="imagenperfil">');
         });
-        
+
+
+        $("#prueba").Jcrop({
+            onSelect: showCoords,
+            setSelect: [150, 150, 50, 50],
+            minSize: [150, 155, 50, 50],
+            maxSize: [150, 155, 50, 50],
+            bgColor: 'black',
+            bgOpacity: .4,
+        });
+
+        function showCoords(c) {
+
+            ejex = c.x;
+            ejey = c.y;
+            ancho = c.w;
+            alto = c.h;
+
+        }
+
+        function recortarfoto(c)
+        {
+
+
+            var cordenadas = new Array();
+            cordenadas.push(ejex);
+            cordenadas.push(ejey);
+            cordenadas.push(ancho);
+            cordenadas.push(alto);
+            var datos = JSON.stringify(cordenadas);
+
+
+            $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
+                    function (respuesta) {
+
+                        alert(respuesta);
+                    }
+            ).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        }
+
+
     });
 
 </script>
@@ -141,15 +191,14 @@ if (\Session::get('rol') == 'Administrador') {
             </div>
             <div class="modal-body">
 
-                <div>
-
-                    <textarea name="foto" rows="4" cols="5" class="form-control">
-                    </textarea>
-                    <br>
-                    
-                    <input type="file" name="archivo" id="archivo" value="prueba">
+                <div class="" id="fotoperfil">
+                    <img src="Imagenes/foto.jpg" id="prueba" class="imagenperfil">
                 </div>
+                <br>
+
+                <input type="file" name="archivo" id="archivo" value="prueba">
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
