@@ -53,11 +53,20 @@
             
             var imagen = $('#prueba');
             
-            alert(document.getElementById("prueba").naturalWidth);
-            alert(document.getElementById("prueba").naturalHeight);
+            var anchoreal = document.getElementById("prueba").naturalWidth;
+            var altoreal = document.getElementById("prueba").naturalHeight;
             
-            alert(document.getElementById("prueba").width);
-            alert(document.getElementById("prueba").height);
+            var anchoenpantalla = document.getElementById("prueba").width;
+            var altoenpantalla = document.getElementById("prueba").height;
+            
+            
+            
+            var escala = anchoreal/anchoenpantalla;
+            
+            var xreal = escala*anchoenpantalla;
+            var yreal = escala*altoenpantalla;
+            
+            
             
             
 
