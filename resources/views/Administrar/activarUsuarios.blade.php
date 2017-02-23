@@ -8,12 +8,23 @@
 @section('js')
     <script>
 
-        $(function () {
 
-            $("#usuarios").html('');
-            $.post("../resources/views/PhpAuxiliares/usuariosActivar.php", {},
-                    function (respuesta) {
-                        var usuarios = JSON.parse(respuesta);
+    $(function () {
+
+        //Filtro para la tabla
+        $('#filter').keyup(function () {
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+        $("#usuarios").html('');
+        $.post("../resources/views/PhpAuxiliares/usuariosActivar.php", {},
+                function (respuesta) {
+                    var usuarios = JSON.parse(respuesta);
 
                         //Elimino lo que haya en el divisor donde se pitan las tareas
                         $("#usuarios").html('');
@@ -84,11 +95,26 @@
 
     @include ('PhpAuxiliares/cabeceraadministrador')
 
-    <div class="contenedorPrincipal">
-        <form action="enviarconfirm" method="POST">
-            {!! csrf_field() !!}
-            <table class="table table-hover letrasblancas tablaUsuarios">
-                <thead>
+<div class="contenedorPrincipal">
+
+    <div class="cargoCat" style="width: 50%;">
+        <div class="row">
+            <div class="col-md-push-1 col-md-1" style="padding: 7px;">
+                <label class="letrasblancas">Filtro</label>
+            </div>
+
+            <div class="col-md-push-1 col-md-10">
+                <input id="filter" type="text" class="form-control" placeholder="Filtro tabla..."/>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="form-group">
+        <table class="tanle table-hover letrasblancas tablaUsuarios">
+            <thead>
                 <tr>
                     <th class="">#</th>
                     <th class="centrarCabeceras">Nombre</th>
@@ -96,28 +122,11 @@
                     <th class="centrarCabeceras">Email</th>
                     <th class="centrarCabeceras">Opciones</th>
                 </tr>
-                </thead>
-                <tbody id="usuarios">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-            </table>
-        </form>
+            </thead>
+            <tbody id="usuarios" class="searchable">
+
+            </tbody>
+        </table>
     </div>
 
 

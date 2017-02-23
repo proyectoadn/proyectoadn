@@ -4,8 +4,9 @@
 Administracion
 @endsection
 
-
 @section('js')
+
+
 
 <script>
 
@@ -14,6 +15,10 @@ Administracion
     var id_doc;
     var id_cat;
     var countCat = 0;
+    var ejex;
+    var ejey;
+    var ancho;
+    var alto;
 
     $(function () {
 
@@ -178,7 +183,51 @@ Administracion
 
 
         });
+
+
+
+        $("#prueba").Jcrop({
+            onSelect: showCoords,
+            setSelect: [150, 150, 50, 50],
+            minSize: [150, 155, 50, 50],
+            maxSize: [150, 155, 50, 50],
+            bgColor: 'black',
+            bgOpacity: .4,
+        });
+
+        function showCoords(c) {
+
+            ejex = c.x;
+            ejey = c.y;
+            ancho = c.w;
+            alto = c.h;
+
+        }
+
+
     });
+
+    function recortarfoto(c)
+    {
+
+
+        var cordenadas = new Array();
+        cordenadas.push(ejex);
+        cordenadas.push(ejey);
+        cordenadas.push(ancho);
+        cordenadas.push(alto);
+        var datos = JSON.stringify(cordenadas);
+
+
+        $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
+                function (respuesta) {
+
+                    alert(respuesta);
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+    }
 
     function popupAdd(boton) {
 
@@ -221,7 +270,7 @@ Administracion
                     for (var i = 0; i < categorias.length; i++) {
                         countCat++;
                         if (categorias[i]['id_categoria'] == $("#cat").val()) {
-                            $('#anadirCat').append(' <label class="displayBock"> <input id="cat' + i + '" checked type="checkbox" value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</label>');
+                            $('#anadirCat').append(' <label class="displayBock"> <input  id="cat' + i + '" checked type="checkbox" value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</label>');
                         } else {
                             $('#anadirCat').append(' <label class="displayBock"> <input id="cat' + i + '" type="checkbox" value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</label>');
                         }
@@ -400,6 +449,7 @@ Administracion
         </div>
     </div>
 </div>
+</div>
 
 <div class="alert alert-danger borrardocumentacion">
 
@@ -413,40 +463,62 @@ Administracion
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <div class="row">
-                    <form>
-                        <div class="col-md-12" style="margin-bottom: 10px;">
-                            <label for="nombreDoc">Descripción Documentación</label>
-                            <input name="nombreDoc" id="nombreDoc" type="text" required="required" class="form-control" id="nombreTarea"
-                                   value="">
-                        </div>
+                    <div class="col-md-12" style="margin-bottom: 10px;">
+                        <label for="nombreDoc">Descripción Documentación</label>
+                        <input name="nombreDoc" id="nombreDoc" type="text" class="form-control" id="nombreTarea"
+                               value="">
+                    </div>
 
-                        <div class="col-md-4" style="margin-bottom: 10px;">
-                            <h4>Categorias</h4>
-                            <select  id="categ" class="form-control">
-                            </select>
-                        </div>
+                    <div class="col-md-4" style="margin-bottom: 10px;">
+                        <h4>Categorias</h4>
+                        <select id="categ" class="form-control">
+                        </select>
+                    </div>
 
-                        <div class="col-md-4">
-                            <h4>Roles</h4>
-                            <select id="roles" class="form-control">
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Entrega</h4>
-                            <select id="entregar" class="form-control">
-                            </select>
-                        </div>
+                    <div class="col-md-4">
+                        <h4>Roles</h4>
+                        <select id="roles" class="form-control">
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Entrega</h4>
+                        <select id="entregar" class="form-control">
+                        </select>
+                    </div>
 
-                        <div class="col-md-12">
-                            <label for="nombreModelo">Modelo</label>
-                            <input required name="nombreModelo" id="nombreModelo" type="text" class="form-control"
-                                   id="nombreTarea" value="">
-                            <br>
+                    <div class="col-md-12">
+                        <label for="nombreModelo">Modelo</label>
+                        <input name="nombreModelo" id="nombreModelo" type="text" class="form-control"
+                               id="nombreTarea" value="">
+                        <br>
 
-                            <label for="linkModelo">Link del modelo</label>
-                            <input required name="linkModelo" id="linkModelo" type="text" class="form-control" id="nombreTarea"
-                                   value="">
-                        </div>
+                        <label for="linkModelo">Link del modelo</label>
+                        <input name="linkModelo" id="linkModelo" type="text" class="form-control" id="nombreTarea"
+                               value="">
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4>Roles</h4>
+                        <select id="anadirRoles" class="form-control">
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4>Entrega</h4>
+                        <select id="anadirEntregar" class="form-control">
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="nombreModelo">Modelo</label>
+                        <input name="nombreModelo" id="anadirModelo" type="text" class="form-control"
+                               id="nombreTarea" value="">
+                        <br>
+
+                        <label for="linkModelo">Link del modelo</label>
+                        <input name="linkModelo" id="anadirLink" type="text" class="form-control" id="nombreTarea"
+                               value="">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -456,7 +528,6 @@ Administracion
                 <button type="button" class="btn btn-primary" data-dismiss="modal">
                     Cancelar
                 </button>
-            </form>
             </div>
         </div>
     </div>
@@ -473,7 +544,7 @@ Administracion
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
                         <label for="nombreDoc">Descripción Documentación</label>
-                        <input required="true" name="nombreDoc" id="anadirDoc" type="text" class="form-control" id="nombreTarea"
+                        <input name="nombreDoc" id="anadirDoc" type="text" class="form-control" id="nombreTarea"
                                value="">
                     </div>
                     <div class="col-md-4" style="margin-bottom: 10px;">
@@ -510,7 +581,7 @@ Administracion
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="addDoc" onclick="validar()" class="btn btn-primary" id="anadirDocumentacion" data-dismiss="modal">
+                <button id="addDoc" class="btn btn-primary" id="anadirDocumentacion" data-dismiss="modal">
                     Aceptar
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">
@@ -526,6 +597,9 @@ Administracion
 @endsection
 
 @section('footer')
+
+<img src="Imagenes/foto.jpg" id="prueba">
+<input type="button" name="boton" id="boton" value="Recortar" onclick="recortarfoto()">
 
 <div class="divfooter">
 

@@ -9,6 +9,15 @@
         <script src="assets/js/jquery.min.js"></script>
         <script src="jquery-2.1.4.js"></script>
         <script src="jquery-ui.min.js"></script>
+        
+        
+        
+
+        <link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css"/>
+        <script src="js/jquery.Jcrop.min.js"></script>
+        
+        
+        
 
         <script src="assets/js/bootstrap.min.js"></script>
 
