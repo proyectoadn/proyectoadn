@@ -1,20 +1,26 @@
-<?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery-ui.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css"/>
+<script src="js/jquery.Jcrop.min.js"></script>
 
 <script>
 
+    var ejex;
+    var ejey;
+    var ancho;
+    var alto;
+
     $(function () {
 
-        var ejex;
-        var ejey;
-        var ancho;
-        var alto;
+
 
         $("#archivo").val('');
 
@@ -24,23 +30,8 @@
             document.location = "usuario";
         });
 
-        $("#archivo").change(function () {
-
-            //alert($(this).files[0].name);
 
 
-            //$("#fotoperfil").html('<img src="Imagenes/foto.jpg" id="prueba" class="imagenperfil">');
-        });
-
-
-        $("#prueba").Jcrop({
-            onSelect: showCoords,
-            setSelect: [150, 150, 50, 50],
-            minSize: [150, 155, 50, 50],
-            maxSize: [150, 155, 50, 50],
-            bgColor: 'black',
-            bgOpacity: .4,
-        });
 
         function showCoords(c) {
 
@@ -49,33 +40,64 @@
             ancho = c.w;
             alto = c.h;
 
+
         }
-
-        function recortarfoto(c)
-        {
-
-
-            var cordenadas = new Array();
-            cordenadas.push(ejex);
-            cordenadas.push(ejey);
-            cordenadas.push(ancho);
-            cordenadas.push(alto);
-            var datos = JSON.stringify(cordenadas);
+        
+        
+        
 
 
-            $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
-                    function (respuesta) {
+        $("#archivo").change(function () {
 
-                        alert(respuesta);
-                    }
-            ).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
+            $("#fotoperfil").html('<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">');
+            
+            var imagen = $('#prueba');
+            
+            alert(document.getElementById("prueba").naturalWidth);
+            alert(document.getElementById("prueba").naturalHeight);
+            
+            alert(document.getElementById("prueba").width);
+            alert(document.getElementById("prueba").height);
+            
+            
+
+            $("#prueba").Jcrop({
+                onSelect: showCoords,
+                setSelect: [150, 150, 50, 50]
             });
-        }
+
+        });
 
 
     });
 
+    function recortarfoto(c)
+    {
+
+
+
+
+        var cordenadas = new Array();
+        cordenadas.push(ejex);
+        cordenadas.push(ejey);
+        cordenadas.push(ancho);
+        cordenadas.push(alto);
+        var datos = JSON.stringify(cordenadas);
+
+
+        $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
+                function (respuesta) {
+
+                    alert(respuesta);
+
+
+
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+
+    }
 </script>
 
 <?php
@@ -142,7 +164,7 @@ if (\Session::get('rol') == 'Administrador') {
 
                             <div class="row">
 
-                                <div class="col-md-4 col-xs-4 imagenusuario">
+                                <div class="col-md-4 col-xs-4 imagenusuario" id="imagen">
                                     <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil" data-toggle="modal" data-target="#modalimagen" class="img-circle">
                                 </div>
 
@@ -185,21 +207,26 @@ if (\Session::get('rol') == 'Administrador') {
 
         <!-- Modal content-->
         <div class="modal-content">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Cambiar foto de perfil</h4>
             </div>
-            <div class="modal-body">
 
-                <div class="" id="fotoperfil">
-                    <img src="Imagenes/foto.jpg" id="prueba" class="imagenperfil">
+
+            <div class="modal-body" style="width: 100%;">
+
+                <div id="fotoperfil">
+                    <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->
                 </div>
-                <br>
 
                 <input type="file" name="archivo" id="archivo" value="prueba">
+
             </div>
-            
+
+
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
