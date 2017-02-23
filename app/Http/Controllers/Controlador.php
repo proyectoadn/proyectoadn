@@ -319,12 +319,11 @@ class Controlador extends Controller {
     public function activar(Request $request) {
 
     $email=$request->get('correo');
-        dd($email);
 
-       // \DB::table('usuario')->where('id_usuario', '=', $id)->update([
+        \DB::table('usuario')->where('email', '=', $email)->update([
 
-       //     'confirmado' => 1
-      //  ]);
+            'confirmado' => 1
+        ]);
     }
 
 
