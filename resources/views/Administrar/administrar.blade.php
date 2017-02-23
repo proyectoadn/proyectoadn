@@ -423,7 +423,7 @@ Administracion
 
     <div class="row">
 
-        <div class="col-md-9 ">
+        <div class="col-md-9 " >
             <div class="item">
                 <b>Documentacion</b>
 
@@ -447,6 +447,20 @@ Administracion
                 </div>
             </div>
         </div>
+        
+                <div class="col-md-3">
+            <div class="divborrar" style='margin-top: 15px;'>
+                <b>Comentarios</b>
+
+                <textarea style="height: 150px; border-left: none; border-top: solid 1px; border-bottom: solid 1px;">
+                    
+                </textarea>
+
+                <button id="editDoc" class="btn btn-primary" id="" style="margin: 5px; float: right;">Guardar</button>
+
+            </div>
+        </div>
+        
     </div>
 </div>
 </div>
