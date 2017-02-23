@@ -284,25 +284,49 @@ class Controlador extends Controller {
 
     public function enviarconfirm(Request $request) {
 
-        $email = $request->get('email');
-        $emailorigen = "proyectoadndaw@gmail.com";
+        $id = $request->get('validar');
 
+        $usuario = \DB::table('usuario')->where('id_usuario', '=', $id)->get();
+        $nombre=$usuario[0]->nombre;
+        $email=$usuario[0]->email;
+        \DB::table('usuario')->where('id_usuario', '=', $id)->update([
+
+            'confirmado' => -1
+        ]);
         $data = [
 
-            'email' => $email
+            'email' => $email,
+            'nombre' => $nombre
         ];
 
 
-        Mail::send('Login/correoenviado', $data, function($message) {
+        Mail::send('Administrar/correoconfirm', $data, function($message) {
 
+           $id= $_POST['validar'];
 
-            $message->to($_POST['email'], "Proyectoadn")->subject('Cambio de contraseña');
+            $usuario = \DB::table('usuario')->where('id_usuario', '=', $id)->get();
+
+            $email=$usuario[0]->email;
+
+            $message->to($email, "Proyectoadn")->subject('Validacion de usuario');
 
             $message->from('proyectoadndaw@gmail.com', 'Administrador');
         });
 
-        return view('Login/confirmacioncorreo', $data);
+        return view('Administrar/activarUsuarios');
     }
+
+    public function activar(Request $request) {
+
+    $email=$request->get('correo');
+        dd($email);
+
+       // \DB::table('usuario')->where('id_usuario', '=', $id)->update([
+
+       //     'confirmado' => 1
+      //  ]);
+    }
+
 
     public function registrar(Request $request) {
         

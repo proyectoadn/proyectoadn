@@ -117,7 +117,7 @@ class Conexion {
 
 
     function rellenar_usuariosActivo() {
-        $consult='SELECT * FROM usuario WHERE confirmado=0';
+        $consult='SELECT * FROM usuario WHERE confirmado<1';
         $this->cursor = mysqli_query($this->conex, $consult);
 
 
