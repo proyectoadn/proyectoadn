@@ -121,11 +121,13 @@ class Controlador extends Controller {
 
         $rol = \DB::table('rol')->get();
 
+        $mensajeAdmins = \DB::table('comentarioAdmin')->get();
 
-
+         $comentarioAdmin= $mensajeAdmins[0]->mensaje;
         $datos = [
             'roles' => $rol,
-            'id_user' => $usu->getId_usuario()
+            'id_user' => $usu->getId_usuario(),
+            'comentarioAdmin' => $comentarioAdmin
         ];
 
         return view('Administrar/administrar', $datos);
