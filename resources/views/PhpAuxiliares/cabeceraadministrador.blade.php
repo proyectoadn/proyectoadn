@@ -138,6 +138,7 @@ if (\Session::get('rol') == 'Administrador') {
         <a class="navbar-brand" href="administrar">Administrar documentacion</a>
         <a class="navbar-brand" href="asignarTareas">Asignar tareas</a>
         <a class="navbar-brand" href="activarUsuarios">Activar usuarios</a>
+        <a class="navbar-brand" href="administrarUsuarios">Administrar usuarios</a>
     </div>
 
     <!-- Agrupar los enlaces de navegación, los formularios y cualquier

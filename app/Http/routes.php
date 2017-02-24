@@ -42,6 +42,8 @@ Route::get('gestionTareas', [
     'uses' => 'Controlador@gestiontareas'
 ]);
 
+
+
 Route::get('registroerror', [
 
     'as' => 'registroerror',
@@ -60,7 +62,10 @@ Route::get('enviarcorreo', [
     'uses' => 'Controlador@enviarcorreo'
 ]);
 
-
+Route::get('administrarUsuarios', [
+    'as' => 'administrarUsuarios',
+    'uses' => 'Controlador@administrarUsuarios',
+]);
 
 Route::get('restablecerpassword', [
 

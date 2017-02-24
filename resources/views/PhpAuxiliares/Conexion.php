@@ -125,6 +125,19 @@ class Conexion {
         return $devolver;
     }
 
+    function rellenar_usuariosAdministrar() {
+        $consult = 'SELECT * FROM usuario,cargo,rol WHERE usuario.confirmado>0 and usuario.id ';
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function rellenar_comentario($id_tarea) {
         $consult = 'Select mensaje from comentario where id_tarea=' . $id_tarea;
 

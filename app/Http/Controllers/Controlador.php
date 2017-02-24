@@ -90,6 +90,11 @@ class Controlador extends Controller {
         return view('Administrar/activarUsuarios');
     }
 
+
+    public function administrarUsuarios(Request $request) {
+        return view('Administrar/administrarUsuarios');
+    }
+
     public function usuario(Request $request) {
 
 
