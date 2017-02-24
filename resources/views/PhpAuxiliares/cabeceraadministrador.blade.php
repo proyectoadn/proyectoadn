@@ -18,6 +18,11 @@
     var ancho;
     var alto;
 
+    var x;
+    var y;
+    var a;
+    var al;
+
     $(function () {
 
 
@@ -37,70 +42,60 @@
 
             ejex = c.x;
             ejey = c.y;
-            ancho = c.w;
-            alto = c.h;
 
 
+            var anchoreal = document.getElementById("prueba").naturalWidth;
+            var altoreal = document.getElementById("prueba").naturalHeight;
+
+            var anchoenpantalla = $("#fotoperfil").width();
+            var altoenpantalla = document.getElementById("fotoperfil").height;
+
+
+
+
+            var escala = anchoreal / anchoenpantalla;
+            
+
+            var xreal = escala.toFixed(2) * ejex;
+            var yreal = escala.toFixed(2) * ejey;
+
+            var anchorecortar = escala.toFixed(2) * c.w;
+            var altorecortar = escala.toFixed(2) * c.h;
+
+
+            x = xreal;
+            y = yreal;
+            a = anchorecortar;
+            al = altorecortar;
         }
-        
-        
-        
+
+
 
 
         $("#archivo").change(function () {
 
             $("#fotoperfil").html('<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">');
-            
-            var imagen = $('#prueba');
-            
-            var anchoreal = document.getElementById("prueba").naturalWidth;
-            var altoreal = document.getElementById("prueba").naturalHeight;
-            
-            var anchoenpantalla = document.getElementById("prueba").width;
-            var altoenpantalla = document.getElementById("prueba").height;
-            
-            
-            var anchorecorte = $(".jcrop-tracker").width();
-            var altorecorte = $(".jcrop-tracker").height();
-            
-            
-            
-            
-            var escala = anchoreal/anchoenpantalla;
-            
-            var xreal = escala*anchoenpantalla;
-            var yreal = escala*altoenpantalla;
-            
-            var anchoreal = escala*anchorecorte;
-            var altoreal = escala*altorecorte;
-            
-            
-            
-            
-            
-            
+
 
             $("#prueba").Jcrop({
                 onSelect: showCoords,
-                setSelect: [150, 150, 50, 50]
+                setSelect: [150, 150, 50, 50],
+                minSize: [150, 150, 50, 50],
+                maxSize: [150, 150, 50, 50]
             });
 
         });
-
-
     });
 
     function recortarfoto(c)
     {
 
 
-
-
         var cordenadas = new Array();
-        cordenadas.push(ejex);
-        cordenadas.push(ejey);
-        cordenadas.push(ancho);
-        cordenadas.push(alto);
+        cordenadas.push(x);
+        cordenadas.push(y);
+        cordenadas.push(a);
+        cordenadas.push(al);
         var datos = JSON.stringify(cordenadas);
 
 
