@@ -188,3 +188,14 @@ Route::post('cambiarpasswordperfil', [
     'as' => 'cambiarpasswordperfil',
     'uses' => 'Controlador@cambiarpasswordperfil',
 ]);
+
+
+Route::post('datoscentro', [
+    'as' => 'datoscentro',
+    'uses' => 'Controlador@datoscentro'
+]);
+
+Route::post('actualizarDatosCentro', [
+    'as' => 'actualizarDatosCentro',
+    'uses' => 'Controlador@actualizarDatosCentro'
+]);
