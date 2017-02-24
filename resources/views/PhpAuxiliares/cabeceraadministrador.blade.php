@@ -60,11 +60,21 @@
             var altoenpantalla = document.getElementById("prueba").height;
             
             
+            var anchorecorte = $(".jcrop-tracker").width();
+            var altorecorte = $(".jcrop-tracker").height();
+            
+            
+            
             
             var escala = anchoreal/anchoenpantalla;
             
             var xreal = escala*anchoenpantalla;
             var yreal = escala*altoenpantalla;
+            
+            var anchoreal = escala*anchorecorte;
+            var altoreal = escala*altorecorte;
+            
+            
             
             
             
@@ -145,18 +155,6 @@ if (\Session::get('rol') == 'Administrador') {
     <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-right: 2%;">
 
         <ul class="nav navbar-nav navbar-right">
-
-            <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"> Cambiar Rol <i class="fa fa-caret-down"></i></a>
-
-            <div class="dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
-
-                <div class="" style="width: 50%;padding-left: 20px;">
-
-                    <a href="administrador"> Administrador </a><br>
-                    <a href="usuario"> Usuario </a>
-
-                </div>
-            </div>
 
 
             <li class="dropdown">
@@ -242,4 +240,3 @@ if (\Session::get('rol') == 'Administrador') {
 
     </div>
 </div>
-

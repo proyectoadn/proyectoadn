@@ -17,10 +17,6 @@ Administracion
     var id_doc;
     var id_cat;
     var countCat = 0;
-    var ejex;
-    var ejey;
-    var ancho;
-    var alto;
 
     $(function () {
 
@@ -260,49 +256,7 @@ Administracion
         });
 
 
-
-        $("#prueba").Jcrop({
-            onSelect: showCoords,
-            setSelect: [150, 150, 50, 50],
-            minSize: [150, 155, 50, 50],
-            maxSize: [150, 155, 50, 50],
-            bgColor: 'black',
-            bgOpacity: .4,
-        });
-
-        function showCoords(c) {
-
-            ejex = c.x;
-            ejey = c.y;
-            ancho = c.w;
-            alto = c.h;
-
-        }
-
-
     });
-
-    function recortarfoto(c)
-    {
-
-
-        var cordenadas = new Array();
-        cordenadas.push(ejex);
-        cordenadas.push(ejey);
-        cordenadas.push(ancho);
-        cordenadas.push(alto);
-        var datos = JSON.stringify(cordenadas);
-
-
-        $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
-                function (respuesta) {
-
-                    alert(respuesta);
-                }
-        ).fail(function (jqXHR) {
-            alert("Error de tipo " + jqXHR.status);
-        });
-    }
 
     function popupAdd(boton) {
 
@@ -663,9 +617,6 @@ Administracion
 @endsection
 
 @section('footer')
-
-<img src="Imagenes/foto.jpg" id="prueba">
-<input type="button" name="boton" id="boton" value="Recortar" onclick="recortarfoto()">
 
 <div class="divfooter">
 

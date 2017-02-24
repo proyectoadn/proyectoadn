@@ -23,13 +23,14 @@
 $usu = new Usuario('', '', '', '', '');
 $usu = \Session::get('u');
 
-if (\Session::get('rol') == 'Administrador') {
 
-    $rol = 'Usuario';
-} 
-else {
+
+if (\Session::get('pagina') == 'gestiontareas') {
 
     $rol = 'Administrador';
+} else {
+
+    $rol = 'Usuario';
 }
 ?>
 
@@ -52,19 +53,6 @@ else {
     <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-right: 2%;">
 
         <ul class="nav navbar-nav navbar-right">
-
-
-            <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"> Cambiar Rol <i class="fa fa-caret-down"></i></a>
-
-            <div class="row dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
-
-                <div class="" style="width: 50%;padding-left: 20px;">
-
-                    <a href="administrador"> Administrador </a><br>
-                    <a href="usuario"> Usuario </a>
-
-                </div>
-            </div>
 
 
 
@@ -98,10 +86,18 @@ else {
                             </div>
                         </div>
 
-                        <div style=" background-color: #E0E0E0; padding: 5px; padding-right: 15px;">
 
-                            <input type="submit" style="text-align: left;" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default">
-                            <input type="submit" style="position: absolute; right: 5px;" name="cerrarsesion" value="Cerrar sesion" class="btn btn-default">
+                        <div class="divcerrarsesion">
+
+                            @if (\Session::get('rol') == 'Administrador')
+                            <input type="submit" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default botoncambiarrol">
+                            @endif
+
+                            <form action="cerrarsesion" method="POST" class="form-inline">
+                                {!! csrf_field() !!}
+
+                                <input type="submit" name="cerrarsesion" value="Cerrar sesion" class="btn btn-default botoncerrarsesion">
+                            </form>
                         </div>
 
                     </div>

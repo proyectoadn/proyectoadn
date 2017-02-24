@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/Laravel/proyectoadn/public/css/estilos.css</file>
             <file>file:/C:/xampp/htdocs/Laravel/proyectoadn/resources/views/PhpAuxiliares/cabeceraadministrador.blade.php</file>
+            <file>file:/C:/xampp/htdocs/Laravel/proyectoadn/resources/views/Administrar/administrar.blade.php</file>
             <file>file:/C:/xampp/htdocs/Laravel/proyectoadn/public/Imagenes/fotorecortada.jpg</file>
         </group>
     </open-files>
