@@ -54,10 +54,20 @@ class Controlador extends Controller {
 
 
         $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
+        
 
         for ($i = 0; $i < count($cargo); $i++) {
             $rol[] = \DB::table('rol')->where('id_rol', '=', $cargo[$i]->id_rol)->get();
+            
+            
+            if($rol[$i][0]->descripcion == 'EQ_Directivo' || $rol[$i][0]->descripcion == 'Coordinador calidad'){
+                
+                \Session::put('rol', 'Administrador');
+            }
         }
+        
+        
+        
 
         for ($i = 0; $i < count($rol); $i++) {
 
@@ -95,8 +105,9 @@ class Controlador extends Controller {
 
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
+        
+        \Session::put('pagina', 'gestiontareas');
 
-        \Session::put('rol', 'Usuario');
 
         $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
 
@@ -116,8 +127,9 @@ class Controlador extends Controller {
 
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
+        
+        \Session::put('pagina', 'administrar');
 
-        \Session::put('rol', 'Administrador');
 
         $rol = \DB::table('rol')->get();
 
@@ -148,7 +160,8 @@ class Controlador extends Controller {
 
         \Session::forget('u');
         \Session::forget('rol');
-
+        \Session::forget('pagina');
+        
 
         return view('Login/cerrarsesion');
     }
@@ -317,9 +330,7 @@ class Controlador extends Controller {
         return view('Administrar/activarUsuarios');
     }
 
-    public function datoscentro(Request $request) {
-
-
+    public function datoscentro(Request $request) { 
 
         $datoscentro = \DB::table('datoscentro')->get();
 

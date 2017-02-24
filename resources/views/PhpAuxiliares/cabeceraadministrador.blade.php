@@ -1,20 +1,31 @@
-<?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="jquery-2.1.4.js"></script>
+<script src="jquery-ui.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css"/>
+<script src="js/jquery.Jcrop.min.js"></script>
 
 <script>
 
+    var ejex;
+    var ejey;
+    var ancho;
+    var alto;
+
+    var x;
+    var y;
+    var a;
+    var al;
+
     $(function () {
 
-        var ejex;
-        var ejey;
-        var ancho;
-        var alto;
+
 
         $("#archivo").val('');
 
@@ -24,58 +35,81 @@
             document.location = "usuario";
         });
 
-        $("#archivo").change(function () {
-
-            //alert($(this).files[0].name);
 
 
-            //$("#fotoperfil").html('<img src="Imagenes/foto.jpg" id="prueba" class="imagenperfil">');
-        });
-
-
-        $("#prueba").Jcrop({
-            onSelect: showCoords,
-            setSelect: [150, 150, 50, 50],
-            minSize: [150, 155, 50, 50],
-            maxSize: [150, 155, 50, 50],
-            bgColor: 'black',
-            bgOpacity: .4,
-        });
 
         function showCoords(c) {
 
             ejex = c.x;
             ejey = c.y;
-            ancho = c.w;
-            alto = c.h;
 
+
+            var anchoreal = document.getElementById("prueba").naturalWidth;
+            var altoreal = document.getElementById("prueba").naturalHeight;
+
+            var anchoenpantalla = $("#fotoperfil").width();
+            var altoenpantalla = document.getElementById("fotoperfil").height;
+
+
+
+
+            var escala = anchoreal / anchoenpantalla;
+            
+
+            var xreal = escala.toFixed(2) * ejex;
+            var yreal = escala.toFixed(2) * ejey;
+
+            var anchorecortar = escala.toFixed(2) * c.w;
+            var altorecortar = escala.toFixed(2) * c.h;
+
+
+            x = xreal;
+            y = yreal;
+            a = anchorecortar;
+            al = altorecortar;
         }
 
-        function recortarfoto(c)
-        {
 
 
-            var cordenadas = new Array();
-            cordenadas.push(ejex);
-            cordenadas.push(ejey);
-            cordenadas.push(ancho);
-            cordenadas.push(alto);
-            var datos = JSON.stringify(cordenadas);
+
+        $("#archivo").change(function () {
+
+            $("#fotoperfil").html('<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">');
 
 
-            $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
-                    function (respuesta) {
-
-                        alert(respuesta);
-                    }
-            ).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
+            $("#prueba").Jcrop({
+                onSelect: showCoords,
+                setSelect: [150, 150, 50, 50],
+                minSize: [150, 150, 50, 50],
+                maxSize: [150, 150, 50, 50]
             });
-        }
 
-
+        });
     });
 
+    function recortarfoto(c)
+    {
+
+
+        var cordenadas = new Array();
+        cordenadas.push(x);
+        cordenadas.push(y);
+        cordenadas.push(a);
+        cordenadas.push(al);
+        var datos = JSON.stringify(cordenadas);
+
+
+        $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
+                function (respuesta) {
+                    
+                    
+
+                }
+        ).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+
+    }
 </script>
 
 <?php
@@ -86,7 +120,8 @@ $usu = \Session::get('u');
 if (\Session::get('rol') == 'Administrador') {
 
     $rol = 'Usuario';
-} else {
+} 
+else {
 
     $rol = 'Administrador';
 }
@@ -115,18 +150,6 @@ if (\Session::get('rol') == 'Administrador') {
 
         <ul class="nav navbar-nav navbar-right">
 
-            <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown"> Cambiar Rol <i class="fa fa-caret-down"></i></a>
-
-            <div class="dropdown-menu" style="width: 350px; background-color: #F3F3F3;">
-
-                <div class="" style="width: 50%;padding-left: 20px;">
-
-                    <a href="administrador"> Administrador </a><br>
-                    <a href="usuario"> Usuario </a>
-
-                </div>
-            </div>
-
 
             <li class="dropdown">
 
@@ -142,7 +165,7 @@ if (\Session::get('rol') == 'Administrador') {
 
                             <div class="row">
 
-                                <div class="col-md-4 col-xs-4 imagenusuario">
+                                <div class="col-md-4 col-xs-4 imagenusuario" id="imagen">
                                     <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil" data-toggle="modal" data-target="#modalimagen" class="img-circle">
                                 </div>
 
@@ -185,25 +208,32 @@ if (\Session::get('rol') == 'Administrador') {
 
         <!-- Modal content-->
         <div class="modal-content">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Cambiar foto de perfil</h4>
             </div>
-            <div class="modal-body">
 
-                <div class="" id="fotoperfil">
-                    <img src="Imagenes/foto.jpg" id="prueba" class="imagenperfil">
+
+            <div class="modal-body" style="width: 100%;">
+                
+                <div id="mensaje">
                 </div>
-                <br>
+
+                <div id="fotoperfil">
+                    <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->
+                </div>
 
                 <input type="file" name="archivo" id="archivo" value="prueba">
+
             </div>
-            
+
+
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
 
     </div>
 </div>
-
