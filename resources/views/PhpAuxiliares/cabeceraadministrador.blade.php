@@ -101,10 +101,8 @@
 
         $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
                 function (respuesta) {
-
-                    alert(respuesta);
-
-
+                    
+                    
 
                 }
         ).fail(function (jqXHR) {
@@ -122,7 +120,8 @@ $usu = \Session::get('u');
 if (\Session::get('rol') == 'Administrador') {
 
     $rol = 'Usuario';
-} else {
+} 
+else {
 
     $rol = 'Administrador';
 }
@@ -217,6 +216,9 @@ if (\Session::get('rol') == 'Administrador') {
 
 
             <div class="modal-body" style="width: 100%;">
+                
+                <div id="mensaje">
+                </div>
 
                 <div id="fotoperfil">
                     <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->

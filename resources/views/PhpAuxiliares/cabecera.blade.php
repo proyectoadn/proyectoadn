@@ -28,7 +28,8 @@ $usu = \Session::get('u');
 if (\Session::get('pagina') == 'gestiontareas') {
 
     $rol = 'Administrador';
-} else {
+} 
+else {
 
     $rol = 'Usuario';
 }
