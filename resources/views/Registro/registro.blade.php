@@ -8,10 +8,10 @@ Elección de rol
 
     //Nada más entrar, deja el foco en el primer campo del formulario, el nombre
     window.onload = function () {
-        
+
         //Ponemos el focus en el nombre
         document.getElementById("nombre").focus();
-        
+
         //Deshabilitamos el botón de registrar
         document.getElementById('registrar').disabled = true;
 
@@ -23,7 +23,7 @@ Elección de rol
 
 
             if (codificar == 0) {
-                
+
                 //Cambias el input de contraseña de password a texto
                 $("#password").attr({type: "text"});
                 //Eliminas el icono del ojo cerrado
@@ -35,18 +35,18 @@ Elección de rol
                 $("#repetirpassword").attr({type: "text"});
                 $("#codificarDecodificar2").removeClass('glyphicon-eye-close');
                 $("#codificarDecodificar2").addClass('glyphicon-eye-open');
-                
+
                 codificar = 1;
             } else {
                 if (codificar == 1) {
-                    
+
                     //En este momento la contraseña es tipo texto, en cuanto le vuelves a clicar cambia
                     //y se pone de tipo texto a tipo password
                     $("#password").attr({type: "password"});
-                    
+
                     //Eliminas el icono del ojo abierto
                     $("#codificarDecodificar").removeClass('glyphicon-eye-open');
-                    
+
                     //Añades el icono del ojo cerrado (ahora no se ve la contraseña)
                     $("#codificarDecodificar").addClass('glyphicon-eye-close');
 
@@ -68,16 +68,19 @@ Elección de rol
 @include ('PhpAuxiliares/cabeceraregistro')
 
 
-<div class="centrarTexto">
+<div class="tituloformularioregistro">
     <h2 class="colorGris">Formulario registro</h2>
 </div>
+
 <div class="divregistro row">
 
     <!-- 4 PRIMERAS COLUMNAS EN BLANCO-->
     <!-- PARTE REGISTRO DE LOS INPUTS 4 COLUMNAS -->
     <div class="col-md-push-4 col-md-4">
+        
         <form action="registrar" method="POST">
             {!! csrf_field() !!}
+            
             <!-- Input Nombre -->
             <div class="input-group margenRegistro">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
@@ -118,20 +121,25 @@ Elección de rol
                        class="form-control" required> 
             </div>
 
-            <!--Boton registrar-->
-            <input type="submit" name="registrar" id="registrar"  
-                   value="Registrar" class="btn btn-primary">
+            <div class="centrarbotonesregistro">
 
-            <!--Boton reiniciar formulario-->
-            <input type="reset" name="reiniciar" id="reiniciar"
-                   value="Reiniciar" class="btn btn-primary">
+                <!--Boton registrar-->
+                <input type="submit" name="registrar" id="registrar"  
+                       value="Registrar" class="btn btn-primary botonregistro">
+
+                <!--Boton reiniciar formulario-->
+                <input type="reset" name="reiniciar" id="reiniciar"
+                       value="Reiniciar" class="btn btn-default botonregistro">
+
+            </div>
 
         </form>
+        
     </div>
 
     <!-- RESPETAMOS LAS 4 PRIMERAS COLUMNAS EN BLANCO-->
     <div class="col-md-push-4 col-md-4">
-        
+
         <!-- Validación Nombre -->
         <div class="validacionRegistro">
             <span class=""  id="textoNombre"></span>
@@ -157,6 +165,23 @@ Elección de rol
             <span class="" id="textoPasswordRepetida"></span>
         </div>
     </div>
+</div>
+
+@endsection
+
+
+
+@section('footer')
+
+<div class="divfooter">
+
+    Desarrollado por:
+
+    Daniel Ramirez Ros -
+    Alberto de la Plaza Ramos -
+    Nazario Castillero Redondo<br>
+
+    Copyright 2017 - Proyectoadn
 </div>
 
 @endsection

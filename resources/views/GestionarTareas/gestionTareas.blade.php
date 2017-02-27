@@ -282,15 +282,11 @@ Gestión de tareas
     </div>
 </div>
 
-
-
 @endsection
 
+
+
 @section('footer')
-
-
-
-
 
 <div class="divfooter">
 
@@ -302,6 +298,5 @@ Gestión de tareas
 
     Copyright 2017 - Proyectoadn
 </div>
-
 
 @endsection
