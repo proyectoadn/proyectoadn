@@ -54,7 +54,7 @@
 
 
             var escala = anchoreal / anchoenpantalla;
-            
+
 
             var xreal = escala.toFixed(2) * ejex;
             var yreal = escala.toFixed(2) * ejey;
@@ -72,17 +72,40 @@
 
 
 
-        $("#archivo").change(function () {
+        $("#archivo").change(function (event) {
 
-            $("#fotoperfil").html('<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">');
+            var file = event.target.files[0];
 
-
-            $("#prueba").Jcrop({
-                onSelect: showCoords,
-                setSelect: [150, 150, 50, 50],
-                minSize: [150, 150, 50, 50],
-                maxSize: [150, 150, 50, 50]
+            
+            var data = new FormData();
+            data.append("file", file);
+            
+            $.ajax({
+                
+                url: 'subirfoto.php',
+                dataType: 'text',
+                contenttype: false,
+                processData: false,
+                data: data,
+                type: 'post',
+                success: function(respuesta){
+                    
+                    alert(respuesta);
+                }
             });
+            
+            
+
+
+//            $("#fotoperfil").html('<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">');
+//
+//
+//            $("#prueba").Jcrop({
+//                onSelect: showCoords,
+//                setSelect: [150, 150, 50, 50],
+//                minSize: [150, 150, 50, 50],
+//                maxSize: [150, 150, 50, 50]
+//            });
 
         });
     });
@@ -101,8 +124,8 @@
 
         $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
                 function (respuesta) {
-                    
-                    
+
+
 
                 }
         ).fail(function (jqXHR) {
@@ -120,8 +143,7 @@ $usu = \Session::get('u');
 if (\Session::get('rol') == 'Administrador') {
 
     $rol = 'Usuario';
-} 
-else {
+} else {
 
     $rol = 'Administrador';
 }
@@ -216,7 +238,7 @@ else {
 
 
             <div class="modal-body" style="width: 100%;">
-                
+
                 <div id="mensaje">
                 </div>
 
