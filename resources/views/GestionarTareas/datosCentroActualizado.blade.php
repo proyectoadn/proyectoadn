@@ -14,7 +14,7 @@ Login
 
 @include ('PhpAuxiliares/cabeceraadministrador')
 
-<div class="alert alert-success divperfilactualziado" >Datos actualziados correctamente</div>
+<div class="alert alert-success divperfilactualziado" style="margin-top: 15px;" >Datos actualziados correctamente</div>
 
 
 <div class="panel panel-primary divmiperfil">
@@ -23,18 +23,5 @@ Login
         <h2 class="form-signin-heading">Datos del centro actualizados</h2>
     </div>
 
-    <div class="panel-footer">
-
-        <form action="actualizarperfil" method="POST">
-            {!! csrf_field() !!}
-
-            
-            <br>
-
-            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Actualizar">
-
-            <br>
-        </form>
-    </div>
 </div>
 @endsection
