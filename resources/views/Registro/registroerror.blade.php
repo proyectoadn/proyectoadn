@@ -64,16 +64,21 @@ Registro
 @include ('PhpAuxiliares/cabeceraregistro')
 
 
-<div class="centrarTexto">
+<div class="tituloformularioregistro">
     <h2 class="colorGris">Formulario registro</h2>
 </div>
+
+<div class="alert alert-danger registroerror" >El correo ya esta en uso</div>
+
 <div class="divregistro row">
 
     <!-- 4 PRIMERAS COLUMNAS EN BLANCO-->
     <!-- PARTE REGISTRO DE LOS INPUTS 4 COLUMNAS -->
     <div class="col-md-push-4 col-md-4">
+        
         <form action="registrar" method="POST">
             {!! csrf_field() !!}
+            
             <!-- Input Nombre -->
             <div class="input-group margenRegistro">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
@@ -113,16 +118,22 @@ Registro
                        id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)" 
                        class="form-control" required> 
             </div>
+            
+            
+            <div class="centrarbotonesregistro">
 
-            <!--Boton registrar-->
-            <input type="submit" name="registrar" id="registrar"  
-                   value="Registrar" class="btn btn-primary">
+                <!--Boton registrar-->
+                <input type="submit" name="registrar" id="registrar"  
+                       value="Registrar" class="btn btn-primary botonregistro">
 
-            <!--Boton reiniciar formulario-->
-            <input type="reset" name="reiniciar" id="reiniciar"
-                   value="Reiniciar" class="btn btn-primary">
+                <!--Boton reiniciar formulario-->
+                <input type="reset" name="reiniciar" id="reiniciar"
+                       value="Reiniciar" class="btn btn-default botonregistro">
+
+            </div>
 
         </form>
+        
     </div>
 
     <!-- RESPETAMOS LAS 4 PRIMERAS COLUMNAS EN BLANCO-->
@@ -153,6 +164,22 @@ Registro
             <span class="" id="textoPasswordRepetida"></span>
         </div>
     </div>
+</div>
+
+@endsection
+
+
+@section('footer')
+
+<div class="divfooter">
+
+    Desarrollado por:
+
+    Daniel Ramirez Ros -
+    Alberto de la Plaza Ramos -
+    Nazario Castillero Redondo<br>
+
+    Copyright 2017 - Proyectoadn
 </div>
 
 @endsection

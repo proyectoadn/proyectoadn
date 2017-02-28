@@ -8,11 +8,16 @@ Login
 @section('contenido')
 <div class="container">
     <div class="alert alert-success loginerror" >Usuario registrado correctamente. Pendiente de confirmación</div>
+    
     <div class="panel panel-primary loginerror">
+        
         <div class="panel-body">
             <h2 class="form-signin-heading">Iniciar sesión</h2>
         </div>
+        
+        
         <div class="panel-footer">
+            
             <form action="validar" method="POST">
                 {!! csrf_field() !!}
 
@@ -35,4 +40,19 @@ Login
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+
+<div class="divfooter">
+
+    Desarrollado por:
+
+    Daniel Ramirez Ros -
+    Alberto de la Plaza Ramos -
+    Nazario Castillero Redondo<br>
+
+    Copyright 2017 - Proyectoadn
+</div>
+
 @endsection

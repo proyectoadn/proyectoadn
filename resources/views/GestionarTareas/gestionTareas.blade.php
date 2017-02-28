@@ -206,7 +206,7 @@ Gestión de tareas
 
                 @for($i=0;$i<count($roles);$i++)
                     <option value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
-                @endfor
+                    @endfor
             </select>
         </div>
         <div class='divBotonCargoCat'>
@@ -281,15 +281,12 @@ Gestión de tareas
 
     </div>
 </div>
-</div>
 
 @endsection
 
+
+
 @section('footer')
-
-
-
-
 
 <div class="divfooter">
 
@@ -298,9 +295,8 @@ Gestión de tareas
     Daniel Ramirez Ros -
     Alberto de la Plaza Ramos -
     Nazario Castillero Redondo<br>
-    
+
     Copyright 2017 - Proyectoadn
 </div>
-
 
 @endsection

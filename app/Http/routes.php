@@ -15,29 +15,34 @@ Route::get('/', function () {
     return view('Login/login');
 });
 
+Route::get('pdf', function () {
+
+    $pdf = PDF::loadView('Login/cerrarsesion');
+    return $pdf->download('archivo.pdf');
+});
+
+
+
+
 
 //Rutas get
 
 Route::any('login', [
-
     'as' => 'login',
     'uses' => 'Controlador@index'
 ]);
 
 Route::get('loginerror', [
-
     'as' => 'loginerror',
     'uses' => 'Controlador@loginerror'
 ]);
 
 Route::get('loginconfirm', [
-
     'as' => 'loginconfirm',
     'uses' => 'Controlador@loginconfirm'
 ]);
 
 Route::get('gestionTareas', [
-
     'as' => 'loginerror',
     'uses' => 'Controlador@gestiontareas'
 ]);
@@ -45,19 +50,16 @@ Route::get('gestionTareas', [
 
 
 Route::get('registroerror', [
-
     'as' => 'registroerror',
     'uses' => 'Controlador@registroerror'
 ]);
 
 Route::get('enviarpassword', [
-
     'as' => 'enviarpassword',
     'uses' => 'Controlador@enviarpassword'
 ]);
 
 Route::get('enviarcorreo', [
-
     'as' => 'enviarcorreo',
     'uses' => 'Controlador@enviarcorreo'
 ]);
@@ -68,13 +70,11 @@ Route::get('administrarUsuarios', [
 ]);
 
 Route::get('restablecerpassword', [
-
     'as' => 'restablecerpassword',
     'uses' => 'Controlador@restablecerpassword'
 ]);
 
 Route::get('usuario', [
-
     'as' => 'usuario',
     'uses' => 'Controlador@usuario',
 ]);
@@ -112,7 +112,6 @@ Route::get('activar', [
 //Rutas post
 
 Route::post('validar', [
-
     'as' => 'validar',
     'uses' => 'Controlador@comprobarlogin',
     'middleware' => 'login'
@@ -120,20 +119,17 @@ Route::post('validar', [
 
 
 Route::post('registrar', [
-
     'as' => 'registrar',
     'uses' => 'Controlador@registrar',
     'middleware' => 'registro'
 ]);
 
 Route::post('registro', [
-
     'as' => 'registro',
     'uses' => 'Controlador@registro',
 ]);
 
 Route::post('usuario', [
-
     'as' => 'usuario',
     'uses' => 'Controlador@usuario',
 ]);
@@ -144,37 +140,31 @@ Route::post('administrador', [
 ]);
 
 Route::post('enviarcorreo', [
-
     'as' => 'enviarcorreo',
     'uses' => 'Controlador@enviarcorreo'
 ]);
 
 Route::post('enviarconfirm', [
-
     'as' => 'enviarconfirm',
     'uses' => 'Controlador@enviarconfirm'
 ]);
 
 Route::post('restablecer', [
-
     'as' => 'restablecer',
     'uses' => 'Controlador@restablecer'
 ]);
 
 Route::post('cerrarsesion', [
-
     'as' => 'cerrarsesion',
     'uses' => 'Controlador@cerrarsesion'
 ]);
 
 Route::post('miperfil', [
-
     'as' => 'miperfil',
     'uses' => 'Controlador@miperfil'
 ]);
 
 Route::post('actualizarperfil', [
-
     'as' => 'actualizarperfil',
     'uses' => 'Controlador@actualizarperfil'
 ]);
