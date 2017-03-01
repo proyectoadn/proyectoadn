@@ -135,8 +135,6 @@ Administracion
 
 
         $("#cat").on("change", function () {
-
-
             id_cat = $(this).val();
             llenar_documentos();
 
@@ -395,7 +393,7 @@ Administracion
                                                 <p>' + documentacion[i]['descripcion'] + '</p>\n\
                                                 <p class="textotarea"><a href="' + documentacion[i]['link'] + '">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
                                                 <div class="divisorBotonTarea">\n\
-                                                    <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario"data-toggle="modal" data-target="#modalModificarTarea">\n\
+                                                    <button onclick="popup(this)" class="botonTarea" value="' + documentacion[i]['id'] + '" id="comentario" data-toggle="modal" data-target="#modalModificarTarea">\n\
                                                         <img alt="Editar documentacion" title="Editar documentacion" src="Imagenes/editar.png" style="width: 100%; height: 100%;" class=""/>\n\
                                                     </button>\n\
                                                 </div>\n\
@@ -565,7 +563,7 @@ Administracion
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-toggle="modal" data-target="#modalAddTarea">
+                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-toggle="modal">
                     Aceptar
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">

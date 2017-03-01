@@ -15,6 +15,8 @@ $datos = json_decode($_POST['datos']);
 
 $descripcion=utf8_decode($datos[0]);
 $link=utf8_decode($datos[5]);
+
+
 if(count($datos[1])==1){
     $categoria[]=$datos[1];
 }

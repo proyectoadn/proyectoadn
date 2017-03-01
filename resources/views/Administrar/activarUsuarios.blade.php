@@ -19,7 +19,7 @@
                     return rex.test($(this).text());
                 }).show();
 
-            })
+            });
 
             $("#usuarios").html('');
             $.post("../resources/views/PhpAuxiliares/usuariosActivar.php", {},

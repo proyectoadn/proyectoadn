@@ -72,6 +72,19 @@ class Conexion {
         return $devolver;
     }
 
+    function editarUsuario($id_usuario) {
+        $consult = 'SELECT rol.descripcion, usuario.id_usuario, usuario.nombre, usuario.apellidos, usuario.email FROM usuario, cargo, rol WHERE usuario.id_usuario=' . $id_usuario . ' AND usuario.id_usuario=cargo.id_usuario AND cargo.id_rol=rol.id_rol';
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function rellenar_tareas_admin($id_rol) {
         //  $consult='Select * FROM tareas,cargo WHERE cargo.id_rol='.$id_rol.' and tareas.id_usuario=cargo.id_usuario';
         $consult = 'Select tarea.descripcion, tarea.id_tarea FROM tarea,documentacion WHERE tarea.id_documentacion=documentacion.id_documentacion and documentacion.id_rol=' . $id_rol;
@@ -114,6 +127,19 @@ class Conexion {
 
     function rellenar_usuariosActivo() {
         $consult = 'SELECT * FROM usuario WHERE confirmado<1';
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function cargarUsuarios() {
+        $consult = 'SELECT * FROM usuario';
         $this->cursor = mysqli_query($this->conex, $consult);
 
 
@@ -191,7 +217,7 @@ class Conexion {
 
     function rellenar_roles() {
 
-        $consult = 'Select * from  rol';
+        $consult = 'Select * from rol';
         $this->cursor = mysqli_query($this->conex, $consult);
         if ($this->cursor) {
             $devolver = true;
@@ -200,6 +226,7 @@ class Conexion {
         }
         return $devolver;
     }
+
     //Rellena el comentario de los administradores
     function rellenar_comentarioAdmin() {
 
@@ -217,6 +244,18 @@ class Conexion {
 
         $consult = 'Select * from  entregar';
         $this->cursor = mysqli_query($this->conex, $consult);
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function updateUsuario($nombre, $apellido, $email, $id_usu) {
+        $consult = 'UPDATE usuario SET nombre="'.$nombre.'",apellidos="'.$apellido.'",email="'.$email.'" WHERE id_usuario='.$id_usu;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
         if ($this->cursor) {
             $devolver = true;
         } else {
@@ -252,7 +291,7 @@ class Conexion {
     //Funcion carga los comentarios entre los administradores, la llama comentarioAdmin.php
     function update_comentarioAdmin($mensaje) {
         $consult = 'UPDATE comentarioAdmin SET mensaje = "' . $mensaje . '" WHERE id_comenAdmin=1';
-        
+
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
