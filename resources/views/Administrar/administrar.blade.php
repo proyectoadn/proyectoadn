@@ -198,8 +198,8 @@ Administracion
                         document.getElementById("textoComenAdmin").style.borderTop = "solid 1px green";
                         document.getElementById("textoComenAdmin").style.borderBottom = "solid 1px green";
                         //Pongo el fondo con un verde claro
-                        document.getElementById("textoComenAdmin").style.backgroundColor  = "#ACFF9F";
-                 
+                        document.getElementById("textoComenAdmin").style.backgroundColor = "#ACFF9F";
+
                         //A los 2.5 segundos se ejecutan estos comandos
                         setTimeout(function () {
                             //Pongo los bordes como estaban, negros arriba y abajo
@@ -208,7 +208,7 @@ Administracion
                             //Oculto el divisor de guardado
                             document.getElementById("guardado").style.display = "none";
                             //vuelvo a poner el textarea con fondo blanco
-                            document.getElementById("textoComenAdmin").style.backgroundColor  = "white";
+                            document.getElementById("textoComenAdmin").style.backgroundColor = "white";
                         }, 2500);
 
 
@@ -445,6 +445,15 @@ Administracion
 
             </select>
         </div>
+
+        <div class='divBotonCargoCat' style="width: 20%;">
+            <div class="input-group botonCargoCat">
+                <span class="input-group-addon">
+                    Buscar
+                </span>
+                <input type="text" class="form-control">
+            </div>
+        </div>
     </div>
 
     <div class='limpiar'></div>
@@ -460,6 +469,10 @@ Administracion
                      style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
 
                     <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
+                        <form action="datoscentro" method="POST">
+                            {!! csrf_field() !!}
+                            <input name="datoscentro" style="width: 100%;" value="Datos centro" class="btn btn-primary" type="submit">  
+                        </form>
 
                     </div>
                 </div>

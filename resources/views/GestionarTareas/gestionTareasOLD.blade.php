@@ -174,8 +174,6 @@ Gestión de tareas
                         speed: 0.6, // popup speed (in seconds)
                         opacity: 0.4,
                         color: 'black' //Cambia el color de fondo 
-
-
                     });
 
                     //Insert en BBDD del comentario

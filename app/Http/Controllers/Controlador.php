@@ -36,9 +36,9 @@ class Controlador extends Controller {
 
         $datos = [
             'roles' => $rol,
-            //'id_user' => $usu->getId_usuario()
+                //'id_user' => $usu->getId_usuario()
         ];
-        
+
         return view('Administrar/asignarTareas', $datos);
     }
 
@@ -95,8 +95,8 @@ class Controlador extends Controller {
     public function registroerror(Request $request) {
         return view('Registro/registroerror');
     }
-    
-        public function activarUsuarios(Request $request) {
+
+    public function activarUsuarios(Request $request) {
         return view('Administrar/activarUsuarios');
     }
 
@@ -110,13 +110,13 @@ class Controlador extends Controller {
 
 
         $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
-        
+
         for ($i = 0; $i < count($cargo); $i++) {
             $rol[] = \DB::table('rol')->where('id_rol', '=', $cargo[$i]->id_rol)->get();
         }
 
-        $datos = [ 
-           'roles' => $rol,
+        $datos = [
+            'roles' => $rol,
             'id_user' => $usu->getId_usuario()
         ];
 
@@ -135,7 +135,7 @@ class Controlador extends Controller {
 
         $mensajeAdmins = \DB::table('comentarioAdmin')->get();
 
-         $comentarioAdmin= $mensajeAdmins[0]->mensaje;
+        $comentarioAdmin = $mensajeAdmins[0]->mensaje;
         $datos = [
             'roles' => $rol,
             'id_user' => $usu->getId_usuario(),
@@ -154,10 +154,10 @@ class Controlador extends Controller {
 
         return view('Login/restablecerpassword');
     }
-    
+
     public function cerrarsesion(Request $request) {
-        
-        
+
+
         \Session::forget('u');
         \Session::forget('rol');
         \Session::forget('pagina');
@@ -165,90 +165,89 @@ class Controlador extends Controller {
 
         return view('Login/cerrarsesion');
     }
-    
+
     public function miperfil(Request $request) {
-        
+
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
-        
+
+
         $datos = [
-            
+
             'usuario' => $usu
         ];
-        
+
 
         return view('GestionarTareas/miperfil', $datos);
     }
-    
+
     public function actualizarperfil(Request $request) {
-        
-        
+
+
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
-        
+
+
         $nombre = $request->get('nombre');
         $apellidos = $request->get('apellidos');
         $email = $request->get('email');
-        
-        
+
+
         $hoy = getdate();
         $dia = $hoy['mday'];
         $mes = $hoy['mon'];
         $año = $hoy['year'];
-        
-        
-        \DB::table('usuario')->where('id_usuario', '=' , $usu->getId_usuario())->update([
-            
+
+
+        \DB::table('usuario')->where('id_usuario', '=', $usu->getId_usuario())->update([
+
             'nombre' => $nombre,
             'apellidos' => $apellidos,
             'email' => $email,
             'updated_at' => $año . '-' . $mes . '-' . $dia
-            
         ]);
-        
+
         $usu->setNombre($nombre);
         $usu->setApellidos($apellidos);
         $usu->setEmail($email);
-        
+
         \Session::put('usuario', $usu);
-        
+
         $datos = [
-            
+
             'usuario' => $usu
         ];
-        
-        
+
+
         return view('GestionarTareas/miperfilactualizado', $datos);
     }
-    
+
     public function passwordperfil(Request $request) {
-        
+
         return view('GestionarTareas/cambiarpasswordperfil');
     }
-    
+
     public function cambiarpasswordperfil(Request $request) {
-        
-        
+
+
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
+
         $contraseñaantigua = $request->get('contraseñaantigua');
         $password = $request->get('password');
-        
-        if(\Hash::check($contraseñaantigua, $usu->getPassword())){
-            
-            
-            
-            \DB::table('usuario')->where('id_usuario','=', $usu->getId_usuario())->update([
-                
+
+        if (\Hash::check($contraseñaantigua, $usu->getPassword())) {
+
+
+
+            \DB::table('usuario')->where('id_usuario', '=', $usu->getId_usuario())->update([
+
                 'password' => \Hash::make($password)
             ]);
         }
-        
-        
-        
+
+
+
         return view('GestionarTareas/cambiarpasswordperfil');
     }
 
@@ -302,8 +301,8 @@ class Controlador extends Controller {
         $id = $request->get('validar');
 
         $usuario = \DB::table('usuario')->where('id_usuario', '=', $id)->get();
-        $nombre=$usuario[0]->nombre;
-        $email=$usuario[0]->email;
+        $nombre = $usuario[0]->nombre;
+        $email = $usuario[0]->email;
         \DB::table('usuario')->where('id_usuario', '=', $id)->update([
 
             'confirmado' => -1
@@ -317,11 +316,11 @@ class Controlador extends Controller {
 
         Mail::send('Administrar/correoconfirm', $data, function($message) {
 
-           $id= $_POST['validar'];
+            $id = $_POST['validar'];
 
             $usuario = \DB::table('usuario')->where('id_usuario', '=', $id)->get();
 
-            $email=$usuario[0]->email;
+            $email = $usuario[0]->email;
 
             $message->to($email, "Proyectoadn")->subject('Validacion de usuario');
 
@@ -331,9 +330,38 @@ class Controlador extends Controller {
         return view('Administrar/activarUsuarios');
     }
 
+    public function datoscentro(Request $request) { 
+
+        $datoscentro = \DB::table('datoscentro')->get();
+
+        $direccion = $datoscentro[0]->direccion;
+        $codigopostal = $datoscentro[0]->codigopostal;
+        $ciudad = $datoscentro[0]->ciudad;
+        $provincia = $datoscentro[0]->provincia;
+        $telefono = $datoscentro[0]->telefono;
+        $fax = $datoscentro[0]->fax;
+        $email1 = $datoscentro[0]->email1;
+        $email2 = $datoscentro[0]->email2;
+        $codigocentro = $datoscentro[0]->codigocentro;
+
+        $datos = [
+            'direccion' => $direccion,
+            'codigopostal' => $codigopostal,
+            'ciudad' => $ciudad,
+            'provincia' => $provincia,
+            'telefono' => $telefono,
+            'fax' => $fax,
+            'email1' => $email1,
+            'email2' => $email2,
+            'codigocentro' => $codigocentro
+        ];
+
+        return view('GestionarTareas/datosCentro', $datos);
+    }
+
     public function activar(Request $request) {
 
-    $email=$request->get('correo');
+        $email = $request->get('correo');
 
         \DB::table('usuario')->where('email', '=', $email)->update([
 
@@ -342,13 +370,42 @@ class Controlador extends Controller {
         return view('Login/usuarioActivado');
     }
 
+    public function actualizarDatosCentro(Request $request) {
+
+        $direccion = $request->get('direccion');
+        $codigopostal = $request->get('codigopostal');
+        $ciudad = $request->get('ciudad');
+        $provincia = $request->get('provincia');
+        $telefono = $request->get('telefono');
+        $fax = $request->get('fax');
+        $email1 = $request->get('email1');
+        $email2 = $request->get('email2');
+        $codigocentro = $request->get('codigocentro');
+
+
+        \DB::table('datoscentro')->where('id_datoscentro', '=', '1')->update([
+
+            'direccion' => $direccion,
+            'codigopostal' => $codigopostal,
+            'ciudad' => $ciudad,
+            'provincia' => $provincia,
+            'telefono' => $telefono,
+            'fax' => $fax,
+            'email1' => $email1,
+            'email2' => $email2,
+            'codigocentro' => $codigocentro,
+        ]);
+
+
+        return view('GestionarTareas/datosCentroActualizado');
+    }
 
     public function registrar(Request $request) {
-        
+
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
-        
+
+
         $nombre = $request->get('nombre');
         $apellidos = $request->get('apellidos');
         $email = $request->get('email');
@@ -370,15 +427,15 @@ class Controlador extends Controller {
                     'created_at' => $año . '-' . $mes . '-' . $dia,
                     'updated_at' => $año . '-' . $mes . '-' . $dia
         ]);
-        
+
 
         $usuario = \DB::table('usuario')->where('email', '=', $email)->get();
-        
-        
+
+
         $usu = new Usuario($usuario[0]->id_usuario, $usuario[0]->nombre, $usuario[0]->apellidos, $usuario[0]->email, $usuario[0]->password);
 
 
-        
+
         \DB::table('cargo')
                 ->insert([
                     'id_usuario' => $usuario[0]->id_usuario,
