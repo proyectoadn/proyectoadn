@@ -225,6 +225,18 @@ class Conexion {
         return $devolver;
     }
 
+    function rellenar_descrip_tarea($id_doc) {
+
+        $consult = 'Select descripcion from  tarea where id_documentacion='.$id_doc;
+        $this->cursor = mysqli_query($this->conex, $consult);
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function actualizar_estado($id_estado, $id_tarea) {
         $consult = 'update tarea set id_estado = ' . $id_estado . ' where id_tarea = ' . $id_tarea;
         $this->cursor = mysqli_query($this->conex, $consult);
@@ -337,6 +349,13 @@ class Conexion {
         mysqli_query($this->conex, $query);
     }
 
+    function update_tarea($descripcion, $id_doc) {
+        $query = "update tarea set descripcion='" . $descripcion . "' where id_documentacion='" . $id_doc . "'";
+
+        mysqli_query($this->conex, $query);
+    }
+
+
     function insertar_documento($descripcion, $id_categoria, $id_rol, $id_entregar, $modelo, $link) {
         if ($id_entregar == "0") {
             $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol,link) VALUES (?,?,?,?,?)";
@@ -351,6 +370,32 @@ class Conexion {
         }
         /* Ejecución de la sentencia. */
         mysqli_stmt_execute($stmt);
+
     }
+    function insertar_tarea($id_doc,$descripcion) {
+
+            $query = "INSERT INTO tarea (descripcion, id_documentacion) VALUES (?,?)";
+            $stmt = mysqli_prepare($this->conex, $query);
+
+            mysqli_stmt_bind_param($stmt, "si", $descripcion,$id_doc);
+
+        /* Ejecución de la sentencia. */
+        mysqli_stmt_execute($stmt);
+
+    }
+
+
+    function sacar_ultimo_doc(){
+
+        $consult = 'SELECT id_documentacion FROM documentacion order by id_documentacion desc LIMIT 1';
+        $this->cursor = mysqli_query($this->conex, $consult);
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
 
 }

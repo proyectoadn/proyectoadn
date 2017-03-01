@@ -112,8 +112,6 @@ Route::get('gestion', [
 
 
 
-
-
 //Rutas post
 
 Route::post('validar', [

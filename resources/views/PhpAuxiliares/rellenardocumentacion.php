@@ -13,6 +13,7 @@ $conexion = new Conexion();
 $vector=[];
 $roles=[];
 $fila;
+$descrip_tarea='';
 $id_docu = json_decode($_POST['id']);
 if($conexion->conectar()){
     $conexion->rellenar_documento($id_docu);
@@ -28,6 +29,11 @@ if($conexion->conectar()){
 
    }
 
+    $conexion->rellenar_descrip_tarea($id_docu);
+
+    while ($conexion->ir_Siguiente()) {
+        $descrip_tarea= $conexion->obtener_campo('descripcion');
+    }
 
 
     $conexion->rellenar_todas_categorias();
@@ -57,7 +63,8 @@ if($conexion->conectar()){
             'link'=> utf8_encode($link),
             'categorias'=>  $categorias,
             'rol'=>$roles,
-            'entregar'=>$entregar
+            'entregar'=>$entregar,
+            'descrip_tarea'=>utf8_encode($descrip_tarea)
         ];
 
 }
