@@ -12,6 +12,10 @@ i{
     text-align: center;
 }
 
+.margensuperior{
+    margin-top:20px;
+}
+
 .letrasblancas{
     color:#f5f5f5;
 }
@@ -40,7 +44,9 @@ textarea{
 }
 
 .panel-footer{
+    
     background-color:white;
+    padding: 20px 15px;
 }
 
 .login{
@@ -73,6 +79,34 @@ textarea{
     width: 100%;
     margin: auto;
     text-align: center;
+    margin-top: 50px;
+}
+
+.tituloformularioregistro{
+    
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.centrarbotonesregistro{
+    
+    text-align: center;
+    margin-top: 20px;
+}
+
+.registroerror{
+    
+    margin: auto;
+    margin-top: 50px;
+    width: 32%;
+}
+
+.botonregistro{
+    
+    width: 100%;
+    margin-top: 5px;
 }
 
 .imagenBoton{
@@ -175,11 +209,13 @@ b{
 
 .divfooter{
 
+    width: 100%;
     text-align: center;
     color: white;
     border-top: 1px solid #F3F3F3;
-    padding-top: 10px;
     margin-bottom: 20px;
+    bottom: 0;
+    position: absolute;
 }
 
 .contenidoborrar{
@@ -287,7 +323,7 @@ b{
 }
 
 .modal-dialog{
-    
+
     width: 50%;
 }
 

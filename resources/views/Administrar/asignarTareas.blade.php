@@ -104,7 +104,7 @@ Administracion
 @include ('PhpAuxiliares/cabeceraadministrador')
 
 
-<div class="contenedorPrincipal">
+<div class="contenedorPrincipal margensuperior">
     <!--div que contiene los cargos y las categorias-->
 
     <div class='limpiar'></div>

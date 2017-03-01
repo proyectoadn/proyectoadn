@@ -11,7 +11,7 @@ Usuario
 <div class="container">
     <div class="panel panel-primary login">
         <div class="panel-body">
-            <h2 class="form-signin-heading">Cambio de contraseña</h2>
+            <h2 class="form-signin-heading">Activar usuario</h2>
         </div>
         <div class="panel-footer">
             

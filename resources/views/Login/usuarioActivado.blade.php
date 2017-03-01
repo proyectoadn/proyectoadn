@@ -8,7 +8,7 @@ Login
 @section('contenido')
 
 <div class="container">
-    <div class="alert alert-success loginerror" >Usuario activado</div>
+    <div class="alert alert-success loginerror" >Usuario activado correctamente</div>
     <div class="panel panel-primary loginerror">
         <div class="panel-body">
             <h2 class="form-signin-heading">Iniciar sesión</h2>

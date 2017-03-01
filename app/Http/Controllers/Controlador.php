@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Clases\Usuario;
 use Mail;
-use Crypt;
+use PDF;
 
 class Controlador extends Controller {
 
@@ -54,20 +54,20 @@ class Controlador extends Controller {
 
 
         $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
-        
+
 
         for ($i = 0; $i < count($cargo); $i++) {
             $rol[] = \DB::table('rol')->where('id_rol', '=', $cargo[$i]->id_rol)->get();
-            
-            
-            if($rol[$i][0]->descripcion == 'EQ_Directivo' || $rol[$i][0]->descripcion == 'Coordinador calidad'){
-                
+
+
+            if ($rol[$i][0]->descripcion == 'EQ_Directivo' || $rol[$i][0]->descripcion == 'Coordinador calidad') {
+
                 \Session::put('rol', 'Administrador');
             }
         }
-        
-        
-        
+
+
+
 
         for ($i = 0; $i < count($rol); $i++) {
 
@@ -100,12 +100,16 @@ class Controlador extends Controller {
         return view('Administrar/activarUsuarios');
     }
 
+    public function administrarUsuarios(Request $request) {
+        return view('Administrar/administrarUsuarios');
+    }
+
     public function usuario(Request $request) {
 
 
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
+
         \Session::put('pagina', 'gestiontareas');
 
 
@@ -120,6 +124,7 @@ class Controlador extends Controller {
             'id_user' => $usu->getId_usuario()
         ];
 
+
         return view('GestionarTareas/gestionTareas', $datos);
     }
 
@@ -127,7 +132,7 @@ class Controlador extends Controller {
 
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
+
         \Session::put('pagina', 'administrar');
 
 
@@ -161,7 +166,7 @@ class Controlador extends Controller {
         \Session::forget('u');
         \Session::forget('rol');
         \Session::forget('pagina');
-        
+
 
         return view('Login/cerrarsesion');
     }
@@ -173,7 +178,6 @@ class Controlador extends Controller {
 
 
         $datos = [
-
             'usuario' => $usu
         ];
 
@@ -200,7 +204,6 @@ class Controlador extends Controller {
 
 
         \DB::table('usuario')->where('id_usuario', '=', $usu->getId_usuario())->update([
-
             'nombre' => $nombre,
             'apellidos' => $apellidos,
             'email' => $email,
@@ -214,7 +217,6 @@ class Controlador extends Controller {
         \Session::put('usuario', $usu);
 
         $datos = [
-
             'usuario' => $usu
         ];
 
@@ -241,7 +243,6 @@ class Controlador extends Controller {
 
 
             \DB::table('usuario')->where('id_usuario', '=', $usu->getId_usuario())->update([
-
                 'password' => \Hash::make($password)
             ]);
         }
@@ -265,7 +266,6 @@ class Controlador extends Controller {
 
 
             \DB::table('usuario')->where('email', '=', $email)->update([
-
                 'password' => \Hash::make($password)
             ]);
         }
@@ -280,7 +280,6 @@ class Controlador extends Controller {
 
 
         $data = [
-
             'email' => $email
         ];
 
@@ -304,11 +303,9 @@ class Controlador extends Controller {
         $nombre = $usuario[0]->nombre;
         $email = $usuario[0]->email;
         \DB::table('usuario')->where('id_usuario', '=', $id)->update([
-
             'confirmado' => -1
         ]);
         $data = [
-
             'email' => $email,
             'nombre' => $nombre
         ];
@@ -330,7 +327,7 @@ class Controlador extends Controller {
         return view('Administrar/activarUsuarios');
     }
 
-    public function datoscentro(Request $request) { 
+    public function datoscentro(Request $request) {
 
         $datoscentro = \DB::table('datoscentro')->get();
 
@@ -364,7 +361,6 @@ class Controlador extends Controller {
         $email = $request->get('correo');
 
         \DB::table('usuario')->where('email', '=', $email)->update([
-
             'confirmado' => 1
         ]);
         return view('Login/usuarioActivado');
@@ -384,7 +380,6 @@ class Controlador extends Controller {
 
 
         \DB::table('datoscentro')->where('id_datoscentro', '=', '1')->update([
-
             'direccion' => $direccion,
             'codigopostal' => $codigopostal,
             'ciudad' => $ciudad,
