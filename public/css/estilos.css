@@ -205,6 +205,7 @@ b{
     border-color: #F2CF3D;
     border-radius: 0px;
     margin-bottom: 0px;
+
 }
 
 .divfooter{
@@ -212,10 +213,10 @@ b{
     width: 100%;
     text-align: center;
     color: white;
+    background-color: #215891;
     border-top: 1px solid #F3F3F3;
     margin-bottom: 20px;
-    bottom: 0;
-    position: absolute;
+    margin-top:20px;
 }
 
 .contenidoborrar{
