@@ -9,8 +9,6 @@ Login
 @section('contenido')
 
 @include ('PhpAuxiliares/cabeceraadministrador')
-
-
 <div class="panel panel-primary divmiperfil">
 
     <!-- Cabecera del panel con el título-->
@@ -40,18 +38,18 @@ Login
 
             <div class="input-group" style="margin-bottom: 5px; width: 100%;">
                 <span class="input-group-addon" style="width: 20%;"><i>Codigo postal</i></span>
-                <input required type="text" name="codigopostal" value="{!! $codigopostal !!}" class="form-control">
+                <input required type="text" maxlength="5" name="codigopostal" value="{!! $codigopostal !!}" class="form-control">
             </div>
 
             <div class="input-group" style="margin-bottom: 5px; width: 100%;">
                 <span class="input-group-addon" style="width: 20%;"><i>Teléfono</i></span>
-                <input required type="text" name="telefono" value="{!! $telefono !!}" class="form-control">
+                <input required type="text" maxlength="9" name="telefono" value="{!! $telefono !!}" class="form-control">
 
             </div>
 
             <div class="input-group" style="margin-bottom: 5px; width: 100%;" >
                 <span class="input-group-addon" style="width: 20%;"><i>Fax</i></span>
-                <input required type="text" name="fax" value="{!! $fax !!}" class="form-control" title="Tooltip on right">
+                <input required type="text" maxlength="9" name="fax" value="{!! $fax !!}" class="form-control">
             </div>
 
             <div class="input-group" style="margin-bottom: 5px; width: 100%;">
@@ -71,7 +69,24 @@ Login
 
             <br>
 
-            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Actualizar">
+            <?php
+            $usu = new Usuario('', '', '', '', '');
+            $usu = \Session::get('u');
+
+
+            if (\Session::get('rol') == 'Administrador') {
+                ?>
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Actualizar">
+                <?php
+            } else {
+                //si no es admin no pongo el boton para poder actualizar
+                ?>
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Actualizar">
+                <?php
+            }
+            ?>
+
+
 
             <br>
         </form>
