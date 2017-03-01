@@ -150,6 +150,7 @@ Administracion
             var entrega = $('#entregar').val();
             var modelo = $('#nombreModelo').val();
             var link = $('#linkModelo').val();
+            var tarea=$('#editTarea').val();
             var update = new Array();
             update.push(descripcion);
             update.push(categoria);
@@ -158,8 +159,8 @@ Administracion
             update.push(modelo);
             update.push(id_doc);
             update.push(link);
+            update.push(tarea);
             var vector = JSON.stringify(update);
-
             $.post("../resources/views/PhpAuxiliares/actualizardocumentos.php", {datos: vector},
                     function (respuesta) {
 
@@ -232,6 +233,7 @@ Administracion
             var entrega = $('#anadirEntregar').val();
             var modelo = $('#anadirModelo').val();
             var link = $('#anadirLink').val();
+            var tarea=$('#addTarea').val();
             var insert = new Array();
             insert.push(descripcion);
             insert.push(categoria);
@@ -239,12 +241,13 @@ Administracion
             insert.push(entrega);
             insert.push(modelo);
             insert.push(link);
+            insert.push(tarea);
             var vector = JSON.stringify(insert);
             console.log(vector);
 
             $.post("../resources/views/PhpAuxiliares/anadirdocumento.php", {datos: vector},
                     function (respuesta) {
-
+                    console.log(respuesta);
                         llenar_documentos();
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -271,6 +274,7 @@ Administracion
                     $('#anadirDoc').val('');
                     $('#anadirModelo').val('');
                     $('#anadirRoles').html('');
+                    $('#addTarea').val('');
                     $('#anadirLink').val('');
                     for (var i = 0; i < rol.length; i++) {
                         if (rol[i]['descripcion'] != 'Profesor') {
@@ -302,6 +306,8 @@ Administracion
                             $('#anadirCat').append(' <label class="displayBock"> <input id="cat' + i + '" type="checkbox" value="' + categorias[i]['id_categoria'] + '">' + categorias[i]['descripcion'] + '</label>');
                         }
                     }
+
+
                 }
         ).fail(function (jqXHR) {
             alert("Error de tipo " + jqXHR.status);
@@ -318,6 +324,7 @@ Administracion
 
         $.post("../resources/views/PhpAuxiliares/rellenardocumentacion.php", {id: idjson},
                 function (respuesta) {
+
                     var datos = JSON.parse(respuesta);
 
 
@@ -330,9 +337,10 @@ Administracion
                     var id_entrega = datos[0]['id_entrega'];
                     var id_categoria = datos[0]['id_categoria'];
                     var modelo = datos[0]['modelo'];
+                    var descrip_tarea=datos[0]['descrip_tarea'];
                     $('#nombreDoc').val(nombre);
                     $('#nombreModelo').val(modelo);
-                    $('#linkModelo').val('');
+                    $('#editTarea').val(descrip_tarea);
                     $('#linkModelo').val(link);
                     $('#roles').html('');
                     for (var i = 0; i < rol.length; i++) {
@@ -557,13 +565,13 @@ Administracion
             <div class="modal-footer">
                 <div class="col-md-12 text-left">
                     <label for="tarea">Descripción de la tarea asociada al documento</label>
-                    <input name="tarea" id="tarea" type="text" class="form-control"
+                    <input name="tarea" id="editTarea" type="text" class="form-control"
                            value="">
                     <br>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-toggle="modal">
+                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
                     Aceptar
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">
@@ -626,7 +634,7 @@ Administracion
             <div class="modal-footer">
                 <div class="col-md-12 text-left">
                     <label for="tarea">Descripción de la tarea asociada al documento</label>
-                    <input name="tarea" id="tarea" type="text" class="form-control"
+                    <input name="tarea" id="addTarea" type="text" class="form-control"
                            value="">
                     <br>
                 </div>
@@ -643,22 +651,10 @@ Administracion
     </div>
 </div>
 <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
-
 @endsection
 
 @section('footer')
 
-<div class="divfooter">
-
-    Desarrollado por:
-
-    Daniel Ramirez Ros -
-    Alberto de la Plaza Ramos -
-    Nazario Castillero Redondo<br>
-
-    Copyright 2017 - Proyectoadn
-
-</div>
-
+    @include ('PhpAuxiliares/footer')
 
 @endsection

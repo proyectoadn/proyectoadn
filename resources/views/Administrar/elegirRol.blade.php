@@ -7,7 +7,7 @@ Elección de rol
 
 @section('contenido')
 @include ('PhpAuxiliares/cabeceraelegirrol')
-<div class="container">
+<div class="container margeninferior">
     <div class="tituloElegirRol">
         <h2 class="colorGris">Elegir rol de acceso</h2>
     </div>
@@ -36,15 +36,6 @@ Elección de rol
 
 @section('footer')
 
-<div class="divfooter">
-
-    Desarrollado por:
-
-    Daniel Ramirez Ros -
-    Alberto de la Plaza Ramos -
-    Nazario Castillero Redondo<br>
-
-    Copyright 2017 - Proyectoadn
-</div>
+    @include ('PhpAuxiliares/footer')
 
 @endsection

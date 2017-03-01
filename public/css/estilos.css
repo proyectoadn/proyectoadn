@@ -1,3 +1,8 @@
+html{
+    position:relative;
+    min-height: 100%;
+}
+
 body{
     background-color: #215891;
 }
@@ -205,6 +210,11 @@ b{
     border-color: #F2CF3D;
     border-radius: 0px;
     margin-bottom: 0px;
+
+}
+
+.margeninferior{
+
 }
 
 .divfooter{
@@ -212,10 +222,13 @@ b{
     width: 100%;
     text-align: center;
     color: white;
+    background-color: #215891;
     border-top: 1px solid #F3F3F3;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+
+    position:absolute;
     bottom: 0;
-    position: absolute;
+    margin-top:20px;
 }
 
 .contenidoborrar{
@@ -236,6 +249,7 @@ b{
     width: 35%;
     margin: auto;
     text-align: center;
+
 }
 
 .centrarTexto{
@@ -332,6 +346,36 @@ b{
     width: 100%;
 }
 
-nofuente{
-    font-weight: initial;
+.divgestionopciones{
+    
+    text-align: left;
+    margin-top: 50px;
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.divgestion{
+    
+    margin-top: 50px;
+}
+
+.espaciongestion{
+    
+    margin-top: 20px;
+}
+
+.divbotongestion{
+    
+    width: 97%;
+}
+
+.botongestion{
+    
+    width: 100%;
+    margin-left: 5px;
+}
+
+.botonborrargestion{
+    
+    margin-top: 10px;
 }

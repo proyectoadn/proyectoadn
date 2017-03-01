@@ -159,6 +159,66 @@ class Controlador extends Controller {
 
         return view('Login/restablecerpassword');
     }
+    
+    public function nuevorol(Request $request) {
+        
+        
+        
+        $nombredelrol = $request->get('nombrerol');
+        
+        \DB::table('rol')
+                ->insert([
+                    'descripcion' => $nombredelrol,
+        ]);
+        
+        //return view('Login/restablecerpassword');
+    }
+    
+    public function nuevacategoria(Request $request) {
+        
+        
+        
+        $nombrecategoria = $request->get('nombrecategoria');
+        
+        \DB::table('categoria')
+                ->insert([
+                    'descripcion' => $nombrecategoria,
+        ]);
+        
+        //return view('Login/restablecerpassword');
+    }
+    
+    public function nuevaentrega(Request $request) {
+        
+        
+        
+        $nombreentrega = $request->get('nombreentrega');
+        
+        \DB::table('entregar')
+                ->insert([
+                    'descripcion' => $nombreentrega,
+        ]);
+        
+        //return view('Login/restablecerpassword');
+    }
+    
+    public function gestion(Request $request) {
+
+        
+        $roles = \DB::table('rol')->get();
+        $categorias = \DB::table('categoria')->get();
+        $entregar = \DB::table('entregar')->get();
+        
+        
+        $datos = [
+            
+            'roles' => $roles,
+            'categorias' => $categorias,
+            'entregar' => $entregar
+        ];
+        
+        return view('gestion', $datos);
+    }
 
     public function cerrarsesion(Request $request) {
 

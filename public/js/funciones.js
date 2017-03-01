@@ -90,6 +90,30 @@ function seleccionarRoles(source)
     }
 }
 
+function seleccionarCategorias(source)
+{
+    checkboxes = document.getElementsByClassName('seleccionarCategorias'); //obtenemos todos los controles del tipo Input
+    for (i = 0; i < checkboxes.length; i++) //recoremos todos los controles
+    {
+        if (checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
+        {
+            checkboxes[i].checked = source.checked; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
+        }
+    }
+}
+
+function seleccionarEntrega(source)
+{
+    checkboxes = document.getElementsByClassName('seleccionarEntrega'); //obtenemos todos los controles del tipo Input
+    for (i = 0; i < checkboxes.length; i++) //recoremos todos los controles
+    {
+        if (checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
+        {
+            checkboxes[i].checked = source.checked; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
+        }
+    }
+}
+
 
 //Seleccionar todos los checkboxes de las tareas en la ventana de asignarTareas
 function seleccionarTareas(source)
