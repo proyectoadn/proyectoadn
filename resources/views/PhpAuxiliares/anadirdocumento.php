@@ -16,12 +16,15 @@ $datos = json_decode($_POST['datos']);
 $descripcion=utf8_decode($datos[0]);
 $link=utf8_decode($datos[5]);
 $tarea=utf8_decode($datos[6]);
+
+//Si solo hay una categoria, unicamente compruebo una posicion en el vector principal
 if(count($datos[1])==1){
-    $categoria[]=$datos[1];
+    $categoria[]=utf8_decode($datos[1]);
 }
+//Si no, extraigo la informacion dentro del vector principal, en otro vector interno.
 else{
     for($i=0;$i<count($datos[1]);$i++){
-        $categoria[]=$datos[1][$i];
+        $categoria[]=utf8_decode($datos[1][$i]);
     }
 }
 
