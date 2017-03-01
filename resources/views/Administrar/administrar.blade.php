@@ -126,7 +126,7 @@ Administracion
             //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
             $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
                                                 <div class="documentacion divAniadirDoc">\n\
-                                                    <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario"data-toggle="modal" data-target="#modalAddDoc">\n\
+                                                    <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario" data-toggle="modal" data-target="#modalAddDoc">\n\
                                                         <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
                                                     </button>\n\
                                                     </div>\n\
@@ -554,8 +554,18 @@ Administracion
                     </div>
                 </div>
             </div>
+            <!--parte de la tarea-->
+            <br>
             <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
+                <div class="col-md-12 text-left">
+                    <label for="tarea">Descripción de la tarea asociada al documento</label>
+                    <input name="tarea" id="tarea" type="text" class="form-control"
+                           value="">
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-toggle="modal" data-target="#modalAddTarea">
                     Aceptar
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">
@@ -613,6 +623,16 @@ Administracion
                     </div>
                 </div>
             </div>
+            <!--parte de la tarea-->
+            <br>
+            <div class="modal-footer">
+                <div class="col-md-12 text-left">
+                    <label for="tarea">Descripción de la tarea asociada al documento</label>
+                    <input name="tarea" id="tarea" type="text" class="form-control"
+                           value="">
+                    <br>
+                </div>
+            </div>
             <div class="modal-footer">
                 <button id="addDoc" class="btn btn-primary" id="anadirDocumentacion" data-dismiss="modal">
                     Aceptar
@@ -625,7 +645,6 @@ Administracion
     </div>
 </div>
 <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
-
 
 @endsection
 

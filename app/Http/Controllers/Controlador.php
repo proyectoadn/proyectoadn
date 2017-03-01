@@ -391,8 +391,20 @@ class Controlador extends Controller {
             'codigocentro' => $codigocentro,
         ]);
 
+        $datos = [
+            'direccion' => $direccion,
+            'codigopostal' => $codigopostal,
+            'ciudad' => $ciudad,
+            'provincia' => $provincia,
+            'telefono' => $telefono,
+            'fax' => $fax,
+            'email1' => $email1,
+            'email2' => $email2,
+            'codigocentro' => $codigocentro
+        ];
 
-        return view('GestionarTareas/datosCentroActualizado');
+
+        return view('GestionarTareas/datosCentroActualizado', $datos);
     }
 
     public function registrar(Request $request) {
