@@ -104,6 +104,11 @@ Route::get('activar', [
     'uses' => 'Controlador@activar',
 ]);
 
+Route::get('gestion', [
+    'as' => 'gestion',
+    'uses' => 'Controlador@gestion',
+]);
+
 
 
 

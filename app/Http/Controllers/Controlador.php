@@ -159,6 +159,24 @@ class Controlador extends Controller {
 
         return view('Login/restablecerpassword');
     }
+    
+    public function gestion(Request $request) {
+
+        
+        $roles = \DB::table('rol')->get();
+        $categorias = \DB::table('categoria')->get();
+        $entregar = \DB::table('entregar')->get();
+        
+        
+        $datos = [
+            
+            'roles' => $roles,
+            'categorias' => $categorias,
+            'entregar' => $entregar
+        ];
+        
+        return view('gestion', $datos);
+    }
 
     public function cerrarsesion(Request $request) {
 

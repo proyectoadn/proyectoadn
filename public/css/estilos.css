@@ -331,3 +331,37 @@ b{
 
     width: 100%;
 }
+
+.divgestionopciones{
+    
+    text-align: left;
+    margin-top: 50px;
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.divgestion{
+    
+    margin-top: 50px;
+}
+
+.espaciongestion{
+    
+    margin-top: 20px;
+}
+
+.divbotongestion{
+    
+    width: 97%;
+}
+
+.botongestion{
+    
+    width: 100%;
+    margin-left: 5px;
+}
+
+.botonborrargestion{
+    
+    margin-top: 10px;
+}
