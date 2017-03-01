@@ -7,7 +7,7 @@ Elección de rol
 
 @section('contenido')
 @include ('PhpAuxiliares/cabeceraelegirrol')
-<div class="container">
+<div class="container margeninferior">
     <div class="tituloElegirRol">
         <h2 class="colorGris">Elegir rol de acceso</h2>
     </div>

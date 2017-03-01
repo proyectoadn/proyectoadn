@@ -653,7 +653,6 @@ Administracion
     </div>
 </div>
 <!--FINAL MODAL DE AÑADIR DOCUMENTACION-->
-
 @endsection
 
 @section('footer')
