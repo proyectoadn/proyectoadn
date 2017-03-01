@@ -8,32 +8,99 @@ Gestión de tareas
 
 
 <script>
-    
-    $(function(){
-        
-        $("#borrarentrega").on("click", function(){
+
+    $(function () {
+
+        $("#borrarrol").on("click", function () {
             
-            alert($("#borrarentrega").val());
-            
-            if($("#borrarentrega").val() == 'Roles'){
-                
-                var roles = {!! count($roles) !!}
-                var borrar = new Array();
-                
-                for(var i=0;i<roles;i++){
-                    
-                    if($("#rol"+i).prop('checked')){
-                        
-                        borrar.push($("#nombrerol"+i).text());
-                    }
+
+            var roles = {!! count($roles) !!}
+            var borrar = new Array();
+            var nombrerol = 'Roles';
+
+            for (var i = 0; i < roles; i++) {
+
+                if ($("#rol" + i).prop('checked')) {
+
+                    borrar.push($("#nombrerol" + i).text().trim());
                 }
-                
-                alert(borrar);
             }
+
+            var datos = JSON.stringify(borrar);
+            var tipo = JSON.stringify(nombrerol);
+
+            $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
+                    function (respuesta) {
+
+                        window.location = "gestion";
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        });
+        
+        $("#borrarcategoria").on("click", function () {
+
+
+
+            var categorias = {!! count($categorias) !!}
+            var borrar = new Array();
+            var nombrecategoria = 'Categorias';
+
+            for (var i = 0; i < categorias; i++) {
+
+                if ($("#categoria" + i).prop('checked')) {
+
+                    borrar.push($("#nombrecategoria" + i).text().trim());
+                }
+            }
+
+            var datos = JSON.stringify(borrar);
+            var tipo = JSON.stringify(nombrecategoria);
+
+            $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
+                    function (respuesta) {
+
+                        window.location = "gestion";
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        });
+        
+        
+        
+        $("#borrarentrega").on("click", function () {
+
+
+
+            var entregas = {!! count($entregar) !!}
+            var borrar = new Array();
+            var nombreentregas = 'Entregas';
+
+            for (var i = 0; i < entregas; i++) {
+
+                if ($("#entrega" + i).prop('checked')) {
+
+                    borrar.push($("#nombreentregar" + i).text().trim());
+                }
+            }
+
+            var datos = JSON.stringify(borrar);
+            var tipo = JSON.stringify(nombreentregas);
+
+            $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
+                    function (respuesta) {
+
+                        window.location = "gestion";
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
         });
     });
-    
-    </script>
+
+</script>
 
 
 @endsection
@@ -79,7 +146,7 @@ Gestión de tareas
                 <div class="divbotongestion">
 
                     <input type="submit" name="nuevorol" value="Nuevo rol" class="btn btn-primary botongestion" data-toggle="modal" data-target="#nuevorol">
-                    <button type="submit" name="borrarentrega" id="borrarentrega" value="Roles" class="btn btn-primary botongestion botonborrargestion">Borrar</button>
+                    <button type="submit" name="borrarrol" id="borrarrol" value="Roles" class="btn btn-primary botongestion botonborrargestion">Borrar</button>
                 </div>
             </div>
         </div>
@@ -97,8 +164,8 @@ Gestión de tareas
 
                     @for($i=0;$i<count($categorias);$i++)
 
-                        <label>
-                            <input type="checkbox" name="categoria" value="categoria{!! $i !!}" class="seleccionarCategorias">
+                        <label id="nombrecategoria{!! $i !!}">
+                            <input type="checkbox" name="categoria" id="categoria{!! $i !!}" value="categoria{!! $i !!}" class="seleccionarCategorias">
                             {!! $categorias[$i]->descripcion !!}
                         </label><br>
                         @endfor
@@ -112,7 +179,7 @@ Gestión de tareas
                 <div class="divbotongestion">
 
                     <input type="submit" name="nuevacategoria" value="Nueva categoria" class="btn btn-primary botongestion" data-toggle="modal" data-target="#nuevacategoria">
-                    <input type="submit" name="borrarentrega" value="Borrar" class="btn btn-primary botongestion botonborrargestion">
+                    <button type="submit" name="borrarcategoria" id="borrarcategoria" value="Categorias" class="btn btn-primary botongestion botonborrargestion">Borrar</button>
                 </div>
             </div>
         </div>
@@ -130,8 +197,8 @@ Gestión de tareas
 
                     @for($i=0;$i<count($entregar);$i++)
 
-                        <label class="displayBock">
-                            <input type="checkbox" name="entrega" value="entrega{!! $i !!}" class="seleccionarEntrega">
+                        <label class="displayBock" id="nombreentregar{!! $i !!}">
+                            <input type="checkbox" name="entrega" id="entrega{!! $i !!}" value="entrega{!! $i !!}" class="seleccionarEntrega">
                             {!! $entregar[$i]->descripcion !!}
                         </label>
                         @endfor
@@ -145,7 +212,7 @@ Gestión de tareas
                 <div class="divbotongestion">
 
                     <input type="submit" name="nuevaentrega" value="Nueva entrega" class="btn btn-primary botongestion" data-toggle="modal" data-target="#nuevaentrega">
-                    <input type="submit" name="borrarentrega" value="Borrar" class="btn btn-primary botongestion botonborrargestion">
+                    <button type="submit" name="borrarentrega" id="borrarentrega" value="Entregas" class="btn btn-primary botongestion botonborrargestion">Borrar</button>
                 </div>
             </div>
         </div>
@@ -228,7 +295,7 @@ Gestión de tareas
                     <input type="text" name="nombreentrega" placeholder="Nombre de la entrega" class="form-control">
 
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
                         Añadir
@@ -237,7 +304,7 @@ Gestión de tareas
                         Cancelar
                     </button>
                 </div>
-                
+
             </form>
         </div>
     </div>

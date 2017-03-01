@@ -325,6 +325,42 @@ class Conexion {
         }
         return $devolver;
     }
+    
+    function borrarrol($nombrerol) {
+        $consult = "DELETE FROM rol WHERE descripcion ='" . $nombrerol."'";
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function borrarcategorias($nombrecategorias) {
+        $consult = "DELETE FROM categoria WHERE descripcion ='" . $nombrecategorias."'";
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function borrarentregas($nombreentregas) {
+        $consult = "DELETE FROM entregar WHERE descripcion ='" . $nombreentregas."'";
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
 
     function ir_Siguiente() {
         return $this->fila = mysqli_fetch_array($this->cursor);
