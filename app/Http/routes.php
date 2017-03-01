@@ -107,8 +107,6 @@ Route::get('activar', [
 
 
 
-
-
 //Rutas post
 
 Route::post('validar', [
