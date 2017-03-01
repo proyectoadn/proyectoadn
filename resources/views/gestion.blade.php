@@ -7,6 +7,35 @@ Gestión de tareas
 @section('js')
 
 
+<script>
+    
+    $(function(){
+        
+        $("#borrarentrega").on("click", function(){
+            
+            alert($("#borrarentrega").val());
+            
+            if($("#borrarentrega").val() == 'Roles'){
+                
+                var roles = {!! count($roles) !!}
+                var borrar = new Array();
+                
+                for(var i=0;i<roles;i++){
+                    
+                    if($("#rol"+i).prop('checked')){
+                        
+                        borrar.push($("#nombrerol"+i).text());
+                    }
+                }
+                
+                alert(borrar);
+            }
+        });
+    });
+    
+    </script>
+
+
 @endsection
 
 
@@ -35,8 +64,8 @@ Gestión de tareas
 
                     @for($i=0;$i<count($roles);$i++)
 
-                        <label class="displayBock">
-                            <input type="checkbox" name="rol" class="seleccionarRoles">
+                        <label class="displayBock" id="nombrerol{!! $i !!}">
+                            <input type="checkbox" name="rol" id="rol{!! $i !!}" value="rol{!! $i !!}" class="seleccionarRoles">
                             {!! $roles[$i]->descripcion !!}
                         </label>
                         @endfor
@@ -50,7 +79,7 @@ Gestión de tareas
                 <div class="divbotongestion">
 
                     <input type="submit" name="nuevorol" value="Nuevo rol" class="btn btn-primary botongestion" data-toggle="modal" data-target="#nuevorol">
-                    <input type="submit" name="borrarentrega" value="Borrar" class="btn btn-primary botongestion botonborrargestion">
+                    <button type="submit" name="borrarentrega" id="borrarentrega" value="Roles" class="btn btn-primary botongestion botonborrargestion">Borrar</button>
                 </div>
             </div>
         </div>
@@ -69,7 +98,7 @@ Gestión de tareas
                     @for($i=0;$i<count($categorias);$i++)
 
                         <label>
-                            <input type="checkbox" name="categoria" class="seleccionarCategorias">
+                            <input type="checkbox" name="categoria" value="categoria{!! $i !!}" class="seleccionarCategorias">
                             {!! $categorias[$i]->descripcion !!}
                         </label><br>
                         @endfor
@@ -102,7 +131,7 @@ Gestión de tareas
                     @for($i=0;$i<count($entregar);$i++)
 
                         <label class="displayBock">
-                            <input type="checkbox" name="entrega" class="seleccionarEntrega">
+                            <input type="checkbox" name="entrega" value="entrega{!! $i !!}" class="seleccionarEntrega">
                             {!! $entregar[$i]->descripcion !!}
                         </label>
                         @endfor
@@ -130,20 +159,28 @@ Gestión de tareas
     <div class="modal-dialog anchuraModalCrearDocumentacion">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-body">
-                
-                <label>Nombre del rol</label>
-                <input type="text" name="nombrerol" placeholder="Nombre del rol" class="form-control">
-                
-            </div>
-            <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
-                    Añadir
-                </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    Cancelar
-                </button>
-            </div>
+
+            <form action="nuevorol" method="POST">
+                {!! csrf_field() !!}
+
+                <div class="modal-body">
+
+                    <label>Nombre del rol</label>
+                    <input type="text" name="nombrerol" placeholder="Nombre del rol" class="form-control">
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary">
+                        Añadir
+                    </button>
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -152,20 +189,27 @@ Gestión de tareas
     <div class="modal-dialog anchuraModalCrearDocumentacion">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-body">
-                
-                <label>Nombre de la categoria</label>
-                <input type="text" name="nombrerol" placeholder="Nombre de la categoria" class="form-control">
-                
-            </div>
-            <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
-                    Añadir
-                </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    Cancelar
-                </button>
-            </div>
+
+            <form action="nuevacategoria" method="POST">
+                {!! csrf_field() !!}
+
+                <div class="modal-body">
+
+                    <label>Nombre de la categoria</label>
+                    <input type="text" name="nombrecategoria" placeholder="Nombre de la categoria" class="form-control">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Añadir
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
@@ -174,20 +218,27 @@ Gestión de tareas
     <div class="modal-dialog anchuraModalCrearDocumentacion">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-body">
+
+            <form action="nuevaentrega" method="POST">
+                {!! csrf_field() !!}
+
+                <div class="modal-body">
+
+                    <label>Nombre de la entrega</label>
+                    <input type="text" name="nombreentrega" placeholder="Nombre de la entrega" class="form-control">
+
+                </div>
                 
-                <label>Nombre de la entrega</label>
-                <input type="text" name="nombrerol" placeholder="Nombre de la entrega" class="form-control">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Añadir
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </div>
                 
-            </div>
-            <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
-                    Añadir
-                </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    Cancelar
-                </button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

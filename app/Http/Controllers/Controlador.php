@@ -160,6 +160,48 @@ class Controlador extends Controller {
         return view('Login/restablecerpassword');
     }
     
+    public function nuevorol(Request $request) {
+        
+        
+        
+        $nombredelrol = $request->get('nombrerol');
+        
+        \DB::table('rol')
+                ->insert([
+                    'descripcion' => $nombredelrol,
+        ]);
+        
+        //return view('Login/restablecerpassword');
+    }
+    
+    public function nuevacategoria(Request $request) {
+        
+        
+        
+        $nombrecategoria = $request->get('nombrecategoria');
+        
+        \DB::table('categoria')
+                ->insert([
+                    'descripcion' => $nombrecategoria,
+        ]);
+        
+        //return view('Login/restablecerpassword');
+    }
+    
+    public function nuevaentrega(Request $request) {
+        
+        
+        
+        $nombreentrega = $request->get('nombreentrega');
+        
+        \DB::table('entregar')
+                ->insert([
+                    'descripcion' => $nombreentrega,
+        ]);
+        
+        //return view('Login/restablecerpassword');
+    }
+    
     public function gestion(Request $request) {
 
         
