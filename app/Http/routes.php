@@ -192,3 +192,18 @@ Route::post('actualizarDatosCentro', [
     'as' => 'actualizarDatosCentro',
     'uses' => 'Controlador@actualizarDatosCentro'
 ]);
+
+Route::post('nuevorol', [
+    'as' => 'nuevorol',
+    'uses' => 'Controlador@nuevorol',
+]);
+
+Route::post('nuevacategoria', [
+    'as' => 'nuevacategoria',
+    'uses' => 'Controlador@nuevacategoria',
+]);
+
+Route::post('nuevaentrega', [
+    'as' => 'nuevaentrega',
+    'uses' => 'Controlador@nuevaentrega',
+]);
