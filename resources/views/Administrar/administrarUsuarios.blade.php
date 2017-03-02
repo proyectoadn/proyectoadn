@@ -9,7 +9,7 @@ Administracion
 <script>
 
     var id_usu;
-    var countCat;
+    var countRol;
     $(function () {
         //Filtro para la tabla
         $('#filter').keyup(function () {
@@ -76,26 +76,27 @@ Administracion
                                         //coinciden se marcan como "checked"
                                         $("#roles").html('');
                                         var coincide = false;
+                                        countRol=0;
                                         for (var i = 0; i < cargos.length; i++) {
                                             coincide = false;
                                             for (var x = 0; x < usu.length; x++) {
 
-                                                if (usu[x]['descripcion'] == cargos[i]['todosRoles']) {
+                                                if (usu[x]['descripcion'] == cargos[i]['descripcion']) {
                                                     coincide = true;
                                                 }
                                             }
                                             if (coincide) {
                                                 $("#roles").append('<label class="displayBock">\n\
-                                                <input id="rol'+ i + '" checked class="seleccionarRoles" type="checkbox" value="">\n\
-                                                ' + cargos[i]['todosRoles'] + '\n\
+                                                <input id="rol'+ i + '" checked class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
+                                                ' + cargos[i]['descripcion'] + '\n\
                                                 </label>');
                                             } else {
                                                 $("#roles").append('<label class="displayBock">\n\
-                                                <input id="rol'+ i + '" class="seleccionarRoles" type="checkbox" value="">\n\
-                                                ' + cargos[i]['todosRoles'] + '\n\
+                                                <input id="rol'+ i + '" class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
+                                                ' + cargos[i]['descripcion'] + '\n\
                                                 </label>');
                                             }
-
+countRol++;
                                         }//FIN FOR
 
                                         //Fuera del for, pinto el seleccionar todo en el divisor de roles
@@ -117,12 +118,12 @@ Administracion
                             //AHORA VAMOS A CAMBIAR LOS ROLES EN CASO DE QUE SE HAYAN CAMBIADO
                             //Miramos si estan checkeados y si no lo están cogemos el nmbre de la misma
                             var roles = new Array();
-                            for (var i = 0; i < countCat; i++) {
-                                if ($("#roles" + i).prop('checked')) {
-                                    roles.push($("#roles" + i).val());
+                            for (var i = 0; i < countRol; i++) {
+                                if ($("#rol" + i).prop('checked')) {
+                                    roles.push($("#rol" + i).val());
                                 }
                             }
-                            
+                            console.log(roles);
                             //Creo un array y meto las variables anteriormente recogidas
                             var update = new Array();
                             update.push(nomUsuario);
@@ -133,7 +134,6 @@ Administracion
 
                             //Paso a JSON
                             var datos = JSON.stringify(update);
-
                             //Update del usuario con los nuevos datos, cambien o no
                             $.post("../resources/views/PhpAuxiliares/updateUsuario.php", {datos: datos},
                                     function (respuesta) {
