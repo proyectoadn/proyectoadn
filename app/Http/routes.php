@@ -15,12 +15,6 @@ Route::get('/', function () {
     return view('Login/login');
 });
 
-Route::get('pdf', function () {
-
-    $pdf = PDF::loadView('Login/cerrarsesion');
-    return $pdf->download('archivo.pdf');
-});
-
 
 
 
@@ -206,4 +200,9 @@ Route::post('nuevacategoria', [
 Route::post('nuevaentrega', [
     'as' => 'nuevaentrega',
     'uses' => 'Controlador@nuevaentrega',
+]);
+
+Route::post('pdf', [
+    'as' => 'pdf',
+    'uses' => 'Controladorpdf@pdf',
 ]);
