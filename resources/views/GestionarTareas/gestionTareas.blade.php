@@ -201,19 +201,27 @@ Gestión de tareas
     <!--div que contiene los cargos y las categorias-->
     <div class="cargoCat">
         <div class='divBotonCargoCat'>
-            <select id="carg" class='botonCargoCat form-control'>
-                <option value="-1">-Elige cargo-</option>
 
-                @for($i=0;$i<count($roles);$i++)
-                    <option value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
-                    @endfor
-            </select>
+            <form action="pdf" method="POST">
+                {!! csrf_field() !!}
+
+                <select name="carg" id="carg" class='botonCargoCat form-control'>
+                    <option value="-1">-Elige cargo-</option>
+
+                    @for($i=0;$i<count($roles);$i++)
+                        <option id="cargo" value="{!! $roles[$i][0]->id_rol !!}">{!! $roles[$i][0]->descripcion !!}</option>
+                        @endfor
+                </select>
         </div>
         <div class='divBotonCargoCat'>
             <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
                 <option id="categorias" value="-1">-Elige categoria-</option>
             </select>
         </div>
+
+
+        <input type="submit" name="exportarapdf" value="Exportar a pdf" class="btn btn-primary">
+        </form>
     </div>
     <div class='limpiar'></div>
 
@@ -288,6 +296,6 @@ Gestión de tareas
 
 @section('footer')
 
-    @include ('PhpAuxiliares/footer')
+@include ('PhpAuxiliares/footer')
 
 @endsection
