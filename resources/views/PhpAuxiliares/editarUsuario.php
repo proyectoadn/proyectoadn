@@ -31,7 +31,8 @@ if ($conexion->conectar()) {
     
      while ($conexion->ir_Siguiente()) {
         $roles[] = [
-            'todosRoles' => utf8_encode($conexion->obtener_campo('descripcion'))
+            'descripcion' => utf8_encode($conexion->obtener_campo('descripcion')),
+            'id_rol'=>$conexion->obtener_campo('id_rol')
         ];
     }
     

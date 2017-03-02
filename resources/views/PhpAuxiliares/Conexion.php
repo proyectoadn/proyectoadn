@@ -363,6 +363,37 @@ class Conexion {
         return $devolver;
     }
 
+    function actualizarCargos($id_usu,$rol) {
+    $query = "INSERT INTO cargo (id_usuario, id_rol) VALUES (?,?)";
+
+    $stmt = mysqli_prepare($this->conex, $query);
+    mysqli_stmt_bind_param($stmt, "ii", $id_usu,$rol);
+    /* Ejecución de la sentencia. */
+    mysqli_stmt_execute($stmt);
+
+
+    if ($this->cursor) {
+        $devolver = true;
+    } else {
+        $devolver = false;
+    }
+    return $devolver;
+}
+
+    function borrarCargosUsuario($id_usu) {
+        $consult = "DELETE FROM cargo WHERE id_usuario =" . $id_usu;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+
     function ir_Siguiente() {
         return $this->fila = mysqli_fetch_array($this->cursor);
     }
