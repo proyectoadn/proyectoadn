@@ -171,7 +171,7 @@ class Controlador extends Controller {
                     'descripcion' => $nombredelrol,
         ]);
         
-        //return view('Login/restablecerpassword');
+        return redirect('gestion');
     }
     
     public function nuevacategoria(Request $request) {
@@ -185,7 +185,7 @@ class Controlador extends Controller {
                     'descripcion' => $nombrecategoria,
         ]);
         
-        //return view('Login/restablecerpassword');
+        return redirect('gestion');
     }
     
     public function nuevaentrega(Request $request) {
@@ -199,7 +199,7 @@ class Controlador extends Controller {
                     'descripcion' => $nombreentrega,
         ]);
         
-        //return view('Login/restablecerpassword');
+        return redirect('gestion');
     }
     
     public function gestion(Request $request) {

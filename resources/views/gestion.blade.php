@@ -12,11 +12,12 @@ Gestión de tareas
     $(function () {
 
         $("#borrarrol").on("click", function () {
-            
+
 
             var roles = {!! count($roles) !!}
             var borrar = new Array();
             var nombrerol = 'Roles';
+
 
             for (var i = 0; i < roles; i++) {
 
@@ -26,19 +27,30 @@ Gestión de tareas
                 }
             }
 
-            var datos = JSON.stringify(borrar);
-            var tipo = JSON.stringify(nombrerol);
 
-            $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
-                    function (respuesta) {
+            if (borrar.length == 0) {
 
-                        window.location = "gestion";
+                alert("Selecciona un rol para borrar");
 
-                    }).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
-            });
+            } else {
+
+                var datos = JSON.stringify(borrar);
+                var tipo = JSON.stringify(nombrerol);
+
+                if (confirm("Si borras el rol se borrara la documentacion asociada a este rol y las tareas, estas seguro?")) {
+
+                    $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
+                            function (respuesta) {
+
+                                window.location = "gestion";
+
+                            }).fail(function (jqXHR) {
+                        alert("Error de tipo " + jqXHR.status);
+                    });
+                }
+            }
         });
-        
+
         $("#borrarcategoria").on("click", function () {
 
 
@@ -55,21 +67,31 @@ Gestión de tareas
                 }
             }
 
-            var datos = JSON.stringify(borrar);
-            var tipo = JSON.stringify(nombrecategoria);
+            if (borrar.length == 0) {
 
-            $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
-                    function (respuesta) {
+                alert("Selecciona una categoria para borrar");
 
-                        window.location = "gestion";
+            } else {
 
-                    }).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
-            });
+                var datos = JSON.stringify(borrar);
+                var tipo = JSON.stringify(nombrecategoria);
+
+                if (confirm("Si borras la categoria se borrara la documentacion asociada a esta categoria y las tareas, estas seguro?")) {
+
+                    $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
+                            function (respuesta) {
+
+                                window.location = "gestion";
+
+                            }).fail(function (jqXHR) {
+                        alert("Error de tipo " + jqXHR.status);
+                    });
+                }
+            }
         });
-        
-        
-        
+
+
+
         $("#borrarentrega").on("click", function () {
 
 
@@ -86,17 +108,28 @@ Gestión de tareas
                 }
             }
 
-            var datos = JSON.stringify(borrar);
-            var tipo = JSON.stringify(nombreentregas);
+            if (borrar.length == 0) {
 
-            $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
-                    function (respuesta) {
+                alert("Selecciona una entrega para borrar");
 
-                        window.location = "gestion";
+            }
+            else {
 
-                    }).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
-            });
+                var datos = JSON.stringify(borrar);
+                var tipo = JSON.stringify(nombreentregas);
+
+                if (confirm("Estas seguro de que quieres borrar la entrega?")) {
+
+                    $.post("../resources/views/PhpAuxiliares/borrargestion.php", {datos: datos, tipo: tipo},
+                            function (respuesta) {
+
+                                window.location = "gestion";
+
+                            }).fail(function (jqXHR) {
+                        alert("Error de tipo " + jqXHR.status);
+                    });
+                }
+            }
         });
     });
 
@@ -233,7 +266,7 @@ Gestión de tareas
                 <div class="modal-body">
 
                     <label>Nombre del rol</label>
-                    <input type="text" name="nombrerol" placeholder="Nombre del rol" class="form-control">
+                    <input type="text" name="nombrerol" placeholder="Nombre del rol" class="form-control" required>
 
                 </div>
 
@@ -263,7 +296,7 @@ Gestión de tareas
                 <div class="modal-body">
 
                     <label>Nombre de la categoria</label>
-                    <input type="text" name="nombrecategoria" placeholder="Nombre de la categoria" class="form-control">
+                    <input type="text" name="nombrecategoria" placeholder="Nombre de la categoria" class="form-control" required>
 
                 </div>
 
@@ -292,7 +325,7 @@ Gestión de tareas
                 <div class="modal-body">
 
                     <label>Nombre de la entrega</label>
-                    <input type="text" name="nombreentrega" placeholder="Nombre de la entrega" class="form-control">
+                    <input type="text" name="nombreentrega" placeholder="Nombre de la entrega" class="form-control" required>
 
                 </div>
 
