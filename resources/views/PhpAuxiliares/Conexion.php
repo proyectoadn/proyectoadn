@@ -352,6 +352,7 @@ class Conexion {
         }
         return $devolver;
     }
+    
 
     function denegar_usuario($id_usuario) {
         $consult = "DELETE FROM usuario WHERE id_usuario =" . $id_usuario;
