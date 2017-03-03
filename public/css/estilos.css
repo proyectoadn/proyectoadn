@@ -358,6 +358,7 @@ b{
     margin-top: 50px;
     min-height: 300px;
     max-height: 300px;
+    overflow-y: scroll;
 }
 
 .divgestion{
