@@ -29,49 +29,60 @@
             <h4>Por hacer:</h4>
         </div>
 
-        <div class="divtarea" id="porhacer">
-            
             @for($i=0;$i<count($porhacer);$i++)
+                
+                <div class="divtarea" id="porhacer">
                 
                 
                 {!! $porhacer[$i]->descripcion !!}
                 <br><br>
                 {!! $porhacer[$i]->modelo !!}
+                
+                </div>
+                <br>
             @endfor
 
-        </div>
+        
     <br>
 
         <div>
             <h4>Pendiente</h4>
         </div>
 
-        <div class="divtarea" id="pendiente">
             
             @for($i=0;$i<count($pendiente);$i++)
+                
+                <div class="divtarea" id="pendiente">
                 
                 
                 {!! $pendiente[$i]->descripcion !!}
                 <br><br>
                 {!! $pendiente[$i]->modelo !!}
+                
+                </div>
+                <br>
             @endfor
-        </div>
     <br>
 
         <div>
             <h4>Hecho</h4>
         </div>
 
-        <div class="divtarea" id="hecho">
+        
             
             @for($i=0;$i<count($hecho);$i++)
+                
+                <div class="divtarea" id="hecho">
                 
                 
                 {!! $hecho[$i]->descripcion !!}
                 <br><br>
                 {!! $hecho[$i]->modelo !!}
+                
+                </div>
+                <br>
             @endfor
-        </div>
+        
     <br>
 
 </div>
