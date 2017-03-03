@@ -112,8 +112,7 @@ Gestión de tareas
 
                 alert("Selecciona una entrega para borrar");
 
-            }
-            else {
+            } else {
 
                 var datos = JSON.stringify(borrar);
                 var tipo = JSON.stringify(nombreentregas);
@@ -132,6 +131,26 @@ Gestión de tareas
             }
         });
     });
+
+    function popup(boton, tabla) {
+
+        var id = boton.value;
+
+        var idrol = JSON.stringify(id);
+        var nombretabla = JSON.stringify(tabla);
+
+
+        $.post("../resources/views/PhpAuxiliares/gestion.php", {id: id, nombretabla: nombretabla},
+                function (respuesta) {
+
+
+                    alert(respuesta);
+
+                }).fail(function (jqXHR) {
+            alert("Error de tipo " + jqXHR.status);
+        });
+
+    }
 
 </script>
 
@@ -162,11 +181,17 @@ Gestión de tareas
 
                 <div class="checkbox divgestionopciones">
 
+
+
                     @for($i=0;$i<count($roles);$i++)
 
                         <label class="displayBock" id="nombrerol{!! $i !!}">
                             <input type="checkbox" name="rol" id="rol{!! $i !!}" value="rol{!! $i !!}" class="seleccionarRoles">
-                            {!! $roles[$i]->descripcion !!}
+                            <p>{!! $roles[$i]->descripcion !!}</p>
+
+                            <button onclick="popup(this, 'rol')" value="{!! $roles[$i]->id_rol !!}" id="editarrol" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
+                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
+                            </button>
                         </label>
                         @endfor
 
@@ -199,7 +224,11 @@ Gestión de tareas
 
                         <label id="nombrecategoria{!! $i !!}">
                             <input type="checkbox" name="categoria" id="categoria{!! $i !!}" value="categoria{!! $i !!}" class="seleccionarCategorias">
-                            {!! $categorias[$i]->descripcion !!}
+                            <p>{!! $categorias[$i]->descripcion !!}</p>
+
+                            <button onclick="popup(this, 'categorias')" value="{!! $categorias[$i]->id_categoria !!}" id="editarcategoria" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
+                                <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
+                            </button>
                         </label><br>
                         @endfor
 
@@ -338,6 +367,33 @@ Gestión de tareas
                     </button>
                 </div>
 
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="editartarea" class="modal fade" role="dialog">
+    <div class="modal-dialog anchuraModalCrearDocumentacion">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <label>Editar la descripcion</label>
+                <input type="text" name="editarrol" class="form-control">
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-primary">
+                    Añadir
+                </button>
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Cancelar
+                </button>
+            </div>
             </form>
         </div>
     </div>
