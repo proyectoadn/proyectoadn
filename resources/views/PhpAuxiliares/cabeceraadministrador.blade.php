@@ -198,10 +198,15 @@ if (\Session::get('rol') == 'Administrador') {
                                     <label><?php echo $usu->getNombre(); ?></label>
                                     <p><?php echo $usu->getEmail(); ?></p>
                                     <br>
-                                    <form action="miperfil" method="POST">
+                                    <form action="miperfil" method="POST" style="margin-bottom: 10px;">
                                         {!! csrf_field() !!}
 
                                         <input type="submit" name="perfil" style="width: 100%;" value="Mi perfil" class="btn btn-primary">
+                                    </form>
+
+                                    <form action="datoscentro" method="POST">
+                                        {!! csrf_field() !!}
+                                        <input name="datoscentro" style="width: 100%;" value="Datos centro" class="btn btn-primary" type="submit">
                                     </form>
                                 </div>
 

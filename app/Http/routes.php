@@ -41,6 +41,10 @@ Route::get('gestionTareas', [
     'uses' => 'Controlador@gestiontareas'
 ]);
 
+Route::get('datoscentro', [
+    'as' => 'datoscentro',
+    'uses' => 'Controlador@datoscentro'
+]);
 
 
 Route::get('registroerror', [

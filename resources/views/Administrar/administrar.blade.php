@@ -475,10 +475,6 @@ Administracion
                      style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
 
                     <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
-                        <form action="datoscentro" method="POST">
-                            {!! csrf_field() !!}
-                            <input name="datoscentro" style="width: 100%;" value="Datos centro" class="btn btn-primary" type="submit">  
-                        </form>
 
                     </div>
                 </div>

@@ -288,9 +288,15 @@ b{
 
 .divcontenidousuario{
 
-    max-height: 150px;
-    min-height: 150px;
+    max-height: 160px;
+    min-height: 160px;
     padding-left: 10px;
+}
+.exportarPDF{
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
 .imagenusuario{
