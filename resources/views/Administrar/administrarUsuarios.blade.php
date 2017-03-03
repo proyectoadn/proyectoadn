@@ -34,21 +34,98 @@ Administracion
                         //Hago un for pintando tantas filas como usuarios haya en la BBDD
                         for (var i = 0; i < usuarios.length; i++) {
                             //El botón abre un popup de bootstrap al cual le pasamos el id_usuario
-                            $("#usuarios").append('<tr>\n\
+                            $("#usuarios").append('<tr class="fila">\n\
                                                     <td>' + (i + 1) + '</td>\n\
-                                                    <td>' + usuarios[i]['nombre'] + '</td>\n\
-                                                    <td>' + usuarios[i]['apellidos'] + '</td>\n\
-                                                    <td>' + usuarios[i]['email'] + '</td>\n\
-                                                    <td>\n\
-                                                        <button name="editUsu" name="editUsu" class="editUsu" value="' + usuarios[i]['id_usuario'] + '" data-toggle="modal" data-target="#editarUsuario">EditarUsuario</button>\n\
-                                                        <button>Eliminar Usuario</button>\n\
+                                                    <td name="nombre">' + usuarios[i]['nombre'] + '</td>\n\
+                                                    <td name="apellidos">' + usuarios[i]['apellidos'] + '</td>\n\
+                                                    <td name="email">' + usuarios[i]['email'] + '</td>\n\
+                                                    <td name="opciones">\n\
+                                                            <div class="row divisorUsuarios">\n\
+                                                                <div class="col-md-push-1 col-md-4">\n\
+                                                                        <input class="seleccionarUsuarios" type="checkbox" value="' + usuarios[i]['id_usuario'] + '"/>\n\
+                                                                </div>\n\
+                                                                <div class="col-md-4">\n\
+                                                                    <button title="Editar Usuario" name="editUsu" class="editUsu botonTarea" value="' + usuarios[i]['id_usuario'] + '" data-toggle="modal" data-target="#editarUsuario">\n\
+                                                                        <span class="glyphicon glyphicon-pencil" style="width: 22px; height: 22px;"></span>\n\
+                                                                    </button>\n\
+                                                                </div>\n\
+                                                                <div class="col-md-pull-1 col-md-4">\n\
+                                                                    <button title="Eliminar usuario" class="botonTarea eliminarIndividual" value="' + usuarios[i]['id_usuario'] + '">\n\
+                                                                    <span class="glyphicon glyphicon-trash" style="width: 22px; height: 22px;"></span>\n\
+                                                                    </button>\n\
+                                                                </div>\n\
+                                                            </div>\n\
                                                     </td>\n\
                                                </tr>\n\
                                                 ');
                         }
 
+                        //Añado una fila vacía para separar un poco del seleccionar todos
+                        $("#usuarios").append('<tr class="fila">\n\
+                                                    <td></td>\n\
+                                                    <td></td>\n\
+                                                    <td></td>\n\
+                                                    <td>&nbsp;</td>\n\
+                                                    <td>\n\
+                                                    </td>\n\
+                                               </tr>\n\
+                                                ');
 
+                        //Añado al final de la tabla otra fila con un checkbox para seleccionar todos
+                        $("#usuarios").append('\n\
+                                                <tr class="fila" style="">\n\
+                                                    <td></td>\n\
+                                                    <td></td>\n\
+                                                    <td></td>\n\
+                                                    <td style="text-align: right; font-weight: 600;">Seleccionar todos</td>\n\
+                                                    <td name="opciones">\n\
+                                                            <div class="row divisorUsuarios">\n\
+                                                                <div class="col-md-push-1 col-md-4">\n\
+                                                                        <input type="checkbox" onclick="seleccionarUsuarios(this)" />\n\
+                                                                </div>\n\
+                                                                <div class="col-md-7">\n\
+                                                                    <button id="eliminarTodos" type="button" class="botonEliminarUsu btn btn-danger" style="padding: 0px;">Eliminar</button>\n\
+                                                                </div>\n\
+                                                            </div>\n\
+                                                    </td>\n\
+                                               </tr>\n\
+                                                ');
+
+                        //Funcion que se lanza al pinchar en cada uno de los botones de eliminar individualmente
+                        $('.eliminarIndividual').on('click', function () {
+                            id_usu = $(this).val();
+
+                            var datos = JSON.stringify(id_usu);
+
+                            //Update del usuario con los nuevos datos, cambien o no
+                            $.post("../resources/views/PhpAuxiliares/eliminarUsuario.php", {datos: datos},
+                                    function (respuesta) {
+                                        
+                                    }).fail(function (jqXHR) {
+                                alert("Error de tipo " + jqXHR.status);
+                            });//FIN POST
+                            //alert(id_usu);
+                        });
+
+
+                        //Función que se lanza al presionar el botón eliminar (el rojo)
+                        //Salta un alert que pregunta si está seguro eliminar los usuarios seleccionados
+                        $('#eliminarTodos').on('click', function () {
+                            var txt;
+                            var r = confirm("Si presiona aceptar, eliminará todos los usuarios seleccionados, ¿estás seguro?");
+                            //Si es que sí, elimina los usuarios seleccionados de la base de datos                    
+                            if (r == true) {
+                                txt = "You pressed OK!";
+                                alert(txt);
+                                //En otro caso no hace nada
+                            } else {
+                                //NOTHING TO DO HERE.
+                            }
+                        });
+
+                        //acciones que se ejecutan al pulsar en el lapiz de editar usuario                                  
                         $('.editUsu').on('click', function () {
+
 
                             id_usu = $(this).val();
 
@@ -114,7 +191,7 @@ countRol++;
                             var nomUsuario = document.getElementById("nombreUsuario").value;
                             var apeUsuario = document.getElementById("apellidosUsuario").value;
                             var emaUsuario = document.getElementById("emailUsuario").value;
-                            
+
                             //AHORA VAMOS A CAMBIAR LOS ROLES EN CASO DE QUE SE HAYAN CAMBIADO
                             //Miramos si estan checkeados y si no lo están cogemos el nmbre de la misma
                             var roles = new Array();
@@ -123,7 +200,7 @@ countRol++;
                                     roles.push($("#rol" + i).val());
                                 }
                             }
-                            console.log(roles);
+
                             //Creo un array y meto las variables anteriormente recogidas
                             var update = new Array();
                             update.push(nomUsuario);
@@ -143,9 +220,9 @@ countRol++;
                                 alert("Error de tipo " + jqXHR.status);
                             });//FIN POST
 
-                            
-                            
-                            
+
+
+
 
 
                         });
@@ -183,11 +260,11 @@ countRol++;
 
     </div>
 
-    <div class="form-group">
+    <div class=" form-group">
         <table class="tanle table-hover letrasblancas tablaUsuarios">
             <thead>
                 <tr>
-                    <th class="centrarCabeceras">#</th>
+                    <th class="">#</th>
                     <th class="centrarCabeceras">Nombre</th>
                     <th class="centrarCabeceras">Apellidos</th>
                     <th class="centrarCabeceras">Email</th>
@@ -252,7 +329,7 @@ countRol++;
 
 @section('footer')
 
-    @include ('PhpAuxiliares/footer')
+@include ('PhpAuxiliares/footer')
 
 
 @endsection

@@ -46,19 +46,43 @@ class Controladorpdf extends Controller {
                         ->where('documentacion.id_categoria', '=', $idcategoria)
                         ->where('documentacion.id_rol', '=', $idrol)
                         ->where('tarea.id_usuario', '=', $idusuario)
-                        ->select('tarea.id_tarea', 'tarea.descripcion', 'tarea.id_estado', 'documentacion.modelo', 'documentacion.link')->get();
+                        ->select('tarea.id_tarea', 'tarea.descripcion', 'tarea.id_estado', 'documentacion.modelo', 'documentacion.link')
+                        ->orderby('id_estado', 'asc')->get();
+        
+        $porhacer = [];
+        $pendiente = [];
+        $hecho = [];
         
         
-        
+        for($i=0;$i<count($tareas);$i++){
+            
+            if($tareas[$i]->id_estado == 1){
+                
+                $porhacer[] = $tareas[$i];
+            }
+            else if($tareas[$i]->id_estado == 2){
+                
+                $pendiente[] = $tareas[$i];
+            }
+            else if($tareas[$i]->id_estado == 3){
+                
+                $hecho[] = $tareas[$i];
+            }
+        }
+
+
+
         $datos = [
             
-            'tareas' => $tareas
+            'porhacer' => $porhacer,
+            'pendiente' => $pendiente,
+            'hecho' => $hecho
         ];
 
 
 
         $pdf = PDF::loadView('pdf', $datos);
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('archivo.pdf');
     }
 
 }
