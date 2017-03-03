@@ -198,6 +198,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Conexion' => App\Clases\Conexion::class,
         'Usuario' => App\Clases\Usuario::class,
+        'Fichero' => App\Clases\Fichero::class,
 
         'Conex' => App\Clases\Conex::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,

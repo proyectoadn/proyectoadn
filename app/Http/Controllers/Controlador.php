@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Clases\Usuario;
+use App\Clases\Fichero;
 use Mail;
 use PDF;
 
@@ -52,6 +53,10 @@ class Controlador extends Controller {
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
 
+        $nombre = $usu->getNombre();
+        $apellidos = $usu->getApellidos();
+
+        $log = new Fichero();
 
         $cargo = \DB::table('cargo')->where('id_usuario', '=', $usu->getId_usuario())->get();
 
@@ -59,32 +64,35 @@ class Controlador extends Controller {
         for ($i = 0; $i < count($cargo); $i++) {
             $rol[] = \DB::table('rol')->where('id_rol', '=', $cargo[$i]->id_rol)->get();
 
-
             if ($rol[$i][0]->descripcion == 'EQ_Directivo' || $rol[$i][0]->descripcion == 'Coordinador calidad') {
 
                 \Session::put('rol', 'Administrador');
             }
         }
 
-
-
-
         for ($i = 0; $i < count($rol); $i++) {
 
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
-
+                
+                $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
             } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
-
+                
+                $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
             }
         }
+
+
 
         $datos = [
             'roles' => $rol,
             'id_user' => $usu->getId_usuario()
         ];
 
+
+        $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
+        
         return view('GestionarTareas/gestionTareas', $datos);
     }
 
@@ -159,64 +167,64 @@ class Controlador extends Controller {
 
         return view('Login/restablecerpassword');
     }
-    
+
     public function nuevorol(Request $request) {
-        
-        
-        
+
+
+
         $nombredelrol = $request->get('nombrerol');
-        
+
         \DB::table('rol')
                 ->insert([
                     'descripcion' => $nombredelrol,
         ]);
-        
+
         return redirect('gestion');
     }
-    
+
     public function nuevacategoria(Request $request) {
-        
-        
-        
+
+
+
         $nombrecategoria = $request->get('nombrecategoria');
-        
+
         \DB::table('categoria')
                 ->insert([
                     'descripcion' => $nombrecategoria,
         ]);
-        
+
         return redirect('gestion');
     }
-    
+
     public function nuevaentrega(Request $request) {
-        
-        
-        
+
+
+
         $nombreentrega = $request->get('nombreentrega');
-        
+
         \DB::table('entregar')
                 ->insert([
                     'descripcion' => $nombreentrega,
         ]);
-        
+
         return redirect('gestion');
     }
-    
+
     public function gestion(Request $request) {
 
-        
+
         $roles = \DB::table('rol')->get();
         $categorias = \DB::table('categoria')->get();
         $entregar = \DB::table('entregar')->get();
-        
-        
+
+
         $datos = [
-            
+
             'roles' => $roles,
             'categorias' => $categorias,
             'entregar' => $entregar
         ];
-        
+
         return view('gestion', $datos);
     }
 

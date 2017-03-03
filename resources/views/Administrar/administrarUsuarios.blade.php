@@ -1,5 +1,4 @@
 @extends('../maestra')
-
 @section('titulo')
 Administracion
 @endsection
@@ -10,6 +9,8 @@ Administracion
 
     var id_usu;
     var countRol;
+    var countUsuarios;
+
     $(function () {
         //Filtro para la tabla
         $('#filter').keyup(function () {
@@ -32,6 +33,8 @@ Administracion
                         $("#usuarios").html('');
 
                         //Hago un for pintando tantas filas como usuarios haya en la BBDD
+                        countUsuarios = 0;
+
                         for (var i = 0; i < usuarios.length; i++) {
                             //El botón abre un popup de bootstrap al cual le pasamos el id_usuario
                             $("#usuarios").append('<tr class="fila">\n\
@@ -42,7 +45,7 @@ Administracion
                                                     <td name="opciones">\n\
                                                             <div class="row divisorUsuarios">\n\
                                                                 <div class="col-md-push-1 col-md-4">\n\
-                                                                        <input class="seleccionarUsuarios" type="checkbox" value="' + usuarios[i]['id_usuario'] + '"/>\n\
+                                                                        <input type="checkbox" class="seleccionarUsuarios checkUsu" name="checkUsu" id="checkUsu' + i + '" value="' + usuarios[i]['id_usuario'] + '"/>\n\
                                                                 </div>\n\
                                                                 <div class="col-md-4">\n\
                                                                     <button title="Editar Usuario" name="editUsu" class="editUsu botonTarea" value="' + usuarios[i]['id_usuario'] + '" data-toggle="modal" data-target="#editarUsuario">\n\
@@ -58,6 +61,7 @@ Administracion
                                                     </td>\n\
                                                </tr>\n\
                                                 ');
+                            countUsuarios++;
                         }
 
                         //Añado una fila vacía para separar un poco del seleccionar todos
@@ -100,7 +104,7 @@ Administracion
                             //Update del usuario con los nuevos datos, cambien o no
                             $.post("../resources/views/PhpAuxiliares/eliminarUsuario.php", {datos: datos},
                                     function (respuesta) {
-                                        
+
                                     }).fail(function (jqXHR) {
                                 alert("Error de tipo " + jqXHR.status);
                             });//FIN POST
@@ -111,13 +115,47 @@ Administracion
                         //Función que se lanza al presionar el botón eliminar (el rojo)
                         //Salta un alert que pregunta si está seguro eliminar los usuarios seleccionados
                         $('#eliminarTodos').on('click', function () {
-                            var txt;
                             var r = confirm("Si presiona aceptar, eliminará todos los usuarios seleccionados, ¿estás seguro?");
                             //Si es que sí, elimina los usuarios seleccionados de la base de datos                    
                             if (r == true) {
-                                txt = "You pressed OK!";
-                                alert(txt);
-                                //En otro caso no hace nada
+
+                                // Comprobacion de si estan checkeados o no los checkboxes usando .prop() (jQuery > 1.6)
+                                var arrayUsuarios = new Array();
+                                var deletes = 0;
+
+                                //Hago un for para meteren el array tantos ids de usuario como usuarios estén marcados
+                                for (var i = 0; i < countUsuarios; i++) {
+
+                                    if ($("#checkUsu" + i).prop('checked')) {
+                                        arrayUsuarios.push($("#checkUsu" + i).val());
+                                        deletes++;
+                                    }
+                                }
+                                
+                                //Cojo el usuario de la sesion
+                                <?php
+                                $usuSesion = new Usuario('', '', '', '', '');
+                                $usuSesion = \Session::get('u');
+
+                                $id_sesion = $usuSesion->getId_usuario();
+                                ?>
+                        // y lo meto en una variable de javascript
+                        var id_usu_sesion = {!! $id_sesion !!};
+                        
+                        var usus= new Array();
+
+                        usus.push(id_usu_sesion);
+                        usus.push(arrayUsuarios);
+                        var usuuarios = JSON.stringify(usus);
+                                
+                                //Update del usuario con los nuevos datos, cambien o no
+                                $.post("../resources/views/PhpAuxiliares/eliminarUsuariosMultiples.php", {datos: usuuarios},
+                                        function (respuesta) {
+                                            console.log(respuesta);
+                                        }).fail(function (jqXHR) {
+                                    alert("Error de tipo " + jqXHR.status);
+                                });//FIN POST
+
                             } else {
                                 //NOTHING TO DO HERE.
                             }
@@ -125,7 +163,6 @@ Administracion
 
                         //acciones que se ejecutan al pulsar en el lapiz de editar usuario                                  
                         $('.editUsu').on('click', function () {
-
 
                             id_usu = $(this).val();
 
@@ -153,7 +190,7 @@ Administracion
                                         //coinciden se marcan como "checked"
                                         $("#roles").html('');
                                         var coincide = false;
-                                        countRol=0;
+                                        countRol = 0;
                                         for (var i = 0; i < cargos.length; i++) {
                                             coincide = false;
                                             for (var x = 0; x < usu.length; x++) {
@@ -164,16 +201,16 @@ Administracion
                                             }
                                             if (coincide) {
                                                 $("#roles").append('<label class="displayBock">\n\
-                                                <input id="rol'+ i + '" checked class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
+                                                <input id="rol' + i + '" checked class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
                                                 ' + cargos[i]['descripcion'] + '\n\
                                                 </label>');
                                             } else {
                                                 $("#roles").append('<label class="displayBock">\n\
-                                                <input id="rol'+ i + '" class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
+                                                <input id="rol' + i + '" class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
                                                 ' + cargos[i]['descripcion'] + '\n\
                                                 </label>');
                                             }
-countRol++;
+                                            countRol++;
                                         }//FIN FOR
 
                                         //Fuera del for, pinto el seleccionar todo en el divisor de roles
@@ -219,11 +256,6 @@ countRol++;
                                     }).fail(function (jqXHR) {
                                 alert("Error de tipo " + jqXHR.status);
                             });//FIN POST
-
-
-
-
-
 
                         });
 
