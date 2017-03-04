@@ -302,6 +302,42 @@ class Conexion {
         }
         return $devolver;
     }
+    
+    function actualizargestionrol($id, $descripcion) {
+        $consult = 'UPDATE rol SET descripcion="'.$descripcion.'" where id_rol='.$id;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function actualizargestioncategorias($id, $descripcion) {
+        $consult = 'UPDATE categoria SET descripcion="'.$descripcion.'" where id_categoria='.$id;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+    
+    function actualizargestionentregar($id, $descripcion) {
+        $consult = 'UPDATE entregar SET descripcion="'.$descripcion.'" where id_entregar='.$id;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
 
     function rellenar_descrip_tarea($id_doc) {
 

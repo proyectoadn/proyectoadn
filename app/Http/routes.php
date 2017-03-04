@@ -210,3 +210,9 @@ Route::post('pdf', [
     'as' => 'pdf',
     'uses' => 'Controladorpdf@pdf',
 ]);
+
+Route::post('editargestion', [
+    
+    'as' => 'editargestion',
+    'uses' => 'Controlador@gestion'
+]);
