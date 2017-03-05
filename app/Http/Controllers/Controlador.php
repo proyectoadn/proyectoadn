@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Filesystem;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -111,6 +112,32 @@ class Controlador extends Controller {
 
     public function administrarUsuarios(Request $request) {
         return view('Administrar/administrarUsuarios');
+    }
+
+    public function verHistorico(Request $request) {
+
+        return view('Administrar/verHistorico');
+    }
+    
+        public function verLog(Request $request) {
+
+        return view('Administrar/verLog');
+    }
+    
+        public function guardarLog(Request $request) {
+            
+            //Cojo el value del botón (todo el texto del textarea)
+            $lineas = $request->get('guardarEnHistorico');
+            
+            //Lo guardo en el historicoLog.txt y elimino lo que haya en el log.txt
+        $log = new Fichero();
+        $log->guardarHistorico($lineas);
+        
+        //Eliminamos el contenido de log.txt
+        $log->eliminarDatosLog();
+            
+
+        return view('Administrar/verLog');
     }
 
     public function usuario(Request $request) {

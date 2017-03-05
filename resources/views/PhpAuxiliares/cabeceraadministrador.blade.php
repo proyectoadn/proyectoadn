@@ -150,6 +150,7 @@ if (\Session::get('rol') == 'Administrador') {
         <a class="navbar-brand" href="activarUsuarios">Activar usuarios</a>
         <a class="navbar-brand" href="administrarUsuarios">Gestion usuarios</a>
         <a class="navbar-brand" href="gestion">Gestionar</a>
+        <a class="navbar-brand" href="verLog">Histórico</a>
     </div>
 
     <!-- Agrupar los enlaces de navegación, los formularios y cualquier

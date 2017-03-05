@@ -107,6 +107,11 @@ Route::get('gestion', [
     'uses' => 'Controlador@gestion',
 ]);
 
+Route::get('verLog', [
+    'as' => 'verLog',
+    'uses' => 'Controlador@verLog',
+]);
+
 
 
 
@@ -211,6 +216,15 @@ Route::post('pdf', [
     'uses' => 'Controladorpdf@pdf',
 ]);
 
+Route::post('guardarLog', [
+    'as' => 'guardarLog',
+    'uses' => 'Controlador@guardarLog',
+]);
+
+Route::post('verHistorico', [
+    'as' => 'verHistorico',
+    'uses' => 'Controlador@verHistorico',
+]);
 Route::post('editargestion', [
     
     'as' => 'editargestion',

@@ -68,25 +68,7 @@ Login
             </div>
 
             <br>
-
-            <?php
-            $usu = new Usuario('', '', '', '', '');
-            $usu = \Session::get('u');
-
-
-            if (\Session::get('rol') == 'Administrador') {
-                ?>
-                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Actualizar">
-                <?php
-            } else {
-                //si no es admin no pongo el boton para poder actualizar
-                ?>
-                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Actualizar">
-                <?php
-            }
-            ?>
-
-
+            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Actualizar">
 
             <br>
         </form>
