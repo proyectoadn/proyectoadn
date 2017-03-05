@@ -225,3 +225,8 @@ Route::post('verHistorico', [
     'as' => 'verHistorico',
     'uses' => 'Controlador@verHistorico',
 ]);
+Route::post('editargestion', [
+    
+    'as' => 'editargestion',
+    'uses' => 'Controlador@gestion'
+]);

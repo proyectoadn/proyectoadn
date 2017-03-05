@@ -8,8 +8,12 @@ Gestión de tareas
 
 
 <script>
+    
+    var id;
+    var tablaeditargestion;
 
     $(function () {
+
 
         $("#borrarrol").on("click", function () {
 
@@ -130,24 +134,46 @@ Gestión de tareas
                 }
             }
         });
+
+        $("#editar").on("click", function () {
+            
+
+            var descripcion = $("#descripcion").val();
+
+            var descripcioneditar = JSON.stringify(descripcion);
+            var idrolcategoriaentrega = JSON.stringify(id);
+            var nombretabla = JSON.stringify(tablaeditargestion);
+
+
+            $.post("../resources/views/PhpAuxiliares/editargestion.php", {id: idrolcategoriaentrega, descripcion: descripcioneditar, nombretabla: nombretabla},
+                    function (respuesta) {
+                        
+                        
+
+                    }).fail(function (jqXHR) {
+                alert("Error de tipo " + jqXHR.status);
+            });
+        });
     });
 
     function popup(boton, tabla) {
 
-        var id = boton.value;
+        id = boton.value;
+        tablaeditargestion = tabla;
 
-        var idrol = JSON.stringify(id);
+
+        var idrolcategoriaentrega = JSON.stringify(id);
         var nombretabla = JSON.stringify(tabla);
 
 
-        $.post("../resources/views/PhpAuxiliares/gestion.php", {id: id, nombretabla: nombretabla},
+        $.post("../resources/views/PhpAuxiliares/gestion.php", {id: idrolcategoriaentrega, nombretabla: nombretabla},
                 function (respuesta) {
 
                     var descripcion = JSON.parse(respuesta);
 
 
                     $("#descripcion").val(descripcion);
-                    
+
                 }).fail(function (jqXHR) {
             alert("Error de tipo " + jqXHR.status);
         });
@@ -384,26 +410,31 @@ Gestión de tareas
         <!-- Modal content-->
         <div class="modal-content">
 
-            <div class="modal-body">
+            <form action="editargestion" method="POST">
+                {!! csrf_field() !!}
 
-                <label>Editar la descripcion</label>
-                <input type="text" name="descripcion" id="descripcion" class="form-control">
+                <div class="modal-body">
 
-            </div>
+                    <label>Editar la descripcion</label>
+                    <input type="text" name="descripcion" id="descripcion" class="form-control">
 
-            <div class="modal-footer">
+                </div>
 
-                <button type="submit" class="btn btn-primary">
-                    Añadir
-                </button>
+                <div class="modal-footer">
 
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    Cancelar
-                </button>
-            </div>
+
+                    <button type="submit" id="editar" class="btn btn-primary">
+                        Modificar
+                    </button>
             </form>
+
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                Cancelar
+            </button>
         </div>
+        </form>
     </div>
+</div>
 </div>
 
 @endsection
