@@ -189,6 +189,19 @@ class Conexion {
         }
         return $devolver;
     }
+    
+        function cargarUsuarioPorID($id_usuario) {
+        $consult = 'SELECT * FROM usuario WHERE id_usuario='.$id_usuario;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
 
     function rellenar_usuariosAdministrar() {
         $consult = 'SELECT * FROM usuario,cargo,rol WHERE usuario.confirmado>0 and usuario.id ';

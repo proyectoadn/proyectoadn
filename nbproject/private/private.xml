@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/PhpAuxiliares/eliminarUsuario.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/Administrar/activarUsuarios.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/Administrar/administrarUsuarios.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/Administrar/asignarTareas.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/PhpAuxiliares/Conexion.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/config/mail.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/config/app.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/app/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/Administrar/verLog.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/Administrar/administrar.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/app/Http/Controllers/Controlador.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/config/filesystems.php</file>
+            <file>file:/C:/xampp/htdocs/laravel/proyectoadn/resources/views/PhpAuxiliares/cabeceraadministrador.blade.php</file>
         </group>
     </open-files>
 </project-private>
