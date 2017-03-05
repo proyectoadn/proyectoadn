@@ -1,9 +1,14 @@
 <?php
 
 
-echo $_FILES['file']['name'];
+$file = json_decode($_POST['datos']);
 
-//echo json_encode($_FILES['datos']['name']);
+$rutadestino = public_path().'Imagenes'.'1';
+$url_image = $file->getClientOriginalName();
+$subir = $file->move($rutadestino, $file->getClientOriginalName());
 
-?>
+
+
+
+
 

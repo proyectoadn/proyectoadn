@@ -9,6 +9,7 @@ use App\Clases\Usuario;
 use App\Clases\Fichero;
 use Mail;
 use PDF;
+use Input;
 
 class Controlador extends Controller {
 
@@ -168,6 +169,24 @@ class Controlador extends Controller {
         return view('Login/restablecerpassword');
     }
 
+    public function subirimagen(Request $request) {
+        
+        
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+        
+        
+
+        $archivo = Input::file('archivo');
+        
+        $rutadestino = public_path() . '/Imagenes/' .$usu->getId_usuario().'/';
+        $url_image = $archivo->getClientOriginalName();
+        $subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
+
+
+        //return view('Administrar/administrar');
+    }
+
     public function nuevorol(Request $request) {
 
 
@@ -219,7 +238,6 @@ class Controlador extends Controller {
 
 
         $datos = [
-
             'roles' => $roles,
             'categorias' => $categorias,
             'entregar' => $entregar
@@ -230,13 +248,13 @@ class Controlador extends Controller {
 
     public function cerrarsesion(Request $request) {
 
-        
+
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
 
         $nombre = $usu->getNombre();
         $apellidos = $usu->getApellidos();
-        
+
         \Session::forget('u');
         \Session::forget('rol');
         \Session::forget('pagina');

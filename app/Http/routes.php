@@ -216,3 +216,9 @@ Route::post('editargestion', [
     'as' => 'editargestion',
     'uses' => 'Controlador@gestion'
 ]);
+
+Route::post('subirimagen', [
+    
+    'as' => 'subirimagen',
+    'uses' => 'Controlador@subirimagen'
+]);
