@@ -9,7 +9,11 @@ Administracion
 
 
 <script>
+
+    var countTareas;
     $(function () {
+
+
 
 
         $("#categ").on("change", function () {
@@ -32,12 +36,17 @@ Administracion
                         //Elimino lo que haya en el divisor donde se pitan las tareas
                         $("#tareas").html('');
 
+
+                        countTareas = 0;
+
                         for (var i = 0; i < tarea.length; i++) {
                             //Pinto las tareas con checkbox
-                            $("#tareas").append('<label class="displayBock">\n\
-                                                    <input class="seleccionarTareas" type="checkbox" value="' + tarea[i]['id_tarea'] + '">\n\
-                                                    ' + tarea[i]['descripcion'] + '\n\
+                            $("#tareas").append('<label class="displayBock" >\n\
+                                                    <input id="tarea' + i + '" class="seleccionarTareas" type="checkbox" value="' + tarea[i]['id_tarea'] + '">\n\
+                                                    <div id="descripcion' + i + '">' + tarea[i]['descripcion'] + '</div>\n\
                                                 </label>');
+
+                            countTareas++;
                         }
 
                         //Pinto dinamicamente el seleccionar todo, fuera del for.
@@ -75,7 +84,6 @@ Administracion
                         $("#usuarios").append('<select style="margin-left: 15px;" id="selectUsuarios" class="selectpicker botonCargoCat form-control">');
 
                         for (var i = 0; i < tarea.length; i++) {
-                            //Pinto los usuarios con checkboxes
 
                             $(".selectpicker").append('<option value="' + tarea[i]['id_usuario'] + '">\n\
                                                         ' + tarea[i]['nombre'] + ' ' + tarea[i]['apellidos'] + '\
@@ -89,6 +97,119 @@ Administracion
             });
         });//CIERRA ON CHANGE #TIPo
 
+        $('#asignarPorUsuario').on('click', function () {
+
+            var cargoTarea = $('#categ').val();
+            var tareas = new Array();
+
+            //Compruebo que ha seleccionado algún cargo
+            if (cargoTarea != -1) {
+                //Si selecciona algun cargo comprobamos cuales estan checked, y si es asi metemos el id de la tarea en un array
+                for (var i = 0; i < countTareas; i++) {
+
+                    if ($("#tarea" + i).prop('checked')) {
+
+                        tareas.push($("#tarea" + i).val());
+                    }
+                }
+
+                //Si no selecciona ninguna tarea, saca un mensaje de alert de que no la ha seleccionado
+                if (tareas.length == 0) {
+                    alert("Debe seleccionar alguna tarea");
+                } else {
+                    //Comprobamos que ha seleccionado un rol para sacar losusuarios
+                    var tipo = $('#tipo').val();
+
+                    if (tipo != -1) {
+
+                        var datos = JSON.stringify(tareas);
+
+                        var usu = $("#selectUsuarios").val();
+                        var id_usuario = JSON.stringify(usu);
+                        alert(id_usuario);
+
+
+
+                        $.post("../resources/views/PhpAuxiliares/asignarTareaUsuario.php", {datos: datos, id_usuario: id_usuario},
+                                function (respuesta) {
+
+                                    console.log(respuesta);
+
+                                }).fail(function (jqXHR) {
+                            alert("Error de tipo " + jqXHR.status);
+                        });
+
+                    } else {
+                        alert("Elija un rol para seleccionar un usuario");
+                    }
+
+                }
+
+
+            } else {
+                alert('Elija un cargo para asignar las categorias');
+            }
+
+        });//CIERRA ON CLICK DE asignarPorUsuario
+
+        $('#asignarPorRol').on('click', function () {
+
+            //rol seleccionado del select
+            var cargoTarea = $('#categ').val();
+            var roles = new Array();
+            //Array de tareas para meterle los ids tarea
+            var tareas = new Array();
+            //veces que tiene que hacer el for    
+            var pasadas = {!! count($roles)!!};
+
+
+
+            //Compruebo que ha seleccionado algún cargo
+            if (cargoTarea != -1) {
+                //Si selecciona algun rol comprobamos cuales estan checked, y si es asi metemos el id del rol en un array
+                for (var i = 0; i < pasadas; i++) {
+
+                    if ($("#rol" + i).prop('checked')) {
+
+                        roles.push($("#rol" + i).val());
+                    }
+                }
+
+                //Metemos los id_tarea en el array tareas
+                for (var i = 0; i < countTareas; i++) {
+
+                    if ($("#tarea" + i).prop('checked')) {
+
+                        tareas.push($("#tarea" + i).val());
+                    }
+                }
+                
+
+                //Si no selecciona ningun rol, saca un mensaje de alert de que no la ha seleccionado
+                if (roles.length == 0) {
+                    alert("Debe seleccionar algún rol");
+                } else {
+
+                    var idroles = JSON.stringify(roles);
+                    var idtareas =  JSON.stringify(tareas);     
+
+                    $.post("../resources/views/PhpAuxiliares/asignarTareaRol.php", {roles: idroles, tareas: idtareas},
+                            function (respuesta) {
+
+                                console.log(respuesta);
+
+                            }).fail(function (jqXHR) {
+                        alert("Error de tipo " + jqXHR.status);
+                    });
+
+                }
+
+
+            } else {
+                alert('Elija un cargo para asignar las categorias');
+            }
+
+        });//CIERRA ON CLICK DE asignarPorRol
 
     });//CIERRA EL FUNCTION GENERAL
 
@@ -164,8 +285,8 @@ Administracion
                         <div class="checkbox">
                             @for($i=0;$i<count($roles);$i++)
                                 <label class="displayBock">
-                                    <input class="seleccionarRoles" value="{!! $roles[$i]->id_rol !!}" type="checkbox" value="">
-                                    {!! $roles[$i]->descripcion !!}
+                                    <input class="seleccionarRoles" id="rol{!!$i!!}" value="{!! $roles[$i]->id_rol !!}" type="checkbox" value="">
+                                    <div id="descripcionRol{!!$i!!}">{!! $roles[$i]->descripcion !!}</div>
                                 </label>
                                 @endfor
 
@@ -178,6 +299,9 @@ Administracion
                         </div>
                     </div>
                 </div>
+
+                <button id="asignarPorUsuario" class="btn btn-primary" >Por usuario</button>
+                <button id="asignarPorRol" class="btn btn-primary" >Por rol</button>
             </div>
         </div>
     </div>
@@ -190,6 +314,6 @@ Administracion
 
 @section('footer')
 
-    @include ('PhpAuxiliares/footer')
+@include ('PhpAuxiliares/footer')
 
 @endsection

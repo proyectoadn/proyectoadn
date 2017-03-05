@@ -35,3 +35,17 @@
 [4 March, 2017, 12:54 pm] Nazario Castillero Redondo ha iniciado sesión.
 [4 March, 2017, 1:06 pm] Nazario Castillero Redondo ha iniciado sesión.
 
+ -----------------------------------------------------------------------------
+|   5 March, 2017, 6:36 pm Se guardó el log en el histórico  |
+ -----------------------------------------------------------------------------
+[5 March, 2017, 5:59 pm] Nazario Castillero Redondo ha cerrado sesión.
+[5 March, 2017, 5:59 pm] Nazario Castillero Redondo ha iniciado sesión.
+[5 March, 2017, 6:01 pm] Alberto de la Plaza Ramos ha iniciado sesión.
+[5 March, 2017, 6:33 pm] Alberto de la Plaza Ramos ha iniciado sesión.
+
+ -----------------------------------------------------------------------------
+|   6 March, 2017, 12:13 am Se guardó el log en el histórico  |
+ -----------------------------------------------------------------------------
+[5 March, 2017, 6:56 pm] Alberto de la Plaza Ramos ha cerrado sesión.
+[5 March, 2017, 6:56 pm] Nazario Castillero Redondo ha iniciado sesión.
+
