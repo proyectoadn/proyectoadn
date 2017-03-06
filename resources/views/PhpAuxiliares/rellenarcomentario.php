@@ -1,5 +1,6 @@
 <?php
 /**
+ * Carga la informacion del comentario de una tarea
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

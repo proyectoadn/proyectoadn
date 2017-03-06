@@ -1,5 +1,6 @@
 <?php
 /**
+ * Ajax que añade un documento a la base de datos, recibiendo la información de un popup
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

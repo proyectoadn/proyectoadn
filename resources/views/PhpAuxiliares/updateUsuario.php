@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Actualiza la informacion de la base de datos sobre el usuario.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Activa un usuario para su uso posterior.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 22/02/2017

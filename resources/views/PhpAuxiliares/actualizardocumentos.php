@@ -1,5 +1,6 @@
 <?php
 /**
+ * Ajax que actualiza los datos de una documentación.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

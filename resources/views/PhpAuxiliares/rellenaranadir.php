@@ -1,5 +1,5 @@
 <?php
-/**
+/** Carga la informacion necesaria para el popup de añadir documentacion
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

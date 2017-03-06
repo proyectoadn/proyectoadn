@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Carga los usuarios pendientes de activacion
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017
