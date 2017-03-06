@@ -442,8 +442,8 @@ class Conexion {
         return $devolver;
     }
 
-    function borrarrol($nombrerol) {
-        $consult = "DELETE FROM rol WHERE descripcion ='" . $nombrerol . "'";
+    function borrarrol($idrol) {
+        $consult = "DELETE FROM rol WHERE id_rol ='" . $idrol . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
@@ -454,8 +454,8 @@ class Conexion {
         return $devolver;
     }
 
-    function borrarcategorias($nombrecategorias) {
-        $consult = "DELETE FROM categoria WHERE descripcion ='" . $nombrecategorias . "'";
+    function borrarcategorias($idcategoria) {
+        $consult = "DELETE FROM categoria WHERE id_categoria ='" . $idcategoria . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
@@ -466,8 +466,8 @@ class Conexion {
         return $devolver;
     }
 
-    function borrarentregas($nombreentregas) {
-        $consult = "DELETE FROM entregar WHERE descripcion ='" . $nombreentregas . "'";
+    function borrarentregas($identregas) {
+        $consult = "DELETE FROM entregar WHERE id_entregar ='" . $identregas . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
@@ -548,17 +548,8 @@ class Conexion {
 
     function cerrar_Conexion3() {
         mysqli_free_result($this->cursor);
-    }
-
-    function insertar($val1, $val2, $val3) {
-        $query = "INSERT INTO personas (DNI, Nombre, Tfno) VALUES (?,?,?)"; //Estos parametros seran sustituidos mas adelante por valores.
-        $stmt = mysqli_prepare($this->conex, $query);
-
-        mysqli_stmt_bind_param($stmt, "sss", $val1, $val2, $val3);
-
-
-        /* Ejecución de la sentencia. */
-        mysqli_stmt_execute($stmt);
+        mysqli_free_result($this->cursor2);
+        mysqli_close($this->conex);
     }
 
     function insert_comentario($texto, $id) {
@@ -566,10 +557,10 @@ class Conexion {
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
-        if ($this->ir_Siguiente()) {
+        if ($this->ir_Siguiente()) { //Si existe ya un comentario se actualiza
             $query = "update comentario set mensaje='" . $texto . "' where id_tarea=" . $id;
             mysqli_query($this->conex, $query);
-        } else {
+        } else { //Si no existe, se crea
             $query = "INSERT INTO comentario (id_tarea, mensaje) VALUES (?,?)"; //Estos parametros seran sustituidos mas adelante por valores.
             $stmt = mysqli_prepare($this->conex, $query);
 
@@ -584,6 +575,10 @@ class Conexion {
     function borrar_documentacion($id) {
         $query = "DELETE FROM documentacion WHERE id_documentacion =" . $id;
         mysqli_query($this->conex, $query);
+
+        $query = "DELETE FROM tareas WHERE id_documentacion =" . $id;
+        mysqli_query($this->conex, $query);
+
     }
 
     function update_documento($descripcion, $id_categoria, $id_rol, $id_entregar, $modelo, $id_doc, $link) {

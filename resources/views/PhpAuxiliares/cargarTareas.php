@@ -1,5 +1,6 @@
 <?php
 /**
+ * Carga todas las tareas de la base de datos dependiendo del id del rol que se le pase.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

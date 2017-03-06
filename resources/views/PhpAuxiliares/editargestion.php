@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Ajax que edita un rol, una categoria o un a quien entregar.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

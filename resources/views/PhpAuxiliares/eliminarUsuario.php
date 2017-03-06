@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Ajax para borrar un usuario basandose en su ID
  * Created by PhpStorm.
  * User: DAW2
  * Date: 22/02/2017

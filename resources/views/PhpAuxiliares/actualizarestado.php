@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Ajax que actualiza el estado de la tarea segun lo mueve de una columna a otra
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

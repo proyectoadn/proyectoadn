@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Ajax que actualiza el comentario de los administradores
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

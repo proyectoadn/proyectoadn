@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Saca la informacion del usuario para la ventana administrar usuarios
  * Created by PhpStorm.
  * User: DAW2
  * Date: 24/02/2017
@@ -15,7 +16,7 @@ $vector = [];
 
 
 if ($conexion->conectar()) {
-    $conexion->rellenar_usuariosAdministrar();
+  //  $conexion->rellenar_usuariosAdministrar();
 
     while ($conexion->ir_Siguiente()) {
         $vector[] = [

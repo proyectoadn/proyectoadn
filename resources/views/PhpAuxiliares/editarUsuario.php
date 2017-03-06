@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Ajax que recibe informacion sobre un usuario para actualizar la base de datos
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

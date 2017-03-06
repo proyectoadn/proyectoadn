@@ -104,7 +104,7 @@ Administracion
                             //Update del usuario con los nuevos datos, cambien o no
                             $.post("../resources/views/PhpAuxiliares/eliminarUsuario.php", {datos: datos},
                                     function (respuesta) {
-
+                                        cargartabla();
                                     }).fail(function (jqXHR) {
                                 alert("Error de tipo " + jqXHR.status);
                             });//FIN POST
@@ -156,8 +156,6 @@ Administracion
                                     alert("Error de tipo " + jqXHR.status);
                                 });//FIN POST
 
-                            } else {
-                                //NOTHING TO DO HERE.
                             }
                         });
 
@@ -170,7 +168,6 @@ Administracion
                             $.post("../resources/views/PhpAuxiliares/editarUsuario.php", {datos: datos},
                                     function (respuesta) {
                                         var vector = JSON.parse(respuesta);
-
                                         //Vector con los datos del usuario con nombre, apellidos, email e id_usuario
                                         var usu = vector[0];
                                         //vector con todos los cargos de la tabla rol
@@ -221,6 +218,7 @@ Administracion
 
 
                                     });
+
                         });
 
                         //Funcion que se lanza cuando cuando damos al aceptar del PopUp
@@ -251,7 +249,6 @@ Administracion
                             //Update del usuario con los nuevos datos, cambien o no
                             $.post("../resources/views/PhpAuxiliares/updateUsuario.php", {datos: datos},
                                     function (respuesta) {
-                                        console.log(respuesta);
                                         cargartabla();
                                     }).fail(function (jqXHR) {
                                 alert("Error de tipo " + jqXHR.status);

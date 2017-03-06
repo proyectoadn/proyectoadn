@@ -116,7 +116,6 @@ tarea2{
 }
 
 .botonCargoCat{
-    margin-left: 15px;
     margin-top: 10px;
 }
 
@@ -215,3 +214,5 @@ tarea2{
     height: 35px;
 }
 
+    overflow-y: scroll;
+}
