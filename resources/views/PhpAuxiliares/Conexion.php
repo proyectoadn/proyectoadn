@@ -442,8 +442,8 @@ class Conexion {
         return $devolver;
     }
 
-    function borrarrol($nombrerol) {
-        $consult = "DELETE FROM rol WHERE descripcion ='" . $nombrerol . "'";
+    function borrarrol($idrol) {
+        $consult = "DELETE FROM rol WHERE id_rol ='" . $idrol . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
@@ -454,8 +454,8 @@ class Conexion {
         return $devolver;
     }
 
-    function borrarcategorias($nombrecategorias) {
-        $consult = "DELETE FROM categoria WHERE descripcion ='" . $nombrecategorias . "'";
+    function borrarcategorias($idcategoria) {
+        $consult = "DELETE FROM categoria WHERE id_categoria ='" . $idcategoria . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
@@ -466,8 +466,8 @@ class Conexion {
         return $devolver;
     }
 
-    function borrarentregas($nombreentregas) {
-        $consult = "DELETE FROM entregar WHERE descripcion ='" . $nombreentregas . "'";
+    function borrarentregas($identregas) {
+        $consult = "DELETE FROM entregar WHERE id_entregar ='" . $identregas . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {

@@ -27,7 +27,7 @@ Gestión de tareas
 
                 if ($("#rol" + i).prop('checked')) {
 
-                    borrar.push($("#nombrerol" + i).text().trim());
+                    borrar.push($("#rol" + i).val());
                 }
             }
 
@@ -67,7 +67,7 @@ Gestión de tareas
 
                 if ($("#categoria" + i).prop('checked')) {
 
-                    borrar.push($("#nombrecategoria" + i).text().trim());
+                    borrar.push($("#categoria" + i).val());
                 }
             }
 
@@ -108,7 +108,7 @@ Gestión de tareas
 
                 if ($("#entrega" + i).prop('checked')) {
 
-                    borrar.push($("#nombreentregar" + i).text().trim());
+                    borrar.push($("#entrega" + i).val());
                 }
             }
 
@@ -151,7 +151,6 @@ Gestión de tareas
                         
 
                     }).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
             });
         });
     });
@@ -212,15 +211,16 @@ Gestión de tareas
                     @for($i=0;$i<count($roles);$i++)
 
                         <label class="displayBock" id="nombrerol{!! $i !!}">
-                            <input type="checkbox" name="rol" id="rol{!! $i !!}" value="rol{!! $i !!}" class="seleccionarRoles">
+                            <input type="checkbox" name="rol" id="rol{!! $i !!}" value="{!! $roles[$i]->id_rol !!}" class="seleccionarRoles">
                             <p>{!! $roles[$i]->descripcion !!}
-                                <button onclick="popup(this, 'rol')" value="{!! $roles[$i]->id_rol !!}" id="editarrol" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
+                                <button onclick="popup(this, 'rol')" id="editarrol" value="{!! $roles[$i]->id_rol !!}" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
                                     <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
                                 </button>
                             </p>
 
                         </label>
                         @endfor
+                        <br>
 
                         <label class="displayBock" style="margin-top: 10px;">
                             <input type="checkbox" onclick="seleccionarRoles(this);"/> 
@@ -250,7 +250,7 @@ Gestión de tareas
                     @for($i=0;$i<count($categorias);$i++)
 
                         <label id="nombrecategoria{!! $i !!}">
-                            <input type="checkbox" name="categoria" id="categoria{!! $i !!}" value="categoria{!! $i !!}" class="seleccionarCategorias">
+                            <input type="checkbox" name="categoria" id="categoria{!! $i !!}" value="{!! $categorias[$i]->id_categoria !!}" class="seleccionarCategorias">
                             <p>{!! $categorias[$i]->descripcion !!}
                                 <button onclick="popup(this, 'categorias')" value="{!! $categorias[$i]->id_categoria !!}" id="editarcategoria" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
                                     <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
@@ -259,6 +259,7 @@ Gestión de tareas
 
                         </label><br>
                         @endfor
+                        <br>
 
                         <label class="displayBock" style="margin-top: 10px;">
                             <input type="checkbox" onclick="seleccionarCategorias(this);"/> 
@@ -288,7 +289,7 @@ Gestión de tareas
                     @for($i=0;$i<count($entregar);$i++)
 
                         <label class="displayBock" id="nombreentregar{!! $i !!}">
-                            <input type="checkbox" name="entrega" id="entrega{!! $i !!}" value="entrega{!! $i !!}" class="seleccionarEntrega">
+                            <input type="checkbox" name="entrega" id="entrega{!! $i !!}" value="{!! $entregar[$i]->id_entregar !!}" class="seleccionarEntrega">
                             <p>{!! $entregar[$i]->descripcion !!}
                                 <button onclick="popup(this, 'entregas')" value="{!! $entregar[$i]->id_entregar !!}" id="editarentrega" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
                                     <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
@@ -297,6 +298,7 @@ Gestión de tareas
 
                         </label>
                         @endfor
+                        <br>
 
                         <label class="displayBock" style="margin-top: 10px;">
                             <input type="checkbox" onclick="seleccionarEntrega(this);"/> 

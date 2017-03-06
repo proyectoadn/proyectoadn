@@ -14,6 +14,7 @@ $conexion = new Conexion();
 $ids_roles = json_decode($_POST['roles']);
 $ids_tareas = json_decode($_POST['tareas']);
 
+
 if ($conexion->conectar()) {
 
     for ($i = 0; $i < count($ids_roles); $i++) {
@@ -24,6 +25,8 @@ if ($conexion->conectar()) {
         while ($conexion->ir_Siguiente()) {
             $idUsuario[] = $conexion->obtener_campo('id_usuario');
         }
+
+
 
 
         for ($x = 0; $x < count($ids_tareas); $x++) {
@@ -37,12 +40,11 @@ if ($conexion->conectar()) {
             $id_documentacion = $conexion->obtener_campo('id_documentacion');
             
             if(count($idUsuario)==0){
-                $conexion->asignarTareasUsuario($id_documentacion, NULL, $descripcion);
+
+                echo json_encode("No existen usuarios");
             }else{
                 $conexion->asignarTareasUsuario($id_documentacion, $idUsuario[$i], $descripcion);
             }
-
-
         }
     }
     echo json_encode($idUsuario);

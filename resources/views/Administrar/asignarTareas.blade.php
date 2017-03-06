@@ -183,7 +183,7 @@ Administracion
                         tareas.push($("#tarea" + i).val());
                     }
                 }
-                
+
 
                 //Si no selecciona ningun rol, saca un mensaje de alert de que no la ha seleccionado
                 if (roles.length == 0) {
@@ -191,12 +191,17 @@ Administracion
                 } else {
 
                     var idroles = JSON.stringify(roles);
-                    var idtareas =  JSON.stringify(tareas);     
+                    var idtareas = JSON.stringify(tareas);
 
                     $.post("../resources/views/PhpAuxiliares/asignarTareaRol.php", {roles: idroles, tareas: idtareas},
                             function (respuesta) {
 
-                                console.log(respuesta);
+                                alert(respuesta);
+
+                                if (respuesta == 'No existen usuarios') {
+
+                                    alert("No existen usuarios en el rol seleccionado");
+                                }
 
                             }).fail(function (jqXHR) {
                         alert("Error de tipo " + jqXHR.status);
@@ -236,8 +241,8 @@ Administracion
             <div class="item cajaAsignarTareas">
                 <b>Tareas</b>
 
-                <div class="cargoCat">
-                    <div class='divBotonCargoCat' style="width: auto;">
+                <div class="row cargoCat">
+                    <div class='col-md-6 divBotonCargoCat' style="width: auto;">
                         <select id="categ" class='botonCargoCat form-control'>
                             <option value="-1">-Elige cargo-</option>
                             @for($i=0;$i<count($roles);$i++)
@@ -245,8 +250,11 @@ Administracion
                                 @endfor
                         </select>
                     </div>
-                </div>
 
+                    <div class="col-md-6">
+                        <button id="asignarPorRol" class="btn btn-primary botonasignartareas" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Asignar tareas al cargo</button>
+                    </div>
+                </div>
 
                 <div id="tareas" class="checkbox margenIzqAsignarDoc">
 
@@ -266,10 +274,10 @@ Administracion
                 <div class="row">
 
                     <!-- divisor para usuarios -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <b>Usuarios</b>
                         <select id="tipo" class='botonCargoCat form-control'>
-                            <option value="-1">-Elige cargo-</option>
+                            <option value="-1">-Elige cargo del usuario-</option>
                             @for($i=0;$i<count($roles);$i++)
                                 <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
                                 @endfor
@@ -277,31 +285,10 @@ Administracion
                         <div id="usuarios">
 
                         </div>
-                    </div>
 
-                    <!-- divisor para roles -->
-                    <div class="col-md-push-1 col-md-5">
-                        <b>Roles</b>
-                        <div class="checkbox">
-                            @for($i=0;$i<count($roles);$i++)
-                                <label class="displayBock">
-                                    <input class="seleccionarRoles" id="rol{!!$i!!}" value="{!! $roles[$i]->id_rol !!}" type="checkbox" value="">
-                                    <div id="descripcionRol{!!$i!!}">{!! $roles[$i]->descripcion !!}</div>
-                                </label>
-                                @endfor
-
-                                <!--SELECCIONAR TODOS-->
-                                <label class="displayBock" style="margin-top: 10px;">
-                                    <input type="checkbox" onclick="seleccionarRoles(this);"/> 
-                                    Seleccionar todo
-                                </label>
-
-                        </div>
+                        <button id="asignarPorUsuario" class="btn btn-primary botonasignartareas" >Asignar tareas individualmente</button>
                     </div>
                 </div>
-
-                <button id="asignarPorUsuario" class="btn btn-primary" >Por usuario</button>
-                <button id="asignarPorRol" class="btn btn-primary" >Por rol</button>
             </div>
         </div>
     </div>
