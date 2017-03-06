@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Filesystem;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -9,6 +10,7 @@ use App\Clases\Usuario;
 use App\Clases\Fichero;
 use Mail;
 use PDF;
+use Input;
 
 class Controlador extends Controller {
 
@@ -73,11 +75,11 @@ class Controlador extends Controller {
         for ($i = 0; $i < count($rol); $i++) {
 
             if ($rol[$i][0]->descripcion == "EQ_Directivo") {
-                
+
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
             } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
-                
+
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
             }
@@ -92,7 +94,7 @@ class Controlador extends Controller {
 
 
         $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
-        
+
         return view('GestionarTareas/gestionTareas', $datos);
     }
 
@@ -110,6 +112,32 @@ class Controlador extends Controller {
 
     public function administrarUsuarios(Request $request) {
         return view('Administrar/administrarUsuarios');
+    }
+
+    public function verHistorico(Request $request) {
+
+        return view('Administrar/verHistorico');
+    }
+    
+        public function verLog(Request $request) {
+
+        return view('Administrar/verLog');
+    }
+    
+        public function guardarLog(Request $request) {
+            
+            //Cojo el value del botón (todo el texto del textarea)
+            $lineas = $request->get('guardarEnHistorico');
+            
+            //Lo guardo en el historicoLog.txt y elimino lo que haya en el log.txt
+        $log = new Fichero();
+        $log->guardarHistorico($lineas);
+        
+        //Eliminamos el contenido de log.txt
+        $log->eliminarDatosLog();
+            
+
+        return view('Administrar/verLog');
     }
 
     public function usuario(Request $request) {
@@ -168,6 +196,24 @@ class Controlador extends Controller {
         return view('Login/restablecerpassword');
     }
 
+    public function subirimagen(Request $request) {
+        
+        
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+        
+        
+
+        $archivo = Input::file('archivo');
+        
+        $rutadestino = public_path() . '/Imagenes/' .$usu->getId_usuario().'/';
+        $url_image = $archivo->getClientOriginalName();
+        $subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
+
+
+        //return view('Administrar/administrar');
+    }
+
     public function nuevorol(Request $request) {
 
 
@@ -219,7 +265,6 @@ class Controlador extends Controller {
 
 
         $datos = [
-
             'roles' => $roles,
             'categorias' => $categorias,
             'entregar' => $entregar
@@ -231,9 +276,19 @@ class Controlador extends Controller {
     public function cerrarsesion(Request $request) {
 
 
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+
+        $nombre = $usu->getNombre();
+        $apellidos = $usu->getApellidos();
+
         \Session::forget('u');
         \Session::forget('rol');
         \Session::forget('pagina');
+
+        $log = new Fichero();
+        $log->EscribirLog($nombre . ' ' . $apellidos . ' ha cerrado sesión.');
+
 
 
         return view('Login/cerrarsesion');

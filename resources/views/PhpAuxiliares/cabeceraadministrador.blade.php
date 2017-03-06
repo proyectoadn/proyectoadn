@@ -73,39 +73,23 @@
 
 
         $("#archivo").change(function (event) {
-
-            var file = event.target.files[0];
-
             
-            var data = new FormData();
-            data.append("file", file);
+            <?php
             
-            $.ajax({
-                
-                url: 'subirfoto.php',
-                dataType: 'text',
-                contenttype: false,
-                processData: false,
-                data: data,
-                type: 'post',
-                success: function(respuesta){
-                    
-                    alert(respuesta);
-                }
+                $usu = new Usuario('', '', '', '', '');
+                $usu = \Session::get('u');
+            ?>
+
+
+            $("#fotoperfil").html('<img src="Imagenes/'+{!! $usu->getId_usuario() !!}+'/ubuntuhero.jgp class="imagenperfil" id="prueba">');
+
+
+            $("#prueba").Jcrop({
+                onSelect: showCoords,
+                setSelect: [150, 150, 50, 50],
+                minSize: [150, 150, 50, 50],
+                maxSize: [150, 150, 50, 50]
             });
-            
-            
-
-
-//            $("#fotoperfil").html('<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">');
-//
-//
-//            $("#prueba").Jcrop({
-//                onSelect: showCoords,
-//                setSelect: [150, 150, 50, 50],
-//                minSize: [150, 150, 50, 50],
-//                maxSize: [150, 150, 50, 50]
-//            });
 
         });
     });
@@ -125,7 +109,7 @@
         $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
                 function (respuesta) {
 
-
+                    $("#cambiarimagen").html('<img src="Imagenes/fotorecortada.jpg"');
 
                 }
         ).fail(function (jqXHR) {
@@ -166,6 +150,7 @@ if (\Session::get('rol') == 'Administrador') {
         <a class="navbar-brand" href="activarUsuarios">Activar usuarios</a>
         <a class="navbar-brand" href="administrarUsuarios">Gestion usuarios</a>
         <a class="navbar-brand" href="gestion">Gestionar</a>
+        <a class="navbar-brand" href="verLog">Histórico</a>
     </div>
 
     <!-- Agrupar los enlaces de navegación, los formularios y cualquier
@@ -253,7 +238,14 @@ if (\Session::get('rol') == 'Administrador') {
                     <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->
                 </div>
 
-                <input type="file" name="archivo" id="archivo" value="prueba">
+
+                <form action="subirimagen" method="POST" enctype="multipart/form-data">
+                    {!! csrf_field() !!}
+
+                    <input type="file" name="archivo" id="archivo" value="prueba">
+
+                    <input type="submit" name="subir" value="Subir" class="btn btn-primary">
+                </form>
 
             </div>
 

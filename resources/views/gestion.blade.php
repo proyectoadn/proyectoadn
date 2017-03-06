@@ -8,8 +8,12 @@ Gestión de tareas
 
 
 <script>
+    
+    var id;
+    var tablaeditargestion;
 
     $(function () {
+
 
         $("#borrarrol").on("click", function () {
 
@@ -23,7 +27,7 @@ Gestión de tareas
 
                 if ($("#rol" + i).prop('checked')) {
 
-                    borrar.push($("#nombrerol" + i).text().trim());
+                    borrar.push($("#rol" + i).val());
                 }
             }
 
@@ -63,7 +67,7 @@ Gestión de tareas
 
                 if ($("#categoria" + i).prop('checked')) {
 
-                    borrar.push($("#nombrecategoria" + i).text().trim());
+                    borrar.push($("#categoria" + i).val());
                 }
             }
 
@@ -104,7 +108,7 @@ Gestión de tareas
 
                 if ($("#entrega" + i).prop('checked')) {
 
-                    borrar.push($("#nombreentregar" + i).text().trim());
+                    borrar.push($("#entrega" + i).val());
                 }
             }
 
@@ -130,24 +134,45 @@ Gestión de tareas
                 }
             }
         });
+
+        $("#editar").on("click", function () {
+            
+
+            var descripcion = $("#descripcion").val();
+
+            var descripcioneditar = JSON.stringify(descripcion);
+            var idrolcategoriaentrega = JSON.stringify(id);
+            var nombretabla = JSON.stringify(tablaeditargestion);
+
+
+            $.post("../resources/views/PhpAuxiliares/editargestion.php", {id: idrolcategoriaentrega, descripcion: descripcioneditar, nombretabla: nombretabla},
+                    function (respuesta) {
+                        
+                        
+
+                    }).fail(function (jqXHR) {
+            });
+        });
     });
 
     function popup(boton, tabla) {
 
-        var id = boton.value;
+        id = boton.value;
+        tablaeditargestion = tabla;
 
-        var idrol = JSON.stringify(id);
+
+        var idrolcategoriaentrega = JSON.stringify(id);
         var nombretabla = JSON.stringify(tabla);
 
 
-        $.post("../resources/views/PhpAuxiliares/gestion.php", {id: id, nombretabla: nombretabla},
+        $.post("../resources/views/PhpAuxiliares/gestion.php", {id: idrolcategoriaentrega, nombretabla: nombretabla},
                 function (respuesta) {
 
                     var descripcion = JSON.parse(respuesta);
 
 
                     $("#descripcion").val(descripcion);
-                    
+
                 }).fail(function (jqXHR) {
             alert("Error de tipo " + jqXHR.status);
         });
@@ -186,15 +211,16 @@ Gestión de tareas
                     @for($i=0;$i<count($roles);$i++)
 
                         <label class="displayBock" id="nombrerol{!! $i !!}">
-                            <input type="checkbox" name="rol" id="rol{!! $i !!}" value="rol{!! $i !!}" class="seleccionarRoles">
+                            <input type="checkbox" name="rol" id="rol{!! $i !!}" value="{!! $roles[$i]->id_rol !!}" class="seleccionarRoles">
                             <p>{!! $roles[$i]->descripcion !!}
-                                <button onclick="popup(this, 'rol')" value="{!! $roles[$i]->id_rol !!}" id="editarrol" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
+                                <button onclick="popup(this, 'rol')" id="editarrol" value="{!! $roles[$i]->id_rol !!}" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
                                     <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
                                 </button>
                             </p>
 
                         </label>
                         @endfor
+                        <br>
 
                         <label class="displayBock" style="margin-top: 10px;">
                             <input type="checkbox" onclick="seleccionarRoles(this);"/> 
@@ -224,7 +250,7 @@ Gestión de tareas
                     @for($i=0;$i<count($categorias);$i++)
 
                         <label id="nombrecategoria{!! $i !!}">
-                            <input type="checkbox" name="categoria" id="categoria{!! $i !!}" value="categoria{!! $i !!}" class="seleccionarCategorias">
+                            <input type="checkbox" name="categoria" id="categoria{!! $i !!}" value="{!! $categorias[$i]->id_categoria !!}" class="seleccionarCategorias">
                             <p>{!! $categorias[$i]->descripcion !!}
                                 <button onclick="popup(this, 'categorias')" value="{!! $categorias[$i]->id_categoria !!}" id="editarcategoria" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
                                     <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
@@ -233,6 +259,7 @@ Gestión de tareas
 
                         </label><br>
                         @endfor
+                        <br>
 
                         <label class="displayBock" style="margin-top: 10px;">
                             <input type="checkbox" onclick="seleccionarCategorias(this);"/> 
@@ -262,7 +289,7 @@ Gestión de tareas
                     @for($i=0;$i<count($entregar);$i++)
 
                         <label class="displayBock" id="nombreentregar{!! $i !!}">
-                            <input type="checkbox" name="entrega" id="entrega{!! $i !!}" value="entrega{!! $i !!}" class="seleccionarEntrega">
+                            <input type="checkbox" name="entrega" id="entrega{!! $i !!}" value="{!! $entregar[$i]->id_entregar !!}" class="seleccionarEntrega">
                             <p>{!! $entregar[$i]->descripcion !!}
                                 <button onclick="popup(this, 'entregas')" value="{!! $entregar[$i]->id_entregar !!}" id="editarentrega" style="background: transparent; border: 0px; margin:0px;" data-toggle="modal" data-target="#editartarea">
                                     <img alt="Editar tarea" title="Editar tarea" src="Imagenes/editar.png" style="width: 20px; height: 20px;" class=""/>
@@ -271,6 +298,7 @@ Gestión de tareas
 
                         </label>
                         @endfor
+                        <br>
 
                         <label class="displayBock" style="margin-top: 10px;">
                             <input type="checkbox" onclick="seleccionarEntrega(this);"/> 
@@ -384,26 +412,31 @@ Gestión de tareas
         <!-- Modal content-->
         <div class="modal-content">
 
-            <div class="modal-body">
+            <form action="editargestion" method="POST">
+                {!! csrf_field() !!}
 
-                <label>Editar la descripcion</label>
-                <input type="text" name="descripcion" id="descripcion" class="form-control">
+                <div class="modal-body">
 
-            </div>
+                    <label>Editar la descripcion</label>
+                    <input type="text" name="descripcion" id="descripcion" class="form-control">
 
-            <div class="modal-footer">
+                </div>
 
-                <button type="submit" class="btn btn-primary">
-                    Añadir
-                </button>
+                <div class="modal-footer">
 
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    Cancelar
-                </button>
-            </div>
+
+                    <button type="submit" id="editar" class="btn btn-primary">
+                        Modificar
+                    </button>
             </form>
+
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                Cancelar
+            </button>
         </div>
+        </form>
     </div>
+</div>
 </div>
 
 @endsection

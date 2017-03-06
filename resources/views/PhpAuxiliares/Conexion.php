@@ -15,7 +15,9 @@ class Conexion {
 
     private $conex;
     private $cursor;
+    private $cursor2;
     private $fila;
+    private $fila2;
 
     /**
      * Conexion constructor.
@@ -71,9 +73,9 @@ class Conexion {
         }
         return $devolver;
     }
-    
+
     function rellenar_gestionrol($id_rol) {
-        $consult = 'select * from rol where id_rol='.$id_rol;
+        $consult = 'select * from rol where id_rol=' . $id_rol;
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
@@ -84,9 +86,35 @@ class Conexion {
         }
         return $devolver;
     }
-    
+
+    function obtenerUsuarioCargo($id_rol) {
+        $consult = 'SELECT * FROM cargo WHERE id_rol=' . $id_rol;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function verificarInsertTareas($id_usuario, $descripcion) {
+        $consult = 'SELECT * FROM tarea WHERE id_usuario=' . $id_usuario . ' AND descripcion="' . $descripcion . '"';
+
+        $this->cursor2 = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor2) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $consult;
+    }
+
     function rellenar_gestioncategorias($id_categoria) {
-        $consult = 'select * from categoria where id_categoria='.$id_categoria;
+        $consult = 'select * from categoria where id_categoria=' . $id_categoria;
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
@@ -97,9 +125,9 @@ class Conexion {
         }
         return $devolver;
     }
-    
+
     function rellenar_gestionentregas($id_entregas) {
-        $consult = 'select * from entregar where id_entregar='.$id_entregas;
+        $consult = 'select * from entregar where id_entregar=' . $id_entregas;
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
@@ -126,7 +154,7 @@ class Conexion {
 
     function rellenar_tareas_admin($id_rol) {
         //  $consult='Select * FROM tareas,cargo WHERE cargo.id_rol='.$id_rol.' and tareas.id_usuario=cargo.id_usuario';
-        $consult = 'Select tarea.descripcion, tarea.id_tarea FROM tarea,documentacion WHERE tarea.id_documentacion=documentacion.id_documentacion and documentacion.id_rol=' . $id_rol;
+        $consult = 'Select tarea.descripcion, tarea.id_tarea FROM tarea,documentacion WHERE tarea.id_documentacion=documentacion.id_documentacion AND id_usuario IS NULL and documentacion.id_rol=' . $id_rol;
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
@@ -179,6 +207,19 @@ class Conexion {
 
     function cargarUsuarios() {
         $consult = 'SELECT * FROM usuario';
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function cargarUsuarioPorID($id_usuario) {
+        $consult = 'SELECT * FROM usuario WHERE id_usuario=' . $id_usuario;
         $this->cursor = mysqli_query($this->conex, $consult);
 
 
@@ -292,7 +333,43 @@ class Conexion {
     }
 
     function updateUsuario($nombre, $apellido, $email, $id_usu) {
-        $consult = 'UPDATE usuario SET nombre="'.$nombre.'",apellidos="'.$apellido.'",email="'.$email.'" WHERE id_usuario='.$id_usu;
+        $consult = 'UPDATE usuario SET nombre="' . $nombre . '",apellidos="' . $apellido . '",email="' . $email . '" WHERE id_usuario=' . $id_usu;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function actualizargestionrol($id, $descripcion) {
+        $consult = 'UPDATE rol SET descripcion="' . $descripcion . '" where id_rol=' . $id;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function actualizargestioncategorias($id, $descripcion) {
+        $consult = 'UPDATE categoria SET descripcion="' . $descripcion . '" where id_categoria=' . $id;
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function actualizargestionentregar($id, $descripcion) {
+        $consult = 'UPDATE entregar SET descripcion="' . $descripcion . '" where id_entregar=' . $id;
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
@@ -305,7 +382,7 @@ class Conexion {
 
     function rellenar_descrip_tarea($id_doc) {
 
-        $consult = 'Select descripcion from  tarea where id_documentacion='.$id_doc;
+        $consult = 'Select descripcion from  tarea where id_documentacion=' . $id_doc;
         $this->cursor = mysqli_query($this->conex, $consult);
         if ($this->cursor) {
             $devolver = true;
@@ -352,7 +429,6 @@ class Conexion {
         }
         return $devolver;
     }
-    
 
     function denegar_usuario($id_usuario) {
         $consult = "DELETE FROM usuario WHERE id_usuario =" . $id_usuario;
@@ -365,33 +441,9 @@ class Conexion {
         }
         return $devolver;
     }
-    
-    function borrarrol($nombrerol) {
-        $consult = "DELETE FROM rol WHERE descripcion ='" . $nombrerol."'";
-        $this->cursor = mysqli_query($this->conex, $consult);
 
-        if ($this->cursor) {
-            $devolver = true;
-        } else {
-            $devolver = false;
-        }
-        return $devolver;
-    }
-    
-    function borrarcategorias($nombrecategorias) {
-        $consult = "DELETE FROM categoria WHERE descripcion ='" . $nombrecategorias."'";
-        $this->cursor = mysqli_query($this->conex, $consult);
-
-        if ($this->cursor) {
-            $devolver = true;
-        } else {
-            $devolver = false;
-        }
-        return $devolver;
-    }
-    
-    function borrarentregas($nombreentregas) {
-        $consult = "DELETE FROM entregar WHERE descripcion ='" . $nombreentregas."'";
+    function borrarrol($idrol) {
+        $consult = "DELETE FROM rol WHERE id_rol ='" . $idrol . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
@@ -402,22 +454,63 @@ class Conexion {
         return $devolver;
     }
 
-    function actualizarCargos($id_usu,$rol) {
-    $query = "INSERT INTO cargo (id_usuario, id_rol) VALUES (?,?)";
+    function borrarcategorias($idcategoria) {
+        $consult = "DELETE FROM categoria WHERE id_categoria ='" . $idcategoria . "'";
+        $this->cursor = mysqli_query($this->conex, $consult);
 
-    $stmt = mysqli_prepare($this->conex, $query);
-    mysqli_stmt_bind_param($stmt, "ii", $id_usu,$rol);
-    /* Ejecución de la sentencia. */
-    mysqli_stmt_execute($stmt);
-
-
-    if ($this->cursor) {
-        $devolver = true;
-    } else {
-        $devolver = false;
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
     }
-    return $devolver;
-}
+
+    function borrarentregas($identregas) {
+        $consult = "DELETE FROM entregar WHERE id_entregar ='" . $identregas . "'";
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function actualizarCargos($id_usu, $rol) {
+        $query = "INSERT INTO cargo (id_usuario, id_rol) VALUES (?,?)";
+
+        $stmt = mysqli_prepare($this->conex, $query);
+        mysqli_stmt_bind_param($stmt, "ii", $id_usu, $rol);
+        /* Ejecución de la sentencia. */
+        mysqli_stmt_execute($stmt);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function asignarTareasUsuario($id_docu, $id_usu, $descripcion) {
+        $query = "INSERT INTO tarea (id_usuario, descripcion, id_documentacion, id_estado) VALUES (?,?,?,?)";
+        $id_estado = 1;
+        $stmt = mysqli_prepare($this->conex, $query);
+        mysqli_stmt_bind_param($stmt, "isii", $id_usu, $descripcion, $id_docu, $id_estado);
+        /* Ejecución de la sentencia. */
+        mysqli_stmt_execute($stmt);
+
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
 
     function borrarCargosUsuario($id_usu) {
         $consult = "DELETE FROM cargo WHERE id_usuario =" . $id_usu;
@@ -432,9 +525,12 @@ class Conexion {
         return $devolver;
     }
 
-
     function ir_Siguiente() {
         return $this->fila = mysqli_fetch_array($this->cursor);
+    }
+
+    function ir_Siguiente2() {
+        return $this->fila2 = mysqli_fetch_array($this->cursor2);
     }
 
     function obtener_campo($campo) {
@@ -448,6 +544,10 @@ class Conexion {
 
     function cerrar_Conexion2() {
         mysqli_close($this->conex);
+    }
+
+    function cerrar_Conexion3() {
+        mysqli_free_result($this->cursor);
     }
 
     function insertar($val1, $val2, $val3) {
@@ -501,7 +601,6 @@ class Conexion {
         mysqli_query($this->conex, $query);
     }
 
-
     function insertar_documento($descripcion, $id_categoria, $id_rol, $id_entregar, $modelo, $link) {
         if ($id_entregar == "0") {
             $query = "INSERT INTO documentacion (descripcion, id_categoria, modelo,id_rol,link) VALUES (?,?,?,?,?)";
@@ -516,22 +615,32 @@ class Conexion {
         }
         /* Ejecución de la sentencia. */
         mysqli_stmt_execute($stmt);
-
     }
-    function insertar_tarea($id_doc,$descripcion) {
 
-            $query = "INSERT INTO tarea (descripcion, id_documentacion) VALUES (?,?)";
-            $stmt = mysqli_prepare($this->conex, $query);
+    function insertar_tarea($id_doc, $descripcion) {
 
-            mysqli_stmt_bind_param($stmt, "si", $descripcion,$id_doc);
+        $query = "INSERT INTO tarea (descripcion, id_documentacion) VALUES (?,?)";
+        $stmt = mysqli_prepare($this->conex, $query);
+
+        mysqli_stmt_bind_param($stmt, "si", $descripcion, $id_doc);
 
         /* Ejecución de la sentencia. */
         mysqli_stmt_execute($stmt);
-
     }
 
+    function sacarTarea($id_tarea) {
 
-    function sacar_ultimo_doc(){
+        $consult = 'SELECT * FROM tarea WHERE id_tarea=' . $id_tarea;
+        $this->cursor = mysqli_query($this->conex, $consult);
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function sacar_ultimo_doc() {
 
         $consult = 'SELECT id_documentacion FROM documentacion order by id_documentacion desc LIMIT 1';
         $this->cursor = mysqli_query($this->conex, $consult);
@@ -542,6 +651,5 @@ class Conexion {
         }
         return $devolver;
     }
-
 
 }

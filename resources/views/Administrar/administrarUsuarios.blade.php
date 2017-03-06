@@ -170,7 +170,7 @@ Administracion
                             $.post("../resources/views/PhpAuxiliares/editarUsuario.php", {datos: datos},
                                     function (respuesta) {
                                         var vector = JSON.parse(respuesta);
-
+                                        
                                         //Vector con los datos del usuario con nombre, apellidos, email e id_usuario
                                         var usu = vector[0];
                                         //vector con todos los cargos de la tabla rol

@@ -25,11 +25,11 @@ class Fichero {
         
         //Formateamos la fecha (funcion de php date)
         $hoy = date("j F, Y, g:i a");
-        
-        //Abrimos el archivo llamado LogX.txt, siendo X las 3 iniciales del mes
-        //Si no existe el archivo se crea solo
-        $file = fopen('../Log/log.txt', "a");
 
+        //Si no existe el archivo se crea solo
+        $file = fopen("Log/log.txt", "a");
+
+        //Escribimos en el archivo, [dia Mes, Año, hora am/pm]
         fwrite($file, '[' . $hoy . '] ' . $texto . "\r\n");
         fclose($file);
 
