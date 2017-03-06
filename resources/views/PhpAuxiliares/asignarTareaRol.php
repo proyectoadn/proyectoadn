@@ -56,6 +56,7 @@ if ($conexion->conectar()) {
             }
         }
     }
+    echo json_encode($idUsuario);
 }
 
 

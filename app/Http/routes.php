@@ -46,6 +46,11 @@ Route::get('datoscentro', [
     'uses' => 'Controlador@datoscentro'
 ]);
 
+Route::post('datosCentroVisualizar', [
+    'as' => 'datosCentroVisualizar',
+    'uses' => 'Controlador@datosCentroVisualizar'
+]);
+
 
 Route::get('registroerror', [
     'as' => 'registroerror',

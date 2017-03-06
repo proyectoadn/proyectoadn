@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Elimina multiples usuarios seleccionados.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 22/02/2017

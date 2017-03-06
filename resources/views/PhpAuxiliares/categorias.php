@@ -1,5 +1,6 @@
 <?php
 /**
+ * Carga las categorias que tiene el rol seleccionado.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

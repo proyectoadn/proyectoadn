@@ -28,8 +28,7 @@ $usu = \Session::get('u');
 if (\Session::get('pagina') == 'gestiontareas') {
 
     $rol = 'Administrador';
-} 
-else {
+} else {
 
     $rol = 'Usuario';
 }
@@ -66,7 +65,7 @@ else {
 
                     <div class="" style="width: 100%; height: auto;">
 
-                        <div style="max-height: 150px;min-height: 150px; padding-left: 10px;">
+                        <div style="max-height: 170px;min-height: 170px; padding-left: 10px;">
 
 
 
@@ -81,7 +80,14 @@ else {
                                     <label><?php echo $usu->getNombre(); ?></label>
                                     <p><?php echo $usu->getEmail(); ?></p>
                                     <br>
-                                    <input type="submit" name="perfil" style="width: 100%;" value="Mi perfil" class="btn btn-primary">
+                                    <form action="miperfil" method="POST" style="margin-bottom: 10px;">
+                                        {!! csrf_field() !!}
+                                        <input type="submit" name="perfil" style="width: 100%;" value="Mi perfil" class="btn btn-primary">
+                                    </form>
+                                    <form action="datosCentroVisualizar" method="POST">
+                                        {!! csrf_field() !!}
+                                        <input type="submit" name="datoscentro" style="width: 100%;" value="Datos centro" class="btn btn-primary" >
+                                    </form>
                                 </div>
 
                             </div>

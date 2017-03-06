@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Ajax que borra un registro de rol, categoria o entrega dependiendo del tipo y por el ID.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

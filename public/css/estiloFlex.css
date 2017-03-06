@@ -208,5 +208,11 @@ tarea2{
 
 .margenIzqAsignarDoc{
     margin-left: 15px;
+}
+
+.alturatr{
+    height: 35px;
+}
+
     overflow-y: scroll;
 }

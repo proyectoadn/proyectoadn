@@ -29,14 +29,28 @@ Administracion
             $("#hola").load("Log/log.txt");
         });
 
-        //Filtro buscar algo en el textarea
-        $('#filter').keyup(function () {
-            var rex = new RegExp($(this).val(), 'i');
-            $('.searchable').hide();
-            $('.searchable').filter(function () {
-                return rex.test($(this).text());
-            }).show();
-        });
+//        //Filtro buscar algo en el textarea
+//        $('#filter').keyup(function () {
+//            var rex = new RegExp($(this).val(), 'i');
+//            $('.searchable').hide();
+//            $('.searchable').filter(function () {
+//                return rex.test($(this).text());
+//            }).show();
+//        });
+
+//        $.expr[':'].icontains = function (obj, index, meta, stack) {
+//            return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
+//        };
+//        
+//            $('#filter').keyup(function () {
+//                buscar = $(this).val();
+//                $("#textoLog:contains('daniel')").css("font-weight", "bold");
+////                $('#textoLog').removeClass('resaltar');
+////                if (jQuery.trim(buscar) != '') {
+////                    $("#textoLog:icontains('" + buscar + "')").addClass('resaltar');
+////                }
+//            });
+
 
     });
 
@@ -93,12 +107,12 @@ echo $abrirLog[$i];
         <div class="col-md-2">
 
             <!-- Lo pinta de gris y le pone un alto minimo -->
-            <div class="item cajaAsignarTareas" style="min-height: 150px;">
+            <div class="item cajaAsignarTareas" style="min-height: 150px; text-align: center;">
                 <b>Histórico</b>
                 <form action="guardarLog" method="POST">
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-primary guardarEnHistorico" id="guardarEnHistorico" name="guardarEnHistorico"
-                            style="width: 90%; margin-left: 13px; margin-right: 10px; margin-bottom: 15px; margin-top: 15px;">
+                            style="width: 90%; margin-bottom: 15px; margin-top: 15px;">
                         Guardar en Histórico
                     </button>
                 </form>
@@ -106,7 +120,7 @@ echo $abrirLog[$i];
                 <form action="verHistorico" method="POST">
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-primary verHistorico" id="verHistorico" name="verHistorico"
-                            style="width: 90%; margin-left: 13px; margin-right: 10px;">
+                            style="width: 90%;">
                         Ver Histórico
                     </button>
                 </form>

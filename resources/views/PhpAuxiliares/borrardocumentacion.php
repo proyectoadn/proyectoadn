@@ -1,5 +1,6 @@
 <?php
 /**
+ * Ajax que borra una documentacion a traves de un ID, ademas tambien borra las tareas que tengan esa documentacion.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

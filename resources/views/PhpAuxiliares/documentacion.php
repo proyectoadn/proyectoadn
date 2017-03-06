@@ -1,5 +1,6 @@
 <?php
 /**
+ * Carga la informacion de la documentacion por su id de categoria y su rol.
  * Created by PhpStorm.
  * User: DAW2
  * Date: 31/01/2017

@@ -37,7 +37,7 @@ Administracion
 
                         for (var i = 0; i < usuarios.length; i++) {
                             //El botón abre un popup de bootstrap al cual le pasamos el id_usuario
-                            $("#usuarios").append('<tr class="fila">\n\
+                            $("#usuarios").append('<tr class="fila alturatr">\n\
                                                     <td>' + (i + 1) + '</td>\n\
                                                     <td name="nombre">' + usuarios[i]['nombre'] + '</td>\n\
                                                     <td name="apellidos">' + usuarios[i]['apellidos'] + '</td>\n\
@@ -65,7 +65,7 @@ Administracion
                         }
 
                         //Añado una fila vacía para separar un poco del seleccionar todos
-                        $("#usuarios").append('<tr class="fila">\n\
+                        $("#usuarios").append('<tr class="alturatr fila" style="background-color: #215891;">\n\
                                                     <td></td>\n\
                                                     <td></td>\n\
                                                     <td></td>\n\
@@ -77,7 +77,7 @@ Administracion
 
                         //Añado al final de la tabla otra fila con un checkbox para seleccionar todos
                         $("#usuarios").append('\n\
-                                                <tr class="fila" style="">\n\
+                                                <tr class="alturatr fila" style="">\n\
                                                     <td></td>\n\
                                                     <td></td>\n\
                                                     <td></td>\n\
@@ -104,7 +104,7 @@ Administracion
                             //Update del usuario con los nuevos datos, cambien o no
                             $.post("../resources/views/PhpAuxiliares/eliminarUsuario.php", {datos: datos},
                                     function (respuesta) {
-
+                                        cargartabla();
                                     }).fail(function (jqXHR) {
                                 alert("Error de tipo " + jqXHR.status);
                             });//FIN POST
@@ -156,8 +156,6 @@ Administracion
                                     alert("Error de tipo " + jqXHR.status);
                                 });//FIN POST
 
-                            } else {
-                                //NOTHING TO DO HERE.
                             }
                         });
 
@@ -170,7 +168,6 @@ Administracion
                             $.post("../resources/views/PhpAuxiliares/editarUsuario.php", {datos: datos},
                                     function (respuesta) {
                                         var vector = JSON.parse(respuesta);
-                                        
                                         //Vector con los datos del usuario con nombre, apellidos, email e id_usuario
                                         var usu = vector[0];
                                         //vector con todos los cargos de la tabla rol
@@ -221,6 +218,7 @@ Administracion
 
 
                                     });
+
                         });
 
                         //Funcion que se lanza cuando cuando damos al aceptar del PopUp
@@ -251,7 +249,6 @@ Administracion
                             //Update del usuario con los nuevos datos, cambien o no
                             $.post("../resources/views/PhpAuxiliares/updateUsuario.php", {datos: datos},
                                     function (respuesta) {
-                                        console.log(respuesta);
                                         cargartabla();
                                     }).fail(function (jqXHR) {
                                 alert("Error de tipo " + jqXHR.status);
