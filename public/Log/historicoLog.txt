@@ -77,3 +77,11 @@
 [4 March, 2017, 7:00 pm] Nazario Castillero Redondo ha iniciado sesión.
 [6 March, 2017, 12:23 am] Nazario Castillero Redondo ha iniciado sesión.
 
+ -----------------------------------------------------------------------------
+|   6 March, 2017, 1:43 pm Se guardó el log en el histórico  |
+ -----------------------------------------------------------------------------
+[6 March, 2017, 12:42 am] Nazario Castillero Redondo ha iniciado sesión.
+[6 March, 2017, 12:42 am] Nazario Castillero Redondo ha cerrado sesión.
+[6 March, 2017, 12:42 am] Alberto de la Plaza Ramos ha iniciado sesión.
+[6 March, 2017, 12:25 pm] Nazario Castillero Redondo ha iniciado sesión.
+

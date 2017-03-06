@@ -37,7 +37,7 @@ Administracion
 
                         for (var i = 0; i < usuarios.length; i++) {
                             //El botón abre un popup de bootstrap al cual le pasamos el id_usuario
-                            $("#usuarios").append('<tr class="fila">\n\
+                            $("#usuarios").append('<tr class="fila alturatr">\n\
                                                     <td>' + (i + 1) + '</td>\n\
                                                     <td name="nombre">' + usuarios[i]['nombre'] + '</td>\n\
                                                     <td name="apellidos">' + usuarios[i]['apellidos'] + '</td>\n\
@@ -65,7 +65,7 @@ Administracion
                         }
 
                         //Añado una fila vacía para separar un poco del seleccionar todos
-                        $("#usuarios").append('<tr class="fila">\n\
+                        $("#usuarios").append('<tr class="alturatr fila" style="background-color: #215891;">\n\
                                                     <td></td>\n\
                                                     <td></td>\n\
                                                     <td></td>\n\
@@ -77,7 +77,7 @@ Administracion
 
                         //Añado al final de la tabla otra fila con un checkbox para seleccionar todos
                         $("#usuarios").append('\n\
-                                                <tr class="fila" style="">\n\
+                                                <tr class="alturatr fila" style="">\n\
                                                     <td></td>\n\
                                                     <td></td>\n\
                                                     <td></td>\n\

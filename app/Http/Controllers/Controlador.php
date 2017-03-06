@@ -478,6 +478,35 @@ class Controlador extends Controller {
 
         return view('GestionarTareas/datosCentro', $datos);
     }
+    
+        public function datosCentroVisualizar(Request $request) {
+
+        $datoscentro = \DB::table('datoscentro')->get();
+
+        $direccion = $datoscentro[0]->direccion;
+        $codigopostal = $datoscentro[0]->codigopostal;
+        $ciudad = $datoscentro[0]->ciudad;
+        $provincia = $datoscentro[0]->provincia;
+        $telefono = $datoscentro[0]->telefono;
+        $fax = $datoscentro[0]->fax;
+        $email1 = $datoscentro[0]->email1;
+        $email2 = $datoscentro[0]->email2;
+        $codigocentro = $datoscentro[0]->codigocentro;
+
+        $datos = [
+            'direccion' => $direccion,
+            'codigopostal' => $codigopostal,
+            'ciudad' => $ciudad,
+            'provincia' => $provincia,
+            'telefono' => $telefono,
+            'fax' => $fax,
+            'email1' => $email1,
+            'email2' => $email2,
+            'codigocentro' => $codigocentro
+        ];
+
+        return view('GestionarTareas/datosCentroVisualizar', $datos);
+    }
 
     public function activar(Request $request) {
 

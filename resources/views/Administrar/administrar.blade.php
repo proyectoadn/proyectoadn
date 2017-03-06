@@ -124,8 +124,8 @@ Administracion
             });
 
             //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
-            $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
-                                                <div class="documentacion divAniadirDoc">\n\
+            $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion">\n\
+                                                <div class="documentacion divAniadirDoc ">\n\
                                                     <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario" data-toggle="modal" data-target="#modalAddDoc">\n\
                                                         <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
                                                     </button>\n\
@@ -150,7 +150,7 @@ Administracion
             var entrega = $('#entregar').val();
             var modelo = $('#nombreModelo').val();
             var link = $('#linkModelo').val();
-            var tarea=$('#editTarea').val();
+            var tarea = $('#editTarea').val();
             var update = new Array();
             update.push(descripcion);
             update.push(categoria);
@@ -233,7 +233,7 @@ Administracion
             var entrega = $('#anadirEntregar').val();
             var modelo = $('#anadirModelo').val();
             var link = $('#anadirLink').val();
-            var tarea=$('#addTarea').val();
+            var tarea = $('#addTarea').val();
             var insert = new Array();
             insert.push(descripcion);
             insert.push(categoria);
@@ -247,7 +247,7 @@ Administracion
 
             $.post("../resources/views/PhpAuxiliares/anadirdocumento.php", {datos: vector},
                     function (respuesta) {
-                    console.log(respuesta);
+                        console.log(respuesta);
                         llenar_documentos();
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -337,7 +337,7 @@ Administracion
                     var id_entrega = datos[0]['id_entrega'];
                     var id_categoria = datos[0]['id_categoria'];
                     var modelo = datos[0]['modelo'];
-                    var descrip_tarea=datos[0]['descrip_tarea'];
+                    var descrip_tarea = datos[0]['descrip_tarea'];
                     $('#nombreDoc').val(nombre);
                     $('#nombreModelo').val(modelo);
                     $('#editTarea').val(descrip_tarea);
@@ -396,8 +396,8 @@ Administracion
                     var documentacion = JSON.parse(respuesta);
 
                     for (var i = 0; i < documentacion.length; i++) {
-                        $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
-                                            <div class="documentacion">\n\
+                        $("#item1").append('<div class="searcheable col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
+                                            <div class="searcheable documentacion">\n\
                                                 <p>' + documentacion[i]['descripcion'] + '</p>\n\
                                                 <p class="textotarea"><a href="' + documentacion[i]['link'] + '">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
                                                 <div class="divisorBotonTarea">\n\
@@ -457,7 +457,7 @@ Administracion
                 <span class="input-group-addon">
                     Buscar
                 </span>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="filter">
             </div>
         </div>
     </div>
@@ -474,7 +474,7 @@ Administracion
                 <div class="row conectardivisores" value="Documentacion" id="item1"
                      style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
 
-                    <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
+                    <div class="searcheable col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
 
                     </div>
                 </div>
@@ -651,6 +651,6 @@ Administracion
 
 @section('footer')
 
-    @include ('PhpAuxiliares/footer')
+@include ('PhpAuxiliares/footer')
 
 @endsection
