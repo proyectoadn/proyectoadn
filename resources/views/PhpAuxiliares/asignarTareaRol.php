@@ -11,39 +11,48 @@ require_once 'Conexion.php';
 $conexion = new Conexion();
 
 
-$ids_roles = json_decode($_POST['roles']);
+$rolcargo = json_decode($_POST['rolcargo']);
 $ids_tareas = json_decode($_POST['tareas']);
 
 
 if ($conexion->conectar()) {
 
-    for ($i = 0; $i < count($ids_roles); $i++) {
 
-        //Sacamos el id_usuario en la tabla cargo por el id-rol
-        $conexion->obtenerUsuarioCargo($ids_roles[$i]);
+    //Sacamos el id_usuario en la tabla cargo por el id-rol
+    $conexion->obtenerUsuarioCargo($rolcargo);
 
-        while ($conexion->ir_Siguiente()) {
-            $idUsuario[] = $conexion->obtener_campo('id_usuario');
-        }
-        
+    while ($conexion->ir_Siguiente()) {
+        $idUsuario[] = $conexion->obtener_campo('id_usuario');
+    }
 
-        
 
-        for ($x = 0; $x < count($ids_tareas); $x++) {
+    for ($x = 0; $x < count($ids_tareas); $x++) {
 
-            //Sacamos la informacion de la tarea
-            $conexion->sacarTarea($ids_tareas[$x]);
-            $conexion->ir_Siguiente();
+        //Sacamos la informacion de la tarea
+        $conexion->sacarTarea($ids_tareas[$x]);
+        $conexion->ir_Siguiente();
 
-            //recogemos el campo descripcion e id_docu
-            $descripcion = $conexion->obtener_campo('descripcion');
-            $id_documentacion = $conexion->obtener_campo('id_documentacion');
-            
-            if(count($idUsuario)==0){
+        //recogemos el campo descripcion e id_docu
+        $descripcion = $conexion->obtener_campo('descripcion');
+        $id_documentacion = $conexion->obtener_campo('id_documentacion');
+
+
+        if (count($idUsuario) == 0) {
+
+            echo json_encode("No existen usuarios");
+        } 
+        else {
+
+            for ($i = 0; $i < count($idUsuario); $i++) {
+
+                $conexion->verificarInsertTareas($idUsuario[$i], $descripcion);
+
+                $tarea = $conexion->ir_Siguiente2();
                 
-                echo json_encode("No existen usuarios");
-            }else{
-                $conexion->asignarTareasUsuario($id_documentacion, $idUsuario[$i], $descripcion);
+                if($tarea == null){
+                    
+                    $conexion->asignarTareasUsuario($id_documentacion, $idUsuario[$i], $descripcion);
+                }
             }
         }
     }

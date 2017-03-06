@@ -166,14 +166,6 @@ Administracion
 
             //Compruebo que ha seleccionado algún cargo
             if (cargoTarea != -1) {
-                //Si selecciona algun rol comprobamos cuales estan checked, y si es asi metemos el id del rol en un array
-                for (var i = 0; i < pasadas; i++) {
-
-                    if ($("#rol" + i).prop('checked')) {
-
-                        roles.push($("#rol" + i).val());
-                    }
-                }
 
                 //Metemos los id_tarea en el array tareas
                 for (var i = 0; i < countTareas; i++) {
@@ -186,17 +178,15 @@ Administracion
 
 
                 //Si no selecciona ningun rol, saca un mensaje de alert de que no la ha seleccionado
-                if (roles.length == 0) {
-                    alert("Debe seleccionar algún rol");
+                if (tareas.length == 0) {
+                    alert("Debe seleccionar alguna tarea");
                 } else {
 
-                    var idroles = JSON.stringify(roles);
+                    var rolcargo = JSON.stringify(cargoTarea);
                     var idtareas = JSON.stringify(tareas);
 
-                    $.post("../resources/views/PhpAuxiliares/asignarTareaRol.php", {roles: idroles, tareas: idtareas},
+                    $.post("../resources/views/PhpAuxiliares/asignarTareaRol.php", {rolcargo: rolcargo, tareas: idtareas},
                             function (respuesta) {
-
-                                alert(respuesta);
 
                                 if (respuesta == 'No existen usuarios') {
 

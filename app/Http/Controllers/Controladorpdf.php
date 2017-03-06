@@ -30,9 +30,13 @@ class Controladorpdf extends Controller {
         $cargo = $request->get('carg');
 
         $idcategoria = $request->get('cat');
+        
 
 
         $rol = \DB::table('rol')->where('id_rol', '=', $cargo)->get();
+        
+        
+        
 
         $idrol = $rol[0]->id_rol;
 
