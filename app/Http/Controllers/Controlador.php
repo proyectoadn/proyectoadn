@@ -51,7 +51,7 @@ class Controlador extends Controller {
 
     public function comprobarlogin(Request $request) {
 
-
+        \Session::put('rol', 'Usuario');
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
 
