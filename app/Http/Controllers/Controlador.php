@@ -205,13 +205,22 @@ class Controlador extends Controller {
         
 
         $archivo = $request->file('archivo');
+        $nombrearchivo = $archivo->getClientOriginalName();
+        
         
         $rutadestino = public_path() . '/Imagenes/Fotosusuarios/' .$usu->getId_usuario().'/';
         $url_image = $archivo->getClientOriginalName();
         $subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
+        
+        
+        $datos = [
+            
+            'nombrearchivo' => $nombrearchivo,
+            'id_usuario' => $usu->getId_usuario()
+        ];
 
 
-        //return view('subirfoto');
+        return view('subirfoto', $datos);
     }
 
     public function nuevorol(Request $request) {

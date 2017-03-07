@@ -8,16 +8,6 @@
 
 <script>
 
-    var ejex;
-    var ejey;
-    var ancho;
-    var alto;
-
-    var x;
-    var y;
-    var a;
-    var al;
-
     $(function () {
 
 
@@ -28,85 +18,8 @@
 
             document.location = "usuario";
         });
-
-
-        function showCoords(c) {
-
-            ejex = c.x;
-            ejey = c.y;
-
-
-            var anchoreal = document.getElementById("prueba").naturalWidth;
-            var altoreal = document.getElementById("prueba").naturalHeight;
-
-            var anchoenpantalla = $("#fotoperfil").width();
-            var altoenpantalla = document.getElementById("fotoperfil").height;
-
-
-            var escala = anchoreal / anchoenpantalla;
-
-
-            var xreal = escala.toFixed(2) * ejex;
-            var yreal = escala.toFixed(2) * ejey;
-
-            var anchorecortar = escala.toFixed(2) * c.w;
-            var altorecortar = escala.toFixed(2) * c.h;
-
-
-            x = xreal;
-            y = yreal;
-            a = anchorecortar;
-            al = altorecortar;
-        }
-
-
-        $("#archivo").change(function (event) {
-
-            <?php
-            
-                $usu = new Usuario('', '', '', '', '');
-                $usu = \Session::get('u');
-            ?>
-
-
-            $("#fotoperfil").html('<img src="Imagenes/'+{!! $usu->getId_usuario() !!}+
-            '/ubuntuhero.jgp class="imagenperfil" id="prueba">'
-            )
-            ;
-
-
-            $("#prueba").Jcrop({
-                onSelect: showCoords,
-                setSelect: [150, 150, 50, 50],
-                minSize: [150, 150, 50, 50],
-                maxSize: [150, 150, 50, 50]
-            });
-
-        });
     });
-
-    function recortarfoto(c) {
-
-
-        var cordenadas = new Array();
-        cordenadas.push(x);
-        cordenadas.push(y);
-        cordenadas.push(a);
-        cordenadas.push(al);
-        var datos = JSON.stringify(cordenadas);
-
-
-        $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
-                function (respuesta) {
-
-                    $("#cambiarimagen").html('<img src="Imagenes/fotorecortada.jpg"');
-
-                }
-        ).fail(function (jqXHR) {
-            alert("Error de tipo " + jqXHR.status);
-        });
-
-    }
+    
 </script>
 
 <?php
@@ -254,14 +167,13 @@ if (\Session::get('rol') == 'Administrador') {
 
                     <input type="file" name="archivo" id="archivo" value="prueba">
 
-                    <input type="submit" name="subir" value="Subir" class="btn btn-primary">
+                    <input type="submit" name="subir" value="Subir" class="btn btn-primary botonsubir">
                 </form>
 
             </div>
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

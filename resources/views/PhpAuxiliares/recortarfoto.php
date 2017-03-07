@@ -7,9 +7,9 @@ $datos = json_decode($_POST['cordenadas']);
 
 $targ_w = $targ_h = 150;
 $jpeg_quality = 90;
-$output_filename = '../../../public/Imagenes/fotorecortada.jpg';
+$output_filename = '../../../public/Imagenes/Fotosusuarios/4/fotorecortada.jpg';
 
-$src = '../../../public/Imagenes/foto.jpg';
+$src = '../../../public/Imagenes/Fotosusuarios/4/Koala.jpg';
 $img_r = imagecreatefromjpeg($src);
 $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
