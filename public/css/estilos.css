@@ -229,7 +229,7 @@ b{
 }
 
 .divfooter{
-
+    height: 61px;
     width: 100%;
     text-align: center;
     color: white;

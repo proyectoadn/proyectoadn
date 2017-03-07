@@ -651,6 +651,7 @@ Administracion
 
 @section('footer')
 
+
 @include ('PhpAuxiliares/footer')
 
 @endsection
