@@ -1,14 +1,17 @@
 <?php
 
 
-$file = json_decode($_POST['datos']);
 
-$rutadestino = public_path().'Imagenes'.'1';
-$url_image = $file->getClientOriginalName();
-$subir = $file->move($rutadestino, $file->getClientOriginalName());
+//$archivo = $_FILES["archivo"];
+$idusuario = json_decode($_POST['idusuario']);
 
 
+//$rutadestino = public_path() . '/Imagenes/' . $usu->getId_usuario() . '/';
+//$url_image = $archivo->getClientOriginalName();
+//$subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
 
+
+echo json_encode("prueba");
 
 
 

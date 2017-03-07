@@ -73,15 +73,6 @@
 
 
         $("#archivo").change(function (event) {
-            
-            <?php
-            
-                $usu = new Usuario('', '', '', '', '');
-                $usu = \Session::get('u');
-            ?>
-
-
-            $("#fotoperfil").html('<img src="Imagenes/'+{!! $usu->getId_usuario() !!}+'/ubuntuhero.jgp class="imagenperfil" id="prueba">');
 
 
             $("#prueba").Jcrop({
@@ -149,7 +140,7 @@ if (\Session::get('rol') == 'Administrador') {
         <a class="navbar-brand" href="asignarTareas">Asignar tareas</a>
         <a class="navbar-brand" href="activarUsuarios">Activar usuarios</a>
         <a class="navbar-brand" href="administrarUsuarios">Gestion usuarios</a>
-        <a class="navbar-brand" href="gestion">Gestionar</a>
+        <a class="navbar-brand" href="gestion">Gestion de datos</a>
         <a class="navbar-brand" href="verLog">Histórico</a>
     </div>
 
@@ -239,12 +230,12 @@ if (\Session::get('rol') == 'Administrador') {
                 </div>
 
 
-                <form action="subirimagen" method="POST" enctype="multipart/form-data">
+                <form action="subirimagen" method="POST" id="formimagen" enctype="multipart/form-data">
                     {!! csrf_field() !!}
 
                     <input type="file" name="archivo" id="archivo" value="prueba">
 
-                    <input type="submit" name="subir" value="Subir" class="btn btn-primary">
+                    <input type="submit" name="subir" id="subir" value="Subir" class="btn btn-primary">
                 </form>
 
             </div>

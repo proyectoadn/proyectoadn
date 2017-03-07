@@ -204,14 +204,14 @@ class Controlador extends Controller {
         
         
 
-        $archivo = Input::file('archivo');
+        $archivo = $request->file('archivo');
         
-        $rutadestino = public_path() . '/Imagenes/' .$usu->getId_usuario().'/';
+        $rutadestino = public_path() . '/Imagenes/Fotosusuarios/' .$usu->getId_usuario().'/';
         $url_image = $archivo->getClientOriginalName();
         $subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
 
 
-        //return view('Administrar/administrar');
+        //return view('subirfoto');
     }
 
     public function nuevorol(Request $request) {
