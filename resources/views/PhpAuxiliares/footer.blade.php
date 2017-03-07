@@ -5,6 +5,9 @@
  * and open the template in the editor.
  */
 ?>
+<div style="height: 61px">
+
+</div>
 
 <div class="divfooter">
 

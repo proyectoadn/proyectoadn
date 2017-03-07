@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('Login/login');
 });
 
-
-
-
-
 //Rutas get
 
 Route::any('login', [
@@ -36,22 +32,6 @@ Route::get('loginconfirm', [
     'uses' => 'Controlador@loginconfirm'
 ]);
 
-Route::get('gestionTareas', [
-    'as' => 'loginerror',
-    'uses' => 'Controlador@gestiontareas'
-]);
-
-Route::get('datoscentro', [
-    'as' => 'datoscentro',
-    'uses' => 'Controlador@datoscentro'
-]);
-
-Route::post('datosCentroVisualizar', [
-    'as' => 'datosCentroVisualizar',
-    'uses' => 'Controlador@datosCentroVisualizar'
-]);
-
-
 Route::get('registroerror', [
     'as' => 'registroerror',
     'uses' => 'Controlador@registroerror'
@@ -67,57 +47,11 @@ Route::get('enviarcorreo', [
     'uses' => 'Controlador@enviarcorreo'
 ]);
 
-Route::get('administrarUsuarios', [
-    'as' => 'administrarUsuarios',
-    'uses' => 'Controlador@administrarUsuarios',
-]);
 
 Route::get('restablecerpassword', [
     'as' => 'restablecerpassword',
     'uses' => 'Controlador@restablecerpassword'
 ]);
-
-Route::get('usuario', [
-    'as' => 'usuario',
-    'uses' => 'Controlador@usuario',
-]);
-
-Route::get('administrador', [
-    'as' => 'administrador',
-    'uses' => 'Controlador@administrador',
-]);
-
-Route::get('asignarTareas', [
-    'as' => 'asignarTareas',
-    'uses' => 'Controlador@asignarTareas',
-]);
-
-Route::get('activarUsuarios', [
-    'as' => 'activarUsuarios',
-    'uses' => 'Controlador@activarUsuarios',
-]);
-
-Route::get('administrar', [
-    'as' => 'administrar',
-    'uses' => 'Controlador@administrador',
-]);
-
-Route::get('activar', [
-    'as' => 'activar',
-    'uses' => 'Controlador@activar',
-]);
-
-Route::get('gestion', [
-    'as' => 'gestion',
-    'uses' => 'Controlador@gestion',
-]);
-
-Route::get('verLog', [
-    'as' => 'verLog',
-    'uses' => 'Controlador@verLog',
-]);
-
-
 
 
 //Rutas post
@@ -155,10 +89,7 @@ Route::post('enviarcorreo', [
     'uses' => 'Controlador@enviarcorreo'
 ]);
 
-Route::post('enviarconfirm', [
-    'as' => 'enviarconfirm',
-    'uses' => 'Controlador@enviarconfirm'
-]);
+
 
 Route::post('restablecer', [
     'as' => 'restablecer',
@@ -191,53 +122,156 @@ Route::post('cambiarpasswordperfil', [
 ]);
 
 
-Route::post('datoscentro', [
-    'as' => 'datoscentro',
-    'uses' => 'Controlador@datoscentro'
-]);
+Route::group(['middleware' => 'admin'],function(){
 
-Route::post('actualizarDatosCentro', [
-    'as' => 'actualizarDatosCentro',
-    'uses' => 'Controlador@actualizarDatosCentro'
-]);
+    //Rutas post
 
-Route::post('nuevorol', [
-    'as' => 'nuevorol',
-    'uses' => 'Controlador@nuevorol',
-]);
 
-Route::post('nuevacategoria', [
-    'as' => 'nuevacategoria',
-    'uses' => 'Controlador@nuevacategoria',
-]);
+    Route::post('administrador', [
+        'as' => 'administrador',
+        'uses' => 'Controlador@administrador',
+    ]);
 
-Route::post('nuevaentrega', [
-    'as' => 'nuevaentrega',
-    'uses' => 'Controlador@nuevaentrega',
-]);
 
-Route::post('pdf', [
-    'as' => 'pdf',
-    'uses' => 'Controladorpdf@pdf',
-]);
+    Route::post('enviarconfirm', [
+        'as' => 'enviarconfirm',
+        'uses' => 'Controlador@enviarconfirm'
+    ]);
 
-Route::post('guardarLog', [
-    'as' => 'guardarLog',
-    'uses' => 'Controlador@guardarLog',
-]);
+    Route::post('enviarconfirm', [
+        'as' => 'enviarconfirm',
+        'uses' => 'Controlador@enviarconfirm'
+    ]);
 
-Route::post('verHistorico', [
-    'as' => 'verHistorico',
-    'uses' => 'Controlador@verHistorico',
-]);
-Route::post('editargestion', [
-    
-    'as' => 'editargestion',
-    'uses' => 'Controlador@gestion'
-]);
+    Route::post('datoscentro', [
+        'as' => 'datoscentro',
+        'uses' => 'Controlador@datoscentro'
+    ]);
 
-Route::post('subirimagen', [
-    
-    'as' => 'subirimagen',
-    'uses' => 'Controlador@subirimagen'
-]);
+    Route::post('actualizarDatosCentro', [
+        'as' => 'actualizarDatosCentro',
+        'uses' => 'Controlador@actualizarDatosCentro'
+    ]);
+
+    Route::post('nuevorol', [
+        'as' => 'nuevorol',
+        'uses' => 'Controlador@nuevorol',
+    ]);
+
+    Route::post('nuevacategoria', [
+        'as' => 'nuevacategoria',
+        'uses' => 'Controlador@nuevacategoria',
+    ]);
+
+    Route::post('nuevaentrega', [
+        'as' => 'nuevaentrega',
+        'uses' => 'Controlador@nuevaentrega',
+    ]);
+
+    Route::post('pdf', [
+        'as' => 'pdf',
+        'uses' => 'Controladorpdf@pdf',
+    ]);
+
+    Route::post('guardarLog', [
+        'as' => 'guardarLog',
+        'uses' => 'Controlador@guardarLog',
+    ]);
+
+    Route::post('verHistorico', [
+        'as' => 'verHistorico',
+        'uses' => 'Controlador@verHistorico',
+    ]);
+    Route::post('editargestion', [
+
+        'as' => 'editargestion',
+        'uses' => 'Controlador@gestion'
+    ]);
+
+
+
+    //Rutas get
+
+    Route::get('gestionTareas', [
+        'as' => 'loginerror',
+        'uses' => 'Controlador@gestiontareas'
+    ]);
+
+    Route::get('datoscentro', [
+        'as' => 'datoscentro',
+        'uses' => 'Controlador@datoscentro'
+    ]);
+
+
+    Route::get('administrarUsuarios', [
+        'as' => 'administrarUsuarios',
+        'uses' => 'Controlador@administrarUsuarios',
+    ]);
+
+
+    Route::get('administrador', [
+        'as' => 'administrador',
+        'uses' => 'Controlador@administrador',
+    ]);
+
+    Route::get('asignarTareas', [
+        'as' => 'asignarTareas',
+        'uses' => 'Controlador@asignarTareas',
+    ]);
+
+    Route::get('activarUsuarios', [
+        'as' => 'activarUsuarios',
+        'uses' => 'Controlador@activarUsuarios',
+    ]);
+
+    Route::get('administrar', [
+        'as' => 'administrar',
+        'uses' => 'Controlador@administrador',
+    ]);
+
+    Route::get('activar', [
+        'as' => 'activar',
+        'uses' => 'Controlador@activar',
+    ]);
+
+    Route::get('gestion', [
+        'as' => 'gestion',
+        'uses' => 'Controlador@gestion',
+    ]);
+
+    Route::get('verLog', [
+        'as' => 'verLog',
+        'uses' => 'Controlador@verLog',
+    ]);
+});
+
+
+
+Route::group(['middleware' => 'user'],function(){
+
+    //Rutas post
+
+    Route::post('datosCentroVisualizar', [
+        'as' => 'datosCentroVisualizar',
+        'uses' => 'Controlador@datosCentroVisualizar'
+
+    ]);
+
+    Route::post('usuario', [
+        'as' => 'usuario',
+        'uses' => 'Controlador@usuario',
+    ]);
+
+
+    //Rutas get
+    Route::get('datosCentroVisualizar', [
+        'as' => 'datosCentroVisualizar',
+        'uses' => 'Controlador@datosCentroVisualizar'
+    ]);
+
+    Route::get('usuario', [
+        'as' => 'usuario',
+        'uses' => 'Controlador@usuario',
+    ]);
+
+});
