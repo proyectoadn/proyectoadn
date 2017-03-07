@@ -10,6 +10,17 @@ i{
     cursor: pointer;
 }
 
+.letrasgrandes{
+    font-size: 18px;
+    text-align: center;
+}
+.fondoblanco{
+    background-color: white;
+}
+.todalinea{
+    width:100%;
+}
+
 .divformulario{
 
     width: 20%;
