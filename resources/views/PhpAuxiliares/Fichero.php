@@ -22,9 +22,12 @@ class Fichero {
 
         // Establecer la zona horaria predeterminada a usar. En este caso la 'CET' que es la española.
         date_default_timezone_set('CET');
+        setlocale(LC_ALL,"es_ES");
+        
+        $mesLetra= strftime("%B");
         
         //Formateamos la fecha (funcion de php date)
-        $hoy = date("j F, Y, g:i a");
+        $hoy = date("j $mesLetra, Y, g:i a");
 
         //Si no existe el archivo se crea solo
         $file = fopen("Log/log.txt", "a");

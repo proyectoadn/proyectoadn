@@ -2,12 +2,6 @@
 
 namespace App\Clases;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Bitacora
  *
@@ -19,12 +13,19 @@ class Fichero {
 
     function EscribirLog($texto) {
 
+        $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
         // Establecer la zona horaria predeterminada a usar. En este caso la 'CET' que es la española.
         date_default_timezone_set('CET');
 
         //Formateamos la fecha (funcion de php date)
-        $hoy = date("j F, Y, g:i a");
+        $dia = date("j");
+        $mesLetra = $meses[date('n') - 1];
+        $anio = date("Y");
+        $hora = date("g:i");
+        $am_pm = date("a");
+        $hoy = $dia . " " . $mesLetra . " " . $anio . ", " . $hora . " " . $am_pm;
+
 
         //Si no existe el archivo se crea solo
         $file = fopen("Log/log.txt", "a");
@@ -36,18 +37,29 @@ class Fichero {
 
     function guardarHistorico($texto) {
 
+        $meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
         // Establecer la zona horaria predeterminada a usar. En este caso la 'CET' que es la española.
         date_default_timezone_set('CET');
+
+        //Formateamos la fecha (funcion de php date)
+        $dia = date("j");
+        $mesLetra = $meses[date('n') - 1];
+        $anio = date("Y");
+        $hora = date("g:i");
+        $am_pm = date("a");
+        $hoy = $dia . " de " . $mesLetra . " de " . $anio . " a las " . $hora . " " . $am_pm;
 
 
         //Si no existe el archivo se crea solo
         $file = fopen("Log/historicoLog.txt", "a");
+        $barrasPrincipio = " -------------------------------------------------------------------------------------\r\n";
+        $barrasFinal = " -------------------------------------------------------------------------------------";
 
-        //Escribimos en el archivo, [dia Mes, Año, hora am/pm]
-        $hoy = date("j F, Y, g:i a");
+        //Escribimos el archivo poniendole la fecha de cuando se hizo el copy desde el log
+        fwrite($file, $barrasPrincipio . "|   " . $hoy . " se guardó el log en el histórico  |\r\n" . $barrasFinal);
 
-        fwrite($file, " -----------------------------------------------------------------------------\r\n" . "|   " . $hoy . " Se guardó el log en el histórico  |\r\n" . " -----------------------------------------------------------------------------");
-
+        //Escribimos todo lo que tenia el log anterior
         fwrite($file, "\r\n" . $texto . "\r\n");
         fclose($file);
     }
