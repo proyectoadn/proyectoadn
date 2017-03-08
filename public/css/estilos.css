@@ -5,6 +5,7 @@ html{
 
 body{
     background-color: #215891;
+    padding-right:0px !important;
 }
 i{
     cursor: pointer;
