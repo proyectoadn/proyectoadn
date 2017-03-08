@@ -290,7 +290,7 @@ Administracion
     </div>
 
     <div class=" form-group">
-        <table class="tanle table-hover letrasblancas tablaUsuarios">
+        <table class="table table-hover letrasblancas tablaUsuarios">
             <thead>
                 <tr class="alturatr">
                     <th class="">#</th>
