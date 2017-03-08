@@ -51,7 +51,7 @@ class Controlador extends Controller {
 
     public function comprobarlogin(Request $request) {
 
-
+        \Session::put('rol', 'Usuario');
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
 
@@ -204,14 +204,23 @@ class Controlador extends Controller {
         
         
 
-        $archivo = Input::file('archivo');
+        $archivo = $request->file('archivo');
+        $nombrearchivo = $archivo->getClientOriginalName();
         
-        $rutadestino = public_path() . '/Imagenes/' .$usu->getId_usuario().'/';
+        
+        $rutadestino = public_path() . '/Imagenes/Fotosusuarios/' .$usu->getId_usuario().'/';
         $url_image = $archivo->getClientOriginalName();
         $subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
+        
+        
+        $datos = [
+            
+            'nombrearchivo' => $nombrearchivo,
+            'id_usuario' => $usu->getId_usuario()
+        ];
 
 
-        //return view('Administrar/administrar');
+        return view('subirfoto', $datos);
     }
 
     public function nuevorol(Request $request) {

@@ -13,6 +13,8 @@ Gestión de tareas
 
     $(function () {
 
+        $("#exportarapdf").prop('disabled', true);
+
 
         //Codigo Dani
         $("#item1,#item2,#item3").sortable({
@@ -73,6 +75,12 @@ Gestión de tareas
                         for (var i = 0; i < categorias.length; i++) {
                             $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
                         }
+                        
+
+                        if ($("#carg").val() == -1) {
+
+                            $("#exportarapdf").prop('disabled', true);
+                        }
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -127,6 +135,9 @@ Gestión de tareas
                         </div></div>');
                             }
                         }
+
+
+                        $("#exportarapdf").prop('disabled', false);
 
                     }).fail(function (jqXHR) {
                 alert("Error de tipo " + jqXHR.status);
@@ -220,7 +231,7 @@ Gestión de tareas
         </div>
 
 
-        <input  type="submit" name="exportarapdf" value="Exportar a pdf" class="btn btn-default exportarPDF">
+        <input  type="submit" name="exportarapdf" id="exportarapdf" value="Exportar a pdf" class="btn btn-default exportarPDF">
         </form>
     </div>
     <div class='limpiar'></div>

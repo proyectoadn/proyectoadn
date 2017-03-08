@@ -16,7 +16,7 @@ $vector = [];
 
 
 if ($conexion->conectar()) {
-  //  $conexion->rellenar_usuariosAdministrar();
+    $conexion->rellenar_usuariosAdministrar();
 
     while ($conexion->ir_Siguiente()) {
         $vector[] = [

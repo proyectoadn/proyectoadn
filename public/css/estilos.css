@@ -10,6 +10,17 @@ i{
     cursor: pointer;
 }
 
+.letrasgrandes{
+    font-size: 18px;
+    text-align: center;
+}
+.fondoblanco{
+    background-color: white;
+}
+.todalinea{
+    width:100%;
+}
+
 .divformulario{
 
     width: 20%;
@@ -218,7 +229,7 @@ b{
 }
 
 .divfooter{
-
+    height: 61px;
     width: 100%;
     text-align: center;
     color: white;
@@ -416,4 +427,21 @@ b{
 .resaltarTexto{
     color: #F3AA04;
     background-color: #FFFF96;
+}
+
+.botonsubir{
+    
+    width: 50%;
+    margin-top: 10px;
+}
+
+.fotoperfil{
+    
+    
+}
+
+.divisorimagen{
+    
+    width: 50%;
+    margin: auto;
 }
