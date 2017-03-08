@@ -10,9 +10,6 @@ Administracion
 
 <script>
 
-
-
-
     var id_rol;
     var id_doc;
     var id_cat;
@@ -125,7 +122,7 @@ Administracion
 
             //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
             $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion">\n\
-                                                <div class="documentacion divAniadirDoc ">\n\
+                                                <div class="documentacion divAniadirDoc">\n\
                                                     <button onclick="popupAdd(this)" class="botonAniadirDoc" id="comentario" data-toggle="modal" data-target="#modalAddDoc">\n\
                                                         <img class="imagenAniadiDoc" alt="Editar documentacion" title="Editar documentacion" src="Imagenes/Administrador/+.png"/>\n\
                                                     </button>\n\
@@ -256,6 +253,16 @@ Administracion
 
         });
 
+        
+        //Filtro que se hace cada vez que pulsas una tecla en el filtro buscar
+        //oculta la documentacion que no corresponde con lo que se escribe en el filtro 
+        $('#filter').keyup(function () {
+            var rex = new RegExp($(this).val(), 'i');
+            $('.documentacion').hide();
+            $('.documentacion').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+        });
 
     });
 
@@ -396,8 +403,8 @@ Administracion
                     var documentacion = JSON.parse(respuesta);
 
                     for (var i = 0; i < documentacion.length; i++) {
-                        $("#item1").append('<div class="searcheable col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
-                                            <div class="searcheable documentacion">\n\
+                        $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
+                                            <div class="documentacion">\n\
                                                 <p>' + documentacion[i]['descripcion'] + '</p>\n\
                                                 <p class="textotarea"><a href="' + documentacion[i]['link'] + '">' + documentacion[i]['modelo'] + '</a>\n\</p>\n\
                                                 <div class="divisorBotonTarea">\n\
@@ -474,7 +481,7 @@ Administracion
                 <div class="row conectardivisores" value="Documentacion" id="item1"
                      style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
 
-                    <div class="searcheable col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
+                    <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
 
                     </div>
                 </div>

@@ -62,7 +62,7 @@ if (\Session::get('rol') == 'Administrador') {
             <li><a class="letrasgrandes" href="asignarTareas">Asignar tareas</a></li>
             <li><a class="letrasgrandes" href="activarUsuarios">Activar usuarios</a></li>
             <li><a class="letrasgrandes" href="administrarUsuarios">Gestion usuarios</a></li>
-            <li><a class="letrasgrandes" href="gestion">Gestionar</a></li>
+            <li><a class="letrasgrandes" href="gestion">Gestion de datos</a></li>
             <li><a class="letrasgrandes" href="verLog">Histórico</a></li>
         </ul>
 
