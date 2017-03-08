@@ -62,7 +62,7 @@ if (\Session::get('rol') == 'Administrador') {
             <li><a class="letrasgrandes" href="asignarTareas">Asignar tareas</a></li>
             <li><a class="letrasgrandes" href="activarUsuarios">Activar usuarios</a></li>
             <li><a class="letrasgrandes" href="administrarUsuarios">Gestion usuarios</a></li>
-            <li><a class="letrasgrandes" href="gestion">Gestionar</a></li>
+            <li><a class="letrasgrandes" href="gestion">Gestion de datos</a></li>
             <li><a class="letrasgrandes" href="verLog">Histórico</a></li>
         </ul>
 
@@ -85,13 +85,13 @@ if (\Session::get('rol') == 'Administrador') {
 
                             <div class="row">
 
-                                <div class="col-md-4 col-xs-4 imagenusuario" id="imagen">
-                                    <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil"
+                                <div class="col-md-5 col-xs-4 imagenusuario" id="imagen">
+                                    <img src="Imagenes/Fotosusuarios/4/fotorecortada.jpg" id="cambiarimagen" alt="Imagen de perfil"
                                          data-toggle="modal" data-target="#modalimagen" class="img-circle">
                                 </div>
 
 
-                                <div class="col-md-8 col-xs-8">
+                                <div class="col-md-7 col-xs-8">
                                     <label><?php echo $usu->getNombre(); ?></label>
 
                                     <p><?php echo $usu->getEmail(); ?></p>

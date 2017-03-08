@@ -425,6 +425,10 @@ b{
     width: 100%;
     margin-top: 10px;
 }
+.resaltarTexto{
+    color: #F3AA04;
+    background-color: #FFFF96;
+}
 
 .botonsubir{
     
@@ -432,13 +436,7 @@ b{
     margin-top: 10px;
 }
 
-.fotoperfil{
-    
-    
-}
-
-.divisorimagen{
+.divfoto{
     
     width: 50%;
-    margin: auto;
 }

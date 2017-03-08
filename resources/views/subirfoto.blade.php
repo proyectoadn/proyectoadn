@@ -19,7 +19,9 @@ Gestión de tareas
     var a;
     var al;
 
-    $(function () {
+    $(document).ready (function() {
+        
+        
 
         function showCoords(c) {
 
@@ -29,25 +31,31 @@ Gestión de tareas
 
             var anchoreal = document.getElementById("prueba").naturalWidth;
             var altoreal = document.getElementById("prueba").naturalHeight;
+            
 
-            var anchoenpantalla = $("#fotoperfil").width();
-            var altoenpantalla = document.getElementById("fotoperfil").height;
+            var anchoenpantalla = $("#prueba").width();
+            var altoenpantalla = document.getElementById("prueba").height;
+            
 
 
             var escala = anchoreal / anchoenpantalla;
+            
 
 
             var xreal = escala.toFixed(2) * ejex;
             var yreal = escala.toFixed(2) * ejey;
+            
 
             var anchorecortar = escala.toFixed(2) * c.w;
             var altorecortar = escala.toFixed(2) * c.h;
+            
 
 
             x = xreal;
             y = yreal;
             a = anchorecortar;
             al = altorecortar;
+            
         }
 
         $("#prueba").Jcrop({
@@ -67,14 +75,33 @@ Gestión de tareas
         cordenadas.push(a);
         cordenadas.push(al);
         var datos = JSON.stringify(cordenadas);
+        
+        <?php
+        
+        $usu = new Usuario('', '', '', '', '');
+        $usu = \Session::get('u');
+        
+        
+        ?>
+        
+        var vector = new Array();
+        
+        var id_usuario = {!! $usu->getId_usuario() !!};
+        var nombreimagen = <?php echo "'".$nombrearchivo."'"?>;
+        
+        vector.push(id_usuario);
+        vector.push(nombreimagen);
+        
+        var vectordatos = JSON.stringify(vector);
+        
 
 
-        $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {cordenadas: datos},
+        $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {datos: datos,vectordatos: vectordatos},
                 function (respuesta) {
                     
                     alert(respuesta);
-
-                    $("#cambiarimagen").html('<img src="Imagenes/Fotosusuario/4/fotorecortada.jpg"');
+                    
+                    //window.location = "subirfoto";
 
                 }
         ).fail(function (jqXHR) {
@@ -96,10 +123,13 @@ Gestión de tareas
 
 
 
-<div class="">
+<div>
 
     <button type="button" name="guardar" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
-    <img src="Imagenes/Fotosusuarios/{!! $id_usuario !!}/{!! $nombrearchivo !!}" id="prueba" class="fotoperfil">
+    
+    <div id="fotoperfil" class="divfoto">
+        <img src="Imagenes/Fotosusuarios/{!! $id_usuario !!}/{!! $nombrearchivo !!}" id="prueba" style="width: 100%;">
+    </div>
 </div>
 
 @endsection

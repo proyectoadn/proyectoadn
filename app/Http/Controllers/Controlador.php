@@ -215,7 +215,7 @@ class Controlador extends Controller {
         
         $datos = [
             
-            'nombrearchivo' => $nombrearchivo,
+            'nombrearchivo' => (string)$nombrearchivo,
             'id_usuario' => $usu->getId_usuario()
         ];
 

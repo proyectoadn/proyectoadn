@@ -53,6 +53,11 @@ Route::get('restablecerpassword', [
     'uses' => 'Controlador@restablecerpassword'
 ]);
 
+Route::get('subirimagen', [
+    'as' => 'subirimagen',
+    'uses' => 'Controlador@subirimagen',
+]);
+
 
 //Rutas post
 
@@ -120,6 +125,12 @@ Route::post('cambiarpasswordperfil', [
     'as' => 'cambiarpasswordperfil',
     'uses' => 'Controlador@cambiarpasswordperfil',
 ]);
+
+Route::post('subirimagen', [
+    'as' => 'subirimagen',
+    'uses' => 'Controlador@subirimagen',
+]);
+
 
 
 Route::group(['middleware' => 'admin'],function(){
