@@ -30,7 +30,7 @@ Administracion
 
                     for (var i = 0; i < usuarios.length; i++) {
                         //Pinto las tareas con checkbox
-                        $("#usuarios").append('<tr class="fila">\n\
+                        $("#usuarios").append('<tr class="alturatr fila">\n\
                                                 <th scope="row">' + (i + 1) + '</th>\n\
                                                     <td name="nombre" value="' + usuarios[i]['nombre'] + '">' + usuarios[i]['nombre'] + '</td>\n\
                                                     <td name="apellidos"  value="' + usuarios[i]['apellidos'] + '">' + usuarios[i]['apellidos'] + '</td>\n\
@@ -120,14 +120,14 @@ Administracion
         <form action="enviarconfirm" method="POST">
             {!! csrf_field() !!}
             <table class="tanle table-hover letrasblancas tablaUsuarios">
-                <thead>
-                    <tr>
+                <thead >
+                    <tr class="alturatr">
                         <th class="">#</th>
-                        <th class="centrarCabeceras">Nombre</th>
+                        <th class="centrarCabeceras" >Nombre</th>
                         <th class="centrarCabeceras">Apellidos</th>
                         <th class="centrarCabeceras">Email</th>
                         <th class="centrarCabeceras">Opciones</th>
-                    </tr>
+                    </tr >
                 </thead>
                 <tbody id="usuarios" class="searchable">
 

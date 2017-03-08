@@ -292,7 +292,7 @@ Administracion
     <div class=" form-group">
         <table class="tanle table-hover letrasblancas tablaUsuarios">
             <thead>
-                <tr>
+                <tr class="alturatr">
                     <th class="">#</th>
                     <th class="centrarCabeceras">Nombre</th>
                     <th class="centrarCabeceras">Apellidos</th>

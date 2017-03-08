@@ -228,7 +228,7 @@ Administracion
     <div class="row">
         <!-- DIVISOR IZQUIERDA -->
         <div class="col-md-6 ">
-            <div class="item cajaAsignarTareas">
+            <div class="item cajaAsignarTareas" style="overflow-y: auto;">
                 <b>Tareas</b>
 
                 <div class="row cargoCat">
@@ -246,8 +246,7 @@ Administracion
                     </div>
                 </div>
 
-                <div id="tareas" class="checkbox margenIzqAsignarDoc">
-
+                <div id="tareas" class="checkbox margenIzqAsignarDoc" >
 
                 </div>
             </div>
