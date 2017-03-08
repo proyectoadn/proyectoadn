@@ -53,8 +53,8 @@ class Fichero {
 
         //Si no existe el archivo se crea solo
         $file = fopen("Log/historicoLog.txt", "a");
-        $barrasPrincipio = " -------------------------------------------------------------------------------------\r\n";
-        $barrasFinal = " -------------------------------------------------------------------------------------";
+        $barrasPrincipio = " ---------------------------------------------------------------------------------------------------\r\n";
+        $barrasFinal = " ---------------------------------------------------------------------------------------------------";
 
         //Escribimos el archivo poniendole la fecha de cuando se hizo el copy desde el log
         fwrite($file, $barrasPrincipio . "|   " . $hoy . " se guardó el log en el histórico  |\r\n" . $barrasFinal);

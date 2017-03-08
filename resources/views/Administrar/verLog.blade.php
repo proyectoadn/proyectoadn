@@ -49,6 +49,15 @@ Administracion
             }
         });
 
+        $('#filter').keyup(function (tecla) {
+            resaltarTexto();
+        });
+
+        $('#filter').keydown(function (tecla) {
+            if (tecla.keyCode == 8) {
+                limpiarBusqueda();
+            }
+        });
 
     });
 
@@ -121,17 +130,6 @@ Administracion
                         <input type="text" class="form-control" id="filter" name="filter">
                     </div>
                 </div>
-
-                <div class='divBotonCargoCat' style="margin-bottom: 15px; width: auto;">
-                    <div class="input-group botonCargoCat" style="margin-left: 15px;">
-                        <input type="button" class="btn btn-primary prueba" value="Resaltar" onClick="resaltarTexto();"/>
-                    </div>
-                </div>
-                <div class='divBotonCargoCat' style="margin-bottom: 15px;">
-                    <div class="input-group botonCargoCat">
-                        <input type="button" class="btn btn-primary prueba" value="Limpiar búsqueda" onClick="limpiarBusqueda();"/>
-                    </div>
-                </div>
                 <div id="textoLog" name="textoLog" class="textoLog searchable" value="" readonly
                      style="width: 100%; background-color: white; padding: 7px; height: 400px; border-left: none; border-top: solid 1px; border-bottom: solid 1px; overflow-y: scroll;">
 <p id="parrafo">
@@ -142,7 +140,7 @@ echo $abrirLog[$i] . '<br>';
 }
 ?>
 </p>
-</div>
+                </div>
             </div>
         </div>
         <!-- coge la mitad derecha -->
