@@ -53,3 +53,16 @@
 [8 Marzo 2017, 1:14 pm] Nazario Castillero Redondo ha iniciado sesión.
 
                 
+ ---------------------------------------------------------------------------------------------------
+|   8 de Marzo de 2017 a las 2:20 pm se guardó el log en el histórico  |
+ ---------------------------------------------------------------------------------------------------
+
+
+[8 Marzo 2017, 1:25 pm] Nazario Castillero Redondo ha cerrado sesión.
+[8 Marzo 2017, 1:25 pm] Daniel Ramirez ha iniciado sesión.
+[8 Marzo 2017, 1:26 pm] Daniel Ramirez ha cerrado sesión.
+[8 Marzo 2017, 1:27 pm] Daniel Ramirez ha iniciado sesión.
+[8 Marzo 2017, 1:28 pm] Daniel Ramirez ha cerrado sesión.
+[8 Marzo 2017, 1:59 pm] Nazario Castillero Redondo ha iniciado sesión.
+
+                

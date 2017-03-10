@@ -5,6 +5,7 @@ html{
 
 body{
     background-color: #215891;
+    padding-right:0px !important;
 }
 i{
     cursor: pointer;
@@ -410,6 +411,13 @@ b{
     text-align: center;
 }
 
+.titulogeneralsubirfotoerror{
+    
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
 .divtarea{
     
     width: 50%;
@@ -430,7 +438,6 @@ b{
 }
 
 .botonsubir{
-    
     width: 50%;
     margin-top: 10px;
 }

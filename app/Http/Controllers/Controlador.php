@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Filesystem;
 
+use Illuminate\Filesystem;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -118,24 +118,24 @@ class Controlador extends Controller {
 
         return view('Administrar/verHistorico');
     }
-    
-        public function verLog(Request $request) {
+
+    public function verLog(Request $request) {
 
         return view('Administrar/verLog');
     }
-    
-        public function guardarLog(Request $request) {
-            
-            //Cojo el value del botón (todo el texto del textarea)
-            $lineas = $request->get('guardarEnHistorico');
-            
-            //Lo guardo en el historicoLog.txt y elimino lo que haya en el log.txt
+
+    public function guardarLog(Request $request) {
+
+        //Cojo el value del botón (todo el texto del textarea)
+        $lineas = $request->get('guardarEnHistorico');
+
+        //Lo guardo en el historicoLog.txt y elimino lo que haya en el log.txt
         $log = new Fichero();
         $log->guardarHistorico($lineas);
-        
+
         //Eliminamos el contenido de log.txt
         $log->eliminarDatosLog();
-            
+
 
         return view('Administrar/verLog');
     }
@@ -197,30 +197,49 @@ class Controlador extends Controller {
     }
 
     public function subirimagen(Request $request) {
-        
-        
+
+
         $usu = new Usuario('', '', '', '', '');
         $usu = \Session::get('u');
-        
-        
 
-        $archivo = $request->file('archivo');
-        $nombrearchivo = $archivo->getClientOriginalName();
-        
-        
-        $rutadestino = public_path() . '/Imagenes/Fotosusuarios/' .$usu->getId_usuario().'/';
-        $url_image = $archivo->getClientOriginalName();
-        $subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
-        
-        
-        $datos = [
+
+
+        if ($request->hasFile('archivo')) {
             
-            'nombrearchivo' => (string)$nombrearchivo,
-            'id_usuario' => $usu->getId_usuario()
-        ];
 
 
-        return view('subirfoto', $datos);
+            if ($_FILES['archivo']['type'] == 'image/jpeg') {
+                
+                dd();
+
+                $archivo = $request->file('archivo');
+                $nombrearchivo = $archivo->getClientOriginalName();
+
+
+                $rutadestino = public_path() . '/Imagenes/Fotosusuarios/' . $usu->getId_usuario() . '/';
+                $url_image = $archivo->getClientOriginalName();
+                $subir = $archivo->move($rutadestino, $archivo->getClientOriginalName());
+
+
+                $datos = [
+
+                    'nombrearchivo' => (string) $nombrearchivo,
+                    'id_usuario' => $usu->getId_usuario()
+                ];
+
+
+                return view('subirfoto', $datos);
+            }
+            else{
+                
+                
+                return view('subirfotoerror');
+            }
+        }
+        else{
+            
+            return view('subirfotoerror');
+        }
     }
 
     public function nuevorol(Request $request) {
@@ -487,8 +506,8 @@ class Controlador extends Controller {
 
         return view('GestionarTareas/datosCentro', $datos);
     }
-    
-        public function datosCentroVisualizar(Request $request) {
+
+    public function datosCentroVisualizar(Request $request) {
 
         $datoscentro = \DB::table('datoscentro')->get();
 

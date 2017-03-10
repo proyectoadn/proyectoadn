@@ -166,6 +166,20 @@ class Conexion {
         return $devolver;
     }
 
+    function rellenar_tareas_usu($id_rol,$id_usu) {
+        //  $consult='Select * FROM tareas,cargo WHERE cargo.id_rol='.$id_rol.' and tareas.id_usuario=cargo.id_usuario';
+        $consult = 'Select tarea.descripcion, tarea.id_tarea FROM tarea,documentacion WHERE tarea.id_documentacion=documentacion.id_documentacion AND id_usuario and id_usuario='.$id_usu.' and documentacion.id_rol=' . $id_rol;
+
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
     function rellenar_documentacion($id_cat, $id_rol) {
         $consult = 'Select * from documentacion where id_categoria=' . $id_cat . ' and id_rol=' . $id_rol;
 
@@ -444,6 +458,18 @@ class Conexion {
 
     function borrarrol($idrol) {
         $consult = "DELETE FROM rol WHERE id_rol ='" . $idrol . "'";
+        $this->cursor = mysqli_query($this->conex, $consult);
+
+        if ($this->cursor) {
+            $devolver = true;
+        } else {
+            $devolver = false;
+        }
+        return $devolver;
+    }
+
+    function borrar_tarea($id) {
+        $consult = "DELETE FROM tarea WHERE id_tarea ='" . $id . "'";
         $this->cursor = mysqli_query($this->conex, $consult);
 
         if ($this->cursor) {
