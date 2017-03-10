@@ -78,45 +78,50 @@ Registro
         
         <form action="registrar" method="POST">
             {!! csrf_field() !!}
-            
-            <!-- Input Nombre -->
+
+                    <!-- Input Nombre -->
+            <label class="letrasblancas" for="nombre">Nombre</label>
             <div class="input-group margenRegistro">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
-                <input type="text" name="nombre" title="nombre" 
-                       id="nombre" placeholder="Nombre" onblur="validarNombre(this)" 
-                       class="form-control" required value="{!! $nombre !!}"> 
-            </div>
-
-            <!-- Input Apellidos -->  
-            <div class="input-group margenRegistro">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
-                <input type="text" name="apellidos" title="apellidos" 
-                       id="apellidos" placeholder="Apellidos" onblur="validarApellido(this)" 
-                       class="form-control" required value="{!! $ape !!}">
-            </div>
-
-            <!-- Input Email -->    
-            <div class="input-group margenRegistro">
-                <span class="input-group-addon">@</span>
-                <input type="email" name="email" title="email" 
-                       id="email" placeholder="Email" onblur="validarEmail(this)" 
+                <input type="text" name="nombre" title="nombre"
+                       id="nombre" placeholder="Nombre" onblur="validarNombre(this)"
                        class="form-control" required>
             </div>
 
-            <!-- Input Contraseña -->   
+            <!-- Input Apellidos -->
+            <label class="letrasblancas" for="apellidos">Apellidos</label>
+            <div class="input-group margenRegistro">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+                <input type="text" name="apellidos" title="apellidos"
+                       id="apellidos" placeholder="Apellidos" onblur="validarApellido(this)"
+                       class="form-control" required>
+            </div>
+
+            <!-- Input Email -->
+            <label class="letrasblancas" for="email">Email</label>
+            <div class="input-group margenRegistro">
+                <span class="input-group-addon">@</span>
+                <input type="email" name="email" title="email"
+                       id="email" placeholder="Email" onblur="validarEmail(this)"
+                       class="form-control" required>
+            </div>
+
+            <!-- Input Contraseña -->
+            <label class="letrasblancas" for="password">Contraseña</label>
             <div class="input-group margenRegistro">
                 <span class="input-group-addon" id="span1"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar"></i></span>
-                <input type="password" name="password" title="contraseña" 
+                <input type="password" name="password" title="contraseña"
                        id="password" placeholder="Contraseña" onblur="comprobarLongitudPass(this)"
                        class="form-control" required>
             </div>
 
-            <!-- Input repetir Contraseña -->  
+            <!-- Input repetir Contraseña -->
+            <label class="letrasblancas" for="repetirpassword">Repetir contraseña</label>
             <div class="input-group margenRegistro">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar2"></i></span>
-                <input type="password" name="repetirpassword" title="Repetir contraseña" 
-                       id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)" 
-                       class="form-control" required> 
+                <input type="password" name="repetirpassword" title="Repetir contraseña"
+                       id="repetirpassword" placeholder="Repita la contraseña" onblur="comprobarLongitudPass(this)"
+                       class="form-control" required>
             </div>
             
             
