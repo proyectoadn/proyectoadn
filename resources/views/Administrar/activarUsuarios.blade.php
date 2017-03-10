@@ -109,7 +109,7 @@ Administracion
             </div>
 
             <div class="col-md-push-1 col-md-10" style="margin-top: 10px;">
-                <input id="filter" type="text" class="form-control" placeholder="Filtro tabla..."/>
+                <input title="Filtro buscar para la tabla de los usuarios" id="filter" type="text" class="form-control" placeholder="Filtro tabla..."/>
             </div>
         </div>
 

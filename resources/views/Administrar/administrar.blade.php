@@ -442,18 +442,18 @@ Administracion
     <!--div que contiene los cargos y las categorias-->
     <div class="cargoCat">
         <div class='divBotonCargoCat'>
-            <select id="carg" class='botonCargoCat form-control'>
+            <select title="Desplegable con los cargos" id="carg" class='botonCargoCat form-control'>
                 <option value="-1">-Elige cargo-</option>
 
                 @for($i=0;$i<count($roles);$i++)
                     @if($roles[$i]->descripcion!='Profesor')
                     <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
                     @endif
-                    @endfor
+                @endfor
             </select>
         </div>
         <div class='divBotonCargoCat'>
-            <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
+            <select title="Desplegable con las categorias" id="cat" name="cat" size="" class='botonCargoCat form-control'>
                 <option id="categorias" value="-1">-Elige categoria-</option>
 
             </select>
@@ -464,7 +464,7 @@ Administracion
                 <span class="input-group-addon">
                     Buscar
                 </span>
-                <input type="text" class="form-control" id="filter">
+                <input title="Filtro para buscar" type="text" class="form-control" id="filter">
             </div>
         </div>
     </div>
@@ -502,7 +502,7 @@ Administracion
         <div class="col-md-3">
             <div class="divborrar" style='margin-top: 15px;'>
                 <b>Comentarios</b>
-                <textarea id="textoComenAdmin" value=""
+                <textarea title="Area de texto para el comentario de los administradores" id="textoComenAdmin"
                           style="padding: 7px; height: 150px; border-left: none; border-top: solid 1px; border-bottom: solid 1px;">{!! $comentarioAdmin !!}</textarea>
 
                 <div id="guardado" style="color: green; padding: 8px; display: none; width: 70%; float: left;">Comentario guardado</div>
@@ -535,18 +535,18 @@ Administracion
                     </div>
 
                     <div class="col-md-4" style="margin-bottom: 10px;">
-                        <h4>Categorias</h4>
+                        <label for="categ">Categorias</label>
                         <select id="categ" class="form-control">
                         </select>
                     </div>
 
                     <div class="col-md-4">
-                        <h4>Roles</h4>
+                        <label for="roles">Roles</label>
                         <select id="roles" class="form-control">
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <h4>Entrega</h4>
+                        <label for="entregar">Entrega</label>
                         <select id="entregar" class="form-control">
                         </select>
                     </div>
@@ -567,7 +567,7 @@ Administracion
             <br>
             <div class="modal-footer">
                 <div class="col-md-12 text-left">
-                    <label for="tarea">Descripción de la tarea asociada al documento</label>
+                    <label for="editTarea">Descripción de la tarea asociada al documento</label>
                     <input name="tarea" id="editTarea" type="text" class="form-control"
                            value="">
                     <br>
@@ -595,12 +595,12 @@ Administracion
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
-                        <label for="nombreDoc">Descripción Documentación</label>
+                        <label for="anadirDoc">Descripción Documentación</label>
                         <input name="nombreDoc" id="anadirDoc" type="text" class="form-control" id="nombreTarea"
                                value="">
                     </div>
                     <div class="col-md-4" style="margin-bottom: 10px;">
-                        <h4>Categorias</h4>
+                        <label>Categorias</label>
 
                         <div class="checkbox" id="anadirCat">
 
@@ -609,24 +609,24 @@ Administracion
                     </div>
 
                     <div class="col-md-4">
-                        <h4>Roles</h4>
+                        <label for="anadirRoles">Roles</label>
                         <select id="anadirRoles" class="form-control">
                         </select>
                     </div>
 
                     <div class="col-md-4">
-                        <h4>Entrega</h4>
+                        <label for="anadirEntregar">Entrega</label>
                         <select id="anadirEntregar" class="form-control">
                         </select>
                     </div>
 
                     <div class="col-md-12">
-                        <label for="nombreModelo">Modelo</label>
+                        <label for="anadirModelo">Modelo</label>
                         <input name="nombreModelo" id="anadirModelo" type="text" class="form-control"
                                id="nombreTarea" value="">
                         <br>
 
-                        <label for="linkModelo">Link del modelo</label>
+                        <label for="anadirLink">Link del modelo</label>
                         <input name="linkModelo" id="anadirLink" type="text" class="form-control" id="nombreTarea"
                                value="">
                     </div>
@@ -636,7 +636,7 @@ Administracion
             <br>
             <div class="modal-footer">
                 <div class="col-md-12 text-left">
-                    <label for="tarea">Descripción de la tarea asociada al documento</label>
+                    <label for="addTarea">Descripción de la tarea asociada al documento</label>
                     <input name="tarea" id="addTarea" type="text" class="form-control"
                            value="">
                     <br>

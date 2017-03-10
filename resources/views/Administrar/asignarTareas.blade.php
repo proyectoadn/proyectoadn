@@ -233,7 +233,7 @@ Administracion
 
                 <div class="row cargoCat">
                     <div class='col-md-6 divBotonCargoCat' style="width: auto;">
-                        <select id="categ" class='botonCargoCat form-control'>
+                        <select title="Desplegable con los roles" id="categ" class='botonCargoCat form-control'>
                             <option value="-1">-Elige cargo-</option>
                             @for($i=0;$i<count($roles);$i++)
                                 <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
@@ -265,7 +265,7 @@ Administracion
                     <!-- divisor para usuarios -->
                     <div class="col-md-12">
                         <b>Usuarios</b>
-                        <select id="tipo" class='botonCargoCat form-control'>
+                        <select title="Desplegable con los roles" id="tipo" class='botonCargoCat form-control'>
                             <option value="-1">-Elige cargo del usuario-</option>
                             @for($i=0;$i<count($roles);$i++)
                                 <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>

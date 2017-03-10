@@ -97,7 +97,7 @@
                                                     <td name="opciones">\n\
                                                             <div class="row divisorUsuarios">\n\
                                                                 <div class="col-md-push-1 col-md-4">\n\
-                                                                        <input type="checkbox" class="seleccionarUsuarios checkUsu" name="checkUsu" id="checkUsu' + i + '" value="' + usuarios[i]['id_usuario'] + '"/>\n\
+                                                                        <input title="Seleccionar usuario" type="checkbox" class="seleccionarUsuarios checkUsu" name="checkUsu" id="checkUsu' + i + '" value="' + usuarios[i]['id_usuario'] + '"/>\n\
                                                                 </div>\n\
                                                                 <div class="col-md-4">\n\
                                                                     <button title="Editar Usuario" name="editUsu" class="editUsu botonTarea" value="' + usuarios[i]['id_usuario'] + '" data-toggle="modal" data-target="#editarUsuario">\n\
@@ -137,7 +137,7 @@
                                                     <td name="opciones">\n\
                                                             <div class="row divisorUsuarios">\n\
                                                                 <div class="col-md-push-1 col-md-4">\n\
-                                                                        <input type="checkbox" onclick="seleccionarUsuarios(this)" />\n\
+                                                                        <input title="Checkbox para seleccionar todos" type="checkbox" onclick="seleccionarUsuarios(this)" />\n\
                                                                 </div>\n\
                                                                 <div class="col-md-7">\n\
                                                                     <button id="eliminarTodos" type="button" class="botonEliminarUsu btn btn-danger" style="padding: 0px;">Eliminar</button>\n\
@@ -371,7 +371,7 @@
                 </div>
 
                 <div class="col-md-push-1 col-md-10" style="margin-top: 10px;">
-                    <input id="filter" type="text" class="form-control" placeholder="Filtro tabla..."/>
+                    <input title="Filtro buscar para la tabla de los usuarios" id="filter" type="text" class="form-control" placeholder="Filtro tabla..."/>
                 </div>
             </div>
 
@@ -458,7 +458,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="row">
                         <div class='col-md-12'>
-                            <select id="categ" class='botonCargoCat form-control'>
+                            <select title="Desplegable con los cargos" id="categ" class='botonCargoCat form-control'>
                                 <option value="-1">-Elige cargo-</option>
 
                             </select>
