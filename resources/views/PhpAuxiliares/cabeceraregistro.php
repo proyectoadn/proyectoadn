@@ -10,12 +10,12 @@
     
     <div class="col-md-6" style="text-align: center;">
         
-        <img src="Imagenes/logocentro.png">
+        <img alt="Logo del instituto" src="Imagenes/logocentro.png">
     </div>
     
     <div class="col-md-6" style="text-align: center;">
         
-        <img src="Imagenes/logocentro.png">
+        <img alt="Logo de la aplicacion" src="Imagenes/logocentro.png">
     </div>
 </div>
 

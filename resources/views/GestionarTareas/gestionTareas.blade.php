@@ -216,7 +216,7 @@
                 <form action="pdf" method="POST">
                     {!! csrf_field() !!}
 
-                    <select name="carg" id="carg" class='botonCargoCat form-control'>
+                    <select title="Desplegable con los cargos" name="carg" id="carg" class='botonCargoCat form-control'>
                         <option value="-1">-Elige cargo-</option>
 
                         @for($i=0;$i<count($roles);$i++)
@@ -228,7 +228,7 @@
 
             </div>
             <div class='divBotonCargoCat'>
-                <select id="cat" name="cat" size="" class='botonCargoCat form-control'>
+                <select title="Desplegable con las categorias" id="cat" name="cat" size="" class='botonCargoCat form-control'>
                     <option id="categorias" value="-1">-Elige categoria-</option>
                 </select>
             </div>
@@ -287,9 +287,9 @@
                 </div>
                 <div class="modal-body">
 
-                    <h4 id="titulocoment" class="modal-title"></h4>
+                    <h4 id="titulocoment" class="modal-title">Titulo comentario</h4>
                     <br>
-                <textarea id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10"
+                <textarea title="Campo de texto para el comentario" id="textocomentario" name="mensaje" class="form-control" maxlength="250" rows="10"
                           type="text"
                           style="width: 100%; height: 60%;; margin-bottom:10px; resize: none;"></textarea>
                 </div>

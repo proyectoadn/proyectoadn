@@ -15,19 +15,18 @@ Elección de rol
         <form action="administrador" method="POST">
             {!! csrf_field() !!}
             <div class="col-md-6 botonRol">
-
-                <button type="submit" name="admin" id="admin" class="botonImagen" value="">
-                    <img src="Imagenes/elegirRol/admin.png" class="imagenBoton"/></button>
+                <button type="submit" name="admin" id="admin" class="botonImagen">
+                    <img alt="Entrar como administrador" src="Imagenes/elegirRol/admin.png" class="imagenBoton"/></button>
                    <h4 class="colorGris">Administrador</h4>
             </div>
         </form>    
         <form action="usuario" method="POST">
             {!! csrf_field() !!}
             <div class="col-md-6 botonRol">
-                <button type="submit" name="usuario" id="usuario" class="botonImagen" value="">
-                    <img src="Imagenes/elegirRol/usuario.png" class="imagenBoton"/></button>
+                <button type="submit" name="usuario" id="usuario" class="botonImagen">
+                    <img alt="Entrar como usuario" src="Imagenes/elegirRol/usuario.png" class="imagenBoton"/></button>
                 <br>
-                 <h4 class="colorGris">Usuario</h4>
+                <h4 class="colorGris">Usuario</h4>
             </div>
         </form>
     </div>

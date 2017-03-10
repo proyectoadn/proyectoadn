@@ -58,6 +58,11 @@ Route::get('subirimagen', [
     'uses' => 'Controlador@subirimagen',
 ]);
 
+Route::get('registro', [
+    'as' => 'registro',
+    'uses' => 'Controlador@registro',
+]);
+
 
 //Rutas post
 
@@ -208,6 +213,11 @@ Route::group(['middleware' => 'admin'],function(){
         'uses' => 'Controlador@gestiontareas'
     ]);
 
+    Route::get('validar', [
+        'as' => 'elegirRol',
+        'uses' => 'Controlador@elegirRol'
+    ]);
+
     Route::get('datoscentro', [
         'as' => 'datoscentro',
         'uses' => 'Controlador@datoscentro'
@@ -283,6 +293,11 @@ Route::group(['middleware' => 'user'],function(){
     Route::get('usuario', [
         'as' => 'usuario',
         'uses' => 'Controlador@usuario',
+    ]);
+
+    Route::get('validar', [
+        'as' => 'usuario',
+        'uses' => 'Controlador@usuario'
     ]);
 
 });

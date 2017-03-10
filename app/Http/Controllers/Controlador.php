@@ -102,6 +102,10 @@ class Controlador extends Controller {
         return view('Registro/registro');
     }
 
+    public function elegirRol() {
+        return view('Administrar/elegirRol');
+    }
+
     public function registroerror(Request $request) {
         return view('Registro/registroerror');
     }
