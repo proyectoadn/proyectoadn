@@ -214,7 +214,6 @@ class Controlador extends Controller {
 
             if ($_FILES['archivo']['type'] == 'image/jpeg') {
                 
-                dd();
 
                 $archivo = $request->file('archivo');
                 $nombrearchivo = $archivo->getClientOriginalName();
