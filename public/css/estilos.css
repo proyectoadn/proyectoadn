@@ -261,6 +261,7 @@ b{
     width: 35%;
     margin: auto;
     text-align: center;
+    z-index: 2;
 
 }
 
