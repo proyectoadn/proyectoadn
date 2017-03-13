@@ -281,7 +281,7 @@ Route::group(['middleware' => 'user'],function(){
 
     //Rutas post
 
-    Route::post('datosCentroVisualizar', [
+    Route::post('datoscentro', [
         'as' => 'datosCentroVisualizar',
         'uses' => 'Controlador@datosCentroVisualizar'
 
@@ -294,7 +294,7 @@ Route::group(['middleware' => 'user'],function(){
 
 
     //Rutas get
-    Route::get('datosCentroVisualizar', [
+    Route::get('datoscentro', [
         'as' => 'datosCentroVisualizar',
         'uses' => 'Controlador@datosCentroVisualizar'
     ]);
