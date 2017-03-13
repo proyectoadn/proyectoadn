@@ -11,7 +11,10 @@ $usu = new Usuario('', '', '', '', '');
 $usu = \Session::get('u');
 ?>
 
-
+<!--FAVICON-->
+<link rel="icon" 
+      type="image/png" 
+      href="Imagenes/Logos/favicon.png">
 
 
 <nav class="navbar navbar-default" role="navigation">

@@ -253,7 +253,7 @@ Administracion
 
         });
 
-        
+
         //Filtro que se hace cada vez que pulsas una tecla en el filtro buscar
         //oculta la documentacion que no corresponde con lo que se escribe en el filtro 
         $('#filter').keyup(function () {
@@ -449,7 +449,7 @@ Administracion
                     @if($roles[$i]->descripcion!='Profesor')
                     <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
                     @endif
-                @endfor
+                    @endfor
             </select>
         </div>
         <div class='divBotonCargoCat'>
@@ -466,6 +466,10 @@ Administracion
                 </span>
                 <input title="Filtro para buscar" type="text" class="form-control" id="filter">
             </div>
+        </div>
+
+        <div style="width:40%; margin-top: 2px; text-align: center; float: right;">
+            <a href="administrar"> <img src="Imagenes/Logos/logoCabeceraAdmin.png" alt="Logo GETY"></a>
         </div>
     </div>
 
