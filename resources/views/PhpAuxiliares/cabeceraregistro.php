@@ -5,17 +5,21 @@
  * and open the template in the editor.
  */
 ?>
+<!--FAVICON-->
+<link rel="icon" 
+      type="image/png" 
+      href="Imagenes/Logos/favicon.png">
 
 <div class="row" style="margin-top: 10px; margin-bottom: 20px;">
     
     <div class="col-md-6" style="text-align: center;">
         
-        <img alt="Logo del instituto" src="Imagenes/logocentro.png">
+        <img alt="Logo del instituto" src="Imagenes/Logos/logoCentro.png" style="height: 71px;">
     </div>
     
     <div class="col-md-6" style="text-align: center;">
         
-        <img alt="Logo de la aplicacion" src="Imagenes/logocentro.png">
+        <img alt="Logo de la aplicacion" src="Imagenes/Logos/logoGETY.png">
     </div>
 </div>
 

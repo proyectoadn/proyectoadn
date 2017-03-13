@@ -4,6 +4,12 @@
 
 
 <link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css"/>
+<!--FAVICON-->
+<link rel="icon" 
+      type="image/png" 
+      href="Imagenes/Logos/favicon.png">
+
+
 <script src="js/jquery.Jcrop.min.js"></script>
 
 <script>
@@ -19,7 +25,7 @@
             document.location = "usuario";
         });
     });
-    
+
 </script>
 
 <?php
@@ -64,6 +70,7 @@ if (\Session::get('rol') == 'Administrador') {
             <li><a class="letrasgrandes" href="administrarUsuarios">Gestion usuarios</a></li>
             <li><a class="letrasgrandes" href="gestion">Gestion de datos</a></li>
             <li><a class="letrasgrandes" href="verLog">Histórico</a></li>
+
         </ul>
 
 
@@ -73,8 +80,8 @@ if (\Session::get('rol') == 'Administrador') {
             <li class="dropdown">
 
                 <a href="#" class="dropdown-toggle navbar-brand todalinea" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
-                            class="fa fa-caret-down"></i></a>
+                        class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
+                        class="fa fa-caret-down"></i></a>
 
                 <div class="row dropdown-menu divdesplegableusuario">
 
@@ -88,7 +95,7 @@ if (\Session::get('rol') == 'Administrador') {
                                 <div class="col-md-5 col-xs-4 imagenusuario" id="imagen">
                                     <img src="Imagenes/Fotosusuarios/<?php echo $usu->getId_usuario() ?>/fotorecortada.jpg" id="cambiarimagen" alt="Pincha aqui para cambiar tu foto perfil"
                                          data-toggle="modal" data-target="#modalimagen" class="img-circle">
-                                    
+
                                 </div>
 
 

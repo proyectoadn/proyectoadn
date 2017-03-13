@@ -6,6 +6,11 @@
  */
 ?>
 
+<!--FAVICON-->
+<link rel="icon" 
+      type="image/png" 
+      href="Imagenes/Logos/favicon.png">
+
 <script>
 
     $(function () {
@@ -56,6 +61,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
         <ul class="nav navbar-nav">
 
             <li><a class="letrasgrandes" href="login">Inicio</a></li>
+            <a class="" href="usuario"><img src="Imagenes/Logos/logoCabeceraUser.png" style="margin-top: 3px; margin-left: 500px;" alt="Logo GETY"></a>
 
         </ul>
 
@@ -66,8 +72,8 @@ if (\Session::get('pagina') == 'gestiontareas') {
             <li class="dropdown">
 
                 <a href="#" class="dropdown-toggle navbar-brand todalinea" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
-                            class="fa fa-caret-down"></i></a>
+                        class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
+                        class="fa fa-caret-down"></i></a>
 
                 <div class="row dropdown-menu divdesplegableusuario">
 
@@ -115,7 +121,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
                         <div class="divcerrarsesion">
 
                             @if (\Session::get('rol') == 'Administrador')
-                                <input type="submit" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default botoncambiarrol">
+                            <input type="submit" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default botoncambiarrol">
                             @endif
 
                             <form action="cerrarsesion" method="POST" class="form-inline">
