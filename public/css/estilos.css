@@ -261,6 +261,7 @@ b{
     width: 35%;
     margin: auto;
     text-align: center;
+    z-index: 2;
 
 }
 
@@ -411,6 +412,13 @@ b{
     text-align: center;
 }
 
+.titulogeneralsubirfotoerror{
+    
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
 .divtarea{
     
     width: 50%;
@@ -436,5 +444,6 @@ b{
 }
 
 .divfoto{
+    
     width: 30%;
 }

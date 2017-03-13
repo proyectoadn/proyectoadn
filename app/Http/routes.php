@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('Login/login');
 });
 
+
+
+
 //Rutas get
 
 Route::any('login', [
@@ -63,6 +66,13 @@ Route::get('registro', [
     'uses' => 'Controlador@registro',
 ]);
 
+Route::get('subirfotoerror', [
+    'as' => 'subirfotoerror',
+    'uses' => 'Controlador@loginconfirm'
+]);
+
+
+
 
 //Rutas post
 
@@ -98,7 +108,6 @@ Route::post('enviarcorreo', [
     'as' => 'enviarcorreo',
     'uses' => 'Controlador@enviarcorreo'
 ]);
-
 
 
 Route::post('restablecer', [

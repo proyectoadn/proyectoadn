@@ -86,7 +86,7 @@ if (\Session::get('rol') == 'Administrador') {
                             <div class="row">
 
                                 <div class="col-md-5 col-xs-4 imagenusuario" id="imagen">
-                                    <img src="Imagenes/Fotosusuarios/<?php echo $usu->getId_usuario() ?>/fotorecortada.jpg" id="cambiarimagen" alt="Imagen de perfil"
+                                    <img src="Imagenes/Fotosusuarios/<?php echo $usu->getId_usuario() ?>/fotorecortada.jpg" id="cambiarimagen" alt="Pincha aqui para cambiar tu foto perfil"
                                          data-toggle="modal" data-target="#modalimagen" class="img-circle">
                                     
                                 </div>

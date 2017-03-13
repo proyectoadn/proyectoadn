@@ -101,6 +101,16 @@ Gestión de tareas
                     
                     alert(respuesta);
                     
+                    
+                    <?php
+                    
+                        if(isset($nombrearchivo)){
+                    
+                            $rutaarchivo = 'Imagenes/Fotosusuarios/'.$usu->getId_usuario().'/'.$nombrearchivo;
+                            unlink('Imagenes/Fotosusuarios/'.$usu->getId_usuario().'/'.$nombrearchivo);
+                        }
+                    ?>
+                    
                     //window.location = "subirfoto";
 
                 }
