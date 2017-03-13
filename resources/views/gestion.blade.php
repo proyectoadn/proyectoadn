@@ -329,8 +329,8 @@ Gestión de tareas
 
                 <div class="modal-body">
 
-                    <label>Nombre del rol</label>
-                    <input type="text" name="nombrerol" id="nombrerol" placeholder="Nombre del rol" class="form-control nombrerol" required>
+                    <label for="nuevorolinput">Nombre del rol</label>
+                    <input id="nuevorolinput" type="text" name="nombrerol" id="nombrerol" placeholder="Nombre del rol" class="form-control nombrerol" required>
 
                 </div>
 
@@ -359,8 +359,8 @@ Gestión de tareas
 
                 <div class="modal-body">
 
-                    <label>Nombre de la categoria</label>
-                    <input type="text" name="nombrecategoria" placeholder="Nombre de la categoria" class="form-control" required>
+                    <label for="nuevacategoriainput">Nombre de la categoria</label>
+                    <input id="nuevaentregainput" type="text" name="nombrecategoria" placeholder="Nombre de la categoria" class="form-control" required>
 
                 </div>
 
@@ -388,8 +388,8 @@ Gestión de tareas
 
                 <div class="modal-body">
 
-                    <label>Nombre de la entrega</label>
-                    <input type="text" name="nombreentrega" placeholder="Nombre de la entrega" class="form-control" required>
+                    <label for="nuevaentregainput">Nombre de la entrega</label>
+                    <input id="nuevaentregainput" type="text" name="nombreentrega" placeholder="Nombre de la entrega" class="form-control" required>
 
                 </div>
 
@@ -417,7 +417,7 @@ Gestión de tareas
 
                 <div class="modal-body">
 
-                    <label>Editar la descripcion</label>
+                    <label for="descripcion">Editar la descripcion</label>
                     <input type="text" name="descripcion" id="descripcion" class="form-control">
 
                 </div>

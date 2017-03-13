@@ -474,12 +474,12 @@ Administracion
 
     <div class="row">
 
-        <div class="col-md-9 " >
+        <div class="col-md-9" style="margin-bottom: 15px;" >
             <div class="item">
                 <b>Documentacion</b>
 
                 <div class="row conectardivisores" value="Documentacion" id="item1"
-                     style="width: 100%;height: 50px;min-height: 400px;max-height: 400px;">
+                     style="width: 100%;height: 50px;min-height: 440px;max-height: 440px;">
 
                     <div class="col-lg-3 col-md-6 divdocumentacion" value=' + documenta'>
 

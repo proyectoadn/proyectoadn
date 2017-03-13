@@ -20,7 +20,7 @@ $tarea=utf8_decode($datos[6]);
 
 //Si solo hay una categoria, unicamente compruebo una posicion en el vector principal
 if(count($datos[1])==1){
-    $categoria[]=utf8_decode($datos[1]);
+    $categoria[]=utf8_decode($datos[1][0]);
 }
 //Si no, extraigo la informacion dentro del vector principal, en otro vector interno.
 else{
