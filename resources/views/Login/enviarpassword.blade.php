@@ -18,10 +18,10 @@ Login
         <div class="panel-footer">
             <form action="enviarcorreo" method="POST">
                 {!! csrf_field() !!}
-
+                <label for="email">Correo electrónico</label>
                 <div class="input-group" style="margin-bottom: 5px;">
                     <span class="input-group-addon">@</span>
-                    <input type="text" name="email" placeholder="Introduce tu email" class="form-control">
+                    <input id="email" type="text" name="email" placeholder="Introduce tu correo electrónico" class="form-control">
                 </div>
                 <br>
                 <input type="submit" name="enviar" value="Enviar" class="btn btn-primary">
