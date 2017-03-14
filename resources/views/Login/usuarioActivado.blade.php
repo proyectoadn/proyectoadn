@@ -48,3 +48,10 @@ Login
     </div>
 </div>
 @endsection
+
+@section('footer')
+
+
+@include ('PhpAuxiliares/footer')
+
+@endsection

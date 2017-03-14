@@ -9,9 +9,16 @@ Gestión de tareas
 <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloFlex.css') !!}"/>
 
 
-@section('contenido')
+@if(\Session::get('rol') == 'Administrador')
 
-@include ('PhpAuxiliares/cabeceraadministrador')
+    @include ('PhpAuxiliares/cabeceraadministrador')
+@else
+
+    @include ('PhpAuxiliares/cabecera')
+@endif
+ 
+
+@section('contenido')
 
 <div>
     
