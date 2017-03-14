@@ -94,7 +94,7 @@ Administracion
         });
 
 
-        //Codigo Nazario
+        //Funcion que se lanza cuando se cambia un valor en el desplegable de cargos
         $("#carg").on("change", function () {
 
 
@@ -107,10 +107,8 @@ Administracion
 
             $.post("../resources/views/PhpAuxiliares/categorias.php", {rol: idjson},
                     function (respuesta) {
-
-
                         var categorias = JSON.parse(respuesta);
-
+                        //Con los datos recogidos de la BBDD se rellena el desplegable de categorias.
                         $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
                         for (var i = 0; i < categorias.length; i++) {
                             $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
@@ -215,17 +213,17 @@ Administracion
 
         });
 
+
+        //Funcion que se inicia cuando se pulsa el boton de aceptar en el popup de añadir.
         $('#addDoc').on('click', function () {
 
             var descripcion = $('#anadirDoc').val();
-
             var categoria = new Array();
             for (var i = 0; i < countCat; i++) {
                 if ($("#cat" + i).prop('checked')) {
                     categoria.push($("#cat" + i).val());
                 }
             }
-
             var rol = $('#anadirRoles').val();
             var entrega = $('#anadirEntregar').val();
             var modelo = $('#anadirModelo').val();
@@ -266,6 +264,7 @@ Administracion
 
     });
 
+    //Funcion que se inicia cuando se pulsa el boton de añadir documentos.
     function popupAdd(boton) {
 
         var mens = new Array();
@@ -285,10 +284,8 @@ Administracion
                     $('#anadirLink').val('');
                     for (var i = 0; i < rol.length; i++) {
                         if (rol[i]['descripcion'] != 'Profesor') {
-
-                            if (rol[i]['id_rol'] == $("#carg").val()) {
+                            if (rol[i]['id_rol'] == $("#carg").val()) { //Comprueba los cargos con el seleccionado, para empezar con el checkeado.
                                 $('#anadirRoles').append('<option selected value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
-
                             } else {
                                 $('#anadirRoles').append('<option value="' + rol[i]['id_rol'] + '">' + rol[i]['descripcion'] + '</option>');
                             }
@@ -321,7 +318,7 @@ Administracion
         });
     }
 
-
+    //Funcion que se lanza cuando se pulsa el boton de editar documentacion.
     function popup(boton) {
 
         var mens = new Array();
@@ -345,6 +342,8 @@ Administracion
                     var id_categoria = datos[0]['id_categoria'];
                     var modelo = datos[0]['modelo'];
                     var descrip_tarea = datos[0]['descrip_tarea'];
+
+                    //Se rellenan los campos del popup con los datos de la BBDD
                     $('#nombreDoc').val(nombre);
                     $('#nombreModelo').val(modelo);
                     $('#editTarea').val(descrip_tarea);
@@ -391,6 +390,7 @@ Administracion
         });
     }
 
+    //Funcion que rellena los documentos filtrados.
     function llenar_documentos() {
         var vector = new Array();
         vector.push(id_cat);
@@ -401,7 +401,7 @@ Administracion
                 function (respuesta) {
 
                     var documentacion = JSON.parse(respuesta);
-
+                    //Construye las etiquetas con la documentacion.
                     for (var i = 0; i < documentacion.length; i++) {
                         $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion" value=' + documentacion[i]['id'] + '>\n\
                                             <div class="documentacion">\n\
@@ -414,8 +414,8 @@ Administracion
                                                 </div>\n\
                                             </div>\n\
                                         </div>');
-
                     }
+
                     //AÑADE EL BOTON DE AÑADIR DOCUMENTACIÓN SIEMPRE AL FINALDE TODA LA DOCUMENTACIÓN CARGADA DINAMICAMENTE
                     $("#item1").append('<div class="col-lg-3 col-md-6 divdocumentacion ">\n\
                                                 <div class="documentacion divAniadirDoc">\n\
@@ -444,7 +444,7 @@ Administracion
         <div class='divBotonCargoCat'>
             <select title="Desplegable con los cargos" id="carg" class='botonCargoCat form-control'>
                 <option value="-1">-Elige cargo-</option>
-
+                <!-- rellena el desplegable de cargos con los datos que le da el controlador -->
                 @for($i=0;$i<count($roles);$i++)
                     @if($roles[$i]->descripcion!='Profesor')
                     <option value="{!! $roles[$i]->id_rol !!}">{!! $roles[$i]->descripcion !!}</option>
