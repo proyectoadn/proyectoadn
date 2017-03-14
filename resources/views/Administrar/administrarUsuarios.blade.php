@@ -12,9 +12,7 @@
         var countUsuarios;
 
         $(function () {
-
-
-
+            //Si el desplegable de los cargos cambia se cargan las tareas del usuario.
             $("#categ").on("change", function () {
 
                 //Guardo el ID del combo que pulso
@@ -42,26 +40,24 @@
                             for (var i = 0; i < tarea.length; i++) {
                                 //Pinto las tareas con checkbox
                                 $("#tareas").append('<label class="displayBock" >\n\
-                                                    <input id="tarea' + i + '" class="seleccionarTareas" type="checkbox" value="' + tarea[i]['id_tarea'] + '">\n\
-                                                    <div id="descripcion' + i + '">' + tarea[i]['descripcion'] + '</div>\n\
-                                                </label>');
+                                                <input id="tarea' + i + '" class="seleccionarTareas" type="checkbox" value="' + tarea[i]['id_tarea'] + '">\n\
+                                                <div id="descripcion' + i + '">' + tarea[i]['descripcion'] + '</div>\n\
+                                            </label>');
 
                                 countTareas++;
                             }
 
                             //Pinto dinamicamente el seleccionar todo, fuera del for.
                             $("#tareas").append('<label class="displayBock" style="margin-top: 10px;">\n\
-                                                <input type="checkbox" onclick="seleccionarTareas(this);"/>\n\
-                                                Seleccionar todo\n\
-                                            </label>');
+                                            <input type="checkbox" onclick="seleccionarTareas(this);"/>\n\
+                                            Seleccionar todo\n\
+                                        </label>');
 
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
                 });
 
             });//CIERRA ON CHANGE #CATEG
-
-
 
 
             //Filtro para la tabla
@@ -73,8 +69,9 @@
                 }).show();
             });
 
+            //Carga y pinta la tabla de los usuarios administrables.
             function cargartabla() {
-                //vacío el id usuarios (la tabla) por sihubiesealgo
+                //vacío el id usuarios (la tabla) por si hubiese algo
                 $("#usuarios").html('');
                 //Hago una select con los usuarios trayendome los campos nombre, apellidos, email e id_usuario
                 $.post("../resources/views/PhpAuxiliares/usuariosCargar.php", {},
@@ -90,62 +87,62 @@
                             for (var i = 0; i < usuarios.length; i++) {
                                 //El botón abre un popup de bootstrap al cual le pasamos el id_usuario
                                 $("#usuarios").append('<tr class="fila alturatr">\n\
-                                                    <td>' + (i + 1) + '</td>\n\
-                                                    <td name="nombre">' + usuarios[i]['nombre'] + '</td>\n\
-                                                    <td name="apellidos">' + usuarios[i]['apellidos'] + '</td>\n\
-                                                    <td name="email">' + usuarios[i]['email'] + '</td>\n\
-                                                    <td name="opciones">\n\
-                                                            <div class="row divisorUsuarios">\n\
-                                                                <div class="col-md-push-1 col-md-4">\n\
-                                                                        <input title="Seleccionar usuario" type="checkbox" class="seleccionarUsuarios checkUsu" name="checkUsu" id="checkUsu' + i + '" value="' + usuarios[i]['id_usuario'] + '"/>\n\
-                                                                </div>\n\
-                                                                <div class="col-md-4">\n\
-                                                                    <button title="Editar Usuario" name="editUsu" class="editUsu botonTarea" value="' + usuarios[i]['id_usuario'] + '" data-toggle="modal" data-target="#editarUsuario">\n\
-                                                                        <span class="glyphicon glyphicon-pencil" style="width: 22px; height: 22px;"></span>\n\
-                                                                    </button>\n\
-                                                                </div>\n\
-                                                                <div class="col-md-pull-1 col-md-4">\n\
-                                                                    <button title="Eliminar usuario" class="botonTarea eliminarIndividual" value="' + usuarios[i]['id_usuario'] + '">\n\
-                                                                    <span class="glyphicon glyphicon-trash" style="width: 22px; height: 22px;"></span>\n\
-                                                                    </button>\n\
-                                                                </div>\n\
+                                                <td>' + (i + 1) + '</td>\n\
+                                                <td name="nombre">' + usuarios[i]['nombre'] + '</td>\n\
+                                                <td name="apellidos">' + usuarios[i]['apellidos'] + '</td>\n\
+                                                <td name="email">' + usuarios[i]['email'] + '</td>\n\
+                                                <td name="opciones">\n\
+                                                        <div class="row divisorUsuarios">\n\
+                                                            <div class="col-md-push-1 col-md-4">\n\
+                                                                    <input title="Seleccionar usuario" type="checkbox" class="seleccionarUsuarios checkUsu" name="checkUsu" id="checkUsu' + i + '" value="' + usuarios[i]['id_usuario'] + '"/>\n\
                                                             </div>\n\
-                                                    </td>\n\
-                                               </tr>\n\
-                                                ');
+                                                            <div class="col-md-4">\n\
+                                                                <button title="Editar Usuario" name="editUsu" class="editUsu botonTarea" value="' + usuarios[i]['id_usuario'] + '" data-toggle="modal" data-target="#editarUsuario">\n\
+                                                                    <span class="glyphicon glyphicon-pencil" style="width: 22px; height: 22px;"></span>\n\
+                                                                </button>\n\
+                                                            </div>\n\
+                                                            <div class="col-md-pull-1 col-md-4">\n\
+                                                                <button title="Eliminar usuario" class="botonTarea eliminarIndividual" value="' + usuarios[i]['id_usuario'] + '">\n\
+                                                                <span class="glyphicon glyphicon-trash" style="width: 22px; height: 22px;"></span>\n\
+                                                                </button>\n\
+                                                            </div>\n\
+                                                        </div>\n\
+                                                </td>\n\
+                                           </tr>\n\
+                                            ');
                                 countUsuarios++;
                             }
 
                             //Añado una fila vacía para separar un poco del seleccionar todos
                             $("#usuarios").append('<tr class="alturatr fila" style="background-color: #215891;">\n\
-                                                    <td></td>\n\
-                                                    <td></td>\n\
-                                                    <td></td>\n\
-                                                    <td>&nbsp;</td>\n\
-                                                    <td>\n\
-                                                    </td>\n\
-                                               </tr>\n\
-                                                ');
+                                                <td></td>\n\
+                                                <td></td>\n\
+                                                <td></td>\n\
+                                                <td>&nbsp;</td>\n\
+                                                <td>\n\
+                                                </td>\n\
+                                           </tr>\n\
+                                            ');
 
                             //Añado al final de la tabla otra fila con un checkbox para seleccionar todos
                             $("#usuarios").append('\n\
-                                                <tr class="alturatr fila" style="">\n\
-                                                    <td></td>\n\
-                                                    <td></td>\n\
-                                                    <td></td>\n\
-                                                    <td style="text-align: right; font-weight: 600;">Seleccionar todos</td>\n\
-                                                    <td name="opciones">\n\
-                                                            <div class="row divisorUsuarios">\n\
-                                                                <div class="col-md-push-1 col-md-4">\n\
-                                                                        <input title="Checkbox para seleccionar todos" type="checkbox" onclick="seleccionarUsuarios(this)" />\n\
-                                                                </div>\n\
-                                                                <div class="col-md-7">\n\
-                                                                    <button id="eliminarTodos" type="button" class="botonEliminarUsu btn btn-danger" style="padding: 0px;">Eliminar</button>\n\
-                                                                </div>\n\
+                                            <tr class="alturatr fila" style="">\n\
+                                                <td></td>\n\
+                                                <td></td>\n\
+                                                <td></td>\n\
+                                                <td style="text-align: right; font-weight: 600;">Seleccionar todos</td>\n\
+                                                <td name="opciones">\n\
+                                                        <div class="row divisorUsuarios">\n\
+                                                            <div class="col-md-push-1 col-md-4">\n\
+                                                                    <input title="Checkbox para seleccionar todos" type="checkbox" onclick="seleccionarUsuarios(this)" />\n\
                                                             </div>\n\
-                                                    </td>\n\
-                                               </tr>\n\
-                                                ');
+                                                            <div class="col-md-7">\n\
+                                                                <button id="eliminarTodos" type="button" class="botonEliminarUsu btn btn-danger" style="padding: 0px;">Eliminar</button>\n\
+                                                            </div>\n\
+                                                        </div>\n\
+                                                </td>\n\
+                                           </tr>\n\
+                                            ');
 
                             //Funcion que se lanza al pinchar en cada uno de los botones de eliminar individualmente
                             $('.eliminarIndividual').on('click', function () {
@@ -174,7 +171,6 @@
                                     // Comprobacion de si estan checkeados o no los checkboxes usando .prop() (jQuery > 1.6)
                                     var arrayUsuarios = new Array();
                                     var deletes = 0;
-
                                     //Hago un for para meteren el array tantos ids de usuario como usuarios estén marcados
                                     for (var i = 0; i < countUsuarios; i++) {
 
@@ -191,7 +187,7 @@
 
                                     $id_sesion = $usuSesion->getId_usuario();
                                     ?>
-                            // y lo meto en una variable de javascript
+                                // y lo meto en una variable de javascript
                                     var id_usu_sesion = {!! $id_sesion !!};
 
                                     var usus = new Array();
@@ -256,24 +252,24 @@
 
                                                 if (coincide) {
                                                     $("#roles").append('<label class="displayBock">\n\
-                                                <input id="rol' + i + '" checked class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
-                                                ' + cargos[i]['descripcion'] + '\n\
-                                                </label>');
+                                            <input id="rol' + i + '" checked class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
+                                            ' + cargos[i]['descripcion'] + '\n\
+                                            </label>');
                                                     $("#categ").append('<option value=' + cargos[i]['id_rol'] + '>' + cargos[i]['descripcion'] + '</option>');
                                                 } else {
                                                     $("#roles").append('<label class="displayBock">\n\
-                                                <input id="rol' + i + '" class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
-                                                ' + cargos[i]['descripcion'] + '\n\
-                                                </label>');
+                                            <input id="rol' + i + '" class="seleccionarRoles" type="checkbox" value="' + cargos[i]['id_rol'] + '">\n\
+                                            ' + cargos[i]['descripcion'] + '\n\
+                                            </label>');
                                                 }
                                                 countRol++;
                                             }//FIN FOR
 
                                             //Fuera del for, pinto el seleccionar todo en el divisor de roles
                                             $("#roles").append('<label class="displayBock" style="margin-top: 10px;">\n\
-                                                <input type="checkbox" onclick="seleccionarRoles(this);"/>\n\
-                                                Seleccionar todo\n\
-                                                </label>');
+                                            <input type="checkbox" onclick="seleccionarRoles(this);"/>\n\
+                                            Seleccionar todo\n\
+                                            </label>');
 
 
                                         });
@@ -343,7 +339,6 @@
                             });
 
 
-
                         }).fail(function (jqXHR) {
                     alert("Error de tipo " + jqXHR.status);
                 });
@@ -371,11 +366,10 @@
                 </div>
 
                 <div class="col-md-push-1 col-md-10" style="margin-top: 10px;">
-                    <input title="Filtro buscar para la tabla de los usuarios" id="filter" type="text" class="form-control" placeholder="Filtro tabla..."/>
+                    <input title="Filtro buscar para la tabla de los usuarios" id="filter" type="text"
+                           class="form-control" placeholder="Filtro tabla..."/>
                 </div>
             </div>
-
-
         </div>
 
         <div class=" form-group">
@@ -434,7 +428,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="adminTareas" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editarTareas" >
+                    <button id="adminTareas" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                            data-target="#editarTareas">
                         Tareas
                     </button>
                     <button id="updateUsu" class="btn btn-primary" data-dismiss="modal">
@@ -464,7 +459,9 @@
                             </select>
                         </div>
                         <br>
-                        <div id="tareas" class="col-md-12 roles checkbox" style="margin-top: 20px; font-weight: initial; overflow-y: auto;max-height: 400px;">
+
+                        <div id="tareas" class="col-md-12 roles checkbox"
+                             style="margin-top: 20px; font-weight: initial; overflow-y: auto;max-height: 400px;">
                             <!--SELECCIONAR TODOS-->
                             <label class="displayBock" style="margin-top: 10px;">
                                 <input type="checkbox" onclick="seleccionarTareas(this);"/>
@@ -475,8 +472,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="adminTareas" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#editarUsuario">
-                    Roles
+                    <button id="adminTareas" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                            data-target="#editarUsuario">
+                        Roles
                     </button>
                     <button id="borrarTareas" class="btn btn-primary" data-dismiss="modal">
                         Borrar

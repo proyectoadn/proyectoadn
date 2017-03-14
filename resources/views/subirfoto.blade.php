@@ -99,19 +99,7 @@ Gestión de tareas
         $.post("../resources/views/PhpAuxiliares/recortarfoto.php", {datos: datos,vectordatos: vectordatos},
                 function (respuesta) {
                     
-                    alert(respuesta);
-                    
-                    
-                    <?php
-                    
-                        if(isset($nombrearchivo)){
-                    
-                            $rutaarchivo = 'Imagenes/Fotosusuarios/'.$usu->getId_usuario().'/'.$nombrearchivo;
-                            unlink('Imagenes/Fotosusuarios/'.$usu->getId_usuario().'/'.$nombrearchivo);
-                        }
-                    ?>
-                    
-                    //window.location = "subirfoto";
+                    window.location = "subirfoto";
 
                 }
         ).fail(function (jqXHR) {
@@ -134,12 +122,12 @@ Gestión de tareas
 
 
 <div>
-
-    <button type="button" name="guardar" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
     
     <div id="fotoperfil" class="divfoto">
         <img src="Imagenes/Fotosusuarios/{!! $id_usuario !!}/{!! $nombrearchivo !!}" id="prueba" style="width: 100%;">
     </div>
+    
+    <button type="button" name="guardar" class="btn btn-primary botonguardar" onclick="recortarfoto()">Guardar</button>
 </div>
 
 @endsection
@@ -148,15 +136,6 @@ Gestión de tareas
 
 @section('footer')
 
-<div class="divfooter">
-
-    Desarrollado por:
-
-    Daniel Ramirez Ros -
-    Alberto de la Plaza Ramos -
-    Nazario Castillero Redondo<br>
-
-    Copyright 2017 - Proyectoadn
-</div>
+@include ('PhpAuxiliares/footer')
 
 @endsection

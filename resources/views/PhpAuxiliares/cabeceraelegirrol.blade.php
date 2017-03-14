@@ -11,7 +11,10 @@ $usu = new Usuario('', '', '', '', '');
 $usu = \Session::get('u');
 ?>
 
-
+<!--FAVICON-->
+<link rel="icon" 
+      type="image/png" 
+      href="Imagenes/Logos/favicon.png">
 
 
 <nav class="navbar navbar-default" role="navigation">
@@ -45,8 +48,8 @@ $usu = \Session::get('u');
             <li class="dropdown">
 
                 <a href="#" class="dropdown-toggle navbar-brand todalinea" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
-                            class="fa fa-caret-down"></i></a>
+                        class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
+                        class="fa fa-caret-down"></i></a>
 
                 <div class="row dropdown-menu divdesplegableusuario">
 
@@ -57,13 +60,14 @@ $usu = \Session::get('u');
 
                             <div class="row">
 
-                                <div class="col-md-4 col-xs-4 imagenusuario" id="imagen">
-                                    <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil"
+                                <div class="col-md-5 col-xs-4 imagenusuario" id="imagen">
+                                    <img src="Imagenes/Fotosusuarios/<?php echo $usu->getId_usuario() ?>/fotorecortada.jpg" id="cambiarimagen" alt="Pincha aqui para cambiar tu foto perfil"
                                          data-toggle="modal" data-target="#modalimagen" class="img-circle">
+
                                 </div>
 
 
-                                <div class="col-md-8 col-xs-8">
+                                <div class="col-md-7 col-xs-8">
                                     <label><?php echo $usu->getNombre(); ?></label>
 
                                     <p><?php echo $usu->getEmail(); ?></p>
@@ -107,6 +111,7 @@ $usu = \Session::get('u');
     </div>
 </nav>
 
+
 <div id="modalimagen" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -124,24 +129,19 @@ $usu = \Session::get('u');
                 <div id="mensaje">
                 </div>
 
-                <div id="fotoperfil">
-                    <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->
-                </div>
-
 
                 <form action="subirimagen" method="POST" enctype="multipart/form-data">
                     {!! csrf_field() !!}
 
-                    <input type="file" name="archivo" id="archivo" value="prueba">
+                    <input title="seleccionar archivo" type="file" name="archivo" id="archivo" value="prueba">
 
-                    <input type="submit" name="subir" value="Subir" class="btn btn-primary">
+                    <input title="subir la imagen" type="submit" name="subir" value="Subir" class="btn btn-primary botonsubir">
                 </form>
 
             </div>
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

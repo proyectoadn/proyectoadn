@@ -71,7 +71,6 @@ Elección de rol
 <div class="tituloformularioregistro">
     <h2 class="colorGris">Formulario registro</h2>
 </div>
-
 <div class="divregistro row">
 
     <!-- 4 PRIMERAS COLUMNAS EN BLANCO-->
@@ -146,7 +145,7 @@ Elección de rol
     <div class="col-md-push-4 col-md-4">
 
         <!-- Validación Nombre -->
-        <div class="validacionRegistro">
+        <div class="validacionRegistro" style="margin-top: 25px;">
             <span class=""  id="textoNombre"></span>
         </div>
 
@@ -166,7 +165,7 @@ Elección de rol
         </div>
 
         <!-- Validación Contraseña -->
-        <div class="validacionRegistro">
+        <div class="validacionRegistro" >
             <span class="" id="textoPasswordRepetida"></span>
         </div>
     </div>

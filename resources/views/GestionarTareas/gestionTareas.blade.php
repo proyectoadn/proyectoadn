@@ -16,7 +16,7 @@
             $("#exportarapdf").prop('disabled', true);
 
 
-            //Codigo Dani
+            //Funcionalidades del arrastrar y soltar
             $("#item1,#item2,#item3").sortable({
                 connectWith: ".conectardivisores",
                 cursor: "move",
@@ -54,7 +54,7 @@
             });
 
 
-            //Codigo Nazario
+            //Funcion que se lanza cuando el desplegable de cargos cambia de valor
             $("#carg").on("change", function () {
 
 
@@ -70,15 +70,13 @@
                         function (respuesta) {
                             console.log(respuesta);
                             var categorias = JSON.parse(respuesta);
-
+                            //Rellena el desplegable de categorias, filtrando por el cargo seleccionado.
                             $("#cat").html('<option id="categorias" value="-1">-Elige categoria-</option>');
                             for (var i = 0; i < categorias.length; i++) {
                                 $("#cat").append('<option value=' + categorias[i]['id'] + '>' + categorias[i]['descripcion'] + '</option>');
                             }
-
-
+                            //Si no hay cargo seleccionado, deshabilita el boton de exportar a pdf.
                             if ($("#carg").val() == -1) {
-
                                 $("#exportarapdf").prop('disabled', true);
                             }
 
@@ -87,7 +85,7 @@
                 });
             });
 
-
+            //Funcion que se lanza si se cambia el despegable de categorias, rellenando las tareas.
             $("#cat").on("change", function () {
 
                 var id = $(this).val();
@@ -106,7 +104,7 @@
                             $("#item3").html('');
 
                             for (var i = 0; i < tarea.length; i++) {
-
+                                //Tarea por hacer.
                                 if (tarea[i]['estado'] == 1) {
                                     $("#item1").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea">\n\
                                                     <p class="textotarea">' + tarea[i]['descripcion'] + '</p>\n\
@@ -117,6 +115,7 @@
                                                             </button>\n\
                                                         </div>\n\
                                                     </div>');
+                                    //Tarea pendiente.
                                 } else if (tarea[i]['estado'] == 2) {
                                     $("#item2").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea">\n\
                                                     <p class="textotarea">' + tarea[i]['descripcion'] + '</p>\n\
@@ -127,6 +126,7 @@
                                                             </button>\n\
                                                         </div>\n\
                                                     </div>');
+                                    //Tarea hecha.
                                 } else if (tarea[i]['estado'] == 3) {
                                     $("#item3").append('<div value="' + tarea[i]['id'] + '" id="tareas" class="panel panel-primary tarea"><p class="textotarea">' + tarea[i]['descripcion'] + '</p><p class="textotarea"><a href="">' + tarea[i]['modelo'] + '</a></p>\n\
                         <div style="height: 25px; width: 32px; float: right; margin: 0px; padding: 0px; position: relative;">\n\
@@ -136,7 +136,7 @@
                                 }
                             }
 
-
+                            //Activa el boton de exportar a PDF.
                             $("#exportarapdf").prop('disabled', false);
 
                         }).fail(function (jqXHR) {
@@ -145,7 +145,7 @@
             });
         });
 
-
+        //Funcion que se lanza cuando se da al boton de comentario de las tareas.
         function popup(boton) {
 
             var mens = new Array();

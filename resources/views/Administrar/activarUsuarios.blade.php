@@ -37,14 +37,14 @@ Administracion
                                                     <td name="email" value="' + usuarios[i]['email'] + '">' + usuarios[i]['email'] + '</td>\n\
                                                     <td>\n\
                                                         <div class="row divisorUsuarios">\n\
-                                                            <div class="col-md-6">\n\
+                                                            <div class="col-md-push-2 col-md-3">\n\
                                                                 <button type="submit" title="Validar usuario" name="validar" class="botonTarea" value="' + usuarios[i]['id_usuario'] + '">\n\
                                                                     <span class="glyphicon glyphicon-ok" style="width: 22px; height: 22px;"></span>\n\
                                                                 </button>\n\
                                                             </div>\n\
-                                                            <div class="col-md-6">\n\
+                                                            <div class="col-md-push-2 col-md-3">\n\
                                                                 <button title="Denegar usuario" onclick="denegar(this)" class="botonTarea" value="' + usuarios[i]['id_usuario'] + '" id="denegar"data-toggle="modal" data-target="#modalModificarTarea">\n\
-                                                                <span class="glyphicon glyphicon-remove" style="width: 22px; height: 22px;"></span>\n\
+                                                                <span class="glyphicon glyphicon-trash" style="width: 22px; height: 22px;"></span>\n\
                                                                 </button>\n\
                                                             </div>\n\
                                                         </div>\n\
@@ -58,7 +58,7 @@ Administracion
         });
 
     });
-
+    //Valida el usuario en la base de datos al pulsar el boton
     function validar(boton) {
         var id_usuario = boton.value;
 
@@ -74,7 +74,7 @@ Administracion
         });
 
     }
-
+    //Borra el usuario en la base de datos al pusar el boton
     function denegar(boton) {
         var id_usuario = boton.value;
 
@@ -130,7 +130,7 @@ Administracion
                     </tr >
                 </thead>
                 <tbody id="usuarios" class="searchable">
-
+                    
                 </tbody>
             </table>
         </form>

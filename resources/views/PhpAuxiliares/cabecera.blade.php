@@ -6,6 +6,11 @@
  */
 ?>
 
+<!--FAVICON-->
+<link rel="icon" 
+      type="image/png" 
+      href="Imagenes/Logos/favicon.png">
+
 <script>
 
     $(function () {
@@ -56,6 +61,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
         <ul class="nav navbar-nav">
 
             <li><a class="letrasgrandes" href="login">Inicio</a></li>
+            <a class="" href="usuario"><img src="Imagenes/Logos/logoCabeceraUser.png" style="margin-top: 3px; margin-left: 500px;" alt="Logo GETY"></a>
 
         </ul>
 
@@ -66,8 +72,8 @@ if (\Session::get('pagina') == 'gestiontareas') {
             <li class="dropdown">
 
                 <a href="#" class="dropdown-toggle navbar-brand todalinea" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
-                            class="fa fa-caret-down"></i></a>
+                        class="glyphicon glyphicon-user"></span> <?php echo $usu->getNombre() ?> <i
+                        class="fa fa-caret-down"></i></a>
 
                 <div class="row dropdown-menu divdesplegableusuario">
 
@@ -78,13 +84,14 @@ if (\Session::get('pagina') == 'gestiontareas') {
 
                             <div class="row">
 
-                                <div class="col-md-4 col-xs-4 imagenusuario" id="imagen">
-                                    <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil"
+                                <div class="col-md-5 col-xs-4 imagenusuario" id="imagen">
+                                    <img src="Imagenes/Fotosusuarios/<?php echo $usu->getId_usuario() ?>/fotorecortada.jpg" id="cambiarimagen" alt="Pincha aqui para cambiar tu foto perfil"
                                          data-toggle="modal" data-target="#modalimagen" class="img-circle">
+
                                 </div>
 
 
-                                <div class="col-md-8 col-xs-8">
+                                <div class="col-md-7 col-xs-8">
                                     <label><?php echo $usu->getNombre(); ?></label>
 
                                     <p><?php echo $usu->getEmail(); ?></p>
@@ -115,7 +122,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
                         <div class="divcerrarsesion">
 
                             @if (\Session::get('rol') == 'Administrador')
-                                <input type="submit" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default botoncambiarrol">
+                            <input type="submit" name="cambiarrol" id="cambiarrol" onclick="cambiarrol()" value="Cambiar  rol a <?php echo $rol ?>" class="btn btn-default botoncambiarrol">
                             @endif
 
                             <form action="cerrarsesion" method="POST" class="form-inline">
@@ -131,6 +138,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
         </ul>
     </div>
 </nav>
+
 
 <div id="modalimagen" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -149,24 +157,19 @@ if (\Session::get('pagina') == 'gestiontareas') {
                 <div id="mensaje">
                 </div>
 
-                <div id="fotoperfil">
-                    <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->
-                </div>
-
 
                 <form action="subirimagen" method="POST" enctype="multipart/form-data">
                     {!! csrf_field() !!}
 
-                    <input type="file" name="archivo" id="archivo" value="prueba">
+                    <input title="seleccionar archivo" type="file" name="archivo" id="archivo" value="prueba">
 
-                    <input type="submit" name="subir" value="Subir" class="btn btn-primary">
+                    <input title="subir la imagen" type="submit" name="subir" value="Subir" class="btn btn-primary botonsubir">
                 </form>
 
             </div>
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
