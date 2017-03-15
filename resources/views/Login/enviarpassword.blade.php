@@ -5,6 +5,7 @@
 Login
 @endsection
 
+
 @section('contenido')
 
 <script src="jquery-2.1.4.js"></script>
@@ -31,3 +32,4 @@ Login
     </div>
 </div>
 @endsection
+

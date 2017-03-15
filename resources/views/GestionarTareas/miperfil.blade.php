@@ -12,7 +12,13 @@ Login
 <script src="jquery-ui.min.js"></script>
 
 
-@include ('PhpAuxiliares/cabeceraadministrador')
+@if(\Session::get('rol') == 'Administrador')
+
+    @include ('PhpAuxiliares/cabeceraadministrador')
+@else
+
+    @include ('PhpAuxiliares/cabecera')
+@endif
 
 
 <div class="panel panel-primary divmiperfil">

@@ -5,7 +5,6 @@
 Login
 @endsection
 
-@section('contenido')
 
 <script>
 
@@ -66,6 +65,16 @@ Login
     }
 </script>
 
+@section('contenido')
+
+
+@if(\Session::get('rol') == 'Administrador')
+
+    @include ('PhpAuxiliares/cabeceraadministrador')
+@else
+
+    @include ('PhpAuxiliares/cabecera')
+@endif
 
 <div class="container">
     <div class="panel panel-primary login">
