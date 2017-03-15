@@ -4,6 +4,8 @@
 Gestión de tareas
 @endsection
 
+<link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet">
+
 
 @include ('PhpAuxiliares/cabecera')
 
@@ -24,8 +26,8 @@ Gestión de tareas
             
             <img src="Imagenes/Logos/logoPaginaInicio.png">
             
-            <p>
-                ¡Bienvenido a Gety! el gestor de tareas y documentación de calidad orientado a instituciones academicas. Recuerda con un simple vistazo y cambia de estados tus tareas asignadas simplemente arrastrandolas.
+            <p class="descripcionpaginainicio">
+                <label>¡Bienvenido a Gety!</label> el gestor de tareas y documentación de calidad orientado a instituciones academicas. Recuerda con un simple vistazo y cambia de estados tus tareas asignadas simplemente arrastrandolas.
             </p>
             
             <form action="seguir" method="POST">

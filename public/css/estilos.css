@@ -458,13 +458,21 @@ b{
 }
 
 .logopaginalogin{
-    
+
     width: 15%;
     margin: auto;
     margin-top: 20px;
 }
 
 .divinformacionpaginainicio{
-    
+
     text-align: center;
+}
+
+.descripcionpaginainicio{
+
+    font-family: 'Rokkitt', serif;
+    font-size: 15px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
