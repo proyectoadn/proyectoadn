@@ -10,6 +10,21 @@ Administracion
 
 <script>
 
+
+    function validarPopUp() {
+        var campo = document.getElementById(nombreTarea).value;
+        alert(campo);
+
+        if (campo === '') {
+            alert("El campo esta vacío");
+            return false;
+        } else {
+            //Las validaciones que necesitas hacer
+        }
+    }//Fin validarPopUp
+
+
+
     var id_rol;
     var id_doc;
     var id_cat;
@@ -578,7 +593,7 @@ Administracion
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" data-dismiss="modal">
+                <button id="editDoc" class="btn btn-primary" onclick="validarPopUp()" id="insertarDocumentacion" data-dismiss="modal">
                     Aceptar
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">
@@ -600,8 +615,8 @@ Administracion
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
                         <label for="anadirDoc">Descripción Documentación</label>
-                        <input name="nombreDoc" id="anadirDoc" type="text" class="form-control" id="nombreTarea"
-                               value="">
+                        <input  name="nombreDoc" id="anadirDoc" type="text" class="form-control" id="nombreTarea"
+                                value="">
                     </div>
                     <div class="col-md-4" style="margin-bottom: 10px;">
                         <label>Categorias</label>
