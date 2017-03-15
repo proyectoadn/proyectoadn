@@ -15,8 +15,8 @@ Gestión de tareas
 
     <div class="row">
 
-        <div class="col-md-6">
-
+        <div class="col-md-6 divinformacionpaginainicio">
+            <img src="Imagenes/portada.png" style="width:80%;">
 
         </div>
         
