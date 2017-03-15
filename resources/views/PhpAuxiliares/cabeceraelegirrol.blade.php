@@ -37,7 +37,7 @@ $usu = \Session::get('u');
 
         <ul class="nav navbar-nav">
 
-            <li><a class="letrasgrandes" href="login">Inicio</a></li>
+            <li><a class="letrasgrandes" href="paginainicio">Inicio</a></li>
 
         </ul>
 
