@@ -71,6 +71,11 @@ Route::get('subirfotoerror', [
     'uses' => 'Controlador@loginconfirm'
 ]);
 
+Route::get('subirfoto', [
+    'as' => 'subirfoto',
+    'uses' => 'Controlador@fotorecortada',
+]);
+
 
 
 

@@ -61,7 +61,7 @@ textarea{
 }
 
 .panel-footer{
-    
+
     background-color:white;
     padding: 20px 15px;
 }
@@ -100,7 +100,7 @@ textarea{
 }
 
 .tituloformularioregistro{
-    
+
     width: 100%;
     margin: auto;
     text-align: center;
@@ -108,20 +108,20 @@ textarea{
 }
 
 .centrarbotonesregistro{
-    
+
     text-align: center;
     margin-top: 20px;
 }
 
 .registroerror{
-    
+
     margin: auto;
     margin-top: 50px;
     width: 32%;
 }
 
 .botonregistro{
-    
+
     width: 100%;
     margin-top: 5px;
 }
@@ -366,7 +366,7 @@ b{
 }
 
 .divgestionopciones{
-    
+
     text-align: left;
     margin-top: 50px;
     min-height: 300px;
@@ -375,28 +375,28 @@ b{
 }
 
 .divgestion{
-    
+
     margin-top: 50px;
 }
 
 .espaciongestion{
-    
+
     margin-top: 20px;
 }
 
 .divbotongestion{
-    
+
     width: 97%;
 }
 
 .botongestion{
-    
+
     width: 100%;
     margin-left: 5px;
 }
 
 .botonborrargestion{
-    
+
     margin-top: 10px;
 }
 
@@ -406,21 +406,21 @@ b{
 }
 
 .titulogeneralpdf{
-    
+
     width: 50%;
     margin: auto;
     text-align: center;
 }
 
 .titulogeneralsubirfotoerror{
-    
+
     width: 50%;
     margin: auto;
     text-align: center;
 }
 
 .divtarea{
-    
+
     width: 50%;
     border: 1px solid black;
     border-radius: 5px;
@@ -429,7 +429,7 @@ b{
 }
 
 .botonasignartareas{
-    
+
     width: 100%;
     margin-top: 10px;
 }
@@ -444,6 +444,15 @@ b{
 }
 
 .divfoto{
-    
+
     width: 30%;
+    margin-left: 500px;
+    margin-top: 20px;
+}
+
+.botonguardar{
+
+    margin-left: 500px;
+    width: 410px;
+    margin-top: 10px;
 }

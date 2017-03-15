@@ -165,17 +165,13 @@ if (\Session::get('rol') == 'Administrador') {
                 <div id="mensaje">
                 </div>
 
-                <div id="fotoperfil">
-                    <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->
-                </div>
-
 
                 <form action="subirimagen" method="POST" enctype="multipart/form-data">
                     {!! csrf_field() !!}
 
                     <input title="seleccionar archivo" type="file" name="archivo" id="archivo" value="prueba">
 
-                    <input title="subir la imagen" type="submit" name="subir" value="Subir" class="btn btn-primary">
+                    <input title="subir la imagen" type="submit" name="subir" value="Subir" class="btn btn-primary botonsubir">
                 </form>
 
             </div>
