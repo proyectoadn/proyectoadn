@@ -15,7 +15,7 @@ Login
 
     <div class="logopaginalogin">
         
-        <a href="login"><img src="Imagenes/Logos/logoGETY.png"></a>
+        <a href="login"><img alt="Logo" src="Imagenes/Logos/logoGETY.png"></a>
     </div>
 
     <div class="panel panel-primary login">
