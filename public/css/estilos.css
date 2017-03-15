@@ -68,7 +68,7 @@ textarea{
 
 .login{
     margin:auto;
-    margin-top: 10%;
+    margin-top: 5%;
     width:40%;
 }
 
@@ -455,4 +455,16 @@ b{
     margin-left: 500px;
     width: 410px;
     margin-top: 10px;
+}
+
+.logopaginalogin{
+    
+    width: 15%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.divinformacionpaginainicio{
+    
+    text-align: center;
 }

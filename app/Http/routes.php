@@ -76,6 +76,11 @@ Route::get('subirfoto', [
     'uses' => 'Controlador@fotorecortada',
 ]);
 
+Route::get('paginainicio', [
+    'as' => 'paginainicio',
+    'uses' => 'Controlador@paginainicio',
+]);
+
 
 
 
@@ -83,7 +88,7 @@ Route::get('subirfoto', [
 
 Route::post('validar', [
     'as' => 'validar',
-    'uses' => 'Controlador@comprobarlogin',
+    'uses' => 'Controlador@paginainicio',
     'middleware' => 'login'
 ]);
 
@@ -149,6 +154,15 @@ Route::post('subirimagen', [
     'as' => 'subirimagen',
     'uses' => 'Controlador@subirimagen',
 ]);
+
+
+Route::post('seguir', [
+    'as' => 'seguir',
+    'uses' => 'Controlador@comprobarlogin',
+]);
+
+
+
 
 
 

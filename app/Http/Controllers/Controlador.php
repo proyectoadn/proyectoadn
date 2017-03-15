@@ -78,7 +78,9 @@ class Controlador extends Controller {
 
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
-            } else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
+                
+            }
+            else if ($rol[$i][0]->descripcion == "Coordinador calidad") {
 
                 $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
                 return view('Administrar/elegirRol');
@@ -203,6 +205,11 @@ class Controlador extends Controller {
     public function fotorecortada(Request $request) {
 
         return view('fotorecortada');
+    }
+    
+    public function paginainicio(Request $request) {
+
+        return view('Login/paginainicio');
     }
 
     public function subirimagen(Request $request) {

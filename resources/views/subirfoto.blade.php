@@ -114,10 +114,16 @@ Gestión de tareas
 
 @endsection
 
+@if(\Session::get('rol') == 'Administrador')
+
+    @include ('PhpAuxiliares/cabeceraadministrador')
+@else
+
+    @include ('PhpAuxiliares/cabecera')
+@endif
+
 
 @section('contenido')
-
-@include ('PhpAuxiliares/cabeceraadministrador')
 
 
 

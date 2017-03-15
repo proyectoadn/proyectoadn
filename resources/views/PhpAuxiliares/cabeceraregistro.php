@@ -35,6 +35,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="login">Inicio</a>
+        <a class="navbar-brand" href="paginainicio">Inicio</a>
     </div>         
 </nav>
