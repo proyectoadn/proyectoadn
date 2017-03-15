@@ -22,7 +22,7 @@ Gestión de tareas
         
         <div class="col-md-6 divinformacionpaginainicio">
             
-            <img src="Imagenes/Logos/logoGETY.png">
+            <img src="Imagenes/Logos/logoPaginaInicio.png">
             
             <p>
                 Descripcion de la aplicacion.
