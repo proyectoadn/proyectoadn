@@ -84,13 +84,14 @@ if (\Session::get('pagina') == 'gestiontareas') {
 
                             <div class="row">
 
-                                <div class="col-md-4 col-xs-4 imagenusuario" id="imagen">
-                                    <img src="Imagenes/Administrador/+.png" id="cambiarimagen" alt="Imagen de perfil"
+                                <div class="col-md-5 col-xs-4 imagenusuario" id="imagen">
+                                    <img src="Imagenes/Fotosusuarios/<?php echo $usu->getId_usuario() ?>/fotorecortada.jpg" id="cambiarimagen" alt="Pincha aqui para cambiar tu foto perfil"
                                          data-toggle="modal" data-target="#modalimagen" class="img-circle">
+
                                 </div>
 
 
-                                <div class="col-md-8 col-xs-8">
+                                <div class="col-md-7 col-xs-8">
                                     <label><?php echo $usu->getNombre(); ?></label>
 
                                     <p><?php echo $usu->getEmail(); ?></p>
@@ -138,6 +139,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
     </div>
 </nav>
 
+
 <div id="modalimagen" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -155,24 +157,19 @@ if (\Session::get('pagina') == 'gestiontareas') {
                 <div id="mensaje">
                 </div>
 
-                <div id="fotoperfil">
-                    <!--<img src="Imagenes/foto.jpg" class="imagenperfil" id="prueba">-->
-                </div>
-
 
                 <form action="subirimagen" method="POST" enctype="multipart/form-data">
                     {!! csrf_field() !!}
 
                     <input title="seleccionar archivo" type="file" name="archivo" id="archivo" value="prueba">
 
-                    <input title="subir la imagen" type="submit" name="subir" value="Subir" class="btn btn-primary">
+                    <input title="subir la imagen" type="submit" name="subir" value="Subir" class="btn btn-primary botonsubir">
                 </form>
 
             </div>
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="recortarfoto()">Guardar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

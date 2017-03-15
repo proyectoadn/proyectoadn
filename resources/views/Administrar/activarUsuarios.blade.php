@@ -58,7 +58,7 @@ Administracion
         });
 
     });
-
+    //Valida el usuario en la base de datos al pulsar el boton
     function validar(boton) {
         var id_usuario = boton.value;
 
@@ -74,7 +74,7 @@ Administracion
         });
 
     }
-
+    //Borra el usuario en la base de datos al pusar el boton
     function denegar(boton) {
         var id_usuario = boton.value;
 

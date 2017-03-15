@@ -199,6 +199,11 @@ class Controlador extends Controller {
 
         return view('Login/restablecerpassword');
     }
+    
+    public function fotorecortada(Request $request) {
+
+        return view('fotorecortada');
+    }
 
     public function subirimagen(Request $request) {
 
@@ -210,8 +215,8 @@ class Controlador extends Controller {
 
         if ($request->hasFile('archivo')) {
             
-
-
+            
+            
             if ($_FILES['archivo']['type'] == 'image/jpeg') {
                 
 
