@@ -25,7 +25,7 @@ Gestión de tareas
             <img src="Imagenes/Logos/logoPaginaInicio.png">
             
             <p>
-                Descripcion de la aplicacion.
+                ¡Bienvenido a Gety! el gestor de tareas y documentación de calidad orientado a instituciones academicas. Recuerda con un simple vistazo y cambia de estados tus tareas asignadas simplemente arrastrandolas.
             </p>
             
             <form action="seguir" method="POST">
