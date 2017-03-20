@@ -2,7 +2,7 @@
 @extends('../maestra')
 
 @section('titulo')
-Gestión de tareas
+Perfil
 @endsection
 
 @section('contenido')
@@ -19,7 +19,7 @@ Gestión de tareas
 
                 <div class="titulogeneralsubirfotoerror">
 
-                    <h3>Error al subir el archivo, no es una foto, intentalo de nuevo.</h3>
+                    <h3>Error al subir el archivo, no es una foto o no tiene el formato jpg, intentalo de nuevo.</h3>
                 </div>
 
             </div>

@@ -63,7 +63,7 @@ if (\Session::get('rol') == 'Administrador') {
 
         <ul class="nav navbar-nav">
 
-            <li><a class="letrasgrandes" href="login">Inicio</a></li>
+            <li><a class="letrasgrandes" href="paginainicio">Inicio</a></li>
             <li><a class="letrasgrandes" href="administrar">Administrar documentacion</a></li>
             <li><a class="letrasgrandes" href="asignarTareas">Asignar tareas</a></li>
             <li><a class="letrasgrandes" href="activarUsuarios">Activar usuarios</a></li>

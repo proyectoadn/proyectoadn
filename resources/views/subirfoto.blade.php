@@ -1,7 +1,7 @@
 @extends('../maestra')
 
 @section('titulo')
-Gestión de tareas
+Perfil
 @endsection
 
 @section('js')
@@ -130,7 +130,7 @@ Gestión de tareas
 <div>
     
     <div id="fotoperfil" class="divfoto">
-        <img src="Imagenes/Fotosusuarios/{!! $id_usuario !!}/{!! $nombrearchivo !!}" id="prueba" style="width: 100%;">
+        <img alt="Imagen cargada" src="Imagenes/Fotosusuarios/{!! $id_usuario !!}/{!! $nombrearchivo !!}" id="prueba" style="width: 100%;">
     </div>
     
     <button type="button" name="guardar" class="btn btn-primary botonguardar" onclick="recortarfoto()">Guardar</button>

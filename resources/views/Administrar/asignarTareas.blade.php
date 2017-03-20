@@ -126,7 +126,7 @@ Administracion
 
                         var usu = $("#selectUsuarios").val();
                         var id_usuario = JSON.stringify(usu);
-                        alert(id_usuario);
+
 
 
 

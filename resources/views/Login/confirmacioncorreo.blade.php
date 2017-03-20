@@ -8,6 +8,7 @@ Login
 @section('contenido')
 
 
+
 <div class="container">
     <div class="panel panel-primary login">
         <div class="panel-body">
@@ -26,3 +27,4 @@ Login
     </div>
 </div>
 @endsection
+
