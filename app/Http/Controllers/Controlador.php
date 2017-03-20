@@ -122,6 +122,7 @@ class Controlador extends Controller {
 
 
         $log->EscribirLog($nombre . ' ' . $apellidos . ' ha iniciado sesión.');
+        
 
         return view('GestionarTareas/gestionTareas', $datos);
     }
@@ -297,6 +298,7 @@ class Controlador extends Controller {
             'id_user' => $usu->getId_usuario(),
             'comentarioAdmin' => $comentarioAdmin
         ];
+        
 
         return view('Administrar/administrar', $datos);
     }
