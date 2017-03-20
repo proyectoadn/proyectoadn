@@ -257,10 +257,7 @@ Administracion
 
         });
 
-        //Valida los inputs del popUp 
-        $(".comprobar").on("change", function () {
-            validarPopUp();
-        });
+
 
 
         $('#editDoc').on('click', function () {

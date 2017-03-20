@@ -8,7 +8,14 @@ Login
 @section('contenido')
 
 <div class="container">
+    
+    <div class="logopaginalogin">
+        
+        <a href="login"><img alt="Logo" src="Imagenes/Logos/logoGETY.png"></a>
+    </div>
+    
     <div class="alert alert-success loginerror" >Session cerrada correctamente</div>
+    
     <div class="panel panel-primary loginerror">
         <div class="panel-body">
             <h2 class="form-signin-heading">Iniciar sesión</h2>
