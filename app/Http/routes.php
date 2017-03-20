@@ -323,7 +323,7 @@ Route::group(['middleware' => 'user'],function(){
 
     //Rutas post
 
-    Route::post('datoscentro', [
+    Route::post('datoscentrousuario', [
         'as' => 'datosCentroVisualizar',
         'uses' => 'Controlador@datosCentroVisualizar'
 

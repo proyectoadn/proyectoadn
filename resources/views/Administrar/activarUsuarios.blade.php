@@ -119,7 +119,7 @@ Administracion
     <div class="form-group">
         <form action="enviarconfirm" method="POST">
             {!! csrf_field() !!}
-            <table class="tanle table-hover letrasblancas tablaUsuarios">
+            <table class="table table-hover letrasblancas tablaUsuarios">
                 <thead >
                     <tr class="alturatr">
                         <th class="">#</th>

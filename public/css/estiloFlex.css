@@ -40,7 +40,6 @@
     display: inline-block; /*Esto deja las columnas en horizontal, hace que no se bajen*/
     vertical-align: top;
     padding-top: 7px;
-    max-height: 500px;
     min-height: 500px;
     margin-left: 10px;
     margin-top: 20px;
