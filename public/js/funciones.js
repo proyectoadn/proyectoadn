@@ -5,6 +5,7 @@
 /* VALIDAR NOMBRE DEL REGISTRO */
 
 var caracteres = 250;
+
 function validarNombre(control) {
     if (control.value == "") {
 

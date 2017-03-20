@@ -12,15 +12,122 @@ Administracion
 
 
     function validarPopUp() {
-        var campo = document.getElementById(nombreTarea).value;
-        alert(campo);
+        var nombreDoc = document.getElementById('nombreDoc').value;
+        var nombreModelo = document.getElementById('nombreModelo').value;
+        var linkModelo = document.getElementById('linkModelo').value;
+        var editTarea = document.getElementById('editTarea').value;
+        var devolver = true;
 
-        if (campo == '') {
-            alert("El campo esta vacío");
-            return false;
+        if (nombreDoc == '') {
+            //Pongo el input en rojo
+            document.getElementById("nombreDoc").style.backgroundColor = "#F18585";
+            alert("La descripción de la documentación no puede estar vacía");
+            devolver = false;
         } else {
-            //Las validaciones que necesitas hacer
+            document.getElementById("nombreDoc").style.backgroundColor = "white";
         }
+
+        if (nombreModelo == '') {
+            //Pongo el input en rojo
+            document.getElementById("nombreModelo").style.backgroundColor = "#F18585";
+            $('#editDoc').attr("disabled", true);
+            alert("El nombre del modelo no puede estar vacío");
+            devolver = false;
+        } else {
+            document.getElementById("nombreModelo").style.backgroundColor = "white";
+        }
+
+        if (linkModelo == '') {
+            //Pongo el input en rojo
+            document.getElementById("linkModelo").style.backgroundColor = "#F18585";
+            alert("El link del modelo no puede estar vacío");
+            devolver = false;
+        } else {
+            document.getElementById("linkModelo").style.backgroundColor = "white";
+        }
+
+        if (editTarea == '') {
+            //Pongo el input en rojo
+            document.getElementById("editTarea").style.backgroundColor = "#F18585";
+            alert("El nombre de la tarea no puede estar vacía");
+            devolver = false;
+        } else {
+            document.getElementById("editTarea").style.backgroundColor = "white";
+        }
+
+        if (nombreDoc == '' || nombreModelo == '' || linkModelo == '' || editTarea == '') {
+            $('#editDoc').attr("disabled", true);
+        } else {
+            $('#editDoc').attr("disabled", false);
+        }
+
+        return devolver;
+    }//Fin validarPopUp
+    
+    function validarPopUpAnadir() {
+        var nombreDoc = document.getElementById('anadirDoc').value;
+        var nombreModelo = document.getElementById('anadirModelo').value;
+        var linkModelo = document.getElementById('anadirLink').value;
+        var editTarea = document.getElementById('addTarea').value;
+        var devolver = true;
+
+        if (nombreDoc == '') {
+            //Pongo el input en rojo
+            document.getElementById("anadirDoc").style.backgroundColor = "#F18585";
+            alert("La descripción de la documentación no puede estar vacía");
+            devolver = false;
+        } else {
+            document.getElementById("anadirDoc").style.backgroundColor = "white";
+        }
+
+        if (nombreModelo == '') {
+            //Pongo el input en rojo
+            document.getElementById("anadirModelo").style.backgroundColor = "#F18585";
+            alert("El nombre del modelo no puede estar vacío");
+            devolver = false;
+        } else {
+            document.getElementById("anadirModelo").style.backgroundColor = "white";
+        }
+
+        if (linkModelo == '') {
+            //Pongo el input en rojo
+            document.getElementById("anadirLink").style.backgroundColor = "#F18585";
+            alert("El link del modelo no puede estar vacío");
+            devolver = false;
+        } else {
+            document.getElementById("anadirLink").style.backgroundColor = "white";
+        }
+
+        if (editTarea == '') {
+            //Pongo el input en rojo
+            document.getElementById("addTarea").style.backgroundColor = "#F18585";
+            alert("El nombre de la tarea no puede estar vacía");
+            devolver = false;
+        } else {
+            document.getElementById("addTarea").style.backgroundColor = "white";
+        }
+        
+        
+//        var sino;
+//            for (var i = 0; i < countCat; i++) {
+//                if ($("#anadirCat" + i).prop('checked')) {
+//                   sino = true;
+//                }else{
+//                   sino = false;
+//                } 
+//            }
+//            if(sino == false){
+//                alert("Seleccione una categoria")
+//            }
+        
+
+        if (nombreDoc == '' || nombreModelo == '' || linkModelo == '' || editTarea == '') {
+            $('#addDoc').attr("disabled", true);
+        } else {
+            $('#addDoc').attr("disabled", false);
+        }
+
+        return devolver;
     }//Fin validarPopUp
 
 
@@ -31,7 +138,6 @@ Administracion
     var countCat = 0;
 
     $(function () {
-
         //Funcion que actualiza el textarea de los comentarios de los administradores cada 15segundos
         //Lo carga desde la tabla comentarioadmin,
         function actualizarComentario() {
@@ -109,6 +215,7 @@ Administracion
         });
 
 
+
         //Funcion que se lanza cuando se cambia un valor en el desplegable de cargos
         $("#carg").on("change", function () {
 
@@ -150,38 +257,45 @@ Administracion
 
         });
 
+        //Valida los inputs del popUp 
+        $(".comprobar").on("change", function () {
+            validarPopUp();
+        });
 
 
         $('#editDoc').on('click', function () {
 
-            var descripcion = $('#nombreDoc').val();
-            var categoria = $('#categ').val();
-            var rol = $('#roles').val();
-            var entrega = $('#entregar').val();
-            var modelo = $('#nombreModelo').val();
-            var link = $('#linkModelo').val();
-            var tarea = $('#editTarea').val();
-            var update = new Array();
-            update.push(descripcion);
-            update.push(categoria);
-            update.push(rol);
-            update.push(entrega);
-            update.push(modelo);
-            update.push(id_doc);
-            update.push(link);
-            update.push(tarea);
-            var vector = JSON.stringify(update);
-            $.post("../resources/views/PhpAuxiliares/actualizardocumentos.php", {datos: vector},
-                    function (respuesta) {
+            if (validarPopUp()) {
 
-                        llenar_documentos();
-                    }).fail(function (jqXHR) {
-                alert("Error de tipo " + jqXHR.status);
-            });
+                var descripcion = $('#nombreDoc').val();
+                var categoria = $('#categ').val();
+                var rol = $('#roles').val();
+                var entrega = $('#entregar').val();
+                var modelo = $('#nombreModelo').val();
+                var link = $('#linkModelo').val();
+                var tarea = $('#editTarea').val();
+                var update = new Array();
+                update.push(descripcion);
+                update.push(categoria);
+                update.push(rol);
+                update.push(entrega);
+                update.push(modelo);
+                update.push(id_doc);
+                update.push(link);
+                update.push(tarea);
+                var vector = JSON.stringify(update);
+                $.post("../resources/views/PhpAuxiliares/actualizardocumentos.php", {datos: vector},
+                        function (respuesta) {
 
+                            llenar_documentos();
 
+                        }).fail(function (jqXHR) {
+                    alert("Error de tipo " + jqXHR.status);
+                });
 
-
+            } else {
+                //alert('no hace el insert');
+            }
         });
 
 
@@ -228,6 +342,11 @@ Administracion
 
         });
 
+
+        //Valida los inputs del popUp 
+        $(".comprobarAdd").on("change", function () {
+            validarPopUpAnadir();
+        });
 
         //Funcion que se inicia cuando se pulsa el boton de aceptar en el popup de añadir.
         $('#addDoc').on('click', function () {
@@ -444,7 +563,6 @@ Administracion
             alert("Error de tipo " + jqXHR.status);
         });
     }
-
 </script>
 @endsection
 
@@ -549,7 +667,7 @@ Administracion
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
                         <label for="nombreDoc">Descripción Documentación</label>
-                        <input name="nombreDoc" id="nombreDoc" type="text" class="form-control" id="nombreTarea"
+                        <input name="nombreDoc" id="nombreDoc" type="text" class="form-control comprobar" id="nombreTarea"
                                value="">
                     </div>
 
@@ -572,12 +690,12 @@ Administracion
 
                     <div class="col-md-12">
                         <label for="nombreModelo">Modelo</label>
-                        <input name="nombreModelo" id="nombreModelo" type="text" class="form-control"
+                        <input name="nombreModelo" id="nombreModelo" type="text" class="form-control comprobar"
                                id="nombreTarea" value="">
                         <br>
 
                         <label for="linkModelo">Link del modelo</label>
-                        <input name="linkModelo" id="linkModelo" type="text" class="form-control" id="nombreTarea"
+                        <input name="linkModelo" id="linkModelo" type="text" class="form-control comprobar" id="nombreTarea"
                                value="">
                     </div>
                 </div>
@@ -587,13 +705,13 @@ Administracion
             <div class="modal-footer">
                 <div class="col-md-12 text-left">
                     <label for="editTarea">Descripción de la tarea asociada al documento</label>
-                    <input name="tarea" id="editTarea" type="text" class="form-control"
+                    <input name="tarea" id="editTarea" type="text" class="form-control comprobar"
                            value="">
                     <br>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="editDoc" class="btn btn-primary" onclick="validarPopUp()" id="insertarDocumentacion" data-dismiss="modal">
+                <button id="editDoc" class="btn btn-primary" id="insertarDocumentacion" disabled data-dismiss="modal">
                     Aceptar
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">
@@ -615,15 +733,12 @@ Administracion
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
                         <label for="anadirDoc">Descripción Documentación</label>
-                        <input  name="nombreDoc" id="anadirDoc" type="text" class="form-control" id="nombreTarea"
+                        <input  name="nombreDoc" id="anadirDoc" type="text" class="form-control comprobarAdd" id="nombreTarea"
                                 value="">
                     </div>
                     <div class="col-md-4" style="margin-bottom: 10px;">
                         <label>Categorias</label>
-
                         <div class="checkbox" id="anadirCat">
-
-
                         </div>
                     </div>
 
@@ -641,12 +756,12 @@ Administracion
 
                     <div class="col-md-12">
                         <label for="anadirModelo">Modelo</label>
-                        <input name="nombreModelo" id="anadirModelo" type="text" class="form-control"
+                        <input name="nombreModelo" id="anadirModelo" type="text" class="form-control comprobarAdd"
                                id="nombreTarea" value="">
                         <br>
 
                         <label for="anadirLink">Link del modelo</label>
-                        <input name="linkModelo" id="anadirLink" type="text" class="form-control" id="nombreTarea"
+                        <input name="linkModelo" id="anadirLink" type="text" class="form-control comprobarAdd" id="nombreTarea"
                                value="">
                     </div>
                 </div>
@@ -656,13 +771,13 @@ Administracion
             <div class="modal-footer">
                 <div class="col-md-12 text-left">
                     <label for="addTarea">Descripción de la tarea asociada al documento</label>
-                    <input name="tarea" id="addTarea" type="text" class="form-control"
+                    <input name="tarea" id="addTarea" type="text" class="form-control comprobarAdd"
                            value="">
                     <br>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="addDoc" class="btn btn-primary" id="anadirDocumentacion" data-dismiss="modal">
+                <button id="addDoc" class="btn btn-primary" id="anadirDocumentacion" data-dismiss="modal" disabled>
                     Aceptar
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">

@@ -113,8 +113,7 @@ Administracion
 
 
 <div class="contenedorPrincipal margensuperior">
-    <!--div que contiene los cargos y las categorias-->
-    <div class='limpiar'></div>
+
     <!-- DIVISOR ROW DE TODO -->
     <div class="row">
         <!-- DIVISOR IZQUIERDA -->
