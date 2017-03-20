@@ -76,20 +76,22 @@ Login
         <form action="cambiarpasswordperfil" method="POST">
             {!! csrf_field() !!}
 
-
+            <label for="password">Contraseña antigua</label>
             <div class="input-group" style="margin-bottom: 5px;">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar"></i></span>
                 <input type="password" id="password" name="contraseñaantigua" placeholder="Contraseña antigua" class="form-control">
             </div>
 
+            <label for="repetirpassword">Contraseña nueva</label>
             <div class="input-group" style="margin-bottom: 5px;">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar2"></i></span>
                 <input type="password" id="repetirpassword" name="password" placeholder="Contraseña nueva" class="form-control">
             </div>
 
+            <label for="repetirpassword">Repetir contraseña</label>
             <div class="input-group" style="margin-bottom: 5px;">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close" id="codificarDecodificar2"></i></span>
-                <input type="password" id="repetirpassword" name="repetirpassword" placeholder="Repetir contraseña nueva" class="form-control">
+                <input type="password" id="repetirpassword2" name="repetirpassword" placeholder="Repetir contraseña nueva" class="form-control">
             </div>
             <br>
 

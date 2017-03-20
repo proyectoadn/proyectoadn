@@ -35,6 +35,13 @@ class Conexion {
         return $todobien;
     }
 
+
+    /**
+     * Funcion que devuelve una lista de categorias filtradas por el rol.
+     *
+     * @param $rol
+     * @return bool
+     */
     function rellenar_categorias($rol) {
         $consult = 'Select DISTINCT categoria.id_categoria, categoria.descripcion from documentacion,categoria where documentacion.id_rol=' . $rol . ' and documentacion.id_categoria=categoria.id_categoria';
 
@@ -48,6 +55,12 @@ class Conexion {
         return $devolver;
     }
 
+
+    /**
+     * Funcion que devuelve todas las categorias.
+     *
+     * @return bool
+     */
     function rellenar_todas_categorias() {
         $consult = 'Select * from categoria';
 
@@ -61,6 +74,15 @@ class Conexion {
         return $devolver;
     }
 
+
+    /**
+     * Funcion que devuelve las tareas filtrando por el usuario, la categoria y el rol.
+     *
+     * @param $id_cat
+     * @param $id_rol
+     * @param $id_user
+     * @return bool
+     */
     function rellenar_tareas($id_cat, $id_rol, $id_user) {
         $consult = 'Select tarea.id_tarea, tarea.descripcion, tarea.id_estado, documentacion.modelo, documentacion.link from documentacion, tarea where documentacion.id_categoria=' . $id_cat . ' and documentacion.id_rol=' . $id_rol . ' and documentacion.id_documentacion=tarea.id_documentacion and tarea.id_usuario=' . $id_user;
 
@@ -73,6 +95,13 @@ class Conexion {
         }
         return $devolver;
     }
+
+    /**
+     * Funcion que obtiene todos los datos de un rol.
+     *
+     * @param $id_rol
+     * @return bool
+     */
 
     function rellenar_gestionrol($id_rol) {
         $consult = 'select * from rol where id_rol=' . $id_rol;
@@ -87,6 +116,13 @@ class Conexion {
         return $devolver;
     }
 
+    /**
+     * Funcion que devuelve los cargos filtrando por rol.
+     *
+     * @param $id_rol
+     * @return bool
+     */
+
     function obtenerUsuarioCargo($id_rol) {
         $consult = 'SELECT * FROM cargo WHERE id_rol=' . $id_rol;
 
@@ -100,6 +136,14 @@ class Conexion {
         return $devolver;
     }
 
+    /**
+     * Funcion que comprueba si la tarea ya estan asignada al usuario.
+     *
+     * @param $id_usuario
+     * @param $descripcion
+     * @return bool
+     */
+
     function verificarInsertTareas($id_usuario, $descripcion) {
         $consult = 'SELECT * FROM tarea WHERE id_usuario=' . $id_usuario . ' AND descripcion="' . $descripcion . '"';
 
@@ -110,8 +154,15 @@ class Conexion {
         } else {
             $devolver = false;
         }
-        return $consult;
+        return $devolver;
     }
+
+    /**
+     * Devuelve toda la informacion de una categoria.
+     *
+     * @param $id_categoria
+     * @return bool
+     */
 
     function rellenar_gestioncategorias($id_categoria) {
         $consult = 'select * from categoria where id_categoria=' . $id_categoria;
@@ -126,6 +177,13 @@ class Conexion {
         return $devolver;
     }
 
+    /**
+     * Funcion que devuelve toda la informacion de una entrega.
+     *
+     * @param $id_entregas
+     * @return bool
+     */
+
     function rellenar_gestionentregas($id_entregas) {
         $consult = 'select * from entregar where id_entregar=' . $id_entregas;
 
@@ -138,6 +196,13 @@ class Conexion {
         }
         return $devolver;
     }
+
+    /**
+     * Devuelve la informacion que se muestra en el popup de editar usuario.
+     *
+     * @param $id_usuario
+     * @return bool
+     */
 
     function editarUsuario($id_usuario) {
         $consult = 'SELECT rol.descripcion, usuario.id_usuario, usuario.nombre, usuario.apellidos, usuario.email FROM usuario, cargo, rol WHERE usuario.id_usuario=' . $id_usuario . ' AND usuario.id_usuario=cargo.id_usuario AND cargo.id_rol=rol.id_rol';
@@ -152,8 +217,14 @@ class Conexion {
         return $devolver;
     }
 
+    /**
+     * Recoge las tareas filtradas por roles para la ventana Asignar Tareas.
+     *
+     * @param $id_rol
+     * @return bool
+     */
+
     function rellenar_tareas_admin($id_rol) {
-        //  $consult='Select * FROM tareas,cargo WHERE cargo.id_rol='.$id_rol.' and tareas.id_usuario=cargo.id_usuario';
         $consult = 'Select tarea.descripcion, tarea.id_tarea FROM tarea,documentacion WHERE tarea.id_documentacion=documentacion.id_documentacion AND id_usuario IS NULL and documentacion.id_rol=' . $id_rol;
 
         $this->cursor = mysqli_query($this->conex, $consult);
@@ -166,8 +237,15 @@ class Conexion {
         return $devolver;
     }
 
+    /**
+     * Funcion que devuelve las tareas de un usuario filtradas por el rol.
+     *
+     * @param $id_rol
+     * @param $id_usu
+     * @return bool
+     */
+
     function rellenar_tareas_usu($id_rol,$id_usu) {
-        //  $consult='Select * FROM tareas,cargo WHERE cargo.id_rol='.$id_rol.' and tareas.id_usuario=cargo.id_usuario';
         $consult = 'Select tarea.descripcion, tarea.id_tarea FROM tarea,documentacion WHERE tarea.id_documentacion=documentacion.id_documentacion AND id_usuario and id_usuario='.$id_usu.' and documentacion.id_rol=' . $id_rol;
 
         $this->cursor = mysqli_query($this->conex, $consult);
@@ -179,6 +257,14 @@ class Conexion {
         }
         return $devolver;
     }
+
+    /**
+     * Funcion que devuelve la documentacion filtrandoi por categorias y rol
+     *
+     * @param $id_cat
+     * @param $id_rol
+     * @return bool
+     */
 
     function rellenar_documentacion($id_cat, $id_rol) {
         $consult = 'Select * from documentacion where id_categoria=' . $id_cat . ' and id_rol=' . $id_rol;
@@ -192,6 +278,13 @@ class Conexion {
         }
         return $devolver;
     }
+
+    /**
+     *
+     *
+     * @param $id_rol
+     * @return bool
+     */
 
     function rellenar_usuarios($id_rol) {
         $consult = 'SELECT usuario.nombre, usuario.id_usuario, usuario.apellidos FROM usuario, cargo WHERE usuario.id_usuario=cargo.id_usuario AND cargo.id_rol=' . $id_rol;
