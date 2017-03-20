@@ -13,7 +13,6 @@ require_once 'Conexion.php';
 
 $conexion = new Conexion();
 $vector = [];
-$vector = [];
 $id_usu = json_decode($_POST['datos']);
 
 if ($conexion->conectar()) {
