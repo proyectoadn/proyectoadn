@@ -57,7 +57,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
         <ul class="nav navbar-nav">
 
             <li><a class="letrasgrandes" href="paginainicio">Inicio</a></li>
-            <a class="" href="usuario"><img src="Imagenes/Logos/logoCabeceraUser.png" style="margin-top: 3px; margin-left: 500px;" alt="Logo GETY"></a>
+            <a class="" href="paginainicio"><img src="Imagenes/Logos/logoCabeceraUser.png" style="margin-top: 3px; margin-left: 500px;" alt="Logo GETY"></a>
 
         </ul>
 
@@ -103,7 +103,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
                                             </form>
                                         </div>
                                         <div class="col-md-12 col-xs-6">
-                                            <form action="datoscentro" method="POST">
+                                            <form action="datoscentrousuario" method="POST">
                                                 {!! csrf_field() !!}
                                                 <input name="datoscentro" style="width: 100%;" value="Datos centro"
                                                        class="btn btn-primary" type="submit">

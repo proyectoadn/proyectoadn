@@ -103,9 +103,6 @@ Administracion
 
 @endsection
 
-<?php
-?>
-
 
 @section('contenido')
 
@@ -131,15 +128,14 @@ Administracion
                 </div>
                 <div id="textoLog" name="textoLog" class="textoLog searchable" value="" readonly
                      style="width: 100%; background-color: white; padding: 7px; height: 400px; border-left: none; border-top: solid 1px; border-bottom: solid 1px; overflow-y: scroll;">
-<p id="parrafo">
-<?php
-
-$abrirLog = file('Log/log.txt');
-for ($i = 0; $i < count($abrirLog); $i++) {
-echo $abrirLog[$i] . '<br>';
-}
-?>
-</p>
+                    <p id="parrafo">
+                        <?php
+                        $abrirLog = file('Log/log.txt');
+                        for ($i = 0; $i < count($abrirLog); $i++) {
+                            echo $abrirLog[$i] . '<br>';
+                        }
+                        ?>
+                    </p>
                 </div>
             </div>
         </div>
