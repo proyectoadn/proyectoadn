@@ -193,6 +193,10 @@ b{
     color: white;
 }
 
+.navbar-default .navbar-nav>.active>a{
+    background-color: #ECC210;
+    color: white;
+}
 
 .navbar-default .navbar-brand:hover{
 
