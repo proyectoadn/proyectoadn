@@ -24,6 +24,44 @@
 
             document.location = "usuario";
         });
+<?php
+if (Route::current()->getName() == "administrar") {
+    ?>
+            $("#admin").addClass("active");
+    <?php
+} else {
+    if (Route::current()->getName() == "asignarTareas") {
+        ?>
+                $("#tarea").addClass("active");
+        <?php
+    } else {
+        if (Route::current()->getName() == "activarUsuarios") {
+            ?>
+                    $("#activar").addClass("active");
+            <?php
+        } else {
+            if (Route::current()->getName() == "administrarUsuarios") {
+                ?>
+                        $("#adminUsu").addClass("active");
+                <?php
+            } else {
+                if (Route::current()->getName() == "gestion") {
+                    ?>
+                            $("#gestiondatos").addClass("active");
+                    <?php
+                } else {
+                    if (Route::current()->getName() == "verLog") {
+                        ?>
+                                $("#historico").addClass("active");
+                        <?php
+                    }
+                }
+            }
+        }
+    }
+}
+?>
+
     });
 
 </script>
@@ -41,6 +79,7 @@ if (\Session::get('rol') == 'Administrador') {
     $rol = 'Administrador';
 }
 ?>
+
 
 
 <nav class="navbar navbar-default" role="navigation">
@@ -64,12 +103,12 @@ if (\Session::get('rol') == 'Administrador') {
         <ul class="nav navbar-nav">
 
             <li><a class="letrasgrandes" href="paginainicio">Inicio</a></li>
-            <li><a class="letrasgrandes" href="administrar">Administrar documentacion</a></li>
-            <li><a class="letrasgrandes" href="asignarTareas">Asignar tareas</a></li>
-            <li><a class="letrasgrandes" href="activarUsuarios">Activar usuarios</a></li>
-            <li><a class="letrasgrandes" href="administrarUsuarios">Gestion usuarios</a></li>
-            <li><a class="letrasgrandes" href="gestion">Gestion de datos</a></li>
-            <li><a class="letrasgrandes" href="verLog">Histórico</a></li>
+            <li id="admin" class=""><a class="letrasgrandes" href="administrar">Administrar documentacion</a></li>
+            <li id="tarea" class=""><a class="letrasgrandes" href="asignarTareas">Asignar tareas</a></li>
+            <li id="activar" class=""><a class="letrasgrandes" href="activarUsuarios">Activar usuarios</a></li>
+            <li id="adminUsu" class=""><a class="letrasgrandes" href="administrarUsuarios">Gestion usuarios</a></li>
+            <li id="gestiondatos" class=""><a class="letrasgrandes" href="gestion">Gestion de datos</a></li>
+            <li id="historico" class=""><a class="letrasgrandes" href="verLog">Histórico</a></li>
 
         </ul>
 
