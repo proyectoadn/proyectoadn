@@ -1,7 +1,7 @@
 @extends('../maestra')
 
 @section('titulo')
-Gestión de tareas
+Inicio
 @endsection
 
 <link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet">

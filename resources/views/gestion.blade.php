@@ -1,7 +1,7 @@
 @extends('../maestra')
 
 @section('titulo')
-Gestión de tareas
+Administrar
 @endsection
 
 @section('js')

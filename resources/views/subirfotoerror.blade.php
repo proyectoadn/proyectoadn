@@ -2,7 +2,7 @@
 @extends('../maestra')
 
 @section('titulo')
-Gestión de tareas
+Perfil
 @endsection
 
 @section('contenido')
