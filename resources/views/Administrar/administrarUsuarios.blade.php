@@ -391,7 +391,6 @@ $id_sesion = $usuSesion->getId_usuario();
         }
     //Valida los inputs del popUp 
     $(".comprobar").on("change", function () {
-        alert('asdasd')
         validarPopUpUsu();
     });
 
