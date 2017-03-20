@@ -35,7 +35,6 @@ if (\Session::get('pagina') == 'gestiontareas') {
 }
 ?>
 
-
 <nav class="navbar navbar-default" role="navigation">
     <!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
@@ -49,7 +48,6 @@ if (\Session::get('pagina') == 'gestiontareas') {
         </button>
 
     </div>
-
     <!-- Agrupar los enlaces de navegación, los formularios y cualquier
          otro elemento que se pueda ocultar al minimizar la barra -->
     <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin-right: 2%;">
@@ -156,20 +154,14 @@ if (\Session::get('pagina') == 'gestiontareas') {
 
                 <form action="subirimagen" method="POST" enctype="multipart/form-data">
                     {!! csrf_field() !!}
-
                     <input title="seleccionar archivo" type="file" name="archivo" id="archivo" value="prueba">
-
                     <input title="subir la imagen" type="submit" name="subir" value="Subir" class="btn btn-primary botonsubir">
                 </form>
-
             </div>
-
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
-
     </div>
 </div>
 
