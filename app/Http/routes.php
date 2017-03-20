@@ -270,6 +270,10 @@ Route::group(['middleware' => 'admin'],function(){
         'uses' => 'Controlador@datoscentro'
     ]);
 
+    Route::get('verHistorico', [
+        'as' => 'verHistorico',
+        'uses' => 'Controlador@verHistorico',
+    ]);
 
     Route::get('administrarUsuarios', [
         'as' => 'administrarUsuarios',

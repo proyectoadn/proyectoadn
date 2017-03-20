@@ -2,7 +2,7 @@
 @extends('../maestra')
 
 @section('titulo')
-Login
+    Perfil
 @endsection
 
 
