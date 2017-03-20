@@ -432,7 +432,7 @@ class Conexion {
 
     //Funcion carga los comentarios entre los administradores, la llama comentarioAdmin.php
     function update_comentarioAdmin($mensaje) {
-        $consult = 'UPDATE comentarioAdmin SET mensaje = "' . $mensaje . '" WHERE id_comenAdmin=1';
+        $consult = 'UPDATE comentarioadmin SET mensaje = "' . $mensaje . '" WHERE id_comenAdmin=1';
 
         $this->cursor = mysqli_query($this->conex, $consult);
 
