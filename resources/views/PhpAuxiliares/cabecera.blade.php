@@ -103,7 +103,7 @@ if (\Session::get('pagina') == 'gestiontareas') {
                                             </form>
                                         </div>
                                         <div class="col-md-12 col-xs-6">
-                                            <form action="datoscentro" method="POST">
+                                            <form action="datoscentrousuario" method="POST">
                                                 {!! csrf_field() !!}
                                                 <input name="datoscentro" style="width: 100%;" value="Datos centro"
                                                        class="btn btn-primary" type="submit">

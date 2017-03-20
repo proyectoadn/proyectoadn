@@ -18,7 +18,7 @@ Centro
 </style>
 @include ('PhpAuxiliares/cabeceraadministrador')
 
-<div class="alert alert-success divperfilactualziado" style="margin-top: 15px;" >Datos actualziados correctamente</div>
+<div class="alert alert-success divperfilactualziado" style="margin-top: 15px;" >Datos actualizados correctamente</div>
 
 
 <div class="panel panel-primary divmiperfil" style="margin-top: 20px;">
