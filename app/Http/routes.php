@@ -81,6 +81,25 @@ Route::get('paginainicio', [
     'uses' => 'Controlador@paginainicio',
 ]);
 
+Route::get('miperfil', [
+    'as' => 'miperfil',
+    'uses' => 'Controlador@miperfil'
+]);
+
+Route::get('actualizarperfil', [
+    'as' => 'actualizarperfil',
+    'uses' => 'Controlador@actualizarperfil'
+]);
+
+Route::get('passwordperfil', [
+    'as' => 'passwordperfil',
+    'uses' => 'Controlador@passwordperfil',
+]);
+
+Route::get('cambiarpasswordperfil', [
+    'as' => 'cambiarpasswordperfil',
+    'uses' => 'Controlador@cambiarpasswordperfil',
+]);
 
 
 
@@ -251,6 +270,10 @@ Route::group(['middleware' => 'admin'],function(){
         'uses' => 'Controlador@datoscentro'
     ]);
 
+    Route::get('verHistorico', [
+        'as' => 'verHistorico',
+        'uses' => 'Controlador@verHistorico',
+    ]);
 
     Route::get('administrarUsuarios', [
         'as' => 'administrarUsuarios',

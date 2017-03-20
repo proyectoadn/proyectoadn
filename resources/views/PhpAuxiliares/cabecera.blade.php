@@ -6,10 +6,6 @@
  */
 ?>
 
-<!--FAVICON-->
-<link rel="icon" 
-      type="image/png" 
-      href="Imagenes/Logos/favicon.png">
 
 <script>
 
