@@ -180,7 +180,7 @@ class Controlador extends Controller {
 
         $rol = \DB::table('rol')->get();
 
-        $mensajeAdmins = \DB::table('comentarioAdmin')->get();
+        $mensajeAdmins = \DB::table('comentarioadmin')->get();
 
         $comentarioAdmin = $mensajeAdmins[0]->mensaje;
         $datos = [
